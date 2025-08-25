@@ -19,6 +19,18 @@ services:
     networks:
       - mark_foot_dev_network
 
+  # Redis Cache and Message Broker
+  redis_cache:
+    image: redis:7-alpine
+    container_name: mark_foot_redis_dev
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_dev_data:/data
+    networks:
+      - mark_foot_dev_network
+
   # Web Service (Django Frontend) - Development
   web-service-dev:
     build:
@@ -35,18 +47,74 @@ services:
       - DB_NAME=mark_foot_db_dev
       - DB_USER=mark_foot_user
       - DB_PASSWORD=mark_foot_password
+      - REDIS_URL=redis://redis_cache:6379/0
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
       - ../storage:/app/storage
     depends_on:
       - mysql_db
+      - redis_cache
     networks:
       - mark_foot_dev_network
     command: python manage.py runserver 0.0.0.0:8000
 
+  # Celery Worker for Background Tasks
+  celery-worker-dev:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_celery_worker_dev
+    restart: unless-stopped
+    environment:
+      - DEBUG=1
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_dev
+      - DB_USER=mark_foot_user
+      - DB_PASSWORD=mark_foot_password
+      - REDIS_URL=redis://redis_cache:6379/0
+    volumes:
+      - ../services/web-service:/app
+      - ../shared:/app/shared
+      - ../storage:/app/storage
+    depends_on:
+      - mysql_db
+      - redis_cache
+    networks:
+      - mark_foot_dev_network
+    command: celery -A mark_foot_backend worker --loglevel=info
+
+  # Celery Beat Scheduler
+  celery-beat-dev:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_celery_beat_dev
+    restart: unless-stopped
+    environment:
+      - DEBUG=1
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_dev
+      - DB_USER=mark_foot_user
+      - DB_PASSWORD=mark_foot_password
+      - REDIS_URL=redis://redis_cache:6379/0
+    volumes:
+      - ../services/web-service:/app
+      - ../shared:/app/shared
+      - ../storage:/app/storage
+    depends_on:
+      - mysql_db
+      - redis_cache
+      - celery-worker-dev
+    networks:
+      - mark_foot_dev_network
+    command: celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
 volumes:
   mysql_dev_data:
+  redis_dev_data:
 
 networks:
   mark_foot_dev_network:

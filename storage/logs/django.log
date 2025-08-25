@@ -17,3 +17,14 @@ INFO 2025-08-25 11:44:41,370 football_data_client 51 140066995727232 API Request
 INFO 2025-08-25 11:45:14,641 football_data_client 63 139910570433408 API Request: competitions/PL/teams - Status: 200 - Time: 2007ms
 INFO 2025-08-25 11:45:15,890 football_data_client 63 139910570433408 API Request: competitions/PL/matches - Status: 200 - Time: 1111ms
 INFO 2025-08-25 11:45:16,253 football_data_client 63 139910570433408 API Request: competitions/PL/standings - Status: 200 - Time: 278ms
+INFO 2025-08-25 12:01:38,519 autoreload 7 140173510122368 /app/mark_foot_backend/__init__.py changed, reloading.
+INFO 2025-08-25 12:13:09,044 autoreload 7 140677301574528 Watching for file changes with StatReloader
+INFO 2025-08-25 12:15:20,796 autoreload 7 140677301574528 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-25 12:15:30,123 autoreload 7 139707007134592 Watching for file changes with StatReloader
+INFO 2025-08-25 12:15:44,966 autoreload 7 139707007134592 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-25 12:15:45,908 autoreload 9 140401393961856 Watching for file changes with StatReloader
+INFO 2025-08-25 12:27:15,730 autoreload 9 140401393961856 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 12:27:16,687 autoreload 41 140694475074432 Watching for file changes with StatReloader
+INFO 2025-08-25 12:27:54,266 autoreload 41 140694475074432 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 12:27:55,180 autoreload 43 139964716534656 Watching for file changes with StatReloader
+INFO 2025-08-25 12:31:31,140 football_data_client 8 139753603812224 API Request: competitions/PL/standings - Status: 200 - Time: 2252ms

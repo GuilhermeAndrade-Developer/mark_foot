@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'corsheaders',
+    'django_celery_beat',
+    'django_celery_results',
     
     # Local apps
     'core',
@@ -215,3 +217,42 @@ LOGGING = {
         },
     },
 }
+
+# ==========================================
+# CELERY CONFIGURATION
+# ==========================================
+
+# Celery Configuration Options
+CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://localhost:6379/0')
+
+# Task serialization
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# Timezone
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
+
+# Task routing (disabled for now)
+# CELERY_TASK_ROUTES = {
+#     'data_management.tasks.*': {'queue': 'data_sync'},
+#     'api_integration.tasks.*': {'queue': 'api_calls'},
+# }
+
+# Task execution
+CELERY_TASK_ALWAYS_EAGER = False
+CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+CELERY_TASK_ACKS_LATE = True
+
+# Results backend
+CELERY_RESULT_EXPIRES = 3600  # 1 hour
+
+# Beat scheduler
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# Worker settings
+CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+CELERY_WORKER_LOG_FORMAT = '[%(asctime)s: %(levelname)s/%(processName)s] %(message)s'
+CELERY_WORKER_TASK_LOG_FORMAT = '[%(asctime)s: %(levelname)s/%(processName)s][%(task_name)s(%(task_id)s)] %(message)s'

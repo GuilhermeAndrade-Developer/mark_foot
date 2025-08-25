@@ -10,7 +10,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             '--action',
-            choices=['test', 'search', 'team', 'all-teams', 'stats'],
+            choices=['test', 'search', 'team', 'all-teams', 'stats', 'transfers', 'detailed', 'comprehensive'],
             default='test',
             help='Action to perform'
         )
@@ -28,9 +28,15 @@ class Command(BaseCommand):
         )
         
         parser.add_argument(
-            '--api-key',
+            '--player-id',
             type=str,
-            help='TheSportsDB API key (optional, uses free tier if not provided)'
+            help='Specific player ID (external_id) for detailed operations'
+        )
+        
+        parser.add_argument(
+            '--season',
+            type=str,
+            help='Specific season for statistics (e.g., "2023-2024")'
         )
 
     def handle(self, *args, **options):
@@ -55,6 +61,12 @@ class Command(BaseCommand):
             self.collect_all_teams_players(collector)
         elif action == 'stats':
             self.show_player_stats()
+        elif action == 'transfers':
+            self.collect_player_transfers(collector, options)
+        elif action == 'detailed':
+            self.collect_detailed_statistics(collector, options)
+        elif action == 'comprehensive':
+            self.collect_comprehensive_data(collector, options)
 
     def test_connection(self, collector):
         """Test API connection"""
@@ -159,18 +171,18 @@ class Command(BaseCommand):
                 self.style.ERROR(f'❌ Error collecting all team players: {str(e)}')
             )
 
-    def show_collection_results(self, stats):
-        """Show collection results"""
-        self.stdout.write(f'\n📊 Collection Results:')
-        self.stdout.write(f'  📈 Processed: {stats["processed"]}')
-        self.stdout.write(f'  ✅ Created: {stats["created"]}')
-        self.stdout.write(f'  🔄 Updated: {stats["updated"]}')
-        self.stdout.write(f'  ❌ Failed: {stats["failed"]}')
-        self.stdout.write(f'  ⏭️ Skipped: {stats["skipped"]}')
+    def show_collection_results(self, stats, indent=''):
+        """Show collection results with optional indentation"""
+        self.stdout.write(f'{indent}📊 Collection Results:')
+        self.stdout.write(f'{indent}  📈 Processed: {stats["processed"]}')
+        self.stdout.write(f'{indent}  ✅ Created: {stats["created"]}')
+        self.stdout.write(f'{indent}  🔄 Updated: {stats["updated"]}')
+        self.stdout.write(f'{indent}  ❌ Failed: {stats["failed"]}')
+        self.stdout.write(f'{indent}  ⏭️ Skipped: {stats["skipped"]}')
         
         if stats['processed'] > 0:
             success_rate = ((stats['created'] + stats['updated']) / stats['processed']) * 100
-            self.stdout.write(f'  📊 Success Rate: {success_rate:.1f}%')
+            self.stdout.write(f'{indent}  📊 Success Rate: {success_rate:.1f}%')
 
     def show_player_stats(self):
         """Show current player statistics"""
@@ -244,3 +256,144 @@ class Command(BaseCommand):
             for player in sample_players:
                 team_name = player.team.name if player.team else "No Team"
                 self.stdout.write(f'  • {player.name} ({team_name}) - {player.position or "Unknown Position"}')
+
+    def collect_player_transfers(self, collector, options):
+        """Collect transfer data for specific player"""
+        player_id = options.get('player_id')
+        
+        if not player_id:
+            self.stdout.write(
+                self.style.ERROR('❌ Player ID is required. Use --player-id "external_id"')
+            )
+            return
+        
+        self.stdout.write(f'\n🔄 Collecting transfers for player ID: "{player_id}"')
+        self.stdout.write('-' * 50)
+        
+        try:
+            stats = collector.collect_player_transfers(player_id)
+            self.show_collection_results(stats)
+            
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f'❌ Error collecting transfers: {str(e)}')
+            )
+
+    def collect_detailed_statistics(self, collector, options):
+        """Collect detailed statistics for specific player"""
+        player_id = options.get('player_id')
+        season = options.get('season')
+        
+        if not player_id:
+            self.stdout.write(
+                self.style.ERROR('❌ Player ID is required. Use --player-id "external_id"')
+            )
+            return
+        
+        season_text = f' for season {season}' if season else ''
+        self.stdout.write(f'\n📊 Collecting statistics for player ID: "{player_id}"{season_text}')
+        self.stdout.write('-' * 50)
+        
+        try:
+            stats = collector.collect_player_statistics(player_id, season)
+            self.show_collection_results(stats)
+            
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f'❌ Error collecting statistics: {str(e)}')
+            )
+
+    def collect_comprehensive_data(self, collector, options):
+        """Collect all available data for specific player"""
+        player_id = options.get('player_id')
+        
+        if not player_id:
+            # If no specific player, collect for all existing players
+            confirm = input('\nNo player ID specified. Collect comprehensive data for all players? (y/N): ')
+            
+            if confirm.lower() not in ['y', 'yes']:
+                self.stdout.write('Operation cancelled.')
+                return
+            
+            self.collect_comprehensive_all_players(collector)
+            return
+        
+        self.stdout.write(f'\n🔍 Collecting comprehensive data for player ID: "{player_id}"')
+        self.stdout.write('-' * 60)
+        
+        try:
+            results = collector.collect_comprehensive_player_data(player_id)
+            
+            self.stdout.write(f'\n📊 Comprehensive Collection Results:')
+            
+            for data_type, stats in results.items():
+                self.stdout.write(f'\n🔹 {data_type.title()}:')
+                self.show_collection_results(stats, indent='  ')
+            
+        except Exception as e:
+            self.stdout.write(
+                self.style.ERROR(f'❌ Error collecting comprehensive data: {str(e)}')
+            )
+
+    def collect_comprehensive_all_players(self, collector):
+        """Collect comprehensive data for all existing players"""
+        from core.models import Player
+        
+        players = Player.objects.all()
+        total_players = players.count()
+        
+        if total_players == 0:
+            self.stdout.write(
+                self.style.WARNING('⚠️ No players found in database.')
+            )
+            return
+        
+        self.stdout.write(f'\n🔍 Collecting comprehensive data for {total_players} players...')
+        self.stdout.write('-' * 60)
+        
+        overall_stats = {
+            'transfers': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0},
+            'statistics': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0},
+            'career': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0}
+        }
+        
+        for i, player in enumerate(players, 1):
+            self.stdout.write(f'\n📊 [{i}/{total_players}] Processing: {player.name}')
+            
+            try:
+                results = collector.collect_comprehensive_player_data(player.external_id)
+                
+                # Aggregate stats
+                for data_type, stats in results.items():
+                    for key in overall_stats[data_type]:
+                        overall_stats[data_type][key] += stats.get(key, 0)
+                
+                # Show brief results
+                total_created = sum(stats.get('created', 0) for stats in results.values())
+                total_updated = sum(stats.get('updated', 0) for stats in results.values())
+                
+                self.stdout.write(f'  ✅ {total_created} created, {total_updated} updated')
+                
+            except Exception as e:
+                self.stdout.write(f'  ❌ Error: {str(e)}')
+                for data_type in overall_stats:
+                    overall_stats[data_type]['failed'] += 1
+        
+        # Show final results
+        self.stdout.write(f'\n🎯 Final Comprehensive Results:')
+        for data_type, stats in overall_stats.items():
+            self.stdout.write(f'\n🔹 {data_type.title()}:')
+            self.show_collection_results(stats, indent='  ')
+
+    def show_collection_results(self, stats, indent=''):
+        """Show collection results with optional indentation"""
+        self.stdout.write(f'\n{indent}📊 Collection Results:')
+        self.stdout.write(f'{indent}  📈 Processed: {stats["processed"]}')
+        self.stdout.write(f'{indent}  ✅ Created: {stats["created"]}')
+        self.stdout.write(f'{indent}  🔄 Updated: {stats["updated"]}')
+        self.stdout.write(f'{indent}  ❌ Failed: {stats["failed"]}')
+        self.stdout.write(f'{indent}  ⏭️ Skipped: {stats["skipped"]}')
+        
+        if stats['processed'] > 0:
+            success_rate = ((stats['created'] + stats['updated']) / stats['processed']) * 100
+            self.stdout.write(f'{indent}  📊 Success Rate: {success_rate:.1f}%')

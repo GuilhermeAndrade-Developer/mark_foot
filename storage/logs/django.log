@@ -71,3 +71,45 @@ WARNING 2025-08-25 14:59:11,632 player_collector 156 139760799161216 No matching
 INFO 2025-08-25 14:59:11,634 player_collector 156 139760799161216 ✅ Created player: Ettore Messina
 INFO 2025-08-25 14:59:11,638 player_collector 156 139760799161216 ✅ Created player: Manoel Messias Silva Carvalho
 INFO 2025-08-25 14:59:11,650 player_collector 156 139760799161216 ✅ Player search completed: {'processed': 5, 'created': 4, 'updated': 0, 'failed': 1, 'skipped': 0}
+ERROR 2025-08-25 15:10:18,412 player_collector 198 140483878128512 ❌ Error collecting transfers for player 34194266: Cannot resolve keyword 'source' into field. Choices are: age, created_at, cutout_url, date_of_birth, description, external_id, gender, height, id, last_sync, name, nationality, photo_url, position, position_category, short_name, statistics, status, team, team_id, transfers, updated_at, wage, weight
+INFO 2025-08-25 15:11:36,435 thesportsdb_client 204 139843498503040 🔗 TheSportsDB Request: lookuptransfers.php?id=34194266
+ERROR 2025-08-25 15:11:36,435 thesportsdb_client 204 139843498503040 ❌ Unexpected error in TheSportsDB request: name 'params' is not defined
+WARNING 2025-08-25 15:11:36,435 thesportsdb_client 204 139843498503040 ⚠️ No transfers found for player 34194266
+INFO 2025-08-25 15:11:36,436 player_collector 204 139843498503040 No transfer data available for player Ettore Messina
+INFO 2025-08-25 15:12:50,045 thesportsdb_client 210 140591671061376 🔗 TheSportsDB Request: lookuptransfers.php?id=34194266
+INFO 2025-08-25 15:12:50,724 thesportsdb_client 210 140591671061376 📊 TheSportsDB Response: 404 - Time: 678ms
+ERROR 2025-08-25 15:12:50,724 thesportsdb_client 210 140591671061376 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookuptransfers.php?id=34194266
+WARNING 2025-08-25 15:12:50,724 thesportsdb_client 210 140591671061376 ⚠️ No transfers found for player 34194266
+INFO 2025-08-25 15:12:50,725 player_collector 210 140591671061376 No transfer data available for player Ettore Messina
+INFO 2025-08-25 15:13:09,146 player_collector 216 139920477072256 🔄 Starting comprehensive data collection for player 34194266
+INFO 2025-08-25 15:13:10,153 thesportsdb_client 216 139920477072256 🔗 TheSportsDB Request: lookuptransfers.php?id=34194266
+INFO 2025-08-25 15:13:10,836 thesportsdb_client 216 139920477072256 📊 TheSportsDB Response: 404 - Time: 682ms
+ERROR 2025-08-25 15:13:10,836 thesportsdb_client 216 139920477072256 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookuptransfers.php?id=34194266
+WARNING 2025-08-25 15:13:10,837 thesportsdb_client 216 139920477072256 ⚠️ No transfers found for player 34194266
+INFO 2025-08-25 15:13:10,837 player_collector 216 139920477072256 No transfer data available for player Ettore Messina
+INFO 2025-08-25 15:13:11,839 thesportsdb_client 216 139920477072256 🔗 TheSportsDB Request: lookupstats.php?id=34194266
+INFO 2025-08-25 15:13:12,084 thesportsdb_client 216 139920477072256 📊 TheSportsDB Response: 404 - Time: 245ms
+ERROR 2025-08-25 15:13:12,085 thesportsdb_client 216 139920477072256 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookupstats.php?id=34194266
+WARNING 2025-08-25 15:13:12,085 thesportsdb_client 216 139920477072256 ⚠️ No stats found for player 34194266
+INFO 2025-08-25 15:13:12,085 player_collector 216 139920477072256 No statistics data available for player Ettore Messina
+INFO 2025-08-25 15:13:13,086 thesportsdb_client 216 139920477072256 🔗 TheSportsDB Request: lookupcareer.php?id=34194266
+INFO 2025-08-25 15:13:13,332 thesportsdb_client 216 139920477072256 📊 TheSportsDB Response: 404 - Time: 245ms
+ERROR 2025-08-25 15:13:13,332 thesportsdb_client 216 139920477072256 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookupcareer.php?id=34194266
+WARNING 2025-08-25 15:13:13,332 thesportsdb_client 216 139920477072256 ⚠️ No career data found for player 34194266
+INFO 2025-08-25 15:13:13,333 player_collector 216 139920477072256 ✅ Comprehensive collection completed for player 34194266
+INFO 2025-08-25 15:13:36,709 player_collector 228 139629618477952 🔄 Starting comprehensive data collection for player 34146304
+INFO 2025-08-25 15:13:37,716 thesportsdb_client 228 139629618477952 🔗 TheSportsDB Request: lookuptransfers.php?id=34146304
+INFO 2025-08-25 15:13:38,410 thesportsdb_client 228 139629618477952 📊 TheSportsDB Response: 404 - Time: 693ms
+ERROR 2025-08-25 15:13:38,410 thesportsdb_client 228 139629618477952 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookuptransfers.php?id=34146304
+WARNING 2025-08-25 15:13:38,411 thesportsdb_client 228 139629618477952 ⚠️ No transfers found for player 34146304
+INFO 2025-08-25 15:13:38,411 player_collector 228 139629618477952 No transfer data available for player Cristiano Ronaldo
+INFO 2025-08-25 15:13:39,413 thesportsdb_client 228 139629618477952 🔗 TheSportsDB Request: lookupstats.php?id=34146304
+INFO 2025-08-25 15:13:39,658 thesportsdb_client 228 139629618477952 📊 TheSportsDB Response: 404 - Time: 244ms
+ERROR 2025-08-25 15:13:39,658 thesportsdb_client 228 139629618477952 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookupstats.php?id=34146304
+WARNING 2025-08-25 15:13:39,659 thesportsdb_client 228 139629618477952 ⚠️ No stats found for player 34146304
+INFO 2025-08-25 15:13:39,659 player_collector 228 139629618477952 No statistics data available for player Cristiano Ronaldo
+INFO 2025-08-25 15:13:40,659 thesportsdb_client 228 139629618477952 🔗 TheSportsDB Request: lookupcareer.php?id=34146304
+INFO 2025-08-25 15:13:40,884 thesportsdb_client 228 139629618477952 📊 TheSportsDB Response: 404 - Time: 224ms
+ERROR 2025-08-25 15:13:40,885 thesportsdb_client 228 139629618477952 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookupcareer.php?id=34146304
+WARNING 2025-08-25 15:13:40,885 thesportsdb_client 228 139629618477952 ⚠️ No career data found for player 34146304
+INFO 2025-08-25 15:13:40,885 player_collector 228 139629618477952 ✅ Comprehensive collection completed for player 34146304

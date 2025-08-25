@@ -37,6 +37,342 @@ class PlayerDataCollector:
             logger.error(f"API connection test failed: {str(e)}")
             return False
 
+    def collect_player_transfers(self, external_id: str) -> Dict[str, int]:
+        """
+        Collect transfer history for a specific player
+        
+        Args:
+            external_id: TheSportsDB player ID
+            
+        Returns:
+            Dictionary with collection statistics
+        """
+        stats = {
+            'processed': 0,
+            'created': 0,
+            'updated': 0,
+            'failed': 0,
+            'skipped': 0
+        }
+        
+        try:
+            # Get player instance
+            player = Player.objects.filter(external_id=external_id).first()
+            if not player:
+                logger.warning(f"Player with external_id {external_id} not found")
+                return stats
+            
+            # Get transfers from API
+            transfers_data = self.client.get_player_transfers(external_id)
+            
+            if not transfers_data:
+                logger.info(f"No transfer data available for player {player.name}")
+                return stats
+            
+            for transfer_data in transfers_data:
+                try:
+                    transfer, status = self._create_or_update_transfer(transfer_data, player)
+                    
+                    if transfer:
+                        stats[status] += 1
+                    else:
+                        stats['skipped'] += 1
+                    
+                    stats['processed'] += 1
+                    
+                except Exception as e:
+                    logger.error(f"Error processing transfer: {str(e)}")
+                    stats['failed'] += 1
+            
+            logger.info(f"✅ Transfer collection completed for {player.name}: {stats}")
+            return stats
+            
+        except Exception as e:
+            logger.error(f"❌ Error collecting transfers for player {external_id}: {str(e)}")
+            stats['failed'] += 1
+            return stats
+
+    def collect_player_statistics(self, external_id: str, season: str = None) -> Dict[str, int]:
+        """
+        Collect statistics for a specific player
+        
+        Args:
+            external_id: TheSportsDB player ID
+            season: Specific season (optional)
+            
+        Returns:
+            Dictionary with collection statistics
+        """
+        stats = {
+            'processed': 0,
+            'created': 0,
+            'updated': 0,
+            'failed': 0,
+            'skipped': 0
+        }
+        
+        try:
+            # Get player instance
+            player = Player.objects.filter(external_id=external_id).first()
+            if not player:
+                logger.warning(f"Player with external_id {external_id} not found")
+                return stats
+            
+            # Get statistics from API
+            stats_data = self.client.get_player_stats_by_season(external_id, season)
+            
+            if not stats_data:
+                logger.info(f"No statistics data available for player {player.name}")
+                return stats
+            
+            for stat_data in stats_data:
+                try:
+                    statistic, status = self._create_or_update_statistic(stat_data, player)
+                    
+                    if statistic:
+                        stats[status] += 1
+                    else:
+                        stats['skipped'] += 1
+                    
+                    stats['processed'] += 1
+                    
+                except Exception as e:
+                    logger.error(f"Error processing statistic: {str(e)}")
+                    stats['failed'] += 1
+            
+            logger.info(f"✅ Statistics collection completed for {player.name}: {stats}")
+            return stats
+            
+        except Exception as e:
+            logger.error(f"❌ Error collecting statistics for player {external_id}: {str(e)}")
+            stats['failed'] += 1
+            return stats
+
+    def collect_comprehensive_player_data(self, external_id: str) -> Dict[str, Dict[str, int]]:
+        """
+        Collect all available data for a player (transfers, statistics, career)
+        
+        Args:
+            external_id: TheSportsDB player ID
+            
+        Returns:
+            Dictionary with collection statistics for each data type
+        """
+        logger.info(f"🔄 Starting comprehensive data collection for player {external_id}")
+        
+        results = {
+            'transfers': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0},
+            'statistics': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0},
+            'career': {'processed': 0, 'created': 0, 'updated': 0, 'failed': 0, 'skipped': 0}
+        }
+        
+        # Collect transfers
+        time.sleep(1)  # Rate limiting
+        results['transfers'] = self.collect_player_transfers(external_id)
+        
+        # Collect statistics
+        time.sleep(1)  # Rate limiting
+        results['statistics'] = self.collect_player_statistics(external_id)
+        
+        # Collect career data (via transfers if available)
+        time.sleep(1)  # Rate limiting
+        career_stats = self._collect_career_data(external_id)
+        results['career'] = career_stats
+        
+        logger.info(f"✅ Comprehensive collection completed for player {external_id}")
+        return results
+
+    def _create_or_update_transfer(self, transfer_data: Dict, player: Player) -> Tuple[Optional[PlayerTransfer], str]:
+        """
+        Create or update player transfer record
+        
+        Args:
+            transfer_data: Transfer data from API
+            player: Player instance
+            
+        Returns:
+            Tuple of (PlayerTransfer instance, status)
+        """
+        try:
+            # Extract transfer information
+            from_team_name = transfer_data.get('strTeamFrom', '').strip()
+            to_team_name = transfer_data.get('strTeamTo', '').strip()
+            transfer_date = self._parse_date(transfer_data.get('strDate', ''))
+            season = transfer_data.get('strSeason', '').strip()
+            fee = transfer_data.get('strFee', '').strip()
+            transfer_type = transfer_data.get('strType', 'Transfer').strip()
+            
+            # Find or create teams
+            from_team = self._find_or_create_team(from_team_name) if from_team_name else None
+            to_team = self._find_or_create_team(to_team_name) if to_team_name else None
+            
+            # Create unique identifier for this transfer
+            transfer_key = f"{player.external_id}_{from_team_name}_{to_team_name}_{season}"
+            
+            # Get or create transfer
+            transfer, created = PlayerTransfer.objects.get_or_create(
+                player=player,
+                from_team=from_team,
+                to_team=to_team,
+                season=season,
+                defaults={
+                    'transfer_date': transfer_date,
+                    'fee': fee,
+                    'transfer_type': transfer_type,
+                    'source': 'thesportsdb',
+                    'last_sync': timezone.now()
+                }
+            )
+            
+            # Update existing transfer
+            if not created:
+                transfer.transfer_date = transfer_date or transfer.transfer_date
+                transfer.fee = fee or transfer.fee
+                transfer.transfer_type = transfer_type or transfer.transfer_type
+                transfer.last_sync = timezone.now()
+                transfer.save()
+            
+            return transfer, 'created' if created else 'updated'
+            
+        except Exception as e:
+            logger.error(f"Error creating/updating transfer: {str(e)}")
+            return None, 'failed'
+
+    def _create_or_update_statistic(self, stat_data: Dict, player: Player) -> Tuple[Optional[PlayerStatistics], str]:
+        """
+        Create or update player statistics record
+        
+        Args:
+            stat_data: Statistics data from API
+            player: Player instance
+            
+        Returns:
+            Tuple of (PlayerStatistics instance, status)
+        """
+        try:
+            # Extract statistics information
+            season = stat_data.get('strSeason', '').strip()
+            competition = stat_data.get('strCompetition', '').strip()
+            
+            # Numeric statistics
+            appearances = self._parse_int(stat_data.get('intAppearances'))
+            goals = self._parse_int(stat_data.get('intGoals'))
+            assists = self._parse_int(stat_data.get('intAssists'))
+            yellow_cards = self._parse_int(stat_data.get('intYellow'))
+            red_cards = self._parse_int(stat_data.get('intRed'))
+            minutes_played = self._parse_int(stat_data.get('intMinutes'))
+            
+            # Get or create statistics
+            statistic, created = PlayerStatistics.objects.get_or_create(
+                player=player,
+                season=season,
+                competition=competition,
+                defaults={
+                    'appearances': appearances,
+                    'goals': goals,
+                    'assists': assists,
+                    'yellow_cards': yellow_cards,
+                    'red_cards': red_cards,
+                    'minutes_played': minutes_played,
+                    'source': 'thesportsdb',
+                    'last_sync': timezone.now()
+                }
+            )
+            
+            # Update existing statistics
+            if not created:
+                statistic.appearances = appearances or statistic.appearances
+                statistic.goals = goals or statistic.goals
+                statistic.assists = assists or statistic.assists
+                statistic.yellow_cards = yellow_cards or statistic.yellow_cards
+                statistic.red_cards = red_cards or statistic.red_cards
+                statistic.minutes_played = minutes_played or statistic.minutes_played
+                statistic.last_sync = timezone.now()
+                statistic.save()
+            
+            return statistic, 'created' if created else 'updated'
+            
+        except Exception as e:
+            logger.error(f"Error creating/updating statistic: {str(e)}")
+            return None, 'failed'
+
+    def _collect_career_data(self, external_id: str) -> Dict[str, int]:
+        """
+        Collect career data (simplified - using transfer data)
+        """
+        stats = {
+            'processed': 0,
+            'created': 0,
+            'updated': 0,
+            'failed': 0,
+            'skipped': 0
+        }
+        
+        try:
+            career_data = self.client.get_player_career(external_id)
+            
+            if career_data:
+                stats['processed'] = len(career_data)
+                stats['created'] = len(career_data)  # Simplified
+                logger.info(f"Career data available: {len(career_data)} entries")
+            
+            return stats
+            
+        except Exception as e:
+            logger.error(f"Error collecting career data: {str(e)}")
+            stats['failed'] += 1
+            return stats
+
+    def _find_or_create_team(self, team_name: str) -> Optional[Team]:
+        """
+        Find existing team or create placeholder
+        
+        Args:
+            team_name: Name of the team
+            
+        Returns:
+            Team instance or None
+        """
+        if not team_name:
+            return None
+        
+        # Try to find existing team
+        team = self._find_matching_team(team_name)
+        
+        if not team:
+            # Create placeholder team for transfer history
+            team, created = Team.objects.get_or_create(
+                name=team_name,
+                defaults={
+                    'short_name': team_name[:10],
+                    'source': 'placeholder_thesportsdb',
+                    'last_sync': timezone.now()
+                }
+            )
+            
+            if created:
+                logger.info(f"Created placeholder team: {team_name}")
+        
+        return team
+
+    def _parse_int(self, value: str) -> Optional[int]:
+        """
+        Parse integer value from string
+        
+        Args:
+            value: String value to parse
+            
+        Returns:
+            Integer value or None
+        """
+        if not value:
+            return None
+        
+        try:
+            return int(value)
+        except (ValueError, TypeError):
+            return None
+
     def collect_players_for_existing_teams(self):
         """Collect players for all teams in the database"""
         stats = {

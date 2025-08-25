@@ -41,7 +41,155 @@ class TheSportsDBClient:
         
         self.last_request_time = time.time()
     
-    def _make_request(self, endpoint: str, params: Optional[Dict] = None) -> Optional[Dict]:
+    def get_player_transfers(self, player_id: str) -> Optional[List[Dict]]:
+        """
+        Get player transfer history from TheSportsDB
+        
+        Args:
+            player_id: TheSportsDB player ID
+            
+        Returns:
+            List of transfer records or None if error
+        """
+        endpoint = f"lookuptransfers.php?id={player_id}"
+        
+        try:
+            response = self._make_request(endpoint)
+            
+            if response and 'transfers' in response:
+                transfers = response['transfers']
+                logger.info(f"✅ Found {len(transfers) if transfers else 0} transfers for player {player_id}")
+                return transfers or []
+            
+            logger.warning(f"⚠️ No transfers found for player {player_id}")
+            return []
+            
+        except Exception as e:
+            logger.error(f"❌ Error fetching transfers for player {player_id}: {str(e)}")
+            return None
+
+    def get_player_career(self, player_id: str) -> Optional[List[Dict]]:
+        """
+        Get player career history (all teams/clubs)
+        
+        Args:
+            player_id: TheSportsDB player ID
+            
+        Returns:
+            List of career records or None if error
+        """
+        endpoint = f"lookupcareer.php?id={player_id}"
+        
+        try:
+            response = self._make_request(endpoint)
+            
+            if response and 'career' in response:
+                career = response['career']
+                logger.info(f"✅ Found {len(career) if career else 0} career entries for player {player_id}")
+                return career or []
+            
+            logger.warning(f"⚠️ No career data found for player {player_id}")
+            return []
+            
+        except Exception as e:
+            logger.error(f"❌ Error fetching career for player {player_id}: {str(e)}")
+            return None
+
+    def get_player_stats_by_season(self, player_id: str, season: str = None) -> Optional[List[Dict]]:
+        """
+        Get player statistics by season
+        
+        Args:
+            player_id: TheSportsDB player ID
+            season: Specific season (e.g., "2023-2024"), if None gets all
+            
+        Returns:
+            List of statistics records or None if error
+        """
+        endpoint = f"lookupstats.php?id={player_id}"
+        if season:
+            endpoint += f"&s={season}"
+        
+        try:
+            response = self._make_request(endpoint)
+            
+            if response and 'playerstats' in response:
+                stats = response['playerstats']
+                logger.info(f"✅ Found {len(stats) if stats else 0} stat records for player {player_id}")
+                return stats or []
+            
+            logger.warning(f"⚠️ No stats found for player {player_id}")
+            return []
+            
+        except Exception as e:
+            logger.error(f"❌ Error fetching stats for player {player_id}: {str(e)}")
+            return None
+
+    def get_player_milestones(self, player_id: str) -> Optional[List[Dict]]:
+        """
+        Get player career milestones and achievements
+        
+        Args:
+            player_id: TheSportsDB player ID
+            
+        Returns:
+            List of milestone records or None if error
+        """
+        endpoint = f"lookupmilestones.php?id={player_id}"
+        
+        try:
+            response = self._make_request(endpoint)
+            
+            if response and 'milestones' in response:
+                milestones = response['milestones']
+                logger.info(f"✅ Found {len(milestones) if milestones else 0} milestones for player {player_id}")
+                return milestones or []
+            
+            logger.warning(f"⚠️ No milestones found for player {player_id}")
+            return []
+            
+        except Exception as e:
+            logger.error(f"❌ Error fetching milestones for player {player_id}: {str(e)}")
+            return None
+
+    def search_players_advanced(self, search_term: str, team: str = None, nationality: str = None) -> Optional[List[Dict]]:
+        """
+        Advanced player search with filters
+        
+        Args:
+            search_term: Player name to search for
+            team: Filter by team name (optional)
+            nationality: Filter by nationality (optional)
+            
+        Returns:
+            List of filtered player records or None if error
+        """
+        players = self.search_players(search_term)
+        
+        if not players:
+            return None
+        
+        # Apply filters
+        filtered_players = players
+        
+        if team:
+            team_lower = team.lower()
+            filtered_players = [
+                p for p in filtered_players 
+                if p.get('strTeam', '').lower().find(team_lower) != -1
+            ]
+        
+        if nationality:
+            nationality_lower = nationality.lower()
+            filtered_players = [
+                p for p in filtered_players 
+                if p.get('strNationality', '').lower().find(nationality_lower) != -1
+            ]
+        
+        logger.info(f"🔍 Advanced search: {len(filtered_players)} players after filtering")
+        return filtered_players
+
+    def _make_request(self, endpoint: str, params: Dict = None) -> Optional[Dict]:
         """Make HTTP request to TheSportsDB API"""
         self._wait_for_rate_limit()
         

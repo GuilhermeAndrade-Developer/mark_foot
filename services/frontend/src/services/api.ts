@@ -14,7 +14,7 @@ const api = axios.create({
 // Request interceptor for auth
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token')
+    const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -41,17 +41,6 @@ api.interceptors.response.use(
 
 // API Service Class
 export class ApiService {
-  // Authentication
-  static async login(username: string, password: string) {
-    const response = await api.post('/auth/login/', { username, password })
-    return response.data
-  }
-
-  static async refreshToken(refreshToken: string) {
-    const response = await api.post('/auth/refresh/', { refresh: refreshToken })
-    return response.data
-  }
-
   // Dashboard
   static async getDashboardStats() {
     const response = await api.get('/dashboard/stats/')
@@ -160,6 +149,32 @@ export class ApiService {
   // Areas
   static async getAreas(params?: any) {
     const response = await api.get('/areas/', { params })
+    return response.data
+  }
+
+  // Authentication methods
+  static setAuthToken(token: string) {
+    // Update the default authorization header
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+
+  static removeAuthToken() {
+    // Remove the authorization header
+    delete api.defaults.headers.common['Authorization']
+  }
+
+  static async login(credentials: { username: string; password: string }) {
+    const response = await api.post('/auth/login/', credentials)
+    return response.data
+  }
+
+  static async refreshToken(refreshToken: string) {
+    const response = await api.post('/auth/refresh/', { refresh: refreshToken })
+    return response.data
+  }
+
+  static async getProfile() {
+    const response = await api.get('/auth/profile/')
     return response.data
   }
 }

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 // Import views
 import Dashboard from '@/views/Dashboard.vue'
@@ -9,14 +10,25 @@ import Matches from '@/views/Matches.vue'
 import Competitions from '@/views/Competitions.vue'
 import Standings from '@/views/Standings.vue'
 import Statistics from '@/views/Statistics.vue'
+import Login from '@/views/Login.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      title: 'Login - Mark Foot',
+      requiresGuest: true
+    }
+  },
   {
     path: '/',
     name: 'Dashboard',
     component: Dashboard,
     meta: {
-      title: 'Dashboard - Mark Foot'
+      title: 'Dashboard - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -24,7 +36,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Teams',
     component: Teams,
     meta: {
-      title: 'Times - Mark Foot'
+      title: 'Times - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -32,7 +45,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Players',
     component: Players,
     meta: {
-      title: 'Jogadores - Mark Foot'
+      title: 'Jogadores - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -40,7 +54,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Matches',
     component: Matches,
     meta: {
-      title: 'Partidas - Mark Foot'
+      title: 'Partidas - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -48,7 +63,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Competitions',
     component: Competitions,
     meta: {
-      title: 'Competições - Mark Foot'
+      title: 'Competições - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -56,7 +72,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Standings',
     component: Standings,
     meta: {
-      title: 'Classificação - Mark Foot'
+      title: 'Classificação - Mark Foot',
+      requiresAuth: true
     }
   },
   {
@@ -64,19 +81,42 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Statistics',
     component: Statistics,
     meta: {
-      title: 'Estatísticas - Mark Foot'
+      title: 'Estatísticas - Mark Foot',
+      requiresAuth: true
     }
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
   routes
 })
 
-// Update page title
-router.beforeEach((to) => {
+// Authentication guard
+router.beforeEach(async (to, _from, next) => {
+  const authStore = useAuthStore()
+  
+  // Initialize auth if not already done
+  if (!authStore.isAuthenticated) {
+    authStore.initializeAuth()
+  }
+  
+  // Check if route requires authentication
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next('/login')
+    return
+  }
+  
+  // Check if route requires guest (redirect authenticated users)
+  if (to.meta.requiresGuest && authStore.isAuthenticated) {
+    next('/')
+    return
+  }
+  
+  // Update page title
   document.title = to.meta?.title as string || 'Mark Foot'
+  
+  next()
 })
 
 export default router

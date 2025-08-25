@@ -1,33 +1,46 @@
 <template>
   <v-app>
-    <!-- Navigation Drawer -->
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      temporary
-      :width="280"
-    >
-      <v-list>
-        <v-list-item
-          prepend-avatar="/logo.png"
-          title="Mark Foot"
-          subtitle="Análise de Futebol"
-        />
-      </v-list>
+    <!-- Show main layout only if authenticated -->
+    <template v-if="authStore.isAuthenticated">
+      <!-- Navigation Drawer -->
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        temporary
+        :width="280"
+      >
+        <v-list>
+          <v-list-item
+            prepend-avatar="/logo.png"
+            :title="authStore.fullName || 'Mark Foot'"
+            :subtitle="authStore.user?.email || 'Análise de Futebol'"
+          />
+        </v-list>
 
-      <v-divider />
+        <v-divider />
 
-      <v-list density="compact" nav>
-        <v-list-item
-          v-for="item in menuItems"
-          :key="item.title"
-          :prepend-icon="item.icon"
-          :title="item.title"
-          :to="item.route"
-          color="primary"
-        />
-      </v-list>
-    </v-navigation-drawer>
+        <v-list density="compact" nav>
+          <v-list-item
+            v-for="item in menuItems"
+            :key="item.title"
+            :prepend-icon="item.icon"
+            :title="item.title"
+            :to="item.route"
+            color="primary"
+          />
+        </v-list>
+
+        <template #append>
+          <v-divider />
+          <v-list density="compact">
+            <v-list-item
+              prepend-icon="mdi-logout"
+              title="Sair"
+              @click="handleLogout"
+            />
+          </v-list>
+        </template>
+      </v-navigation-drawer>
 
     <!-- App Bar -->
     <v-app-bar
@@ -44,6 +57,36 @@
       </v-toolbar-title>
 
       <v-spacer />
+
+      <!-- User Menu -->
+      <v-menu>
+        <template #activator="{ props }">
+          <v-btn
+            icon
+            v-bind="props"
+            class="mr-2"
+          >
+            <v-avatar size="32">
+              <v-icon>mdi-account-circle</v-icon>
+            </v-avatar>
+          </v-btn>
+        </template>
+        
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>{{ authStore.fullName }}</v-list-item-title>
+            <v-list-item-subtitle>{{ authStore.user?.email }}</v-list-item-subtitle>
+          </v-list-item>
+          
+          <v-divider />
+          
+          <v-list-item
+            prepend-icon="mdi-logout"
+            title="Sair"
+            @click="handleLogout"
+          />
+        </v-list>
+      </v-menu>
 
       <!-- Theme Toggle -->
       <v-btn
@@ -101,6 +144,12 @@
         <router-view />
       </v-container>
     </v-main>
+    </template>
+
+    <!-- Login page for non-authenticated users -->
+    <template v-else>
+      <router-view />
+    </template>
 
     <!-- Loading Overlay -->
     <v-overlay
@@ -135,12 +184,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useAppStore } from '@/stores/app'
+import { useAuthStore } from '@/stores/auth'
 
+const router = useRouter()
 const theme = useTheme()
 const appStore = useAppStore()
+const authStore = useAuthStore()
 
 // Reactive data
 const drawer = ref(false)
@@ -196,6 +249,25 @@ const menuItems = [
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
 }
+
+// Methods
+const handleLogout = async () => {
+  try {
+    loading.value = true
+    await authStore.logout()
+    router.push('/login')
+  } catch (error) {
+    console.error('Erro no logout:', error)
+  } finally {
+    loading.value = false
+  }
+}
+
+// Lifecycle
+onMounted(() => {
+  // Initialize authentication
+  authStore.initializeAuth()
+})
 </script>
 
 <style>

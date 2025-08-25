@@ -254,3 +254,15 @@ INFO 2025-08-25 18:00:16,045 autoreload 86 140014989425536 /app/mark_foot_backen
 INFO 2025-08-25 18:00:17,071 autoreload 337 139855761980288 Watching for file changes with StatReloader
 INFO 2025-08-25 18:01:16,639 autoreload 337 139855761980288 /app/ai_analytics/views.py changed, reloading.
 INFO 2025-08-25 18:01:17,785 autoreload 339 139940511415168 Watching for file changes with StatReloader
+INFO 2025-08-25 18:01:36,815 basehttp 339 139940449146560 "GET /api/ai/stats/ HTTP/1.1" 200 326
+INFO 2025-08-25 18:01:45,965 basehttp 339 139940449146560 "GET /api/ai/sentiment/?limit=3 HTTP/1.1" 200 862
+INFO 2025-08-25 18:01:54,690 basehttp 339 139940449146560 "POST /api/ai/test/ HTTP/1.1" 200 124
+INFO 2025-08-25 18:02:07,256 basehttp 339 139940449146560 "GET /api/ai/stats/?id=e10bb5b6-bef4-499b-9a70-19e7af41c0b2&vscodeBrowserReqId=1756155727239 HTTP/1.1" 200 326
+WARNING 2025-08-25 18:03:30,199 log 339 139939753514688 Unauthorized: /api/v1/dashboard/stats/
+WARNING 2025-08-25 18:03:30,200 log 339 139939745121984 Unauthorized: /api/v1/dashboard/recent_matches/
+WARNING 2025-08-25 18:03:30,200 log 339 139939736729280 Unauthorized: /api/v1/dashboard/top_scorers/
+WARNING 2025-08-25 18:03:30,201 log 339 139939728336576 Unauthorized: /api/v1/matches/
+WARNING 2025-08-25 18:03:30,201 basehttp 339 139939753514688 "GET /api/v1/dashboard/stats/ HTTP/1.1" 401 191
+WARNING 2025-08-25 18:03:30,202 basehttp 339 139939745121984 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 401 191
+WARNING 2025-08-25 18:03:30,202 basehttp 339 139939736729280 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 401 191
+WARNING 2025-08-25 18:03:30,203 basehttp 339 139939728336576 "GET /api/v1/matches/?limit=50 HTTP/1.1" 401 191

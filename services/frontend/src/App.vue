@@ -242,6 +242,22 @@ const menuItems = [
     title: 'Estatísticas',
     icon: 'mdi-chart-line',
     route: '/statistics'
+  },
+  // AI Management Section
+  {
+    title: 'IA Dashboard',
+    icon: 'mdi-brain',
+    route: '/ai-dashboard'
+  },
+  {
+    title: 'Análise de Sentimento',
+    icon: 'mdi-heart',
+    route: '/ai-sentiment'
+  },
+  {
+    title: 'Testes IA',
+    icon: 'mdi-test-tube',
+    route: '/ai-testing'
   }
 ]
 

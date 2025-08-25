@@ -11,6 +11,10 @@ import Competitions from '@/views/Competitions.vue'
 import Standings from '@/views/Standings.vue'
 import Statistics from '@/views/Statistics.vue'
 import Login from '@/views/Login.vue'
+// AI Views
+import AIDashboard from '@/views/AIDashboard.vue'
+import AISentiment from '@/views/AISentiment.vue'
+import AITesting from '@/views/AITesting.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -82,6 +86,34 @@ const routes: Array<RouteRecordRaw> = [
     component: Statistics,
     meta: {
       title: 'Estatísticas - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // AI Management Routes
+  {
+    path: '/ai-dashboard',
+    name: 'AIDashboard',
+    component: AIDashboard,
+    meta: {
+      title: 'Dashboard IA - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/ai-sentiment',
+    name: 'AISentiment',
+    component: AISentiment,
+    meta: {
+      title: 'Análise de Sentimento - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/ai-testing',
+    name: 'AITesting',
+    component: AITesting,
+    meta: {
+      title: 'Testes IA - Mark Foot',
       requiresAuth: true
     }
   }

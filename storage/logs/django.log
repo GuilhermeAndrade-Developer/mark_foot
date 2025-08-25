@@ -28,3 +28,46 @@ INFO 2025-08-25 12:27:16,687 autoreload 41 140694475074432 Watching for file cha
 INFO 2025-08-25 12:27:54,266 autoreload 41 140694475074432 /app/mark_foot_backend/settings.py changed, reloading.
 INFO 2025-08-25 12:27:55,180 autoreload 43 139964716534656 Watching for file changes with StatReloader
 INFO 2025-08-25 12:31:31,140 football_data_client 8 139753603812224 API Request: competitions/PL/standings - Status: 200 - Time: 2252ms
+INFO 2025-08-25 14:31:30,343 autoreload 43 139964716534656 /app/core/models.py changed, reloading.
+INFO 2025-08-25 14:31:31,711 autoreload 94 140357974870912 Watching for file changes with StatReloader
+INFO 2025-08-25 14:33:17,573 autoreload 94 140357974870912 /app/core/models.py changed, reloading.
+INFO 2025-08-25 14:33:18,965 autoreload 96 140694292433792 Watching for file changes with StatReloader
+INFO 2025-08-25 14:53:08,525 thesportsdb_client 110 140502310730624 🧪 Testing TheSportsDB API connection...
+INFO 2025-08-25 14:53:08,525 thesportsdb_client 110 140502310730624 🔗 TheSportsDB Request: searchplayers.php?p=Lionel%20Messi
+INFO 2025-08-25 14:53:09,204 thesportsdb_client 110 140502310730624 📊 TheSportsDB Response: 200 - Time: 678ms
+INFO 2025-08-25 14:53:09,205 thesportsdb_client 110 140502310730624 ✅ Found 5 players for 'Lionel Messi'
+INFO 2025-08-25 14:53:09,205 thesportsdb_client 110 140502310730624 ✅ TheSportsDB API connection successful!
+INFO 2025-08-25 14:53:21,343 player_collector 116 139667967060864 🔍 Searching players for: 'Cristiano Ronaldo'
+INFO 2025-08-25 14:53:21,343 thesportsdb_client 116 139667967060864 🔗 TheSportsDB Request: searchplayers.php?p=Cristiano%20Ronaldo
+INFO 2025-08-25 14:53:22,049 thesportsdb_client 116 139667967060864 📊 TheSportsDB Response: 200 - Time: 705ms
+INFO 2025-08-25 14:53:22,050 thesportsdb_client 116 139667967060864 ✅ Found 5 players for 'Cristiano Ronaldo'
+WARNING 2025-08-25 14:53:22,062 player_collector 116 139667967060864 No matching team found for: 'Al Nassr FC'
+INFO 2025-08-25 14:53:22,071 player_collector 116 139667967060864 ✅ Created player: Cristiano Ronaldo
+WARNING 2025-08-25 14:53:22,073 player_collector 116 139667967060864 No matching team found for: 'Torino'
+INFO 2025-08-25 14:53:22,076 player_collector 116 139667967060864 ✅ Created player: Cristiano Biraghi
+WARNING 2025-08-25 14:53:22,078 player_collector 116 139667967060864 No matching team found for: 'Associação Académica de Coimbra'
+ERROR 2025-08-25 14:53:22,078 player_collector 116 139667967060864 ❌ Error processing player: 'NoneType' object has no attribute 'strip'
+WARNING 2025-08-25 14:53:22,081 player_collector 116 139667967060864 No matching team found for: '_Retired Soccer'
+ERROR 2025-08-25 14:53:22,081 player_collector 116 139667967060864 ❌ Error processing player: 'NoneType' object has no attribute 'strip'
+WARNING 2025-08-25 14:53:22,083 player_collector 116 139667967060864 No matching team found for: 'Magdeburg'
+INFO 2025-08-25 14:53:22,086 player_collector 116 139667967060864 ✅ Created player: Cristiano Piccini
+INFO 2025-08-25 14:53:22,097 player_collector 116 139667967060864 ✅ Player search completed: {'processed': 5, 'created': 3, 'updated': 0, 'failed': 2, 'skipped': 0}
+INFO 2025-08-25 14:54:58,322 autoreload 96 140694292433792 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-25 14:54:59,305 autoreload 134 140043249949568 Watching for file changes with StatReloader
+INFO 2025-08-25 14:55:31,754 autoreload 134 140043249949568 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-25 14:55:32,677 autoreload 136 140043822480256 Watching for file changes with StatReloader
+INFO 2025-08-25 14:58:29,716 player_tasks 14 140513926306688 ⭐ Starting popular players sync: 15 players
+INFO 2025-08-25 14:59:10,922 player_collector 156 139760799161216 🔍 Searching players for: 'Messi'
+INFO 2025-08-25 14:59:10,923 thesportsdb_client 156 139760799161216 🔗 TheSportsDB Request: searchplayers.php?p=Messi
+INFO 2025-08-25 14:59:11,606 thesportsdb_client 156 139760799161216 📊 TheSportsDB Response: 200 - Time: 682ms
+INFO 2025-08-25 14:59:11,606 thesportsdb_client 156 139760799161216 ✅ Found 5 players for 'Messi'
+WARNING 2025-08-25 14:59:11,615 player_collector 156 139760799161216 No matching team found for: 'Inter Miami'
+INFO 2025-08-25 14:59:11,622 player_collector 156 139760799161216 ✅ Created player: Lionel Messi
+WARNING 2025-08-25 14:59:11,624 player_collector 156 139760799161216 No matching team found for: 'Genoa'
+INFO 2025-08-25 14:59:11,626 player_collector 156 139760799161216 ✅ Created player: Junior Messias
+WARNING 2025-08-25 14:59:11,629 player_collector 156 139760799161216 No matching team found for: 'Portimonense'
+ERROR 2025-08-25 14:59:11,629 player_collector 156 139760799161216 ❌ Error processing player: 'NoneType' object has no attribute 'strip'
+WARNING 2025-08-25 14:59:11,632 player_collector 156 139760799161216 No matching team found for: 'Olimpia Milano'
+INFO 2025-08-25 14:59:11,634 player_collector 156 139760799161216 ✅ Created player: Ettore Messina
+INFO 2025-08-25 14:59:11,638 player_collector 156 139760799161216 ✅ Created player: Manoel Messias Silva Carvalho
+INFO 2025-08-25 14:59:11,650 player_collector 156 139760799161216 ✅ Player search completed: {'processed': 5, 'created': 4, 'updated': 0, 'failed': 1, 'skipped': 0}

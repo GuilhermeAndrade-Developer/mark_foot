@@ -42,6 +42,23 @@ app.conf.beat_schedule = {
         'task': 'data_management.tasks.health_check',
         'schedule': 5.0 * 60,  # 5 minutes
     },
+    # ============ PLAYER DATA TASKS ============
+    # Sync popular players daily at 3 AM
+    'sync-daily-popular-players': {
+        'task': 'sync_popular_players',
+        'schedule': crontab(minute=0, hour=3),
+    },
+    # Sync team players weekly on Monday at 4 AM
+    'sync-weekly-team-players': {
+        'task': 'sync_team_players',
+        'schedule': crontab(minute=0, hour=4, day_of_week=1),
+    },
+    # Cleanup old player data monthly on 15th at 3 AM
+    'cleanup-monthly-player-data': {
+        'task': 'cleanup_player_data',
+        'schedule': crontab(minute=0, hour=3, day_of_month=15),
+        'kwargs': {'days_old': 60}  # Remove players not synced in 60 days
+    },
 }
 
 # Timezone configuration

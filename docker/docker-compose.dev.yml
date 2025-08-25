@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql_db:
+    image: mysql:8.0
+    container_name: mark_foot_mysql_dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mark_foot_db_dev
+      MYSQL_USER: mark_foot_user
+      MYSQL_PASSWORD: mark_foot_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+      - ../database/init:/docker-entrypoint-initdb.d
+    networks:
+      - mark_foot_dev_network
+
+  # Web Service (Django Frontend) - Development
+  web-service-dev:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_web_dev
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    environment:
+      - DEBUG=1
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_dev
+      - DB_USER=mark_foot_user
+      - DB_PASSWORD=mark_foot_password
+    volumes:
+      - ../services/web-service:/app
+      - ../shared:/app/shared
+      - ../storage:/app/storage
+    depends_on:
+      - mysql_db
+    networks:
+      - mark_foot_dev_network
+    command: python manage.py runserver 0.0.0.0:8000
+
+volumes:
+  mysql_dev_data:
+
+networks:
+  mark_foot_dev_network:
+    driver: bridge

@@ -1,0 +1,19 @@
+INFO 2025-08-25 11:26:31,666 autoreload 7 140306310146944 Watching for file changes with StatReloader
+INFO 2025-08-25 11:26:35,069 autoreload 7 140306310146944 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 11:26:35,781 autoreload 9 140055789964160 Watching for file changes with StatReloader
+INFO 2025-08-25 11:28:18,790 autoreload 7 139932621323136 Watching for file changes with StatReloader
+INFO 2025-08-25 11:34:38,783 autoreload 7 140173510122368 Watching for file changes with StatReloader
+INFO 2025-08-25 11:35:03,557 football_data_client 9 139674399804288 API Request: competitions - Status: 200 - Time: 1437ms
+INFO 2025-08-25 11:35:32,998 football_data_client 15 139849105038208 API Request: competitions - Status: 200 - Time: 1442ms
+INFO 2025-08-25 11:35:33,421 football_data_client 15 139849105038208 API Request: competitions/BSA - Status: 200 - Time: 264ms
+INFO 2025-08-25 11:39:46,260 football_data_client 33 140013171661696 API Request: competitions/BSA/teams - Status: 200 - Time: 2287ms
+INFO 2025-08-25 11:40:55,203 football_data_client 39 139938633055104 API Request: competitions/BSA/teams - Status: 200 - Time: 1959ms
+INFO 2025-08-25 11:43:39,366 football_data_client 45 140241807911808 API Request: competitions/BSA/teams - Status: 200 - Time: 1950ms
+INFO 2025-08-25 11:43:40,466 football_data_client 45 140241807911808 API Request: competitions/BSA/matches - Status: 200 - Time: 946ms
+INFO 2025-08-25 11:43:40,749 football_data_client 45 140241807911808 API Request: competitions/BSA/standings - Status: 200 - Time: 266ms
+INFO 2025-08-25 11:44:39,957 football_data_client 51 140066995727232 API Request: competitions/BSA/teams - Status: 200 - Time: 2176ms
+INFO 2025-08-25 11:44:41,031 football_data_client 51 140066995727232 API Request: competitions/BSA/matches - Status: 200 - Time: 943ms
+INFO 2025-08-25 11:44:41,370 football_data_client 51 140066995727232 API Request: competitions/BSA/standings - Status: 200 - Time: 286ms
+INFO 2025-08-25 11:45:14,641 football_data_client 63 139910570433408 API Request: competitions/PL/teams - Status: 200 - Time: 2007ms
+INFO 2025-08-25 11:45:15,890 football_data_client 63 139910570433408 API Request: competitions/PL/matches - Status: 200 - Time: 1111ms
+INFO 2025-08-25 11:45:16,253 football_data_client 63 139910570433408 API Request: competitions/PL/standings - Status: 200 - Time: 278ms

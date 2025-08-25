@@ -113,3 +113,25 @@ INFO 2025-08-25 15:13:40,884 thesportsdb_client 228 139629618477952 📊 TheSpor
 ERROR 2025-08-25 15:13:40,885 thesportsdb_client 228 139629618477952 ❌ TheSportsDB API Error: 404 Client Error: Not Found for url: https://www.thesportsdb.com/api/v1/json/3/lookupcareer.php?id=34146304
 WARNING 2025-08-25 15:13:40,885 thesportsdb_client 228 139629618477952 ⚠️ No career data found for player 34146304
 INFO 2025-08-25 15:13:40,885 player_collector 228 139629618477952 ✅ Comprehensive collection completed for player 34146304
+INFO 2025-08-25 15:33:34,354 autoreload 136 140043822480256 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:33:35,352 autoreload 298 140488063863680 Watching for file changes with StatReloader
+INFO 2025-08-25 15:33:46,129 autoreload 298 140488063863680 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:33:47,138 autoreload 300 140594303568768 Watching for file changes with StatReloader
+INFO 2025-08-25 15:33:55,844 autoreload 300 140594303568768 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:33:56,843 autoreload 302 140453719366528 Watching for file changes with StatReloader
+INFO 2025-08-25 15:34:05,519 autoreload 302 140453719366528 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:34:06,534 autoreload 310 139824350018432 Watching for file changes with StatReloader
+INFO 2025-08-25 15:35:54,276 autoreload 310 139824350018432 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-08-25 15:35:55,280 autoreload 312 139984828586880 Watching for file changes with StatReloader
+INFO 2025-08-25 15:36:25,562 autoreload 312 139984828586880 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:36:26,589 autoreload 314 139912912337792 Watching for file changes with StatReloader
+INFO 2025-08-25 15:36:41,413 autoreload 314 139912912337792 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-25 15:36:42,403 autoreload 322 139747807513472 Watching for file changes with StatReloader
+INFO 2025-08-25 15:37:14,732 basehttp 322 139747746293440 "GET /api/docs/?id=d0adc114-0d65-4e32-bb51-62593f2d52b4&vscodeBrowserReqId=1756147034701 HTTP/1.1" 200 4646
+WARNING 2025-08-25 15:37:29,327 log 322 139747736835776 Unauthorized: /api/v1/dashboard/stats/
+WARNING 2025-08-25 15:37:29,328 basehttp 322 139747736835776 "GET /api/v1/dashboard/stats/ HTTP/1.1" 401 68
+INFO 2025-08-25 15:37:42,589 autoreload 322 139747807513472 /app/api/views.py changed, reloading.
+INFO 2025-08-25 15:37:43,602 autoreload 338 139890068380544 Watching for file changes with StatReloader
+INFO 2025-08-25 15:37:53,730 basehttp 338 139890007160512 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 129
+INFO 2025-08-25 15:38:33,345 autoreload 338 139890068380544 /app/api/views.py changed, reloading.
+INFO 2025-08-25 15:38:34,362 autoreload 341 139801104661376 Watching for file changes with StatReloader

@@ -241,3 +241,4 @@ WARNING 2025-08-25 16:26:11,253 basehttp 341 139800957933248 "GET /api/v1/dashbo
 WARNING 2025-08-25 16:26:11,253 basehttp 341 139800966325952 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 401 197
 WARNING 2025-08-25 16:26:11,254 basehttp 341 139800932755136 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 401 197
 WARNING 2025-08-25 16:26:11,255 basehttp 341 139800949540544 "GET /api/v1/matches/?limit=50 HTTP/1.1" 401 197
+INFO 2025-08-25 17:17:47,702 autoreload 72 140704214645632 Watching for file changes with StatReloader

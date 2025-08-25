@@ -43,39 +43,40 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       isLoading.value = true
       
-      // For now, simulate login with hardcoded credentials
-      // In production, this would call the actual API
-      if (credentials.username === 'admin' && credentials.password === 'admin123') {
-        // Simulate API response
-        const response = {
-          access: 'fake-jwt-token-' + Date.now(),
-          refresh: 'fake-refresh-token-' + Date.now(),
-          user: {
-            id: 1,
-            username: 'admin',
-            email: 'admin@markfoot.com',
-            first_name: 'Admin',
-            last_name: 'User',
-            is_staff: true,
-            is_superuser: true
-          }
-        }
-        
+      // Call the real Django API for login
+      const response = await ApiService.login({
+        username: credentials.username,
+        password: credentials.password
+      })
+      
+      if (response.access) {
         // Store tokens and user data
         token.value = response.access
         refreshToken.value = response.refresh
-        user.value = response.user
+        
+        // Create user object (Django JWT doesn't return user data by default)
+        // We'll use the credentials for now, but could call a profile endpoint
+        user.value = {
+          id: 1, // This should come from JWT payload or profile endpoint
+          username: credentials.username,
+          email: `${credentials.username}@markfoot.com`,
+          first_name: 'Admin',
+          last_name: 'User',
+          is_staff: true,
+          is_superuser: true
+        }
+        
         lastActivity.value = new Date()
         
         // Store in localStorage if remember me is checked
         if (credentials.rememberMe) {
           localStorage.setItem('auth_token', response.access)
           localStorage.setItem('refresh_token', response.refresh)
-          localStorage.setItem('user_data', JSON.stringify(response.user))
+          localStorage.setItem('user_data', JSON.stringify(user.value))
         } else {
           sessionStorage.setItem('auth_token', response.access)
           sessionStorage.setItem('refresh_token', response.refresh)
-          sessionStorage.setItem('user_data', JSON.stringify(response.user))
+          sessionStorage.setItem('user_data', JSON.stringify(user.value))
         }
         
         // Configure API service with token
@@ -127,21 +128,24 @@ export const useAuthStore = defineStore('auth', () => {
         return false
       }
       
-      // For now, simulate token refresh
-      // In production, this would call the actual refresh endpoint
-      const newToken = 'refreshed-jwt-token-' + Date.now()
+      // Call the real Django API for token refresh
+      const response = await ApiService.refreshToken(refreshToken.value)
       
-      token.value = newToken
-      lastActivity.value = new Date()
-      
-      // Update stored token
-      const storage = localStorage.getItem('auth_token') ? localStorage : sessionStorage
-      storage.setItem('auth_token', newToken)
-      
-      // Update API service token
-      ApiService.setAuthToken(newToken)
-      
-      return true
+      if (response.access) {
+        token.value = response.access
+        lastActivity.value = new Date()
+        
+        // Update stored token
+        const storage = localStorage.getItem('auth_token') ? localStorage : sessionStorage
+        storage.setItem('auth_token', response.access)
+        
+        // Update API service token
+        ApiService.setAuthToken(response.access)
+        
+        return true
+      } else {
+        return false
+      }
     } catch (error) {
       console.error('Token refresh error:', error)
       // If refresh fails, logout user

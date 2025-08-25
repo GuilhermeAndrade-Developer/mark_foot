@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'api_integration',
     'data_management',
     'api',
+    'ai_analytics',
 ]
 
 MIDDLEWARE = [

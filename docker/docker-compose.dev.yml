@@ -112,6 +112,24 @@ services:
       - mark_foot_dev_network
     command: celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
+  # Frontend Service (Vue.js) - Development
+  frontend-dev:
+    build:
+      context: ../services/frontend
+      dockerfile: Dockerfile
+    container_name: mark_foot_frontend_dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8001/api/v1
+    volumes:
+      - ../services/frontend:/app
+      - /app/node_modules
+    networks:
+      - mark_foot_dev_network
+    command: npm run dev
+
 volumes:
   mysql_dev_data:
   redis_dev_data:

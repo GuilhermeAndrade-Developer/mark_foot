@@ -15,6 +15,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
 
+# Explicitly include tasks
+app.autodiscover_tasks(['data_management'])
+
 # Celery Beat configuration
 app.conf.beat_schedule = {
     # Sync matches every 30 minutes during match days

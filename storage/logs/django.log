@@ -2187,3 +2187,16 @@ INFO 2025-08-26 08:56:12,568 basehttp 7 140182457132736 "GET /api/v1/dashboard/t
 INFO 2025-08-26 08:56:12,568 basehttp 7 140182448723648 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 138
 INFO 2025-08-26 08:56:12,860 basehttp 7 140182473950912 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 150146
 INFO 2025-08-26 08:56:18,905 basehttp 7 140182473950912 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 138
+INFO 2025-08-26 08:56:34,744 basehttp 7 140182473950912 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 08:56:34,744 basehttp 7 140182457132736 "OPTIONS /api/v1/sync/api-status/ HTTP/1.1" 200 0
+INFO 2025-08-26 08:56:34,760 basehttp 7 140182457132736 "GET /api/v1/stats/summary/ HTTP/1.1" 200 133
+INFO 2025-08-26 08:56:36,146 football_data_client 7 140182473950912 API Request: competitions - Status: 200 - Time: 1388ms
+INFO 2025-08-26 08:56:36,148 basehttp 7 140182473950912 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 267
+INFO 2025-08-26 09:02:55,552 autoreload 7 140373931649920 Watching for file changes with StatReloader
+INFO 2025-08-26 09:04:30,141 autoreload 7 140373931649920 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-26 09:04:31,394 autoreload 9 140449141197696 Watching for file changes with StatReloader
+INFO 2025-08-26 09:05:49,805 autoreload 9 140449141197696 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-08-26 09:05:50,999 autoreload 11 139829189819264 Watching for file changes with StatReloader
+WARNING 2025-08-26 09:06:40,770 log 11 139829124179648 Not Found: /api/sync/stats/
+WARNING 2025-08-26 09:06:40,771 basehttp 11 139829124179648 "GET /api/sync/stats/ HTTP/1.1" 404 2725
+INFO 2025-08-26 09:07:22,716 basehttp 11 139829124179648 "GET /api/v1/stats/summary/ HTTP/1.1" 200 133

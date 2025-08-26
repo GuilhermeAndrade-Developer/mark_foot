@@ -10,6 +10,7 @@ import Matches from '@/views/Matches.vue'
 import Competitions from '@/views/Competitions.vue'
 import Standings from '@/views/Standings.vue'
 import Statistics from '@/views/Statistics.vue'
+import Settings from '@/views/Settings.vue'
 import Login from '@/views/Login.vue'
 // AI Views
 import AIDashboard from '@/views/AIDashboard.vue'
@@ -86,6 +87,15 @@ const routes: Array<RouteRecordRaw> = [
     component: Statistics,
     meta: {
       title: 'Estatísticas - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
+    meta: {
+      title: 'Configurações - Mark Foot',
       requiresAuth: true
     }
   },

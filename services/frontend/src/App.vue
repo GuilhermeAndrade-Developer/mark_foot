@@ -243,6 +243,11 @@ const menuItems = [
     icon: 'mdi-chart-line',
     route: '/statistics'
   },
+  {
+    title: 'Configurações',
+    icon: 'mdi-cog',
+    route: '/settings'
+  },
   // AI Management Section
   {
     title: 'IA Dashboard',

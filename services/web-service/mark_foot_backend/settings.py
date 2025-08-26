@@ -27,6 +27,10 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-blr5(r=a-bug0hs+sru=7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+# Environment detection
+ENVIRONMENT = config('ENVIRONMENT', default='development')
+IS_DEVELOPMENT = ENVIRONMENT.lower() in ['development', 'dev', 'local']
+
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0').split(',')
 
 
@@ -164,7 +168,8 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # Use AllowAny in development, IsAuthenticated in production
+        'rest_framework.permissions.AllowAny' if IS_DEVELOPMENT else 'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',

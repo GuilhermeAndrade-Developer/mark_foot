@@ -42,6 +42,7 @@ services:
       - "8001:8000"
     environment:
       - DEBUG=1
+      - ENVIRONMENT=development
       - DB_HOST=mysql_db
       - DB_PORT=3306
       - DB_NAME=mark_foot_db_dev
@@ -68,6 +69,7 @@ services:
     restart: unless-stopped
     environment:
       - DEBUG=1
+      - ENVIRONMENT=development
       - DB_HOST=mysql_db
       - DB_PORT=3306
       - DB_NAME=mark_foot_db_dev
@@ -94,6 +96,7 @@ services:
     restart: unless-stopped
     environment:
       - DEBUG=1
+      - ENVIRONMENT=development
       - DB_HOST=mysql_db
       - DB_PORT=3306
       - DB_NAME=mark_foot_db_dev

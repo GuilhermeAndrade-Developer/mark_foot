@@ -13,6 +13,9 @@ from .views import (
     MatchViewSet, StandingViewSet, PlayerViewSet, PlayerStatisticsViewSet,
     PlayerTransferViewSet, ApiSyncLogViewSet, DashboardViewSet
 )
+from .views_sync import (
+    stats_summary, sync_competition, sync_players, api_status, sync_logs
+)
 
 # Create router for API endpoints
 router = DefaultRouter()
@@ -34,6 +37,13 @@ urlpatterns = [
     # JWT Authentication endpoints
     path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
+    # Sync endpoints
+    path('stats/summary/', stats_summary, name='stats_summary'),
+    path('sync/competition/', sync_competition, name='sync_competition'),
+    path('sync/players/', sync_players, name='sync_players'),
+    path('sync/api-status/', api_status, name='api_status'),
+    path('sync/logs/', sync_logs, name='sync_logs'),
     
     # API endpoints
     path('', include(router.urls)),

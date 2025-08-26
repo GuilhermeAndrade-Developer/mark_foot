@@ -1,0 +1,154 @@
+version: '3.8'
+
+services:
+  # MySQL Database - Production
+  mysql_db:
+    image: mysql:8.0
+    container_name: mark_foot_mysql_prod
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_strong_root_password
+      MYSQL_DATABASE: mark_foot_db_prod
+      MYSQL_USER: mark_foot_user_prod
+      MYSQL_PASSWORD: your_strong_user_password
+    volumes:
+      - mysql_prod_data:/var/lib/mysql
+      - ../database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - mark_foot_prod_network
+
+  # Redis Cache - Production
+  redis_cache:
+    image: redis:7-alpine
+    container_name: mark_foot_redis_prod
+    restart: always
+    command: redis-server --requirepass your_redis_password
+    volumes:
+      - redis_prod_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - mark_foot_prod_network
+
+  # Web Service (Django) - Production
+  web-service-prod:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_web_prod
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=0
+      - ENVIRONMENT=production
+      - SECRET_KEY=your_very_long_and_secure_secret_key_here
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_prod
+      - DB_USER=mark_foot_user_prod
+      - DB_PASSWORD=your_strong_user_password
+      - REDIS_URL=redis://:your_redis_password@redis_cache:6379/0
+      - ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+    volumes:
+      - ../storage:/app/storage
+      - static_files:/app/static
+      - media_files:/app/media
+    depends_on:
+      - mysql_db
+      - redis_cache
+    networks:
+      - mark_foot_prod_network
+    command: gunicorn mark_foot_backend.wsgi:application --bind 0.0.0.0:8000 --workers 3
+
+  # Celery Worker - Production
+  celery-worker-prod:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_celery_worker_prod
+    restart: always
+    environment:
+      - DEBUG=0
+      - ENVIRONMENT=production
+      - SECRET_KEY=your_very_long_and_secure_secret_key_here
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_prod
+      - DB_USER=mark_foot_user_prod
+      - DB_PASSWORD=your_strong_user_password
+      - REDIS_URL=redis://:your_redis_password@redis_cache:6379/0
+    volumes:
+      - ../storage:/app/storage
+    depends_on:
+      - mysql_db
+      - redis_cache
+    networks:
+      - mark_foot_prod_network
+    command: celery -A mark_foot_backend worker --loglevel=warning
+
+  # Celery Beat Scheduler - Production
+  celery-beat-prod:
+    build:
+      context: ../services/web-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_celery_beat_prod
+    restart: always
+    environment:
+      - DEBUG=0
+      - ENVIRONMENT=production
+      - SECRET_KEY=your_very_long_and_secure_secret_key_here
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_prod
+      - DB_USER=mark_foot_user_prod
+      - DB_PASSWORD=your_strong_user_password
+      - REDIS_URL=redis://:your_redis_password@redis_cache:6379/0
+    volumes:
+      - ../storage:/app/storage
+    depends_on:
+      - mysql_db
+      - redis_cache
+      - celery-worker-prod
+    networks:
+      - mark_foot_prod_network
+    command: celery -A mark_foot_backend beat --loglevel=warning
+
+  # Frontend (Vue.js) - Production
+  frontend-prod:
+    build:
+      context: ../services/frontend
+      dockerfile: Dockerfile
+      target: production
+    container_name: mark_foot_frontend_prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_BASE_URL=https://yourdomain.com/api/v1
+    volumes:
+      - static_files:/usr/share/nginx/html/static
+    depends_on:
+      - web-service-prod
+    networks:
+      - mark_foot_prod_network
+
+# Networks
+networks:
+  mark_foot_prod_network:
+    driver: bridge
+
+# Volumes
+volumes:
+  mysql_prod_data:
+    driver: local
+  redis_prod_data:
+    driver: local
+  static_files:
+    driver: local
+  media_files:
+    driver: local

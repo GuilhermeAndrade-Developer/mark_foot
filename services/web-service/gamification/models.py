@@ -378,16 +378,14 @@ class Challenge(models.Model):
     end_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     
+    # Database field to match existing schema
+    is_active = models.BooleanField(default=True)
+    
     class Meta:
         db_table = 'challenges'
     
     def __str__(self):
         return self.title
-    
-    @property
-    def is_active(self):
-        now = timezone.now()
-        return self.start_date <= now <= self.end_date and self.status == 'active'
 
 
 class UserChallenge(models.Model):

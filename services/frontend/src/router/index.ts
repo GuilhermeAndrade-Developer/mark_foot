@@ -16,6 +16,10 @@ import Login from '@/views/Login.vue'
 import AIDashboard from '@/views/AIDashboard.vue'
 import AISentiment from '@/views/AISentiment.vue'
 import AITesting from '@/views/AITesting.vue'
+// Gamification Views
+import GamificationDashboard from '@/views/GamificationDashboard.vue'
+import GamificationUsers from '@/views/GamificationUsers.vue'
+import GamificationAnalytics from '@/views/GamificationAnalytics.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -126,6 +130,34 @@ const routes: Array<RouteRecordRaw> = [
       title: 'Testes IA - Mark Foot',
       requiresAuth: true
     }
+  },
+  // Gamification Routes
+  {
+    path: '/gamification',
+    name: 'GamificationDashboard',
+    component: GamificationDashboard,
+    meta: {
+      title: 'Gamificação - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/gamification/users',
+    name: 'GamificationUsers',
+    component: GamificationUsers,
+    meta: {
+      title: 'Gestão de Usuários - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/gamification/analytics',
+    name: 'GamificationAnalytics',
+    component: GamificationAnalytics,
+    meta: {
+      title: 'Analytics - Mark Foot',
+      requiresAuth: true
+    }
   }
 ]
 
@@ -135,7 +167,7 @@ const router = createRouter({
 })
 
 // Authentication guard
-router.beforeEach(async (to, _from, next) => {
+router.beforeEach(async (to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const authStore = useAuthStore()
   
   // Initialize auth if not already done

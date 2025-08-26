@@ -19,6 +19,13 @@
 
         <v-divider />
 
+        <!-- User Progress Widget -->
+        <div class="pa-4">
+          <UserProgressWidget />
+        </div>
+
+        <v-divider />
+
         <v-list density="compact" nav>
           <v-list-item
             v-for="item in menuItems"
@@ -189,11 +196,14 @@ import { useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useAppStore } from '@/stores/app'
 import { useAuthStore } from '@/stores/auth'
+import { useGamificationStore } from '@/stores/gamification'
+import UserProgressWidget from '@/components/UserProgressWidget.vue'
 
 const router = useRouter()
 const theme = useTheme()
 const appStore = useAppStore()
 const authStore = useAuthStore()
+const gamificationStore = useGamificationStore()
 
 // Reactive data
 const drawer = ref(false)
@@ -248,6 +258,22 @@ const menuItems = [
     icon: 'mdi-cog',
     route: '/settings'
   },
+  // Gamification Management Section
+  {
+    title: 'Gamificação',
+    icon: 'mdi-gamepad-variant',
+    route: '/gamification'
+  },
+  {
+    title: 'Gestão de Usuários',
+    icon: 'mdi-account-group',
+    route: '/gamification/users'
+  },
+  {
+    title: 'Analytics',
+    icon: 'mdi-chart-line-variant',
+    route: '/gamification/analytics'
+  },
   // AI Management Section
   {
     title: 'IA Dashboard',
@@ -288,6 +314,11 @@ const handleLogout = async () => {
 onMounted(() => {
   // Initialize authentication
   authStore.initializeAuth()
+  
+  // Initialize gamification if authenticated
+  if (authStore.isAuthenticated) {
+    gamificationStore.initializeGamification()
+  }
 })
 </script>
 

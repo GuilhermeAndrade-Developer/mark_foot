@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'data_management',
     'api',
     'ai_analytics',
+    'gamification',
 ]
 
 MIDDLEWARE = [

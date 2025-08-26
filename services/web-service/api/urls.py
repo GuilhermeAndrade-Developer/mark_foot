@@ -14,7 +14,7 @@ from .views import (
     PlayerTransferViewSet, ApiSyncLogViewSet, DashboardViewSet
 )
 from .views_sync import (
-    stats_summary, sync_competition, sync_players, api_status, sync_logs
+    stats_summary, sync_competition, sync_players, sync_player_photos, api_status, sync_logs
 )
 
 # Create router for API endpoints
@@ -42,6 +42,7 @@ urlpatterns = [
     path('stats/summary/', stats_summary, name='stats_summary'),
     path('sync/competition/', sync_competition, name='sync_competition'),
     path('sync/players/', sync_players, name='sync_players'),
+    path('sync/player-photos/', sync_player_photos, name='sync_player_photos'),
     path('sync/api-status/', api_status, name='api_status'),
     path('sync/logs/', sync_logs, name='sync_logs'),
     

@@ -86,7 +86,90 @@
             </v-card-text>
           </v-card>
 
-          <!-- Sync Progress -->
+          <!-- Player Photos Sync Section -->
+          <v-card elevation="2" class="mb-6">
+            <v-card-title class="d-flex align-center">
+              <v-icon class="mr-3" color="info">mdi-camera</v-icon>
+              Sincronização de Fotos dos Jogadores
+            </v-card-title>
+            <v-card-text>
+              <p class="text-body-1 mb-4">
+                Sincronize fotos dos jogadores usando TheSportsDB API. 
+                Esta operação irá buscar e atualizar as fotos dos jogadores existentes no sistema.
+              </p>
+
+              <!-- Photo Sync Options -->
+              <v-row class="mb-4">
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model.number="photoSyncOptions.limit"
+                    type="number"
+                    label="Limite de jogadores"
+                    hint="Número máximo de jogadores para processar (30 requests/min)"
+                    persistent-hint
+                    min="1"
+                    max="500"
+                  />
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-switch
+                    v-model="photoSyncOptions.dryRun"
+                    label="Modo de Teste"
+                    color="warning"
+                    hint="Simular operação sem fazer alterações"
+                    persistent-hint
+                  />
+                </v-col>
+              </v-row>
+
+              <!-- Stats Display -->
+              <v-row class="mb-4">
+                <v-col cols="12" md="4">
+                  <v-card variant="outlined" class="text-center pa-3">
+                    <div class="text-h5 font-weight-bold text-primary">{{ photoStats.totalPlayers }}</div>
+                    <div class="text-caption text-medium-emphasis">Total de Jogadores</div>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card variant="outlined" class="text-center pa-3">
+                    <div class="text-h5 font-weight-bold text-success">{{ photoStats.playersWithPhotos }}</div>
+                    <div class="text-caption text-medium-emphasis">Com Fotos</div>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card variant="outlined" class="text-center pa-3">
+                    <div class="text-h5 font-weight-bold text-warning">{{ photoStats.coveragePercentage }}%</div>
+                    <div class="text-caption text-medium-emphasis">Cobertura</div>
+                  </v-card>
+                </v-col>
+              </v-row>
+
+              <!-- Photo Sync Button -->
+              <div class="text-center">
+                <v-btn
+                  :loading="photoSyncInProgress"
+                  color="info"
+                  size="large"
+                  @click="startPhotoSync"
+                  class="mr-3"
+                >
+                  <v-icon left>mdi-camera-plus</v-icon>
+                  {{ photoSyncOptions.dryRun ? 'Testar Sincronização' : 'Sincronizar Fotos' }}
+                </v-btn>
+                
+                <v-btn
+                  @click="refreshPhotoStats"
+                  :loading="loadingPhotoStats"
+                  variant="outlined"
+                  color="info"
+                  size="large"
+                >
+                  <v-icon left>mdi-refresh</v-icon>
+                  Atualizar Estatísticas
+                </v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
           <v-card v-if="syncInProgress || syncLog.length > 0" elevation="2" class="mb-6">
             <v-card-title>
               <v-icon class="mr-3" :color="syncInProgress ? 'warning' : 'success'">
@@ -232,6 +315,20 @@ const syncOptions = reactive({
   includeStandings: true,
   includePlayers: true
 })
+
+const photoSyncOptions = reactive({
+  limit: 100,  // Increased default limit since we have 30 requests/minute
+  dryRun: false
+})
+
+const photoStats = reactive({
+  totalPlayers: 0,
+  playersWithPhotos: 0,
+  coveragePercentage: 0
+})
+
+const photoSyncInProgress = ref(false)
+const loadingPhotoStats = ref(false)
 
 const syncLog = ref([])
 const currentStats = ref([])
@@ -405,9 +502,74 @@ const cancelSync = () => {
   }
 }
 
+const refreshPhotoStats = async () => {
+  loadingPhotoStats.value = true
+  try {
+    const stats = await syncService.getStats()
+    photoStats.totalPlayers = stats.players || 0
+    photoStats.playersWithPhotos = stats.players_with_photos || 0
+    photoStats.coveragePercentage = stats.photo_coverage_percentage || 0
+  } catch (error) {
+    console.error('Erro ao carregar estatísticas de fotos:', error)
+  } finally {
+    loadingPhotoStats.value = false
+  }
+}
+
+const startPhotoSync = async () => {
+  if (photoSyncInProgress.value) return
+  
+  photoSyncInProgress.value = true
+  
+  try {
+    addLog({
+      type: 'info',
+      message: `📸 Iniciando sincronização de fotos (${photoSyncOptions.limit} jogadores)...`,
+      timestamp: new Date()
+    })
+    
+    const result = await syncService.syncPlayerPhotos(
+      photoSyncOptions.limit, 
+      photoSyncOptions.dryRun
+    )
+    
+    if (result.success) {
+      addLog({
+        type: 'success',
+        message: `✅ Fotos sincronizadas: ${result.summary}`,
+        timestamp: new Date()
+      })
+      
+      // Update photo stats
+      photoStats.totalPlayers = result.details.total_players
+      photoStats.playersWithPhotos = result.details.players_with_photos
+      photoStats.coveragePercentage = result.details.coverage_percentage
+      
+      // Refresh general stats
+      await refreshStats()
+    } else {
+      addLog({
+        type: 'error',
+        message: `❌ Erro na sincronização de fotos: ${result.error}`,
+        timestamp: new Date()
+      })
+    }
+    
+  } catch (error) {
+    addLog({
+      type: 'error',
+      message: `❌ Erro na sincronização de fotos: ${error.message}`,
+      timestamp: new Date()
+    })
+  } finally {
+    photoSyncInProgress.value = false
+  }
+}
+
 // Lifecycle
 onMounted(() => {
   refreshStats()
+  refreshPhotoStats()
   checkApiStatus()
 })
 

@@ -37,6 +37,16 @@ def stats_summary(request):
         
         stats['active_players'] = Player.objects.filter(status='Active').count()
         
+        # Photo statistics
+        players_with_photos = Player.objects.exclude(
+            photo_url=''
+        ).exclude(photo_url__isnull=True).count()
+        
+        stats['players_with_photos'] = players_with_photos
+        stats['photo_coverage_percentage'] = round(
+            (players_with_photos / stats['players'] * 100), 1
+        ) if stats['players'] > 0 else 0
+        
         return Response(stats)
     except Exception as e:
         return Response(
@@ -209,6 +219,54 @@ def api_status(request):
         
         return Response({'apis': status_data})
         
+    except Exception as e:
+        return Response(
+            {'error': str(e)}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+def sync_player_photos(request):
+    """Sync player photos from TheSportsDB API"""
+    try:
+        data = request.data
+        limit = data.get('limit', 50)  # Limit players to sync photos for
+        dry_run = data.get('dry_run', False)
+        
+        # Execute sync command
+        try:
+            call_command(
+                'update_player_photos',
+                limit=limit,
+                dry_run=dry_run,
+                force=True  # Skip confirmation prompt
+            )
+            
+            # Get stats after sync
+            total_players = Player.objects.count()
+            players_with_photos = Player.objects.exclude(
+                photo_url=''
+            ).exclude(photo_url__isnull=True).count()
+            
+            summary = f"{players_with_photos}/{total_players} jogadores com fotos"
+            
+            return Response({
+                'success': True,
+                'summary': summary,
+                'details': {
+                    'total_players': total_players,
+                    'players_with_photos': players_with_photos,
+                    'coverage_percentage': round((players_with_photos / total_players * 100), 1) if total_players > 0 else 0
+                }
+            })
+            
+        except CommandError as e:
+            return Response(
+                {'error': f'Erro no comando: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+            
     except Exception as e:
         return Response(
             {'error': str(e)}, 

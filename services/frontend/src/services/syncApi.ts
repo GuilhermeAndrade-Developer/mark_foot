@@ -83,6 +83,22 @@ class SyncService {
   }
 
   /**
+   * Sync player photos from TheSportsDB
+   */
+  async syncPlayerPhotos(limit = 50, dryRun = false): Promise<any> {
+    try {
+      const response = await api.post('/sync/player-photos/', {
+        limit,
+        dry_run: dryRun
+      })
+      return response.data
+    } catch (error) {
+      console.error('Error syncing player photos:', error)
+      throw error
+    }
+  }
+
+  /**
    * Check status of external APIs
    */
   async checkApiStatus(): Promise<ApiStatus[]> {

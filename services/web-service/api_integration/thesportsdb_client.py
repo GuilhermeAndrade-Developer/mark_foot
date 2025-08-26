@@ -19,9 +19,9 @@ class TheSportsDBClient:
         self.api_key = api_key
         self.session = requests.Session()
         
-        # Rate limiting - Be respectful to free API
+        # Rate limiting - 30 requests per minute according to documentation
         self.last_request_time = 0
-        self.min_request_interval = 0.5  # 0.5 seconds between requests
+        self.min_request_interval = 2.1  # 2.1 seconds between requests (safe margin for 30/min)
         
         # Configure session headers
         self.session.headers.update({
@@ -402,7 +402,7 @@ class TheSportsDBClient:
             'base_url': self.base_url,
             'has_api_key': self.api_key is not None,
             'tier': 'Premium' if self.api_key else 'Free',
-            'rate_limit': f"1 request per {self.min_request_interval} seconds",
+            'rate_limit': f"30 requests per minute (1 request per {self.min_request_interval} seconds)",
             'features': {
                 'player_search': True,
                 'team_search': True,

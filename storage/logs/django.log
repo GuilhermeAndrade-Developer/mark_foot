@@ -2200,3 +2200,316 @@ INFO 2025-08-26 09:05:50,999 autoreload 11 139829189819264 Watching for file cha
 WARNING 2025-08-26 09:06:40,770 log 11 139829124179648 Not Found: /api/sync/stats/
 WARNING 2025-08-26 09:06:40,771 basehttp 11 139829124179648 "GET /api/sync/stats/ HTTP/1.1" 404 2725
 INFO 2025-08-26 09:07:22,716 basehttp 11 139829124179648 "GET /api/v1/stats/summary/ HTTP/1.1" 200 133
+INFO 2025-08-26 09:13:24,356 basehttp 11 139829124179648 "GET /api/v1/stats/summary/ HTTP/1.1" 200 133
+INFO 2025-08-26 09:13:25,766 football_data_client 11 139829114721984 API Request: competitions - Status: 200 - Time: 1414ms
+INFO 2025-08-26 09:13:25,768 basehttp 11 139829114721984 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 267
+INFO 2025-08-26 09:13:31,935 basehttp 11 139829124179648 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-26 09:13:31,935 basehttp 11 139828901443264 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-26 09:13:31,936 basehttp 11 139829114721984 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 138
+INFO 2025-08-26 09:13:32,234 basehttp 11 139828893050560 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 150160
+INFO 2025-08-26 09:13:33,984 basehttp 11 139828893050560 "OPTIONS /api/v1/matches/ HTTP/1.1" 200 0
+INFO 2025-08-26 09:13:33,984 basehttp 11 139829114721984 "OPTIONS /api/v1/competitions/ HTTP/1.1" 200 0
+INFO 2025-08-26 09:13:33,984 basehttp 11 139828901443264 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-26 09:13:34,017 basehttp 11 139829114721984 "GET /api/v1/teams/ HTTP/1.1" 200 31946
+INFO 2025-08-26 09:13:34,018 basehttp 11 139828901443264 "GET /api/v1/competitions/ HTTP/1.1" 200 6505
+INFO 2025-08-26 09:13:34,179 basehttp 11 139828893050560 "GET /api/v1/matches/ HTTP/1.1" 200 150137
+INFO 2025-08-26 09:39:24,572 football_data_client 18 140159247149952 API Request: competitions/PL/teams - Status: 200 - Time: 2065ms
+INFO 2025-08-26 09:39:25,734 football_data_client 18 140159247149952 API Request: competitions/PL/matches - Status: 200 - Time: 1032ms
+INFO 2025-08-26 09:39:28,545 football_data_client 18 140159247149952 API Request: competitions/PL/standings - Status: 200 - Time: 266ms
+INFO 2025-08-26 09:39:59,523 football_data_client 24 140114088475520 API Request: competitions/PL/teams - Status: 200 - Time: 1885ms
+INFO 2025-08-26 09:40:00,530 football_data_client 24 140114088475520 API Request: competitions/PL/matches - Status: 200 - Time: 885ms
+INFO 2025-08-26 09:40:03,576 football_data_client 24 140114088475520 API Request: competitions/PL/standings - Status: 200 - Time: 280ms
+INFO 2025-08-26 09:41:18,741 football_data_client 36 140244032641920 API Request: competitions/PL/matches - Status: 200 - Time: 1449ms
+INFO 2025-08-26 09:41:19,045 football_data_client 36 140244032641920 API Request: competitions/BSA/matches - Status: 200 - Time: 304ms
+INFO 2025-08-26 09:41:19,279 football_data_client 36 140244032641920 API Request: competitions/CL/matches - Status: 200 - Time: 232ms
+INFO 2025-08-26 09:41:19,639 football_data_client 36 140244032641920 API Request: competitions/SA/matches - Status: 200 - Time: 359ms
+INFO 2025-08-26 09:41:37,375 football_data_client 42 140281772862336 API Request: competitions/PL/matches - Status: 200 - Time: 1714ms
+INFO 2025-08-26 09:43:02,961 football_data_client 48 140295066094464 API Request: competitions/PL/matches - Status: 200 - Time: 1270ms
+INFO 2025-08-26 09:44:08,518 football_data_client 54 140196778249088 API Request: competitions/PL/matches - Status: 200 - Time: 1313ms
+WARNING 2025-08-26 09:44:29,975 log 11 139829124179648 Unauthorized: /api/v1/matches/
+WARNING 2025-08-26 09:44:29,975 basehttp 11 139829124179648 "GET /api/v1/matches/?limit=5 HTTP/1.1" 401 68
+INFO 2025-08-26 09:45:10,213 autoreload 11 139829189819264 /app/api/views.py changed, reloading.
+INFO 2025-08-26 09:45:11,433 autoreload 61 139765613394816 Watching for file changes with StatReloader
+INFO 2025-08-26 09:45:18,367 autoreload 61 139765613394816 /app/api/views.py changed, reloading.
+INFO 2025-08-26 09:45:19,557 autoreload 63 139782802267008 Watching for file changes with StatReloader
+INFO 2025-08-26 09:45:25,408 autoreload 63 139782802267008 /app/api/views.py changed, reloading.
+INFO 2025-08-26 09:45:26,628 autoreload 65 140318751644544 Watching for file changes with StatReloader
+INFO 2025-08-26 09:45:44,089 autoreload 65 140318751644544 /app/api/views.py changed, reloading.
+INFO 2025-08-26 09:45:45,287 autoreload 67 140565963524992 Watching for file changes with StatReloader
+INFO 2025-08-26 09:45:46,828 basehttp 67 140565823878848 "GET /api/v1/matches/?limit=5 HTTP/1.1" 200 149184
+INFO 2025-08-26 09:46:14,845 football_data_client 70 140692195609472 API Request: competitions/WC/matches - Status: 200 - Time: 1196ms
+INFO 2025-08-26 09:46:15,095 football_data_client 70 140692195609472 API Request: competitions/CL/matches - Status: 200 - Time: 249ms
+INFO 2025-08-26 09:46:15,454 football_data_client 70 140692195609472 API Request: competitions/BL1/matches - Status: 200 - Time: 358ms
+INFO 2025-08-26 09:46:16,221 football_data_client 70 140692195609472 API Request: competitions/DED/matches - Status: 200 - Time: 366ms
+INFO 2025-08-26 09:46:16,607 football_data_client 70 140692195609472 API Request: competitions/BSA/matches - Status: 200 - Time: 339ms
+INFO 2025-08-26 09:46:17,472 football_data_client 70 140692195609472 API Request: competitions/PD/matches - Status: 200 - Time: 477ms
+INFO 2025-08-26 09:46:18,372 football_data_client 70 140692195609472 API Request: competitions/FL1/matches - Status: 200 - Time: 423ms
+INFO 2025-08-26 09:46:19,169 football_data_client 70 140692195609472 API Request: competitions/ELC/matches - Status: 200 - Time: 386ms
+INFO 2025-08-26 09:46:19,589 football_data_client 70 140692195609472 API Request: competitions/PPL/matches - Status: 200 - Time: 332ms
+INFO 2025-08-26 09:46:19,875 football_data_client 70 140692195609472 API Request: competitions/EC/matches - Status: 200 - Time: 241ms
+INFO 2025-08-26 09:46:19,875 football_data_client 70 140692195609472 Rate limit reached. Waiting 54.77 seconds...
+INFO 2025-08-26 09:47:15,005 football_data_client 70 140692195609472 API Request: competitions/SA/matches - Status: 200 - Time: 358ms
+INFO 2025-08-26 09:47:15,901 football_data_client 70 140692195609472 API Request: competitions/PL/matches - Status: 200 - Time: 425ms
+INFO 2025-08-26 09:49:21,466 football_data_client 76 140421676292992 API Request: competitions/PL/matches - Status: 200 - Time: 1415ms
+INFO 2025-08-26 09:53:26,666 football_data_client 94 140404158753664 API Request: matches/537808 - Status: 200 - Time: 950ms
+INFO 2025-08-26 09:57:46,221 football_data_client 100 140628566571904 API Request: competitions/PL/matches - Status: 200 - Time: 1095ms
+INFO 2025-08-26 10:00:11,860 football_data_client 106 140695063161728 API Request: competitions/PL/matches - Status: 200 - Time: 2172ms
+INFO 2025-08-26 10:00:31,363 autoreload 67 140565963524992 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-26 13:00:32,609 autoreload 112 139946394479488 Watching for file changes with StatReloader
+INFO 2025-08-26 13:00:45,846 autoreload 112 139946394479488 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-26 13:00:47,160 autoreload 114 140293029661568 Watching for file changes with StatReloader
+INFO 2025-08-26 13:00:51,192 football_data_client 116 140322987281280 API Request: competitions/PL/matches - Status: 200 - Time: 1391ms
+INFO 2025-08-26 13:01:57,755 football_data_client 122 140405568138112 API Request: competitions/PL/matches - Status: 200 - Time: 1343ms
+INFO 2025-08-26 13:03:21,632 football_data_client 128 139824281029504 API Request: competitions/PL/matches - Status: 200 - Time: 1120ms
+INFO 2025-08-26 13:03:59,629 football_data_client 134 140000170691456 API Request: competitions/PL/matches - Status: 200 - Time: 1209ms
+INFO 2025-08-26 13:09:40,307 football_data_client 152 140618284436352 API Request: competitions/PL/matches - Status: 200 - Time: 1359ms
+INFO 2025-08-26 13:10:34,061 football_data_client 158 139953410972544 API Request: competitions/PL/matches - Status: 200 - Time: 1394ms
+INFO 2025-08-26 13:10:49,109 football_data_client 164 140637553961856 API Request: competitions/BSA/matches - Status: 200 - Time: 1820ms
+INFO 2025-08-26 13:14:13,843 football_data_client 194 139757579766656 API Request: competitions/PL/matches - Status: 200 - Time: 1040ms
+INFO 2025-08-26 13:18:54,237 basehttp 114 140292892128960 "GET /api/v1/matches/ HTTP/1.1" 200 5724
+WARNING 2025-08-26 13:20:22,818 log 114 140292892128960 Unauthorized: /api/v1/matches/
+WARNING 2025-08-26 13:20:22,818 log 114 140292883736256 Unauthorized: /api/v1/competitions/
+WARNING 2025-08-26 13:20:22,819 log 114 140292875343552 Unauthorized: /api/v1/teams/
+WARNING 2025-08-26 13:20:22,820 basehttp 114 140292892128960 "GET /api/v1/matches/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:22,820 basehttp 114 140292883736256 "GET /api/v1/competitions/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:22,821 basehttp 114 140292875343552 "GET /api/v1/teams/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:26,641 log 114 140292883736256 Unauthorized: /api/v1/dashboard/recent_matches/
+WARNING 2025-08-26 13:20:26,642 log 114 140292875343552 Unauthorized: /api/v1/dashboard/stats/
+WARNING 2025-08-26 13:20:26,643 log 114 140292892128960 Unauthorized: /api/v1/dashboard/top_scorers/
+WARNING 2025-08-26 13:20:26,644 log 114 140292866950848 Unauthorized: /api/v1/matches/
+WARNING 2025-08-26 13:20:26,645 basehttp 114 140292883736256 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:26,645 basehttp 114 140292875343552 "GET /api/v1/dashboard/stats/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:26,646 basehttp 114 140292892128960 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 401 209
+WARNING 2025-08-26 13:20:26,647 basehttp 114 140292866950848 "GET /api/v1/matches/?limit=50 HTTP/1.1" 401 209
+INFO 2025-08-26 13:20:36,683 basehttp 114 140292866950848 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-26 13:20:36,783 basehttp 114 140292892128960 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 670
+INFO 2025-08-26 13:20:36,786 basehttp 114 140292875343552 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-26 13:20:36,788 basehttp 114 140292866950848 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 135
+INFO 2025-08-26 13:20:36,793 basehttp 114 140292883736256 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 5724
+INFO 2025-08-26 13:20:41,460 basehttp 114 140292866950848 "GET /api/v1/competitions/ HTTP/1.1" 200 6205
+INFO 2025-08-26 13:20:41,475 basehttp 114 140292875343552 "GET /api/v1/teams/ HTTP/1.1" 200 30909
+INFO 2025-08-26 13:20:41,478 basehttp 114 140292883736256 "GET /api/v1/matches/ HTTP/1.1" 200 5724
+INFO 2025-08-26 13:22:12,505 basehttp 114 140292875343552 "OPTIONS /api/v1/competitions/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:22:12,505 basehttp 114 140292883736256 "OPTIONS /api/v1/matches/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:22:12,505 basehttp 114 140292866950848 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:22:12,525 basehttp 114 140292866950848 "GET /api/v1/competitions/ HTTP/1.1" 200 6205
+INFO 2025-08-26 13:22:12,541 basehttp 114 140292875343552 "GET /api/v1/teams/ HTTP/1.1" 200 30909
+INFO 2025-08-26 13:22:12,544 basehttp 114 140292883736256 "GET /api/v1/matches/ HTTP/1.1" 200 5724
+INFO 2025-08-26 13:23:16,558 basehttp 114 140292875343552 "OPTIONS /api/v1/sync/api-status/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:23:16,558 basehttp 114 140292883736256 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:23:16,567 basehttp 114 140292883736256 "GET /api/v1/stats/summary/ HTTP/1.1" 200 130
+INFO 2025-08-26 13:23:17,953 football_data_client 114 140292875343552 API Request: competitions - Status: 200 - Time: 1332ms
+INFO 2025-08-26 13:23:17,955 basehttp 114 140292875343552 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 267
+INFO 2025-08-26 13:25:25,583 autoreload 114 140293029661568 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-26 13:25:26,900 autoreload 242 140246424996736 Watching for file changes with StatReloader
+INFO 2025-08-26 13:25:38,026 autoreload 242 140246424996736 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-26 13:25:39,247 autoreload 244 139659313765248 Watching for file changes with StatReloader
+INFO 2025-08-26 13:26:21,664 football_data_client 252 139626605390720 API Request: competitions/PL/matches - Status: 200 - Time: 1223ms
+INFO 2025-08-26 13:26:43,137 basehttp 244 139659179980480 "GET /api/v1/matches/ HTTP/1.1" 200 85900
+INFO 2025-08-26 13:27:25,066 basehttp 244 139659179980480 "GET /api/v1/matches/ HTTP/1.1" 200 85900
+INFO 2025-08-26 13:31:27,001 basehttp 244 139659179980480 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:27,001 basehttp 244 139659169490624 "OPTIONS /api/v1/sync/api-status/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:27,026 basehttp 244 139659169490624 "GET /api/v1/stats/summary/ HTTP/1.1" 200 131
+INFO 2025-08-26 13:31:28,004 football_data_client 244 139659179980480 API Request: competitions - Status: 200 - Time: 974ms
+INFO 2025-08-26 13:31:28,006 basehttp 244 139659179980480 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 266
+INFO 2025-08-26 13:31:30,268 basehttp 244 139659179980480 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:30,277 basehttp 244 139659179980480 "GET /api/v1/stats/summary/ HTTP/1.1" 200 131
+INFO 2025-08-26 13:31:35,822 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:37,829 football_data_client 244 139659179980480 API Request: competitions/PL/teams - Status: 200 - Time: 1964ms
+INFO 2025-08-26 13:31:39,088 football_data_client 244 139659179980480 API Request: competitions/PL/matches - Status: 200 - Time: 1138ms
+INFO 2025-08-26 13:31:42,176 football_data_client 244 139659179980480 API Request: competitions/PL/standings - Status: 200 - Time: 291ms
+INFO 2025-08-26 13:31:43,977 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 159
+INFO 2025-08-26 13:31:50,036 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:51,345 football_data_client 244 139659179980480 API Request: teams/1044 - Status: 200 - Time: 1288ms
+INFO 2025-08-26 13:31:51,815 football_data_client 244 139659179980480 API Request: teams/57 - Status: 200 - Time: 282ms
+INFO 2025-08-26 13:31:51,938 basehttp 244 139659169490624 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:31:51,948 basehttp 244 139659169490624 "GET /api/v1/stats/summary/ HTTP/1.1" 200 132
+INFO 2025-08-26 13:31:52,336 football_data_client 244 139659179980480 API Request: teams/58 - Status: 200 - Time: 330ms
+INFO 2025-08-26 13:31:52,765 football_data_client 244 139659179980480 API Request: teams/402 - Status: 200 - Time: 262ms
+INFO 2025-08-26 13:31:53,277 football_data_client 244 139659179980480 API Request: teams/397 - Status: 200 - Time: 331ms
+INFO 2025-08-26 13:31:53,808 football_data_client 244 139659179980480 API Request: teams/328 - Status: 200 - Time: 332ms
+INFO 2025-08-26 13:31:54,319 football_data_client 244 139659179980480 API Request: teams/61 - Status: 200 - Time: 275ms
+INFO 2025-08-26 13:31:54,804 football_data_client 244 139659179980480 API Request: teams/354 - Status: 429 - Time: 230ms
+ERROR 2025-08-26 13:31:54,804 football_data_client 244 139659179980480 API Request failed: teams/354 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/354 - Time: 231ms
+INFO 2025-08-26 13:31:55,035 football_data_client 244 139659179980480 API Request: teams/62 - Status: 429 - Time: 230ms
+ERROR 2025-08-26 13:31:55,036 football_data_client 244 139659179980480 API Request failed: teams/62 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/62 - Time: 231ms
+INFO 2025-08-26 13:31:55,268 football_data_client 244 139659179980480 API Request: teams/63 - Status: 429 - Time: 231ms
+ERROR 2025-08-26 13:31:55,268 football_data_client 244 139659179980480 API Request failed: teams/63 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/63 - Time: 232ms
+INFO 2025-08-26 13:31:55,268 football_data_client 244 139659179980480 Rate limit reached. Waiting 55.79 seconds...
+INFO 2025-08-26 13:32:51,336 football_data_client 244 139659179980480 API Request: teams/349 - Status: 200 - Time: 282ms
+INFO 2025-08-26 13:32:51,524 football_data_client 244 139659179980480 Rate limit reached. Waiting 1.01 seconds...
+INFO 2025-08-26 13:32:52,856 football_data_client 244 139659179980480 API Request: teams/341 - Status: 200 - Time: 322ms
+INFO 2025-08-26 13:32:53,327 football_data_client 244 139659179980480 API Request: teams/338 - Status: 200 - Time: 278ms
+INFO 2025-08-26 13:32:53,784 football_data_client 244 139659179980480 API Request: teams/64 - Status: 200 - Time: 273ms
+INFO 2025-08-26 13:32:54,232 football_data_client 244 139659179980480 API Request: teams/65 - Status: 200 - Time: 271ms
+INFO 2025-08-26 13:32:54,424 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 122
+INFO 2025-08-26 13:32:57,494 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:32:59,126 football_data_client 244 139659179980480 API Request: competitions/BL1/teams - Status: 200 - Time: 1625ms
+INFO 2025-08-26 13:33:00,280 football_data_client 244 139659179980480 API Request: competitions/BL1/matches - Status: 200 - Time: 1040ms
+INFO 2025-08-26 13:33:02,772 football_data_client 244 139659179980480 API Request: competitions/BL1/standings - Status: 200 - Time: 301ms
+INFO 2025-08-26 13:33:03,197 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 153
+INFO 2025-08-26 13:33:09,254 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:33:10,253 football_data_client 244 139659179980480 API Request: teams/44 - Status: 200 - Time: 990ms
+INFO 2025-08-26 13:33:10,730 football_data_client 244 139659179980480 API Request: teams/28 - Status: 200 - Time: 307ms
+INFO 2025-08-26 13:33:11,169 football_data_client 244 139659179980480 API Request: teams/15 - Status: 200 - Time: 266ms
+INFO 2025-08-26 13:33:11,555 football_data_client 244 139659179980480 API Request: teams/3 - Status: 429 - Time: 229ms
+ERROR 2025-08-26 13:33:11,555 football_data_client 244 139659179980480 API Request failed: teams/3 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/3 - Time: 230ms
+INFO 2025-08-26 13:33:11,782 football_data_client 244 139659179980480 API Request: teams/4 - Status: 429 - Time: 226ms
+ERROR 2025-08-26 13:33:11,782 football_data_client 244 139659179980480 API Request failed: teams/4 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/4 - Time: 226ms
+INFO 2025-08-26 13:33:12,014 football_data_client 244 139659179980480 API Request: teams/18 - Status: 429 - Time: 231ms
+ERROR 2025-08-26 13:33:12,014 football_data_client 244 139659179980480 API Request failed: teams/18 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/18 - Time: 231ms
+INFO 2025-08-26 13:33:12,242 football_data_client 244 139659179980480 API Request: teams/19 - Status: 429 - Time: 227ms
+ERROR 2025-08-26 13:33:12,242 football_data_client 244 139659179980480 API Request failed: teams/19 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/19 - Time: 227ms
+INFO 2025-08-26 13:33:12,471 football_data_client 244 139659179980480 API Request: teams/16 - Status: 429 - Time: 228ms
+ERROR 2025-08-26 13:33:12,472 football_data_client 244 139659179980480 API Request failed: teams/16 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/16 - Time: 229ms
+INFO 2025-08-26 13:33:12,709 football_data_client 244 139659179980480 API Request: teams/5 - Status: 429 - Time: 237ms
+ERROR 2025-08-26 13:33:12,710 football_data_client 244 139659179980480 API Request failed: teams/5 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/5 - Time: 237ms
+INFO 2025-08-26 13:33:12,940 football_data_client 244 139659179980480 API Request: teams/20 - Status: 429 - Time: 230ms
+ERROR 2025-08-26 13:33:12,941 football_data_client 244 139659179980480 API Request failed: teams/20 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/20 - Time: 230ms
+INFO 2025-08-26 13:33:12,941 football_data_client 244 139659179980480 Rate limit reached. Waiting 57.32 seconds...
+INFO 2025-08-26 13:34:10,506 football_data_client 244 139659179980480 API Request: teams/720 - Status: 403 - Time: 244ms
+ERROR 2025-08-26 13:34:10,506 football_data_client 244 139659179980480 API Request failed: teams/720 - Error: 403 Client Error:  for url: https://api.football-data.org/v4/teams/720 - Time: 245ms
+INFO 2025-08-26 13:34:10,825 football_data_client 244 139659179980480 API Request: teams/721 - Status: 200 - Time: 319ms
+INFO 2025-08-26 13:34:11,333 football_data_client 244 139659179980480 API Request: teams/17 - Status: 200 - Time: 317ms
+INFO 2025-08-26 13:34:11,764 football_data_client 244 139659179980480 API Request: teams/12 - Status: 200 - Time: 274ms
+INFO 2025-08-26 13:34:12,245 football_data_client 244 139659179980480 API Request: teams/2 - Status: 200 - Time: 320ms
+INFO 2025-08-26 13:34:12,442 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 118
+INFO 2025-08-26 13:34:15,510 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:34:17,303 football_data_client 244 139659179980480 API Request: competitions/PD/teams - Status: 200 - Time: 1785ms
+INFO 2025-08-26 13:34:18,516 football_data_client 244 139659179980480 API Request: competitions/PD/matches - Status: 200 - Time: 1093ms
+INFO 2025-08-26 13:34:21,572 football_data_client 244 139659179980480 API Request: competitions/PD/standings - Status: 200 - Time: 320ms
+INFO 2025-08-26 13:34:22,052 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 159
+INFO 2025-08-26 13:34:28,119 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:34:29,124 football_data_client 244 139659179980480 API Request: teams/77 - Status: 200 - Time: 996ms
+INFO 2025-08-26 13:34:29,597 football_data_client 244 139659179980480 API Request: teams/79 - Status: 200 - Time: 303ms
+INFO 2025-08-26 13:34:29,990 football_data_client 244 139659179980480 API Request: teams/745 - Status: 403 - Time: 242ms
+ERROR 2025-08-26 13:34:29,990 football_data_client 244 139659179980480 API Request failed: teams/745 - Error: 403 Client Error:  for url: https://api.football-data.org/v4/teams/745 - Time: 242ms
+INFO 2025-08-26 13:34:30,244 football_data_client 244 139659179980480 API Request: teams/78 - Status: 200 - Time: 253ms
+INFO 2025-08-26 13:34:30,668 football_data_client 244 139659179980480 API Request: teams/263 - Status: 200 - Time: 253ms
+INFO 2025-08-26 13:34:31,031 football_data_client 244 139659179980480 API Request: teams/81 - Status: 429 - Time: 221ms
+ERROR 2025-08-26 13:34:31,031 football_data_client 244 139659179980480 API Request failed: teams/81 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/81 - Time: 222ms
+INFO 2025-08-26 13:34:31,261 football_data_client 244 139659179980480 API Request: teams/82 - Status: 429 - Time: 229ms
+ERROR 2025-08-26 13:34:31,261 football_data_client 244 139659179980480 API Request failed: teams/82 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/82 - Time: 229ms
+INFO 2025-08-26 13:34:31,480 football_data_client 244 139659179980480 API Request: teams/298 - Status: 429 - Time: 218ms
+ERROR 2025-08-26 13:34:31,481 football_data_client 244 139659179980480 API Request failed: teams/298 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/298 - Time: 219ms
+INFO 2025-08-26 13:34:31,704 football_data_client 244 139659179980480 API Request: teams/87 - Status: 429 - Time: 223ms
+ERROR 2025-08-26 13:34:31,704 football_data_client 244 139659179980480 API Request failed: teams/87 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/87 - Time: 223ms
+INFO 2025-08-26 13:34:31,961 football_data_client 244 139659179980480 API Request: teams/558 - Status: 429 - Time: 256ms
+ERROR 2025-08-26 13:34:31,962 football_data_client 244 139659179980480 API Request failed: teams/558 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/558 - Time: 257ms
+INFO 2025-08-26 13:34:31,962 football_data_client 244 139659179980480 Rate limit reached. Waiting 57.17 seconds...
+INFO 2025-08-26 13:35:29,391 football_data_client 244 139659179980480 API Request: teams/80 - Status: 200 - Time: 264ms
+INFO 2025-08-26 13:35:29,872 football_data_client 244 139659179980480 API Request: teams/89 - Status: 200 - Time: 305ms
+INFO 2025-08-26 13:35:30,344 football_data_client 244 139659179980480 API Request: teams/90 - Status: 200 - Time: 300ms
+INFO 2025-08-26 13:35:30,761 football_data_client 244 139659179980480 API Request: teams/86 - Status: 200 - Time: 256ms
+INFO 2025-08-26 13:35:31,206 football_data_client 244 139659179980480 API Request: teams/92 - Status: 200 - Time: 254ms
+INFO 2025-08-26 13:35:31,378 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 124
+INFO 2025-08-26 13:35:34,443 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:35:36,025 football_data_client 244 139659179980480 API Request: competitions/SA/teams - Status: 200 - Time: 1576ms
+INFO 2025-08-26 13:35:37,365 football_data_client 244 139659179980480 API Request: competitions/SA/matches - Status: 200 - Time: 1201ms
+INFO 2025-08-26 13:35:40,385 football_data_client 244 139659179980480 API Request: competitions/SA/standings - Status: 200 - Time: 276ms
+INFO 2025-08-26 13:35:40,833 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 150
+INFO 2025-08-26 13:35:46,893 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:35:48,142 football_data_client 244 139659179980480 API Request: teams/98 - Status: 200 - Time: 1239ms
+INFO 2025-08-26 13:35:48,541 football_data_client 244 139659179980480 API Request: teams/5911 - Status: 403 - Time: 238ms
+ERROR 2025-08-26 13:35:48,541 football_data_client 244 139659179980480 API Request failed: teams/5911 - Error: 403 Client Error:  for url: https://api.football-data.org/v4/teams/5911 - Time: 238ms
+INFO 2025-08-26 13:35:48,813 football_data_client 244 139659179980480 API Request: teams/99 - Status: 200 - Time: 271ms
+INFO 2025-08-26 13:35:49,262 football_data_client 244 139659179980480 API Request: teams/100 - Status: 200 - Time: 258ms
+INFO 2025-08-26 13:35:49,666 football_data_client 244 139659179980480 API Request: teams/102 - Status: 429 - Time: 233ms
+ERROR 2025-08-26 13:35:49,666 football_data_client 244 139659179980480 API Request failed: teams/102 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/102 - Time: 233ms
+INFO 2025-08-26 13:35:49,901 football_data_client 244 139659179980480 API Request: teams/103 - Status: 429 - Time: 233ms
+ERROR 2025-08-26 13:35:49,901 football_data_client 244 139659179980480 API Request failed: teams/103 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/103 - Time: 234ms
+INFO 2025-08-26 13:35:50,135 football_data_client 244 139659179980480 API Request: teams/104 - Status: 429 - Time: 234ms
+ERROR 2025-08-26 13:35:50,136 football_data_client 244 139659179980480 API Request failed: teams/104 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/104 - Time: 234ms
+INFO 2025-08-26 13:35:50,372 football_data_client 244 139659179980480 API Request: teams/7397 - Status: 429 - Time: 235ms
+ERROR 2025-08-26 13:35:50,372 football_data_client 244 139659179980480 API Request failed: teams/7397 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/7397 - Time: 236ms
+INFO 2025-08-26 13:35:50,604 football_data_client 244 139659179980480 API Request: teams/445 - Status: 429 - Time: 231ms
+ERROR 2025-08-26 13:35:50,605 football_data_client 244 139659179980480 API Request failed: teams/445 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/445 - Time: 231ms
+INFO 2025-08-26 13:35:50,840 football_data_client 244 139659179980480 API Request: teams/108 - Status: 429 - Time: 235ms
+ERROR 2025-08-26 13:35:50,840 football_data_client 244 139659179980480 API Request failed: teams/108 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/108 - Time: 235ms
+INFO 2025-08-26 13:35:50,841 football_data_client 244 139659179980480 Rate limit reached. Waiting 57.06 seconds...
+INFO 2025-08-26 13:36:48,166 football_data_client 244 139659179980480 API Request: teams/107 - Status: 200 - Time: 264ms
+INFO 2025-08-26 13:36:48,655 football_data_client 244 139659179980480 API Request: teams/450 - Status: 200 - Time: 313ms
+INFO 2025-08-26 13:36:49,091 football_data_client 244 139659179980480 API Request: teams/109 - Status: 200 - Time: 265ms
+INFO 2025-08-26 13:36:49,632 football_data_client 244 139659179980480 API Request: teams/112 - Status: 200 - Time: 252ms
+INFO 2025-08-26 13:36:50,072 football_data_client 244 139659179980480 API Request: teams/110 - Status: 200 - Time: 276ms
+INFO 2025-08-26 13:36:50,273 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 115
+INFO 2025-08-26 13:36:53,340 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:36:55,246 football_data_client 244 139659179980480 API Request: competitions/FL1/teams - Status: 200 - Time: 1899ms
+INFO 2025-08-26 13:36:56,323 football_data_client 244 139659179980480 API Request: competitions/FL1/matches - Status: 200 - Time: 963ms
+INFO 2025-08-26 13:36:58,875 football_data_client 244 139659179980480 API Request: competitions/FL1/standings - Status: 200 - Time: 260ms
+INFO 2025-08-26 13:36:59,283 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 150
+INFO 2025-08-26 13:37:05,354 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:37:06,327 football_data_client 244 139659179980480 API Request: teams/519 - Status: 200 - Time: 963ms
+INFO 2025-08-26 13:37:06,776 football_data_client 244 139659179980480 API Request: teams/532 - Status: 200 - Time: 263ms
+INFO 2025-08-26 13:37:07,206 football_data_client 244 139659179980480 API Request: teams/548 - Status: 200 - Time: 260ms
+INFO 2025-08-26 13:37:07,625 football_data_client 244 139659179980480 API Request: teams/527 - Status: 429 - Time: 225ms
+ERROR 2025-08-26 13:37:07,626 football_data_client 244 139659179980480 API Request failed: teams/527 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/527 - Time: 226ms
+INFO 2025-08-26 13:37:07,853 football_data_client 244 139659179980480 API Request: teams/543 - Status: 429 - Time: 227ms
+ERROR 2025-08-26 13:37:07,853 football_data_client 244 139659179980480 API Request failed: teams/543 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/543 - Time: 227ms
+INFO 2025-08-26 13:37:08,083 football_data_client 244 139659179980480 API Request: teams/533 - Status: 429 - Time: 229ms
+ERROR 2025-08-26 13:37:08,083 football_data_client 244 139659179980480 API Request failed: teams/533 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/533 - Time: 229ms
+INFO 2025-08-26 13:37:08,313 football_data_client 244 139659179980480 API Request: teams/521 - Status: 429 - Time: 229ms
+ERROR 2025-08-26 13:37:08,314 football_data_client 244 139659179980480 API Request failed: teams/521 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/521 - Time: 230ms
+INFO 2025-08-26 13:37:08,546 football_data_client 244 139659179980480 API Request: teams/518 - Status: 429 - Time: 232ms
+ERROR 2025-08-26 13:37:08,546 football_data_client 244 139659179980480 API Request failed: teams/518 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/518 - Time: 232ms
+INFO 2025-08-26 13:37:08,808 football_data_client 244 139659179980480 API Request: teams/522 - Status: 429 - Time: 261ms
+ERROR 2025-08-26 13:37:08,809 football_data_client 244 139659179980480 API Request failed: teams/522 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/522 - Time: 261ms
+INFO 2025-08-26 13:37:09,040 football_data_client 244 139659179980480 API Request: teams/516 - Status: 429 - Time: 231ms
+ERROR 2025-08-26 13:37:09,041 football_data_client 244 139659179980480 API Request failed: teams/516 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/516 - Time: 231ms
+INFO 2025-08-26 13:37:09,041 football_data_client 244 139659179980480 Rate limit reached. Waiting 57.32 seconds...
+INFO 2025-08-26 13:38:06,632 football_data_client 244 139659179980480 API Request: teams/523 - Status: 200 - Time: 269ms
+INFO 2025-08-26 13:38:07,102 football_data_client 244 139659179980480 API Request: teams/524 - Status: 200 - Time: 278ms
+INFO 2025-08-26 13:38:07,630 football_data_client 244 139659179980480 API Request: teams/546 - Status: 200 - Time: 316ms
+INFO 2025-08-26 13:38:08,110 football_data_client 244 139659179980480 API Request: teams/576 - Status: 200 - Time: 301ms
+INFO 2025-08-26 13:38:08,585 football_data_client 244 139659179980480 API Request: teams/512 - Status: 200 - Time: 254ms
+INFO 2025-08-26 13:38:08,735 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 115
+INFO 2025-08-26 13:38:11,800 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:38:13,534 football_data_client 244 139659179980480 API Request: competitions/BSA/teams - Status: 200 - Time: 1728ms
+INFO 2025-08-26 13:38:14,863 football_data_client 244 139659179980480 API Request: competitions/BSA/matches - Status: 200 - Time: 1203ms
+INFO 2025-08-26 13:38:18,019 football_data_client 244 139659179980480 API Request: competitions/BSA/standings - Status: 200 - Time: 290ms
+INFO 2025-08-26 13:38:18,531 basehttp 244 139659179980480 "POST /api/v1/sync/competition/ HTTP/1.1" 200 173
+INFO 2025-08-26 13:38:24,603 basehttp 244 139659179980480 "OPTIONS /api/v1/sync/players/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:38:25,566 football_data_client 244 139659179980480 API Request: teams/3988 - Status: 403 - Time: 954ms
+ERROR 2025-08-26 13:38:25,566 football_data_client 244 139659179980480 API Request failed: teams/3988 - Error: 403 Client Error:  for url: https://api.football-data.org/v4/teams/3988 - Time: 954ms
+INFO 2025-08-26 13:38:25,831 football_data_client 244 139659179980480 API Request: teams/1770 - Status: 200 - Time: 264ms
+INFO 2025-08-26 13:38:26,355 football_data_client 244 139659179980480 API Request: teams/1766 - Status: 200 - Time: 256ms
+INFO 2025-08-26 13:38:26,832 football_data_client 244 139659179980480 API Request: teams/1768 - Status: 403 - Time: 229ms
+ERROR 2025-08-26 13:38:26,832 football_data_client 244 139659179980480 API Request failed: teams/1768 - Error: 403 Client Error:  for url: https://api.football-data.org/v4/teams/1768 - Time: 229ms
+INFO 2025-08-26 13:38:27,082 football_data_client 244 139659179980480 API Request: teams/1783 - Status: 200 - Time: 249ms
+INFO 2025-08-26 13:38:27,603 football_data_client 244 139659179980480 API Request: teams/1780 - Status: 429 - Time: 227ms
+ERROR 2025-08-26 13:38:27,603 football_data_client 244 139659179980480 API Request failed: teams/1780 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/1780 - Time: 227ms
+INFO 2025-08-26 13:38:27,823 football_data_client 244 139659179980480 API Request: teams/4243 - Status: 429 - Time: 219ms
+ERROR 2025-08-26 13:38:27,823 football_data_client 244 139659179980480 API Request failed: teams/4243 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/4243 - Time: 219ms
+INFO 2025-08-26 13:38:28,049 football_data_client 244 139659179980480 API Request: teams/1771 - Status: 429 - Time: 224ms
+ERROR 2025-08-26 13:38:28,049 football_data_client 244 139659179980480 API Request failed: teams/1771 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/1771 - Time: 225ms
+INFO 2025-08-26 13:38:28,269 football_data_client 244 139659179980480 API Request: teams/4289 - Status: 429 - Time: 220ms
+ERROR 2025-08-26 13:38:28,270 football_data_client 244 139659179980480 API Request failed: teams/4289 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/4289 - Time: 220ms
+INFO 2025-08-26 13:38:28,492 football_data_client 244 139659179980480 API Request: teams/1777 - Status: 429 - Time: 221ms
+ERROR 2025-08-26 13:38:28,492 football_data_client 244 139659179980480 API Request failed: teams/1777 - Error: 429 Client Error:  for url: https://api.football-data.org/v4/teams/1777 - Time: 221ms
+INFO 2025-08-26 13:38:28,492 football_data_client 244 139659179980480 Rate limit reached. Waiting 57.12 seconds...
+INFO 2025-08-26 13:39:25,915 football_data_client 244 139659179980480 API Request: teams/4245 - Status: 200 - Time: 305ms
+INFO 2025-08-26 13:39:26,439 football_data_client 244 139659179980480 API Request: teams/1782 - Status: 200 - Time: 261ms
+INFO 2025-08-26 13:39:26,950 football_data_client 244 139659179980480 API Request: teams/1765 - Status: 200 - Time: 260ms
+INFO 2025-08-26 13:39:27,570 football_data_client 244 139659179980480 API Request: teams/3984 - Status: 200 - Time: 303ms
+INFO 2025-08-26 13:39:28,135 football_data_client 244 139659179980480 API Request: teams/1767 - Status: 200 - Time: 306ms
+INFO 2025-08-26 13:39:28,386 basehttp 244 139659179980480 "POST /api/v1/sync/players/ HTTP/1.1" 200 138
+INFO 2025-08-26 13:39:31,539 basehttp 244 139659179980480 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:39:31,547 basehttp 244 139659179980480 "GET /api/v1/stats/summary/ HTTP/1.1" 200 133
+INFO 2025-08-26 13:43:28,779 basehttp 244 139659179980480 "OPTIONS /api/v1/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:28,784 basehttp 244 139659179980480 "OPTIONS /api/v1/matches/?limit=50 HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:28,784 basehttp 244 139659169490624 "OPTIONS /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:28,786 basehttp 244 139659157952192 "OPTIONS /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:28,800 basehttp 244 139659169490624 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 3401
+INFO 2025-08-26 13:43:28,804 basehttp 244 139659149559488 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 139
+INFO 2025-08-26 13:43:28,813 basehttp 244 139659157952192 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-26 13:43:28,997 basehttp 244 139659179980480 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 143559
+INFO 2025-08-26 13:43:31,320 basehttp 244 139659149559488 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:31,321 basehttp 244 139659157952192 "OPTIONS /api/v1/competitions/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:31,321 basehttp 244 139659179980480 "OPTIONS /api/v1/matches/ HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:31,337 basehttp 244 139659149559488 "GET /api/v1/competitions/ HTTP/1.1" 200 6205
+INFO 2025-08-26 13:43:31,361 basehttp 244 139659157952192 "GET /api/v1/teams/ HTTP/1.1" 200 30909
+INFO 2025-08-26 13:43:31,515 basehttp 244 139659179980480 "GET /api/v1/matches/ HTTP/1.1" 200 143550
+INFO 2025-08-26 13:43:47,609 basehttp 244 139659179980480 "OPTIONS /api/v1/matches/?competition=2013 HTTP/1.1" 200 0
+INFO 2025-08-26 13:43:47,831 basehttp 244 139659179980480 "GET /api/v1/matches/?competition=2013 HTTP/1.1" 200 149449
+INFO 2025-08-26 13:44:21,930 basehttp 244 139659179980480 "OPTIONS /api/v1/matches/?competition=2001 HTTP/1.1" 200 0
+INFO 2025-08-26 13:44:21,986 basehttp 244 139659179980480 "GET /api/v1/matches/?competition=2001 HTTP/1.1" 200 52

@@ -52,7 +52,7 @@ class CompetitionViewSet(viewsets.ModelViewSet):
     """ViewSet for Competition model"""
     queryset = Competition.objects.select_related('area').all()
     serializer_class = CompetitionSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['type', 'plan', 'area']
     search_fields = ['name', 'code']
@@ -68,7 +68,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     """ViewSet for Team model"""
     queryset = Team.objects.select_related('area').all()
     serializer_class = TeamSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['area', 'founded']
     search_fields = ['name', 'short_name', 'tla']
@@ -111,7 +111,7 @@ class MatchViewSet(viewsets.ModelViewSet):
         'competition', 'season', 'home_team', 'away_team'
     ).all()
     serializer_class = MatchSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['competition', 'season', 'home_team', 'away_team', 'status']
     search_fields = ['home_team__name', 'away_team__name', 'competition__name']

@@ -26,9 +26,96 @@
 
         <v-divider />
 
-        <v-list density="compact" nav>
+        <v-list v-model:opened="openGroups" density="compact" nav>
+          <!-- Core Management Group -->
+          <v-list-group value="core">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-view-dashboard-variant</v-icon>
+                </template>
+                <v-list-item-title>Gestão Principal</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in coreItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Gamification Group -->
+          <v-list-group value="gamification">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-gamepad-variant</v-icon>
+                </template>
+                <v-list-item-title>Gamificação</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in gamificationItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Social Features Group -->
+          <v-list-group value="social">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-account-group</v-icon>
+                </template>
+                <v-list-item-title>Recursos Sociais</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in socialItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- AI Management Group -->
+          <v-list-group value="ai">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-brain</v-icon>
+                </template>
+                <v-list-item-title>Inteligência Artificial</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in aiItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <v-divider class="my-2" />
+
+          <!-- System Items (without group) -->
           <v-list-item
-            v-for="item in menuItems"
+            v-for="item in systemItems"
             :key="item.title"
             :prepend-icon="item.icon"
             :title="item.title"
@@ -191,8 +278,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onMounted, computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useAppStore } from '@/stores/app'
 import { useAuthStore } from '@/stores/auth'
@@ -200,6 +287,7 @@ import { useGamificationStore } from '@/stores/gamification'
 import UserProgressWidget from '@/components/UserProgressWidget.vue'
 
 const router = useRouter()
+const route = useRoute()
 const theme = useTheme()
 const appStore = useAppStore()
 const authStore = useAuthStore()
@@ -208,6 +296,7 @@ const gamificationStore = useGamificationStore()
 // Reactive data
 const drawer = ref(false)
 const loading = ref(false)
+const openGroups = ref(['core']) // Abrir "Gestão Principal" por padrão
 
 const snackbar = reactive({
   show: false,
@@ -216,81 +305,138 @@ const snackbar = reactive({
   timeout: 4000
 })
 
-// Menu items
+// Menu items with sections
 const menuItems = [
+  // Core Management
   {
     title: 'Dashboard',
     icon: 'mdi-view-dashboard',
-    route: '/'
+    route: '/',
+    section: 'core'
   },
   {
     title: 'Times',
     icon: 'mdi-shield-account',
-    route: '/teams'
+    route: '/teams',
+    section: 'core'
   },
   {
     title: 'Jogadores',
     icon: 'mdi-account-group',
-    route: '/players'
+    route: '/players',
+    section: 'core'
   },
   {
     title: 'Partidas',
     icon: 'mdi-soccer',
-    route: '/matches'
+    route: '/matches',
+    section: 'core'
   },
   {
     title: 'Competições',
     icon: 'mdi-trophy',
-    route: '/competitions'
+    route: '/competitions',
+    section: 'core'
   },
   {
     title: 'Classificação',
     icon: 'mdi-podium',
-    route: '/standings'
+    route: '/standings',
+    section: 'core'
   },
   {
     title: 'Estatísticas',
     icon: 'mdi-chart-line',
-    route: '/statistics'
+    route: '/statistics',
+    section: 'core'
   },
-  {
-    title: 'Configurações',
-    icon: 'mdi-cog',
-    route: '/settings'
-  },
-  // Gamification Management Section
+  // Gamification Management
   {
     title: 'Gamificação',
     icon: 'mdi-gamepad-variant',
-    route: '/gamification'
+    route: '/gamification',
+    section: 'gamification'
   },
   {
     title: 'Gestão de Usuários',
-    icon: 'mdi-account-group',
-    route: '/gamification/users'
+    icon: 'mdi-account-cog',
+    route: '/gamification/users',
+    section: 'gamification'
   },
   {
     title: 'Analytics',
     icon: 'mdi-chart-line-variant',
-    route: '/gamification/analytics'
+    route: '/gamification/analytics',
+    section: 'gamification'
   },
-  // AI Management Section
+  // Social Management
+  {
+    title: 'Social Dashboard',
+    icon: 'mdi-account-multiple',
+    route: '/social',
+    section: 'social'
+  },
+  {
+    title: 'Gestão de Comentários',
+    icon: 'mdi-comment-multiple',
+    route: '/social/comments',
+    section: 'social'
+  },
+  {
+    title: 'Usuários Sociais',
+    icon: 'mdi-account-heart',
+    route: '/social/users',
+    section: 'social'
+  },
+  // AI Management
   {
     title: 'IA Dashboard',
     icon: 'mdi-brain',
-    route: '/ai-dashboard'
+    route: '/ai-dashboard',
+    section: 'ai'
   },
   {
     title: 'Análise de Sentimento',
-    icon: 'mdi-heart',
-    route: '/ai-sentiment'
+    icon: 'mdi-heart-pulse',
+    route: '/ai-sentiment',
+    section: 'ai'
   },
   {
     title: 'Testes IA',
     icon: 'mdi-test-tube',
-    route: '/ai-testing'
+    route: '/ai-testing',
+    section: 'ai'
+  },
+  // System
+  {
+    title: 'Configurações',
+    icon: 'mdi-cog',
+    route: '/settings',
+    section: 'system'
   }
 ]
+
+// Computed properties for menu sections
+const coreItems = computed(() => menuItems.filter(item => item.section === 'core'))
+const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
+const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
+const aiItems = computed(() => menuItems.filter(item => item.section === 'ai'))
+const systemItems = computed(() => menuItems.filter(item => item.section === 'system'))
+
+// Function to get current section based on route
+const getCurrentSection = () => {
+  const currentPath = route.path
+  const currentItem = menuItems.find(item => item.route === currentPath)
+  return currentItem?.section || 'core'
+}
+
+// Watch route changes to expand the correct group
+watch(() => route.path, () => {
+  const currentSection = getCurrentSection()
+  if (!openGroups.value.includes(currentSection)) {
+    openGroups.value = [currentSection]
+  }
+}, { immediate: true })
 
 // Methods
 const toggleTheme = () => {
@@ -329,5 +475,30 @@ onMounted(() => {
 
 .v-toolbar-title {
   font-size: 1.25rem !important;
+}
+
+/* Menu group styling */
+.v-list-group__items .v-list-item {
+  border-left: 2px solid rgba(var(--v-theme-primary), 0.1);
+  margin-left: 4px;
+  margin-bottom: 2px;
+}
+
+.v-list-group__items .v-list-item:hover {
+  border-left-color: rgba(var(--v-theme-primary), 0.3);
+}
+
+.v-list-group__items .v-list-item--active {
+  border-left-color: rgb(var(--v-theme-primary));
+  background: rgba(var(--v-theme-primary), 0.08);
+}
+
+/* Group activator styling */
+.v-list-group > .v-list-item {
+  font-weight: 500;
+}
+
+.v-list-group > .v-list-item .v-list-item__prepend > .v-icon {
+  opacity: 0.8;
 }
 </style>

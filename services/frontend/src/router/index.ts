@@ -20,6 +20,10 @@ import AITesting from '@/views/AITesting.vue'
 import GamificationDashboard from '@/views/GamificationDashboard.vue'
 import GamificationUsers from '@/views/GamificationUsers.vue'
 import GamificationAnalytics from '@/views/GamificationAnalytics.vue'
+// Social Views
+import SocialDashboard from '@/views/SocialDashboard.vue'
+import SocialComments from '@/views/SocialComments.vue'
+import SocialUsers from '@/views/SocialUsers.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -156,6 +160,34 @@ const routes: Array<RouteRecordRaw> = [
     component: GamificationAnalytics,
     meta: {
       title: 'Analytics - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Social Management Routes
+  {
+    path: '/social',
+    name: 'SocialDashboard',
+    component: SocialDashboard,
+    meta: {
+      title: 'Social Dashboard - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social/comments',
+    name: 'SocialComments',
+    component: SocialComments,
+    meta: {
+      title: 'Gestão de Comentários - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social/users',
+    name: 'SocialUsers',
+    component: SocialUsers,
+    meta: {
+      title: 'Usuários Sociais - Mark Foot',
       requiresAuth: true
     }
   }

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'gamification',
     'social',
     'chat',
+    'forum',
 ]
 
 MIDDLEWARE = [

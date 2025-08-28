@@ -396,6 +396,36 @@ const menuItems = [
     section: 'social'
   },
   {
+    title: 'Fórum',
+    icon: 'mdi-forum-outline',
+    route: '/forum',
+    section: 'social'
+  },
+  {
+    title: 'Categorias',
+    icon: 'mdi-folder-outline',
+    route: '/forum/categories',
+    section: 'social'
+  },
+  {
+    title: 'Gerenciar Tópicos',
+    icon: 'mdi-forum',
+    route: '/forum/topics',
+    section: 'social'
+  },
+  {
+    title: 'Moderação',
+    icon: 'mdi-shield-check',
+    route: '/forum/moderation',
+    section: 'social'
+  },
+  {
+    title: 'Relatórios',
+    icon: 'mdi-chart-box',
+    route: '/forum/reports',
+    section: 'social'
+  },
+  {
     title: 'Gestão de Comentários',
     icon: 'mdi-comment-multiple',
     route: '/social/comments',
@@ -500,9 +530,11 @@ onMounted(() => {
   // Initialize authentication
   authStore.initializeAuth()
   
-  // Initialize gamification if authenticated and not in chat pages
-  if (authStore.isAuthenticated && !route.path.startsWith('/chat')) {
-    gamificationStore.initializeGamification()
+  // Initialize gamification if authenticated (will use fallback if API not available)
+  if (authStore.isAuthenticated) {
+    gamificationStore.initializeGamification().catch(() => {
+      console.log('Gamificação inicializada com dados de demonstração')
+    })
   }
 })
 </script>

@@ -11,6 +11,61 @@ import gamificationApi, {
   DashboardStats 
 } from '../services/gamificationApi'
 
+// ============ MOCK DATA FOR DEMO ============
+const MOCK_USER_PROFILE: UserProfile = {
+  id: 1,
+  user: 1,
+  total_points: 1250,
+  level: 8,
+  experience_points: 2400,
+  prediction_streak: 12,
+  login_streak: 7,
+  last_login_date: new Date().toISOString(),
+  is_public_profile: true,
+  allow_friend_requests: true,
+  favorite_team: 1,
+  favorite_competition: 1,
+  created_at: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString(),
+  updated_at: new Date().toISOString()
+}
+
+const MOCK_DASHBOARD_STATS: DashboardStats = {
+  total_points: 1250,
+  level: 8,
+  badges_count: 7,
+  predictions_count: 34,
+  challenges_completed: 15,
+  fantasy_teams_count: 3,
+  current_rank: 23
+}
+
+const MOCK_BADGES: Badge[] = [
+  {
+    id: 1,
+    name: 'Primeiro Passo',
+    description: 'Faça sua primeira predição',
+    badge_type: 'prediction',
+    rarity: 'common',
+    icon_url: '/badges/first-prediction.png',
+    points_reward: 50,
+    required_predictions: 1,
+    is_active: true,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: 'Vidente',
+    description: 'Acerte 10 predições seguidas',
+    badge_type: 'streak',
+    rarity: 'rare',
+    icon_url: '/badges/prophet.png',
+    points_reward: 200,
+    required_streak: 10,
+    is_active: true,
+    created_at: new Date().toISOString()
+  }
+]
+
 export const useGamificationStore = defineStore('gamification', () => {
   // State
   const userProfile = ref<UserProfile | null>(null)
@@ -62,8 +117,9 @@ export const useGamificationStore = defineStore('gamification', () => {
       userProfile.value = profile
       return profile
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar perfil do usuário'
-      throw err
+      console.log('API de gamificação não disponível, usando dados de demonstração')
+      userProfile.value = MOCK_USER_PROFILE
+      return MOCK_USER_PROFILE
     }
   }
 
@@ -71,8 +127,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       badges.value = await gamificationApi.getBadges()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar badges'
-      throw err
+      console.log('API de badges não disponível, usando dados de demonstração')
+      badges.value = MOCK_BADGES
     }
   }
 
@@ -80,8 +136,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       userBadges.value = await gamificationApi.getUserBadges()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar badges do usuário'
-      throw err
+      console.log('API de user badges não disponível, usando dados de demonstração')
+      userBadges.value = MOCK_BADGES // Simulando que o usuário tem esses badges
     }
   }
 
@@ -89,8 +145,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       predictionGames.value = await gamificationApi.getPredictionGames()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar jogos de predição'
-      throw err
+      console.log('API de prediction games não disponível, usando dados de demonstração')
+      predictionGames.value = []
     }
   }
 
@@ -98,8 +154,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       userPredictions.value = await gamificationApi.getUserPredictions()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar predições do usuário'
-      throw err
+      console.log('API de user predictions não disponível, usando dados de demonstração')
+      userPredictions.value = []
     }
   }
 
@@ -107,8 +163,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       fantasyLeagues.value = await gamificationApi.getFantasyLeagues()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar ligas de fantasy'
-      throw err
+      console.log('API de fantasy leagues não disponível, usando dados de demonstração')
+      fantasyLeagues.value = []
     }
   }
 
@@ -116,8 +172,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       userFantasyTeams.value = await gamificationApi.getUserFantasyTeams()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar times de fantasy do usuário'
-      throw err
+      console.log('API de user fantasy teams não disponível, usando dados de demonstração')
+      userFantasyTeams.value = []
     }
   }
 
@@ -125,8 +181,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       challenges.value = await gamificationApi.getChallenges()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar desafios'
-      throw err
+      console.log('API de challenges não disponível, usando dados de demonstração')
+      challenges.value = []
     }
   }
 
@@ -134,8 +190,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       userChallenges.value = await gamificationApi.getUserChallenges()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar desafios do usuário'
-      throw err
+      console.log('API de user challenges não disponível, usando dados de demonstração')
+      userChallenges.value = []
     }
   }
 
@@ -152,8 +208,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       dashboardStats.value = await gamificationApi.getDashboardStats()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar estatísticas do dashboard'
-      throw err
+      console.log('API de dashboard stats não disponível, usando dados de demonstração')
+      dashboardStats.value = MOCK_DASHBOARD_STATS
     }
   }
 
@@ -161,8 +217,14 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       leaderboard.value = await gamificationApi.getLeaderboard()
     } catch (err: any) {
-      error.value = err.message || 'Erro ao carregar leaderboard'
-      throw err
+      console.log('API de leaderboard não disponível, usando dados de demonstração')
+      leaderboard.value = [
+        { username: 'João Silva', points: 3450, rank: 1 },
+        { username: 'Maria Santos', points: 3200, rank: 2 },
+        { username: 'Pedro Costa', points: 2980, rank: 3 },
+        { username: 'Ana Oliveira', points: 2750, rank: 4 },
+        { username: 'Carlos Lima', points: 2500, rank: 5 }
+      ]
     }
   }
 

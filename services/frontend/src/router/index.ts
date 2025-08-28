@@ -28,6 +28,12 @@ import SocialUsers from '@/views/SocialUsers.vue'
 import ChatDashboard from '@/views/ChatDashboardSmart.vue'
 import ChatRooms from '@/views/ChatRoomsSimple.vue'
 import ChatModeration from '@/views/ChatModerationSimple.vue'
+// Forum Views
+import ForumDashboard from '@/views/ForumDashboard.vue'
+import ForumCategories from '@/views/ForumCategories.vue'
+import ForumTopics from '@/views/ForumTopics.vue'
+import ForumModeration from '@/views/ForumModeration.vue'
+import ForumReports from '@/views/ForumReports.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -220,6 +226,52 @@ const routes: Array<RouteRecordRaw> = [
     component: ChatModeration,
     meta: {
       title: 'Moderação de Chat - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Forum Management Routes
+  {
+    path: '/forum',
+    name: 'ForumDashboard',
+    component: ForumDashboard,
+    meta: {
+      title: 'Fórum Dashboard - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/forum/categories',
+    name: 'ForumCategories',
+    component: ForumCategories,
+    meta: {
+      title: 'Gerenciar Categorias - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/forum/topics',
+    name: 'ForumTopics',
+    component: ForumTopics,
+    meta: {
+      title: 'Gerenciar Tópicos - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/forum/moderation',
+    name: 'ForumModeration',
+    component: ForumModeration,
+    meta: {
+      title: 'Moderação do Fórum - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/forum/reports',
+    name: 'ForumReports',
+    component: ForumReports,
+    meta: {
+      title: 'Relatórios do Fórum - Mark Foot',
       requiresAuth: true
     }
   }

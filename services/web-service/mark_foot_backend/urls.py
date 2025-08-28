@@ -32,6 +32,7 @@ urlpatterns = [
     path('api/gamification/', include('gamification.urls')),
     path('api/social/', include('social.urls')),
     path('api/chat/', include('chat.urls')),
+    path('api/forum/', include('forum.urls')),
     
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

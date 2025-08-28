@@ -24,6 +24,10 @@ import GamificationAnalytics from '@/views/GamificationAnalytics.vue'
 import SocialDashboard from '@/views/SocialDashboard.vue'
 import SocialComments from '@/views/SocialComments.vue'
 import SocialUsers from '@/views/SocialUsers.vue'
+// Chat Views
+import ChatDashboard from '@/views/ChatDashboardSmart.vue'
+import ChatRooms from '@/views/ChatRoomsSimple.vue'
+import ChatModeration from '@/views/ChatModerationSimple.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -188,6 +192,34 @@ const routes: Array<RouteRecordRaw> = [
     component: SocialUsers,
     meta: {
       title: 'Usuários Sociais - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Chat Management Routes
+  {
+    path: '/chat',
+    name: 'ChatDashboard',
+    component: ChatDashboard,
+    meta: {
+      title: 'Chat Dashboard - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/chat/rooms',
+    name: 'ChatRooms',
+    component: ChatRooms,
+    meta: {
+      title: 'Gerenciar Salas - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/chat/moderation',
+    name: 'ChatModeration',
+    component: ChatModeration,
+    meta: {
+      title: 'Moderação de Chat - Mark Foot',
       requiresAuth: true
     }
   }

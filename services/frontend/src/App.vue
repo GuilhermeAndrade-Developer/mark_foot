@@ -69,7 +69,26 @@
             />
           </v-list-group>
 
-          <!-- Social Features Group -->
+          <!-- Chat Features Group -->
+          <v-list-group value="chat">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-forum</v-icon>
+                </template>
+                <v-list-item-title>Live Chat</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in chatItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
           <v-list-group value="social">
             <template #activator="{ props }">
               <v-list-item v-bind="props">
@@ -388,6 +407,25 @@ const menuItems = [
     route: '/social/users',
     section: 'social'
   },
+  // Chat Management
+  {
+    title: 'Chat Dashboard',
+    icon: 'mdi-forum',
+    route: '/chat',
+    section: 'chat'
+  },
+  {
+    title: 'Gerenciar Salas',
+    icon: 'mdi-door-open',
+    route: '/chat/rooms',
+    section: 'chat'
+  },
+  {
+    title: 'Moderação de Chat',
+    icon: 'mdi-shield-check',
+    route: '/chat/moderation',
+    section: 'chat'
+  },
   // AI Management
   {
     title: 'IA Dashboard',
@@ -420,6 +458,7 @@ const menuItems = [
 const coreItems = computed(() => menuItems.filter(item => item.section === 'core'))
 const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
 const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
+const chatItems = computed(() => menuItems.filter(item => item.section === 'chat'))
 const aiItems = computed(() => menuItems.filter(item => item.section === 'ai'))
 const systemItems = computed(() => menuItems.filter(item => item.section === 'system'))
 
@@ -461,8 +500,8 @@ onMounted(() => {
   // Initialize authentication
   authStore.initializeAuth()
   
-  // Initialize gamification if authenticated
-  if (authStore.isAuthenticated) {
+  // Initialize gamification if authenticated and not in chat pages
+  if (authStore.isAuthenticated && !route.path.startsWith('/chat')) {
     gamificationStore.initializeGamification()
   }
 })

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'ai_analytics',
     'gamification',
     'social',
+    'chat',
 ]
 
 MIDDLEWARE = [

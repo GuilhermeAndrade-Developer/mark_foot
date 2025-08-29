@@ -10854,3 +10854,258 @@ WARNING 2025-08-28 23:29:50,447 log 365 140434471446208 Unauthorized: /api/forum
 WARNING 2025-08-28 23:29:50,449 basehttp 365 140434471446208 "GET /api/forum/stats/ HTTP/1.1" 401 68
 INFO 2025-08-28 23:29:50,458 basehttp 365 140434443122368 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
 INFO 2025-08-28 23:33:58,744 basehttp 365 140434434729664 "GET /api/forum/categories/ HTTP/1.1" 200 10280
+INFO 2025-08-28 23:37:37,293 basehttp 365 140434434729664 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:37,415 basehttp 365 140434434729664 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-28 23:37:37,644 basehttp 365 140434434729664 "OPTIONS /api/v1/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:37,647 basehttp 365 140434434729664 "OPTIONS /api/v1/matches/?limit=50 HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:37,651 basehttp 365 140434443122368 "OPTIONS /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:37,651 basehttp 365 140434471446208 "OPTIONS /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:37,675 basehttp 365 140434471446208 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 3401
+INFO 2025-08-28 23:37:37,679 basehttp 365 140434451515072 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 139
+INFO 2025-08-28 23:37:37,683 basehttp 365 140434443122368 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-28 23:37:37,889 basehttp 365 140434434729664 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 143559
+INFO 2025-08-28 23:37:44,969 basehttp 365 140434434729664 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-28 23:37:45,025 basehttp 365 140434434729664 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
+INFO 2025-08-28 23:44:55,881 basehttp 365 140434434729664 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-28 23:44:55,881 basehttp 365 140434471446208 "OPTIONS /api/forum/stats/ HTTP/1.1" 200 0
+INFO 2025-08-28 23:44:55,898 basehttp 365 140434471446208 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
+INFO 2025-08-28 23:44:55,916 basehttp 365 140434434729664 "GET /api/forum/stats/ HTTP/1.1" 200 1391
+INFO 2025-08-28 23:51:20,065 autoreload 365 140434539293568 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-28 23:51:21,710 autoreload 409 139821539818368 Watching for file changes with StatReloader
+INFO 2025-08-28 23:51:26,149 autoreload 409 139821539818368 /app/content/apps.py changed, reloading.
+INFO 2025-08-28 23:51:27,676 autoreload 411 140465240415104 Watching for file changes with StatReloader
+INFO 2025-08-28 23:51:33,160 autoreload 411 140465240415104 /app/polls/apps.py changed, reloading.
+INFO 2025-08-28 23:51:34,725 autoreload 413 140502238104448 Watching for file changes with StatReloader
+INFO 2025-08-28 23:51:45,729 autoreload 413 140502238104448 /app/content/admin.py changed, reloading.
+INFO 2025-08-28 23:51:47,278 autoreload 415 140009150532480 Watching for file changes with StatReloader
+INFO 2025-08-28 23:51:58,290 autoreload 415 140009150532480 /app/polls/admin.py changed, reloading.
+INFO 2025-08-28 23:51:59,860 autoreload 417 139638567021440 Watching for file changes with StatReloader
+INFO 2025-08-28 23:52:21,839 autoreload 417 139638567021440 /app/content/apps.py changed, reloading.
+INFO 2025-08-28 23:52:23,546 autoreload 419 139991533640576 Watching for file changes with StatReloader
+INFO 2025-08-28 23:55:32,214 autoreload 419 139991533640576 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-08-28 23:55:33,714 autoreload 439 140143861201792 Watching for file changes with StatReloader
+INFO 2025-08-28 23:58:04,194 autoreload 439 140143861201792 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-08-28 23:58:05,950 autoreload 441 139682141375360 Watching for file changes with StatReloader
+INFO 2025-08-28 23:58:23,618 basehttp 441 139682000139968 "GET /api/content/stats/ HTTP/1.1" 200 1091
+WARNING 2025-08-28 23:58:29,471 log 441 139682000139968 Not Found: /api/polls/stats/
+WARNING 2025-08-28 23:58:29,472 basehttp 441 139682000139968 "GET /api/polls/stats/ HTTP/1.1" 404 29
+INFO 2025-08-28 23:58:37,672 autoreload 441 139682141375360 /app/polls/urls.py changed, reloading.
+INFO 2025-08-28 23:58:39,296 autoreload 450 140018969033600 Watching for file changes with StatReloader
+INFO 2025-08-28 23:58:48,291 autoreload 450 140018969033600 /app/polls/urls.py changed, reloading.
+INFO 2025-08-28 23:58:49,802 autoreload 452 140083184700288 Watching for file changes with StatReloader
+INFO 2025-08-28 23:58:52,147 basehttp 452 140083042711232 "GET /api/polls/stats/ HTTP/1.1" 200 800
+INFO 2025-08-29 00:02:50,426 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,427 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,429 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,430 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,432 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,433 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,433 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,433 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,434 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:02:50,467 log 452 140083000747712 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:02:50,472 log 452 140083009140416 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:02:50,472 basehttp 452 140083000747712 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:02:50,477 log 452 140083017533120 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:02:50,478 basehttp 452 140083009140416 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-29 00:02:50,483 basehttp 452 140083017533120 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:02:50,489 log 452 140083000747712 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:02:50,494 basehttp 452 140083000747712 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:02:50,516 log 452 140083009140416 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:02:50,527 log 452 140083025925824 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:02:50,527 basehttp 452 140083009140416 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-29 00:02:50,536 log 452 140083017533120 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:02:50,537 basehttp 452 140083025925824 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:02:50,537 basehttp 452 140083017533120 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:02:50,541 log 452 140083034318528 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:02:50,546 log 452 140083042711232 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:02:50,547 basehttp 452 140083034318528 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-29 00:02:50,547 basehttp 452 140083042711232 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+INFO 2025-08-29 00:02:50,583 basehttp 452 140083034318528 "OPTIONS /api/forum/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,583 basehttp 452 140083042711232 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-29 00:02:50,643 basehttp 452 140083042711232 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
+INFO 2025-08-29 00:02:50,652 basehttp 452 140083034318528 "GET /api/forum/stats/ HTTP/1.1" 200 1391
+INFO 2025-08-29 00:04:43,445 basehttp 452 140083009140416 "GET /api/content/categories/ HTTP/1.1" 200 1570
+INFO 2025-08-29 00:06:39,659 basehttp 452 140083009140416 "GET /api/content/articles/ HTTP/1.1" 200 4812
+INFO 2025-08-29 00:06:48,116 basehttp 452 140083009140416 "GET /api/polls/polls/ HTTP/1.1" 200 3756
+INFO 2025-08-29 00:12:08,667 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,669 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,670 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,670 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,672 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,672 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,676 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,676 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,677 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:12:08,696 log 452 140083000747712 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:12:08,700 log 452 140083025925824 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:12:08,701 basehttp 452 140083000747712 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:12:08,705 log 452 140083017533120 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:12:08,706 basehttp 452 140083025925824 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:12:08,708 basehttp 452 140083017533120 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-29 00:12:08,747 log 452 140083000747712 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:12:08,757 log 452 140083017533120 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:12:08,758 log 452 140083025925824 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:12:08,761 basehttp 452 140083000747712 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:12:08,766 log 452 140083042711232 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:12:08,773 log 452 140083009140416 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:12:08,773 basehttp 452 140083017533120 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:12:08,773 basehttp 452 140083025925824 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-29 00:12:08,778 log 452 140083034318528 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:12:08,778 basehttp 452 140083042711232 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-29 00:12:08,779 basehttp 452 140083009140416 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-29 00:12:08,780 basehttp 452 140083034318528 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+INFO 2025-08-29 00:12:08,820 basehttp 452 140083009140416 "OPTIONS /api/forum/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,821 basehttp 452 140083034318528 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-29 00:12:08,878 basehttp 452 140083034318528 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
+INFO 2025-08-29 00:12:08,889 basehttp 452 140083009140416 "GET /api/forum/stats/ HTTP/1.1" 200 1391
+INFO 2025-08-29 00:13:53,502 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,503 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,503 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,503 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,503 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,503 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,507 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,507 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,508 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:13:53,520 log 452 140083000747712 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:13:53,524 log 452 140083025925824 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:13:53,524 basehttp 452 140083000747712 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:13:53,525 basehttp 452 140083025925824 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:13:53,540 log 452 140083025925824 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:13:53,544 log 452 140083000747712 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:13:53,545 basehttp 452 140083025925824 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-29 00:13:53,545 basehttp 452 140083000747712 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:13:53,556 log 452 140083025925824 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:13:53,561 basehttp 452 140083025925824 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:13:53,589 log 452 140083009140416 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:13:53,596 log 452 140083017533120 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:13:53,602 basehttp 452 140083009140416 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:13:53,602 log 452 140083042711232 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:13:53,606 log 452 140083034318528 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:13:53,607 basehttp 452 140083017533120 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-29 00:13:53,608 basehttp 452 140083042711232 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-29 00:13:53,608 basehttp 452 140083034318528 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+INFO 2025-08-29 00:13:53,675 basehttp 452 140083034318528 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,675 basehttp 452 140083042711232 "OPTIONS /api/forum/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:13:53,730 basehttp 452 140083042711232 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 10280
+INFO 2025-08-29 00:13:53,737 basehttp 452 140083034318528 "GET /api/forum/stats/ HTTP/1.1" 200 1391
+INFO 2025-08-29 00:14:03,009 basehttp 452 140083034318528 "GET /api/content/stats/ HTTP/1.1" 200 1091
+INFO 2025-08-29 00:14:12,287 basehttp 452 140083034318528 "GET /api/content/articles/?page=1 HTTP/1.1" 200 4812
+INFO 2025-08-29 00:14:12,297 basehttp 452 140083042711232 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:14:12,389 basehttp 452 140083042711232 "GET /api/content/articles/?page=1 HTTP/1.1" 200 4812
+INFO 2025-08-29 00:14:36,875 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,876 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,876 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,876 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,877 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,877 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,878 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,879 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:36,880 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:14:36,890 log 452 140083000747712 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:14:36,890 basehttp 452 140083000747712 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:14:36,902 log 452 140083000747712 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:14:36,903 basehttp 452 140083000747712 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-29 00:14:36,912 log 452 140083000747712 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:14:36,912 basehttp 452 140083000747712 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:14:36,931 log 452 140083000747712 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:14:36,940 log 452 140083017533120 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:14:36,946 basehttp 452 140083000747712 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:14:36,946 basehttp 452 140083017533120 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-29 00:14:36,966 log 452 140083009140416 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:14:36,970 log 452 140083042711232 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:14:36,976 log 452 140083034318528 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:14:36,976 basehttp 452 140083009140416 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:14:36,983 log 452 140083025925824 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:14:36,983 basehttp 452 140083042711232 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-29 00:14:36,984 basehttp 452 140083034318528 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-29 00:14:36,985 basehttp 452 140083025925824 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+INFO 2025-08-29 00:14:37,060 basehttp 452 140083025925824 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:14:57,516 basehttp 452 140083025925824 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:57,622 basehttp 452 140083025925824 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-29 00:14:57,853 basehttp 452 140083009140416 "OPTIONS /api/v1/matches/?limit=50 HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:57,853 basehttp 452 140083042711232 "OPTIONS /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:57,853 basehttp 452 140083034318528 "OPTIONS /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:57,854 basehttp 452 140083025925824 "OPTIONS /api/v1/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:14:57,867 basehttp 452 140083025925824 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 139
+INFO 2025-08-29 00:14:57,911 basehttp 452 140083034318528 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 3401
+INFO 2025-08-29 00:14:57,930 basehttp 452 140083009140416 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-29 00:14:58,110 basehttp 452 140083042711232 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 143559
+INFO 2025-08-29 00:15:06,847 basehttp 452 140083042711232 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:16:38,293 basehttp 452 140082992355008 "GET /api/content/categories/ HTTP/1.1" 200 1570
+INFO 2025-08-29 00:16:45,061 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,061 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,061 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,061 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,061 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,062 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,063 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,064 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:16:45,065 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:16:45,078 log 452 140083042711232 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:16:45,083 log 452 140083034318528 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:16:45,084 basehttp 452 140083042711232 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:16:45,084 basehttp 452 140083034318528 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:16:45,098 log 452 140083042711232 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:16:45,103 log 452 140083034318528 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:16:45,103 basehttp 452 140083042711232 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-29 00:16:45,103 basehttp 452 140083034318528 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:16:45,115 log 452 140083042711232 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:16:45,116 basehttp 452 140083042711232 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:16:45,150 log 452 140083000747712 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:16:45,155 basehttp 452 140083000747712 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:16:45,160 log 452 140083025925824 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:16:45,167 log 452 140083017533120 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:16:45,171 log 452 140083009140416 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:16:45,171 basehttp 452 140083025925824 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-29 00:16:45,172 basehttp 452 140083017533120 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-29 00:16:45,172 basehttp 452 140083009140416 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+INFO 2025-08-29 00:16:45,231 basehttp 452 140083009140416 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:16:46,442 basehttp 452 140083009140416 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:18:14,479 basehttp 452 140083025925824 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,479 basehttp 452 140083000747712 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,480 basehttp 452 140083034318528 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,480 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,480 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,481 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,482 basehttp 452 140083042711232 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,482 basehttp 452 140083009140416 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:18:14,529 basehttp 452 140083017533120 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-29 00:18:14,559 log 452 140083000747712 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-29 00:18:14,565 log 452 140083025925824 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-29 00:18:14,571 log 452 140083042711232 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-29 00:18:14,571 basehttp 452 140083000747712 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-29 00:18:14,576 log 452 140083034318528 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-29 00:18:14,580 log 452 140083009140416 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-29 00:18:14,581 basehttp 452 140083025925824 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-29 00:18:14,581 basehttp 452 140083042711232 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-29 00:18:14,585 basehttp 452 140083009140416 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-29 00:18:14,586 basehttp 452 140083034318528 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:18:14,615 log 452 140083000747712 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-29 00:18:14,617 basehttp 452 140083000747712 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-29 00:18:14,634 log 452 140083025925824 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-29 00:18:14,636 log 452 140083017533120 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-29 00:18:14,636 log 452 140083042711232 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-29 00:18:14,637 basehttp 452 140083025925824 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-29 00:18:14,637 basehttp 452 140083017533120 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-29 00:18:14,638 basehttp 452 140083042711232 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+INFO 2025-08-29 00:18:14,657 basehttp 452 140083042711232 "GET /api/content/categories/? HTTP/1.1" 200 1570
+INFO 2025-08-29 00:18:31,091 basehttp 452 140083042711232 "GET /api/content/stats/ HTTP/1.1" 200 1091
+INFO 2025-08-29 00:20:02,752 basehttp 452 140083017533120 "OPTIONS /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:20:02,753 basehttp 452 140083025925824 "OPTIONS /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:20:02,753 basehttp 452 140083042711232 "OPTIONS /api/v1/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:20:02,753 basehttp 452 140083000747712 "OPTIONS /api/v1/matches/?limit=50 HTTP/1.1" 200 0
+INFO 2025-08-29 00:20:02,792 basehttp 452 140083000747712 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 139
+INFO 2025-08-29 00:20:02,812 basehttp 452 140083025925824 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 3401
+INFO 2025-08-29 00:20:02,823 basehttp 452 140083017533120 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-29 00:20:02,974 basehttp 452 140083042711232 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 143559
+INFO 2025-08-29 00:21:37,650 basehttp 452 140083042711232 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 139
+INFO 2025-08-29 00:21:43,087 basehttp 452 140083042711232 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:21:43,087 basehttp 452 140083017533120 "OPTIONS /api/v1/areas/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:21:43,116 basehttp 452 140083017533120 "GET /api/v1/teams/ HTTP/1.1" 200 30909
+INFO 2025-08-29 00:21:43,117 basehttp 452 140083042711232 "GET /api/v1/areas/ HTTP/1.1" 200 1831
+INFO 2025-08-29 00:21:57,345 basehttp 452 140083017533120 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:21:57,345 basehttp 452 140083042711232 "OPTIONS /api/v1/players/ HTTP/1.1" 200 0
+INFO 2025-08-29 00:21:57,377 basehttp 452 140083042711232 "GET /api/v1/players/ HTTP/1.1" 200 57224
+INFO 2025-08-29 00:21:57,406 basehttp 452 140083017533120 "GET /api/v1/teams/ HTTP/1.1" 200 30909

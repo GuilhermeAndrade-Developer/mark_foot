@@ -34,6 +34,14 @@ import ForumCategories from '@/views/ForumCategories.vue'
 import ForumTopics from '@/views/ForumTopics.vue'
 import ForumModeration from '@/views/ForumModeration.vue'
 import ForumReports from '@/views/ForumReports.vue'
+// Content Views
+import ContentDashboard from '@/views/ContentDashboard.vue'
+import ArticlesManagement from '@/views/ArticlesManagement.vue'
+import ContentCategories from '@/views/ContentCategories.vue'
+import ContentReports from '@/views/ContentReports.vue'
+// Polls Views
+import PollsDashboard from '@/views/PollsDashboard.vue'
+import PollsManagement from '@/views/PollsManagement.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -272,6 +280,62 @@ const routes: Array<RouteRecordRaw> = [
     component: ForumReports,
     meta: {
       title: 'Relatórios do Fórum - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Content Management Routes
+  {
+    path: '/content',
+    name: 'ContentDashboard',
+    component: ContentDashboard,
+    meta: {
+      title: 'Gestão de Conteúdo - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/content/articles',
+    name: 'ArticlesManagement',
+    component: ArticlesManagement,
+    meta: {
+      title: 'Gerenciar Artigos - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/content/categories',
+    name: 'ContentCategories',
+    component: ContentCategories,
+    meta: {
+      title: 'Categorias de Conteúdo - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/content/reports',
+    name: 'ContentReports',
+    component: ContentReports,
+    meta: {
+      title: 'Relatórios de Conteúdo - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Polls Management Routes
+  {
+    path: '/polls',
+    name: 'PollsDashboard',
+    component: PollsDashboard,
+    meta: {
+      title: 'Dashboard Enquetes - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/polls/manage',
+    name: 'PollsManagement',
+    component: PollsManagement,
+    meta: {
+      title: 'Gerenciar Enquetes - Mark Foot',
       requiresAuth: true
     }
   }

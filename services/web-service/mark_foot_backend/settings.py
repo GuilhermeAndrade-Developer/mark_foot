@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'social',
     'chat',
     'forum',
+    'content',
+    'polls',
 ]
 
 MIDDLEWARE = [

@@ -89,6 +89,8 @@
               class="ml-2"
             />
           </v-list-group>
+          
+          <!-- Social Features Group -->
           <v-list-group value="social">
             <template #activator="{ props }">
               <v-list-item v-bind="props">
@@ -100,6 +102,48 @@
             </template>
             <v-list-item
               v-for="item in socialItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Content Management Group -->
+          <v-list-group value="content">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-file-document-multiple</v-icon>
+                </template>
+                <v-list-item-title>Gestão de Conteúdo</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in contentItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Polls Management Group -->
+          <v-list-group value="polls">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-poll</v-icon>
+                </template>
+                <v-list-item-title>Sistema de Enquetes</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in pollsItems"
               :key="item.title"
               :prepend-icon="item.icon"
               :title="item.title"
@@ -456,6 +500,44 @@ const menuItems = [
     route: '/chat/moderation',
     section: 'chat'
   },
+  // Content Management
+  {
+    title: 'Gestão de Conteúdo',
+    icon: 'mdi-file-document-multiple',
+    route: '/content',
+    section: 'content'
+  },
+  {
+    title: 'Artigos',
+    icon: 'mdi-file-document',
+    route: '/content/articles',
+    section: 'content'
+  },
+  {
+    title: 'Categorias',
+    icon: 'mdi-folder-outline',
+    route: '/content/categories',
+    section: 'content'
+  },
+  {
+    title: 'Relatórios',
+    icon: 'mdi-chart-box',
+    route: '/content/reports',
+    section: 'content'
+  },
+  // Polls Management
+  {
+    title: 'Dashboard Enquetes',
+    icon: 'mdi-poll',
+    route: '/polls',
+    section: 'polls'
+  },
+  {
+    title: 'Gerenciar Enquetes',
+    icon: 'mdi-format-list-checks',
+    route: '/polls/manage',
+    section: 'polls'
+  },
   // AI Management
   {
     title: 'IA Dashboard',
@@ -489,6 +571,8 @@ const coreItems = computed(() => menuItems.filter(item => item.section === 'core
 const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
 const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
 const chatItems = computed(() => menuItems.filter(item => item.section === 'chat'))
+const contentItems = computed(() => menuItems.filter(item => item.section === 'content'))
+const pollsItems = computed(() => menuItems.filter(item => item.section === 'polls'))
 const aiItems = computed(() => menuItems.filter(item => item.section === 'ai'))
 const systemItems = computed(() => menuItems.filter(item => item.section === 'system'))
 

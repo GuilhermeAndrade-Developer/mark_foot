@@ -58,7 +58,7 @@ services:
       - redis_cache
     networks:
       - mark_foot_dev_network
-    command: sh -c "python wait-for-db.py && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python wait-for-db.py && python manage.py migrate && python manage.py seed_dev_data --quick && python manage.py runserver 0.0.0.0:8000"
 
   # Celery Worker for Background Tasks
   celery-worker-dev:

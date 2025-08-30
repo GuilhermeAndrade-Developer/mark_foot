@@ -15133,3 +15133,33 @@ WARNING 2025-08-30 21:38:57,904 log 358 125543429170880 Unauthorized: /api/v1/bu
 WARNING 2025-08-30 21:38:57,905 basehttp 358 125543429170880 "GET /api/v1/business/social-engagement/ HTTP/1.1" 401 209
 WARNING 2025-08-30 21:38:57,965 log 358 125543429170880 Unauthorized: /api/v1/business/activities/
 WARNING 2025-08-30 21:38:57,966 basehttp 358 125543429170880 "GET /api/v1/business/activities/ HTTP/1.1" 401 209
+INFO 2025-08-30 22:31:37,803 autoreload 11 136635742579584 Watching for file changes with StatReloader
+INFO 2025-08-30 22:36:44,770 autoreload 11 131159896185728 Watching for file changes with StatReloader
+INFO 2025-08-30 22:37:58,306 basehttp 11 131159827375808 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:58,896 basehttp 11 131159827375808 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-30 22:37:59,471 basehttp 11 131159827375808 "OPTIONS /api/v1/business/metrics/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:59,495 basehttp 11 131159827375808 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-30 22:37:59,560 basehttp 11 131159827375808 "OPTIONS /api/v1/business/user-growth/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:59,618 basehttp 11 131159827375808 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-30 22:37:59,687 basehttp 11 131159827375808 "OPTIONS /api/v1/business/revenue/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:59,742 basehttp 11 131159827375808 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-30 22:37:59,808 basehttp 11 131159827375808 "OPTIONS /api/v1/business/social-engagement/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:59,869 basehttp 11 131159827375808 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-30 22:37:59,932 basehttp 11 131159827375808 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:37:59,989 basehttp 11 131159827375808 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-08-30 22:38:09,827 basehttp 11 131159827375808 "OPTIONS /api/v1/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:38:09,831 basehttp 11 131159817934528 "OPTIONS /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:38:09,832 basehttp 11 131159809525440 "OPTIONS /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 0
+INFO 2025-08-30 22:38:09,837 basehttp 11 131159801116352 "OPTIONS /api/v1/matches/?limit=50 HTTP/1.1" 200 0
+INFO 2025-08-30 22:38:09,906 basehttp 11 131159817934528 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 22:38:09,927 basehttp 11 131159827375808 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 137
+INFO 2025-08-30 22:38:09,958 basehttp 11 131159809525440 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 22:38:10,709 basehttp 11 131159801116352 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 141637
+INFO 2025-08-30 22:38:15,021 basehttp 11 131159801116352 "OPTIONS /api/v1/gamification/profiles/ HTTP/1.1" 200 0
+WARNING 2025-08-30 22:38:15,123 log 11 131159801116352 Not Found: /api/v1/gamification/profiles/
+WARNING 2025-08-30 22:38:15,145 basehttp 11 131159801116352 "GET /api/v1/gamification/profiles/ HTTP/1.1" 404 23885
+INFO 2025-08-30 22:38:21,608 basehttp 11 131159809525440 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-30 22:38:21,633 basehttp 11 131159809525440 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-30 22:38:21,694 basehttp 11 131159809525440 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-30 22:38:21,758 basehttp 11 131159809525440 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-30 22:38:21,857 basehttp 11 131159809525440 "GET /api/v1/business/activities/ HTTP/1.1" 200 736

@@ -576,13 +576,20 @@ const loadDashboardData = async () => {
 
 const loadUserStats = async () => {
   try {
-    // Mock data - replace with real API calls
-    totalUsers.value = 157
-    totalPredictions.value = 1249
-    activeChallenges.value = 6
-    totalBadges.value = 15
+    // Carregar estatísticas reais da API de gamificação
+    const stats = await gamificationStore.loadDashboardStats()
+    
+    totalUsers.value = stats?.total_users || 0
+    totalPredictions.value = stats?.total_predictions || 0
+    activeChallenges.value = stats?.active_challenges || 0
+    totalBadges.value = stats?.total_badges || 0
   } catch (error) {
     console.error('Error loading user stats:', error)
+    // Em caso de erro, manter valores zerados ao invés de hardcoded
+    totalUsers.value = 0
+    totalPredictions.value = 0
+    activeChallenges.value = 0
+    totalBadges.value = 0
   }
 }
 
@@ -598,43 +605,33 @@ const loadTopUsers = async () => {
 
 const loadRecentActivity = async () => {
   try {
-    // Mock recent activity data
-    recentActivity.value = [
-      {
-        id: 1,
-        description: 'Novo badge conquistado: Primeira Predição',
-        user: 'test_user_1',
-        created_at: new Date().toISOString()
-      },
-      {
-        id: 2,
-        description: 'Desafio "Novato das Predições" iniciado',
-        user: 'admin',
-        created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString()
-      },
-      {
-        id: 3,
-        description: 'Usuário subiu para Level 2',
-        user: 'test_user_2',
-        created_at: new Date(Date.now() - 1000 * 60 * 60).toISOString()
-      }
-    ]
+    // Carregar atividades recentes reais da API
+    const activities = await gamificationStore.getRecentActivities()
+    recentActivity.value = activities || []
   } catch (error) {
     console.error('Error loading recent activity:', error)
+    recentActivity.value = []
   }
 }
 
 const loadEngagementStats = async () => {
   try {
-    // Mock engagement data
-    engagementStats.value = {
-      daily_active: 45,
-      weekly_active: 127,
-      avg_session_time: '12min',
-      challenge_completion_rate: '67%'
+    // Carregar estatísticas de engajamento reais da API
+    const stats = await gamificationStore.getEngagementStats()
+    engagementStats.value = stats || {
+      daily_active: 0,
+      weekly_active: 0,
+      avg_session_time: '0min',
+      challenge_completion_rate: '0%'
     }
   } catch (error) {
     console.error('Error loading engagement stats:', error)
+    engagementStats.value = {
+      daily_active: 0,
+      weekly_active: 0,
+      avg_session_time: '0min',
+      challenge_completion_rate: '0%'
+    }
   }
 }
 

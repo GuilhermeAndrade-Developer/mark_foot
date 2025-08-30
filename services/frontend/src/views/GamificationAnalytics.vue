@@ -378,41 +378,43 @@ const loadAnalytics = async () => {
 }
 
 const loadMetrics = async () => {
-  // Mock data - replace with real API calls
-  metrics.value = {
-    totalUsers: 157,
-    userGrowth: 12.5,
-    totalPredictions: 1249,
-    predictionGrowth: 23.1,
-    completedChallenges: 89,
-    challengeCompletionRate: 67,
-    avgSessionTime: '12min',
-    sessionGrowth: 3
+  try {
+    // Carregar métricas reais da API de gamificação
+    const realMetrics = await gamificationStore.loadAnalyticsMetrics()
+    metrics.value = realMetrics || {
+      totalUsers: 0,
+      userGrowth: 0,
+      totalPredictions: 0,
+      predictionGrowth: 0,
+      completedChallenges: 0,
+      challengeCompletionRate: 0,
+      avgSessionTime: '0min',
+      sessionGrowth: 0
+    }
+  } catch (error) {
+    console.error('Error loading metrics:', error)
+    metrics.value = {
+      totalUsers: 0,
+      userGrowth: 0,
+      totalPredictions: 0,
+      predictionGrowth: 0,
+      completedChallenges: 0,
+      challengeCompletionRate: 0,
+      avgSessionTime: '0min',
+      sessionGrowth: 0
+    }
   }
 }
 
 const loadTopChallenges = async () => {
-  // Mock data
-  topChallenges.value = [
-    {
-      id: 1,
-      title: 'Novato das Predições',
-      participants: 45,
-      completionRate: 78
-    },
-    {
-      id: 2,
-      title: 'Mestre do Fantasy',
-      participants: 32,
-      completionRate: 65
-    },
-    {
-      id: 3,
-      title: 'Sequência Dourada',
-      participants: 28,
-      completionRate: 52
-    }
-  ]
+  try {
+    // Carregar desafios reais da API
+    const challenges = await gamificationStore.getTopChallenges()
+    topChallenges.value = challenges || []
+  } catch (error) {
+    console.error('Error loading top challenges:', error)
+    topChallenges.value = []
+  }
 }
 
 const loadTopUsers = async () => {
@@ -465,8 +467,9 @@ const createEngagementChart = () => {
   const ctx = engagementChart.value?.getContext('2d')
   if (!ctx) return
 
+  // Dados temporários até API estar disponível
   const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
-  const data = [65, 72, 80, 78, 85, 92]
+  const data = [0, 0, 0, 0, 0, 0] // Dados zerados
 
   engagementChartInstance = new Chart(ctx, {
     type: 'line',
@@ -506,12 +509,15 @@ const createAccuracyChart = () => {
   const ctx = accuracyChart.value?.getContext('2d')
   if (!ctx) return
 
+  // Dados temporários até API estar disponível
+  const accuracyData = { acertos: 0, erros: 0, pendentes: 0 }
+
   accuracyChartInstance = new Chart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Acertos', 'Erros', 'Pendentes'],
       datasets: [{
-        data: [68, 25, 7],
+        data: accuracyData?.values || [0, 0, 0],
         backgroundColor: ['#4caf50', '#f44336', '#ff9800']
       }]
     },

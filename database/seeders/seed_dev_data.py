@@ -27,7 +27,8 @@ class Command(BaseCommand):
             nargs='*',
             choices=[
                 'users', 'core', 'content', 'polls', 'social', 
-                'gamification', 'forum', 'chat', 'ai_analytics'
+                'gamification', 'forum', 'chat', 'ai_analytics',
+                'business', 'social_sharing'
             ],
             help='Specific modules to seed (default: all)',
         )
@@ -78,7 +79,7 @@ class Command(BaseCommand):
                 # Determine which modules to seed
                 modules_to_seed = options['modules'] or [
                     'users', 'core', 'content', 'polls', 'social', 
-                    'gamification', 'forum', 'chat'
+                    'gamification', 'forum', 'chat', 'business', 'social_sharing'
                 ]
                 
                 if not options['no_external']:
@@ -200,6 +201,20 @@ class Command(BaseCommand):
             elif module_name == 'ai_analytics':
                 if not options['quick']:
                     call_command('seed_ai_data', verbosity=0)
+                    
+            elif module_name == 'business':
+                # Novo seeder para dados de business dashboard
+                try:
+                    call_command('seed_business_data', verbosity=0)
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  Business seeder not implemented yet: {str(e)}')
+                    
+            elif module_name == 'social_sharing':
+                # Novo seeder para dados de compartilhamento social
+                try:
+                    call_command('seed_social_sharing_data', verbosity=0)
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  Social sharing seeder not implemented yet: {str(e)}')
             
             self.stdout.write(f'  ✓ {module_name} seeded successfully')
             

@@ -335,8 +335,8 @@ const platformStatus = ref<Array<{
   configured: boolean
 }>>([])
 
-// Demo data flag
-const isDemoMode = ref(true)
+// Modo real - sempre carregar dados da API
+const isDemoMode = ref(false)
 
 // Computed
 const engagementChartData = computed(() => ({

@@ -117,9 +117,25 @@ export const useGamificationStore = defineStore('gamification', () => {
       userProfile.value = profile
       return profile
     } catch (err: any) {
-      console.log('API de gamificação não disponível, usando dados de demonstração')
-      userProfile.value = MOCK_USER_PROFILE
-      return MOCK_USER_PROFILE
+      console.log('API de gamificação não disponível, usando dados padrão')
+      // Criar perfil básico ao invés de dados mockados
+      userProfile.value = {
+        id: 1,
+        user: 1,
+        total_points: 0,
+        level: 1,
+        experience_points: 0,
+        prediction_streak: 0,
+        login_streak: 0,
+        last_login_date: new Date().toISOString(),
+        is_public_profile: true,
+        allow_friend_requests: true,
+        favorite_team: null,
+        favorite_competition: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+      return userProfile.value
     }
   }
 
@@ -208,8 +224,16 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       dashboardStats.value = await gamificationApi.getDashboardStats()
     } catch (err: any) {
-      console.log('API de dashboard stats não disponível, usando dados de demonstração')
-      dashboardStats.value = MOCK_DASHBOARD_STATS
+      console.log('API de dashboard stats não disponível, usando dados básicos')
+      dashboardStats.value = {
+        total_points: userProfile.value?.total_points || 0,
+        level: userProfile.value?.level || 1,
+        badges_count: userBadges.value.length,
+        predictions_count: userPredictions.value.length,
+        challenges_completed: 0,
+        fantasy_teams_count: userFantasyTeams.value.length,
+        current_rank: null
+      }
     }
   }
 
@@ -217,14 +241,8 @@ export const useGamificationStore = defineStore('gamification', () => {
     try {
       leaderboard.value = await gamificationApi.getLeaderboard()
     } catch (err: any) {
-      console.log('API de leaderboard não disponível, usando dados de demonstração')
-      leaderboard.value = [
-        { username: 'João Silva', points: 3450, rank: 1 },
-        { username: 'Maria Santos', points: 3200, rank: 2 },
-        { username: 'Pedro Costa', points: 2980, rank: 3 },
-        { username: 'Ana Oliveira', points: 2750, rank: 4 },
-        { username: 'Carlos Lima', points: 2500, rank: 5 }
-      ]
+      console.log('API de leaderboard não disponível')
+      leaderboard.value = []
     }
   }
 

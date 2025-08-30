@@ -312,81 +312,19 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-// Demo data
+// Real data from database
 const stats = ref({
-  totalRooms: 5,
-  activeRooms: 4,
-  totalMessages: 1247,
-  messageGrowth: 23,
-  activeUsers: 89,
-  pendingReports: 3
+  totalRooms: 0,
+  activeRooms: 0,
+  totalMessages: 0,
+  messageGrowth: 0,
+  activeUsers: 0,
+  pendingReports: 0
 })
 
-const recentActivity = ref([
-  {
-    id: 1,
-    type: 'message',
-    description: 'Nova mensagem flagada automaticamente',
-    user: 'Sistema',
-    room: 'Chat Geral',
-    time: 'há 2 min'
-  },
-  {
-    id: 2,
-    type: 'moderation',
-    description: 'Usuário advertido por spam',
-    user: 'Admin',
-    room: 'Real Madrid Fan Club',
-    time: 'há 5 min'
-  },
-  {
-    id: 3,
-    type: 'room',
-    description: 'Nova sala criada para partida',
-    user: 'Sistema',
-    room: 'Liverpool vs Arsenal',
-    time: 'há 15 min'
-  },
-  {
-    id: 4,
-    type: 'report',
-    description: 'Nova denúncia recebida',
-    user: 'torcedor123',
-    room: 'Premier League Chat',
-    time: 'há 20 min'
-  }
-])
+const recentActivity = ref([])
 
-const topRooms = ref([
-  {
-    id: 1,
-    name: 'Chat Geral',
-    type: 'general',
-    messages: 456,
-    activeUsers: 23
-  },
-  {
-    id: 2,
-    name: 'Real Madrid Fan Club',
-    type: 'team',
-    messages: 289,
-    activeUsers: 18
-  },
-  {
-    id: 3,
-    name: 'Premier League Chat',
-    type: 'general',
-    messages: 156,
-    activeUsers: 12
-  },
-  {
-    id: 4,
-    name: 'Liverpool vs Arsenal',
-    type: 'match',
-    messages: 89,
-    activeUsers: 8
-  }
-])
+const topRooms = ref([])
 
 // Methods
 const formatNumber = (num: number) => {

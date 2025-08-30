@@ -39,10 +39,31 @@ class Command(BaseCommand):
 
         rooms_data = [
             {
-                'name': 'Geral',
+                'name': 'Chat Geral',
                 'description': 'Chat geral sobre futebol',
                 'room_type': 'public',
                 'max_participants': 100,
+                'is_active': True
+            },
+            {
+                'name': 'Real Madrid Fan Club',
+                'description': 'Discussões sobre o Real Madrid',
+                'room_type': 'public',
+                'max_participants': 50,
+                'is_active': True
+            },
+            {
+                'name': 'Premier League Chat',
+                'description': 'Tudo sobre a Premier League',
+                'room_type': 'public',
+                'max_participants': 75,
+                'is_active': True
+            },
+            {
+                'name': 'Liverpool vs Arsenal',
+                'description': 'Chat da partida Liverpool vs Arsenal',
+                'room_type': 'match',
+                'max_participants': 25,
                 'is_active': True
             },
             {

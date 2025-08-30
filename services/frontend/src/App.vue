@@ -323,14 +323,14 @@
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title>Admin User</v-list-item-title>
-            <v-list-item-subtitle>admin@markfoot.com</v-list-item-subtitle>
+            <v-list-item-title>{{ authStore.fullName || 'Usuário' }}</v-list-item-title>
+            <v-list-item-subtitle>{{ authStore.user?.email || 'email@markfoot.com' }}</v-list-item-subtitle>
           </v-list-item>
           <v-divider />
           <v-list-item>
             <v-list-item-title>Configurações</v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <v-list-item @click="handleLogout">
             <v-list-item-title>Sair</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -690,10 +690,10 @@ onMounted(() => {
   // Initialize authentication
   authStore.initializeAuth()
   
-  // Initialize gamification if authenticated (will use fallback if API not available)
+  // Initialize gamification if authenticated
   if (authStore.isAuthenticated) {
     gamificationStore.initializeGamification().catch(() => {
-      console.log('Gamificação inicializada com dados de demonstração')
+      console.log('Gamificação inicializada com dados do banco')
     })
   }
 })

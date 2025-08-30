@@ -415,8 +415,8 @@ const stats = ref<GroupStats>({
 const recentGroups = ref<PrivateGroup[]>([])
 const pendingInvitations = ref(0)
 
-// Demo mode detection
-const isDemoMode = ref(true)
+// Modo real - sempre carregar dados da API
+const isDemoMode = ref(false)
 
 const newGroup = ref({
   name: '',

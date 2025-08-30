@@ -259,44 +259,44 @@ const loading = ref(false)
 const businessKPIs = ref([
   {
     title: 'Usuários Ativos',
-    value: '12.5K',
+    value: '0',
     icon: 'mdi-account-multiple',
     color: 'primary',
-    trend: 15.2
+    trend: 0
   },
   {
     title: 'Usuários Premium',
-    value: '1.8K',
+    value: '0',
     icon: 'mdi-crown',
     color: 'warning',
-    trend: 8.5
+    trend: 0
   },
   {
     title: 'Receita Mensal',
-    value: 'R$ 45K',
+    value: 'R$ 0',
     icon: 'mdi-cash-multiple',
     color: 'success',
-    trend: 22.1
+    trend: 0
   },
   {
     title: 'Uptime Sistema',
-    value: '99.8%',
+    value: '0%',
     icon: 'mdi-server-network',
     color: 'info',
-    trend: 0.2
+    trend: 0
   }
 ])
 
 // Active users data
 const activeUsers = ref({
-  online: 234,
-  today: 2847
+  online: 0,
+  today: 0
 })
 
 // Premium users data
 const premiumUsers = ref({
-  count: 1847,
-  percentage: 14.5
+  count: 0,
+  percentage: 0
 })
 
 // System services status
@@ -304,152 +304,57 @@ const systemServices = ref([
   {
     name: 'API Backend',
     icon: 'mdi-api',
-    status: 'online',
-    performance: 98,
-    uptime: 99.8
+    status: 'offline',
+    performance: 0,
+    uptime: 0
   },
   {
     name: 'Database MySQL',
     icon: 'mdi-database',
-    status: 'online',
-    performance: 95,
-    uptime: 99.9
+    status: 'offline',
+    performance: 0,
+    uptime: 0
   },
   {
     name: 'Redis Cache',
     icon: 'mdi-memory',
-    status: 'online',
-    performance: 97,
-    uptime: 99.7
+    status: 'offline',
+    performance: 0,
+    uptime: 0
   },
   {
     name: 'Celery Workers',
     icon: 'mdi-worker',
-    status: 'online',
-    performance: 92,
-    uptime: 99.5
+    status: 'offline',
+    performance: 0,
+    uptime: 0
   },
   {
     name: 'IA Services',
     icon: 'mdi-brain',
-    status: 'online',
-    performance: 89,
-    uptime: 98.2
+    status: 'offline',
+    performance: 0,
+    uptime: 0
   }
 ])
 
-// Recent business activities
-const recentActivities = ref([
-  {
-    id: 1,
-    title: 'Novo usuário premium',
-    description: 'Usuário #12847 assinou plano Premium',
-    time: '5 min',
-    icon: 'mdi-crown',
-    color: 'warning'
-  },
-  {
-    id: 2,
-    title: 'Pico de acessos',
-    description: 'Maior número de usuários simultâneos hoje',
-    time: '12 min',
-    icon: 'mdi-trending-up',
-    color: 'success'
-  },
-  {
-    id: 3,
-    title: 'Backup realizado',
-    description: 'Backup automático do banco de dados',
-    time: '1 hora',
-    icon: 'mdi-backup-restore',
-    color: 'info'
-  },
-  {
-    id: 4,
-    title: 'Nova partnership',
-    description: 'Integração com clube local finalizada',
-    time: '2 horas',
-    icon: 'mdi-handshake',
-    color: 'primary'
-  },
-  {
-    id: 5,
-    title: 'Meta de receita',
-    description: 'Meta mensal de R$ 40K atingida',
-    time: '1 dia',
-    icon: 'mdi-target',
-    color: 'success'
-  }
-])
+// Recent business activities (carregado da API)
+const recentActivities = ref([])
 
-// Chart data
+// Chart data (carregados da API)
 const userGrowthData = ref({
-  labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
-  datasets: [
-    {
-      label: 'Usuários Totais',
-      data: [2400, 3200, 4100, 5800, 7200, 9500, 12500],
-      borderColor: '#1976d2',
-      backgroundColor: 'rgba(25, 118, 210, 0.1)',
-      fill: true,
-      tension: 0.4
-    },
-    {
-      label: 'Usuários Premium',
-      data: [120, 280, 450, 680, 920, 1350, 1800],
-      borderColor: '#ff9800',
-      backgroundColor: 'rgba(255, 152, 0, 0.1)',
-      fill: true,
-      tension: 0.4
-    }
-  ]
+  labels: [],
+  datasets: []
 })
 
 const revenueData = ref({
-  labels: ['Assinaturas Premium', 'Partnerships', 'API Marketplace', 'Publicidade'],
-  datasets: [
-    {
-      data: [65, 20, 10, 5],
-      backgroundColor: [
-        '#4caf50',
-        '#2196f3',
-        '#ff9800',
-        '#9c27b0'
-      ],
-      borderColor: [
-        '#388e3c',
-        '#1976d2',
-        '#f57c00',
-        '#7b1fa2'
-      ],
-      borderWidth: 2
-    }
-  ]
+  labels: [],
+  datasets: []
 })
 
 const socialEngagementData = ref({
-  labels: ['Instagram', 'TikTok', 'Twitter', 'Facebook', 'YouTube'],
-  datasets: [
-    {
-      label: 'Engajamento (%)',
-      data: [85, 92, 78, 65, 73],
-      backgroundColor: [
-        '#e91e63',
-        '#000000',
-        '#1da1f2',
-        '#1877f2',
-        '#ff0000'
-      ],
-      borderColor: [
-        '#c2185b',
-        '#333333',
-        '#1976d2',
-        '#1565c0',
-        '#d32f2f'
-      ],
-      borderWidth: 1
-    }
-  ]
+  labels: [],
+  datasets: []
 })
 
 // Chart options

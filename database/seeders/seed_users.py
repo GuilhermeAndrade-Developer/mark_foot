@@ -39,7 +39,7 @@ class Command(BaseCommand):
         count = options['count']
         created_count = 0
 
-        # Predefined user data for more realistic profiles
+        # Predefined user data for more realistic profiles (replacing hardcoded frontend users)
         user_profiles = [
             ('João', 'Silva', 'joao.silva'),
             ('Maria', 'Santos', 'maria.santos'),
@@ -61,6 +61,16 @@ class Command(BaseCommand):
             ('Beatriz', 'Nascimento', 'beatriz.nascimento'),
             ('Lucas', 'Cardoso', 'lucas.cardoso'),
             ('Priscila', 'Ramos', 'priscila.ramos'),
+            ('Amanda', 'Souza', 'amanda.souza'),
+            ('Ricardo', 'Gomes', 'ricardo.gomes'),
+            ('Fernanda', 'Nunes', 'fernanda.nunes'),
+            ('Marcos', 'Teixeira', 'marcos.teixeira'),
+            ('Isabella', 'Rocha', 'isabella.rocha'),
+            ('Eduardo', 'Dias', 'eduardo.dias'),
+            ('Larissa', 'Freitas', 'larissa.freitas'),
+            ('André', 'Batista', 'andre.batista'),
+            ('Carolina', 'Mendes', 'carolina.mendes'),
+            ('Bruno', 'Pinto', 'bruno.pinto'),
         ]
 
         # Extend the list if we need more users

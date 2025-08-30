@@ -344,13 +344,13 @@ const stats = ref([
 
 const recentMatches = ref([])
 
-// Chart data
+// Chart data - initialized with empty/zero values
 const goalsChartData = ref({
   labels: ['Rodada 1', 'Rodada 2', 'Rodada 3', 'Rodada 4', 'Rodada 5'],
   datasets: [
     {
       label: 'Gols por Rodada',
-      data: [12, 19, 15, 25, 22],
+      data: [0, 0, 0, 0, 0],
       borderColor: '#1976d2',
       backgroundColor: 'rgba(25, 118, 210, 0.1)',
       fill: true,

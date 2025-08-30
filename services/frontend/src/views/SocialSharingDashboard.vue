@@ -416,8 +416,8 @@ const platforms = ref<SocialPlatform[]>([])
 const templates = ref<ShareTemplate[]>([])
 const recentShares = ref<SocialShare[]>([])
 
-// Demo mode detection
-const isDemoMode = ref(true)
+// Modo real - sempre carregar dados da API
+const isDemoMode = ref(false)
 
 const newShare = ref({
   platform: null as number | null,
@@ -486,11 +486,21 @@ const loadData = async () => {
         templates.value = templatesData
         recentShares.value = sharesData.results.slice(0, 10)
       } else {
-        loadDemoData()
+        // Se não há dados, manter arrays vazios ao invés de demo
+        isDemoMode.value = false
+        stats.value = {}
+        platforms.value = []
+        templates.value = []
+        recentShares.value = []
       }
     } catch (error) {
-      console.log('API não disponível, carregando dados de demonstração')
-      loadDemoData()
+      console.error('Erro ao carregar dados de compartilhamento social:', error)
+      // Em caso de erro, manter arrays vazios
+      isDemoMode.value = false
+      stats.value = {}
+      platforms.value = []
+      templates.value = []
+      recentShares.value = []
     }
   } finally {
     loading.value = false
@@ -500,131 +510,27 @@ const loadData = async () => {
 const loadDemoData = () => {
   isDemoMode.value = true
   
-  // Demo statistics
+  // Empty statistics - no demo data
   stats.value = {
-    total_shares: 1247,
-    shares_by_platform: {
-      'Twitter': 450,
-      'Instagram': 380,
-      'Facebook': 280,
-      'TikTok': 137
-    },
-    shares_today: 23,
-    shares_this_week: 156,
-    shares_this_month: 892,
+    total_shares: 0,
+    shares_by_platform: {},
+    shares_today: 0,
+    shares_this_week: 0,
+    shares_this_month: 0,
     top_shared_content: [],
     most_active_users: [],
     engagement_metrics: {
-      total_likes: 15420,
-      total_shares: 2340,
-      total_comments: 1890,
-      total_views: 45600
+      total_likes: 0,
+      total_shares: 0,
+      total_comments: 0,
+      total_views: 0
     }
   }
   
-  // Demo platforms
-  platforms.value = [
-    {
-      id: 1,
-      name: 'twitter',
-      display_name: 'Twitter',
-      is_active: true,
-      character_limit: 280,
-      supports_images: true,
-      supports_videos: true,
-      supports_hashtags: true,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    },
-    {
-      id: 2,
-      name: 'instagram',
-      display_name: 'Instagram',
-      is_active: true,
-      character_limit: 2200,
-      supports_images: true,
-      supports_videos: true,
-      supports_hashtags: true,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }
-  ]
-  
-  // Demo templates
-  templates.value = [
-    {
-      id: 1,
-      name: 'Resultado do Jogo',
-      template_type: 'match_result',
-      platform: platforms.value[0],
-      title_template: '🏆 Resultado: {home_team} vs {away_team}',
-      content_template: 'Que jogo! {home_team} {home_score} x {away_score} {away_team}. {match_summary}',
-      hashtags: '#futebol #resultado #markfoot',
-      available_variables: ['home_team', 'away_team', 'home_score', 'away_score', 'match_summary'],
-      is_active: true,
-      auto_share: false,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }
-  ]
-  
-  // Demo recent shares
-  recentShares.value = [
-    {
-      id: 1,
-      platform: platforms.value[0],
-      template: templates.value[0],
-      title: '🏆 Resultado: Flamengo vs Palmeiras',
-      content: 'Que jogo! Flamengo 2 x 1 Palmeiras. Vitória épica no Maracanã!',
-      hashtags: '#futebol #resultado #markfoot #flamengo',
-      image_url: '',
-      video_url: '',
-      match: 1,
-      team: 1,
-      comment: undefined,
-      user: { id: 1, username: 'admin' },
-      scheduled_at: undefined,
-      published_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      platform_post_id: 'tw_123456789',
-      platform_url: 'https://twitter.com/markfoot/status/123456789',
-      likes_count: 245,
-      shares_count: 67,
-      comments_count: 89,
-      views_count: 3200,
-      status: 'published' as const,
-      error_message: undefined,
-      retry_count: 0,
-      created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      updated_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
-    },
-    {
-      id: 2,
-      platform: platforms.value[1],
-      template: undefined,
-      title: '📊 Estatísticas da rodada',
-      content: 'Confira as estatísticas completas da última rodada do Brasileirão! 📈⚽',
-      hashtags: '#brasileirao #estatisticas #markfoot',
-      image_url: 'https://example.com/stats.jpg',
-      video_url: '',
-      match: undefined,
-      team: undefined,
-      comment: undefined,
-      user: { id: 1, username: 'admin' },
-      scheduled_at: undefined,
-      published_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-      platform_post_id: 'ig_987654321',
-      platform_url: 'https://instagram.com/p/987654321',
-      likes_count: 512,
-      shares_count: 123,
-      comments_count: 78,
-      views_count: 5400,
-      status: 'published' as const,
-      error_message: undefined,
-      retry_count: 0,
-      created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-      updated_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString()
-    }
-  ]
+  // Empty arrays - connect to database instead
+  platforms.value = []
+  templates.value = []
+  recentShares.value = []
 }
 
 const openCreateShareDialog = () => {

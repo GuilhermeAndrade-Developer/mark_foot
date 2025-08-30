@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.db.models import Count, Q, F
 from django.utils import timezone
+from datetime import timedelta
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -13,12 +14,17 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 
 from .models import (
     UserFollow, Comment, CommentLike, UserActivity, 
-    Notification, CommentReport
+    Notification, CommentReport, SocialPlatform, ShareTemplate,
+    SocialShare, PrivateGroup, GroupMembership, GroupPost, GroupInvitation
 )
 from .serializers import (
     UserFollowSerializer, CommentSerializer, CommentCreateSerializer,
     CommentLikeSerializer, UserActivitySerializer, NotificationSerializer,
-    CommentReportSerializer, SocialStatsSerializer, UserSocialProfileSerializer
+    CommentReportSerializer, SocialStatsSerializer, UserSocialProfileSerializer,
+    SocialPlatformSerializer, SocialPlatformAdminSerializer, ShareTemplateSerializer,
+    SocialShareSerializer, SocialShareCreateSerializer, PrivateGroupSerializer,
+    GroupMembershipSerializer, GroupPostSerializer, GroupInvitationSerializer,
+    GroupInvitationCreateSerializer, SocialSharingStatsSerializer, GroupStatsSerializer
 )
 
 
@@ -401,3 +407,442 @@ class UserSocialProfileViewSet(viewsets.ReadOnlyModelViewSet):
         return super().get_queryset().prefetch_related(
             'followers', 'following', 'comment_set'
         )
+
+
+class SocialPlatformViewSet(viewsets.ModelViewSet):
+    """ViewSet for social media platforms"""
+    queryset = SocialPlatform.objects.all()
+    permission_classes = [IsAuthenticated]
+    
+    def get_serializer_class(self):
+        """Use admin serializer for staff users"""
+        if self.request.user.is_staff:
+            return SocialPlatformAdminSerializer
+        return SocialPlatformSerializer
+    
+    def get_queryset(self):
+        """Filter active platforms for non-staff users"""
+        queryset = super().get_queryset()
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(is_active=True)
+        return queryset.order_by('name')
+
+
+class ShareTemplateViewSet(viewsets.ModelViewSet):
+    """ViewSet for share templates"""
+    queryset = ShareTemplate.objects.all()
+    serializer_class = ShareTemplateSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        """Filter by platform and type"""
+        queryset = super().get_queryset().select_related('platform')
+        
+        platform = self.request.query_params.get('platform')
+        template_type = self.request.query_params.get('type')
+        
+        if platform:
+            queryset = queryset.filter(platform_id=platform)
+        if template_type:
+            queryset = queryset.filter(template_type=template_type)
+        
+        return queryset.filter(is_active=True).order_by('name')
+
+
+class SocialShareViewSet(viewsets.ModelViewSet):
+    """ViewSet for social shares"""
+    queryset = SocialShare.objects.all()
+    permission_classes = [IsAuthenticated]
+    
+    def get_serializer_class(self):
+        """Use create serializer for create/update"""
+        if self.action in ['create', 'update', 'partial_update']:
+            return SocialShareCreateSerializer
+        return SocialShareSerializer
+    
+    def get_queryset(self):
+        """Filter shares by user and platform"""
+        queryset = super().get_queryset().select_related(
+            'platform', 'template', 'user', 'match', 'team'
+        )
+        
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(user=self.request.user)
+        
+        platform = self.request.query_params.get('platform')
+        status_filter = self.request.query_params.get('status')
+        
+        if platform:
+            queryset = queryset.filter(platform_id=platform)
+        if status_filter:
+            queryset = queryset.filter(status=status_filter)
+        
+        return queryset.order_by('-created_at')
+    
+    def perform_create(self, serializer):
+        """Set user as current user"""
+        serializer.save(user=self.request.user)
+    
+    @action(detail=False, methods=['get'])
+    def stats(self, request):
+        """Get social sharing statistics"""
+        from django.db.models import Count
+        from datetime import datetime, timedelta
+        
+        queryset = self.get_queryset()
+        
+        # Basic stats
+        total_shares = queryset.count()
+        shares_today = queryset.filter(created_at__date=timezone.now().date()).count()
+        shares_this_week = queryset.filter(
+            created_at__gte=timezone.now() - timedelta(days=7)
+        ).count()
+        shares_this_month = queryset.filter(
+            created_at__gte=timezone.now() - timedelta(days=30)
+        ).count()
+        
+        # Shares by platform
+        shares_by_platform = dict(
+            queryset.values('platform__name').annotate(
+                count=Count('id')
+            ).values_list('platform__name', 'count')
+        )
+        
+        # Top shared content
+        top_shared_content = []
+        # This would need more complex logic based on engagement metrics
+        
+        # Most active users
+        most_active_users = []
+        if request.user.is_staff:
+            most_active_users = list(
+                queryset.values('user__username').annotate(
+                    share_count=Count('id')
+                ).order_by('-share_count')[:10]
+            )
+        
+        # Engagement metrics
+        engagement_metrics = {
+            'total_likes': sum(queryset.values_list('likes_count', flat=True)),
+            'total_shares': sum(queryset.values_list('shares_count', flat=True)),
+            'total_comments': sum(queryset.values_list('comments_count', flat=True)),
+            'total_views': sum(queryset.values_list('views_count', flat=True)),
+        }
+        
+        stats_data = {
+            'total_shares': total_shares,
+            'shares_by_platform': shares_by_platform,
+            'shares_today': shares_today,
+            'shares_this_week': shares_this_week,
+            'shares_this_month': shares_this_month,
+            'top_shared_content': top_shared_content,
+            'most_active_users': most_active_users,
+            'engagement_metrics': engagement_metrics
+        }
+        
+        serializer = SocialSharingStatsSerializer(stats_data)
+        return Response(serializer.data)
+
+
+class PrivateGroupViewSet(viewsets.ModelViewSet):
+    """ViewSet for private groups"""
+    queryset = PrivateGroup.objects.all()
+    serializer_class = PrivateGroupSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        """Filter groups based on user access"""
+        queryset = super().get_queryset().prefetch_related('memberships')
+        
+        # For non-staff users, only show groups they're members of or public groups
+        if not self.request.user.is_staff:
+            user_groups = GroupMembership.objects.filter(
+                user=self.request.user,
+                status='active'
+            ).values_list('group_id', flat=True)
+            
+            queryset = queryset.filter(
+                Q(id__in=user_groups) | Q(privacy_level='public')
+            )
+        
+        # Filter by group type
+        group_type = self.request.query_params.get('type')
+        if group_type:
+            queryset = queryset.filter(group_type=group_type)
+        
+        return queryset.filter(is_active=True).order_by('-created_at')
+    
+    @action(detail=True, methods=['post'])
+    def join(self, request, pk=None):
+        """Join a group"""
+        group = self.get_object()
+        
+        # Check if user can join
+        if group.memberships.filter(user=request.user).exists():
+            return Response(
+                {'error': 'Already a member of this group'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check privacy level
+        if group.privacy_level == 'private':
+            return Response(
+                {'error': 'This is a private group. Invitation required.'}, 
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        # Create membership
+        membership_status = 'active' if group.privacy_level == 'public' else 'pending'
+        if group.require_admin_approval:
+            membership_status = 'pending'
+        
+        membership = GroupMembership.objects.create(
+            group=group,
+            user=request.user,
+            status=membership_status
+        )
+        
+        # Update group member count if active
+        if membership_status == 'active':
+            group.member_count = F('member_count') + 1
+            group.save(update_fields=['member_count'])
+        
+        serializer = GroupMembershipSerializer(membership)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    @action(detail=True, methods=['post'])
+    def leave(self, request, pk=None):
+        """Leave a group"""
+        group = self.get_object()
+        
+        try:
+            membership = group.memberships.get(user=request.user, status='active')
+            membership.status = 'left'
+            membership.left_at = timezone.now()
+            membership.save()
+            
+            # Update group member count
+            group.member_count = F('member_count') - 1
+            group.save(update_fields=['member_count'])
+            
+            return Response({'message': 'Left group successfully'})
+        except GroupMembership.DoesNotExist:
+            return Response(
+                {'error': 'Not a member of this group'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+    
+    @action(detail=False, methods=['get'])
+    def stats(self, request):
+        """Get group statistics"""
+        queryset = PrivateGroup.objects.all()
+        
+        if not request.user.is_staff:
+            return Response(
+                {'error': 'Permission denied'}, 
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        # Basic stats
+        total_groups = queryset.count()
+        total_members = GroupMembership.objects.filter(status='active').count()
+        total_posts = GroupPost.objects.count()
+        
+        # Groups by type
+        groups_by_type = dict(
+            queryset.values('group_type').annotate(
+                count=Count('id')
+            ).values_list('group_type', 'count')
+        )
+        
+        # Groups by privacy
+        groups_by_privacy = dict(
+            queryset.values('privacy_level').annotate(
+                count=Count('id')
+            ).values_list('privacy_level', 'count')
+        )
+        
+        # Most active groups
+        most_active_groups = list(
+            queryset.annotate(
+                recent_posts=Count('posts', filter=Q(
+                    posts__created_at__gte=timezone.now() - timedelta(days=7)
+                ))
+            ).order_by('-recent_posts')[:10].values(
+                'name', 'recent_posts', 'member_count'
+            )
+        )
+        
+        # Recent activity (simplified)
+        recent_activity = []
+        
+        stats_data = {
+            'total_groups': total_groups,
+            'total_members': total_members,
+            'total_posts': total_posts,
+            'groups_by_type': groups_by_type,
+            'groups_by_privacy': groups_by_privacy,
+            'most_active_groups': most_active_groups,
+            'recent_activity': recent_activity
+        }
+        
+        serializer = GroupStatsSerializer(stats_data)
+        return Response(serializer.data)
+
+
+class GroupMembershipViewSet(viewsets.ModelViewSet):
+    """ViewSet for group memberships"""
+    queryset = GroupMembership.objects.all()
+    serializer_class = GroupMembershipSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        """Filter memberships based on group access"""
+        queryset = super().get_queryset().select_related('user', 'group', 'invited_by')
+        
+        group_id = self.request.query_params.get('group')
+        user_id = self.request.query_params.get('user')
+        
+        if group_id:
+            queryset = queryset.filter(group_id=group_id)
+        if user_id:
+            queryset = queryset.filter(user_id=user_id)
+        
+        # For non-staff users, only show memberships for groups they're admins of
+        # or their own memberships
+        if not self.request.user.is_staff:
+            admin_groups = GroupMembership.objects.filter(
+                user=self.request.user,
+                role__in=['owner', 'admin'],
+                status='active'
+            ).values_list('group_id', flat=True)
+            
+            queryset = queryset.filter(
+                Q(group_id__in=admin_groups) | Q(user=self.request.user)
+            )
+        
+        return queryset.order_by('-joined_at')
+
+
+class GroupPostViewSet(viewsets.ModelViewSet):
+    """ViewSet for group posts"""
+    queryset = GroupPost.objects.all()
+    serializer_class = GroupPostSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        """Filter posts based on group membership"""
+        queryset = super().get_queryset().select_related('author', 'group')
+        
+        group_id = self.request.query_params.get('group')
+        if group_id:
+            queryset = queryset.filter(group_id=group_id)
+        
+        # Check if user has access to the group
+        if not self.request.user.is_staff:
+            user_groups = GroupMembership.objects.filter(
+                user=self.request.user,
+                status='active'
+            ).values_list('group_id', flat=True)
+            
+            queryset = queryset.filter(group_id__in=user_groups)
+        
+        return queryset.filter(is_approved=True).order_by('-created_at')
+    
+    def perform_create(self, serializer):
+        """Set author as current user"""
+        serializer.save(author=self.request.user)
+
+
+class GroupInvitationViewSet(viewsets.ModelViewSet):
+    """ViewSet for group invitations"""
+    queryset = GroupInvitation.objects.all()
+    permission_classes = [IsAuthenticated]
+    
+    def get_serializer_class(self):
+        """Use create serializer for create action"""
+        if self.action == 'create':
+            return GroupInvitationCreateSerializer
+        return GroupInvitationSerializer
+    
+    def get_queryset(self):
+        """Filter invitations for current user"""
+        queryset = super().get_queryset().select_related('group', 'inviter', 'invitee')
+        
+        # Show invitations sent by user or received by user
+        return queryset.filter(
+            Q(inviter=self.request.user) | Q(invitee=self.request.user)
+        ).order_by('-created_at')
+    
+    @action(detail=True, methods=['post'])
+    def accept(self, request, pk=None):
+        """Accept a group invitation"""
+        invitation = self.get_object()
+        
+        if invitation.invitee != request.user:
+            return Response(
+                {'error': 'Not authorized to accept this invitation'}, 
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        if not invitation.can_respond():
+            return Response(
+                {'error': 'Invitation cannot be accepted (expired or already responded)'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Create membership
+        membership = GroupMembership.objects.create(
+            group=invitation.group,
+            user=invitation.invitee,
+            status='active',
+            invited_by=invitation.inviter,
+            invitation_message=invitation.message
+        )
+        
+        # Update invitation
+        invitation.status = 'accepted'
+        invitation.responded_at = timezone.now()
+        invitation.save()
+        
+        # Update group member count
+        invitation.group.member_count = F('member_count') + 1
+        invitation.group.save(update_fields=['member_count'])
+        
+        serializer = GroupMembershipSerializer(membership)
+        return Response(serializer.data)
+    
+    @action(detail=True, methods=['post'])
+    def decline(self, request, pk=None):
+        """Decline a group invitation"""
+        invitation = self.get_object()
+        
+        if invitation.invitee != request.user:
+            return Response(
+                {'error': 'Not authorized to decline this invitation'}, 
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        if not invitation.can_respond():
+            return Response(
+                {'error': 'Invitation cannot be declined (expired or already responded)'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Update invitation
+        invitation.status = 'declined'
+        invitation.responded_at = timezone.now()
+        invitation.response_message = request.data.get('message', '')
+        invitation.save()
+        
+        return Response({'message': 'Invitation declined'})
+    
+    @action(detail=False, methods=['get'])
+    def pending(self, request):
+        """Get pending invitations for current user"""
+        invitations = self.get_queryset().filter(
+            invitee=request.user,
+            status='pending'
+        )
+        serializer = self.get_serializer(invitations, many=True)
+        return Response(serializer.data)

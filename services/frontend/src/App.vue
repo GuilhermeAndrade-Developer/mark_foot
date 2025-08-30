@@ -111,6 +111,27 @@
             />
           </v-list-group>
 
+          <!-- Social Networks Group -->
+          <v-list-group value="social-networks">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-web</v-icon>
+                </template>
+                <v-list-item-title>Redes Sociais</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in socialNetworksItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
           <!-- Content Management Group -->
           <v-list-group value="content">
             <template #activator="{ props }">
@@ -481,6 +502,31 @@ const menuItems = [
     route: '/social/users',
     section: 'social'
   },
+  // Social Networks Management
+  {
+    title: 'Dashboard de Redes',
+    icon: 'mdi-share-variant',
+    route: '/social-networks',
+    section: 'social-networks'
+  },
+  {
+    title: 'Compartilhamento Social',
+    icon: 'mdi-share',
+    route: '/social-networks/sharing',
+    section: 'social-networks'
+  },
+  {
+    title: 'Grupos Privados',
+    icon: 'mdi-account-group',
+    route: '/social-networks/groups',
+    section: 'social-networks'
+  },
+  {
+    title: 'Configurações de Redes',
+    icon: 'mdi-cog',
+    route: '/social-networks/settings',
+    section: 'social-networks'
+  },
   // Chat Management
   {
     title: 'Chat Dashboard',
@@ -570,6 +616,7 @@ const menuItems = [
 const coreItems = computed(() => menuItems.filter(item => item.section === 'core'))
 const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
 const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
+const socialNetworksItems = computed(() => menuItems.filter(item => item.section === 'social-networks'))
 const chatItems = computed(() => menuItems.filter(item => item.section === 'chat'))
 const contentItems = computed(() => menuItems.filter(item => item.section === 'content'))
 const pollsItems = computed(() => menuItems.filter(item => item.section === 'polls'))

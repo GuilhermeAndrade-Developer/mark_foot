@@ -24,6 +24,11 @@ import GamificationAnalytics from '@/views/GamificationAnalytics.vue'
 import SocialDashboard from '@/views/SocialDashboard.vue'
 import SocialComments from '@/views/SocialComments.vue'
 import SocialUsers from '@/views/SocialUsers.vue'
+// Social Networks Views
+import SocialNetworksDashboard from '@/views/SocialNetworksDashboard.vue'
+import SocialSharingDashboard from '@/views/SocialSharingDashboard.vue'
+import GroupsDashboard from '@/views/GroupsDashboard.vue'
+import SocialNetworksSettings from '@/views/SocialNetworksSettings.vue'
 // Chat Views
 import ChatDashboard from '@/views/ChatDashboardSmart.vue'
 import ChatRooms from '@/views/ChatRoomsSimple.vue'
@@ -206,6 +211,61 @@ const routes: Array<RouteRecordRaw> = [
     component: SocialUsers,
     meta: {
       title: 'Usuários Sociais - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social/sharing',
+    name: 'SocialSharingDashboard',
+    component: SocialSharingDashboard,
+    meta: {
+      title: 'Compartilhamento Social - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social/groups',
+    name: 'GroupsDashboard',
+    component: GroupsDashboard,
+    meta: {
+      title: 'Grupos Privados - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Social Networks Routes
+  {
+    path: '/social-networks',
+    name: 'SocialNetworksDashboard',
+    component: SocialNetworksDashboard,
+    meta: {
+      title: 'Dashboard Redes Sociais - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social-networks/sharing',
+    name: 'SocialSharingDashboard',
+    component: SocialSharingDashboard,
+    meta: {
+      title: 'Compartilhamento Social - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social-networks/groups',
+    name: 'GroupsDashboard', 
+    component: GroupsDashboard,
+    meta: {
+      title: 'Grupos Privados - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/social-networks/settings',
+    name: 'SocialNetworksSettings',
+    component: SocialNetworksSettings,
+    meta: {
+      title: 'Configurações de Redes - Mark Foot',
       requiresAuth: true
     }
   },

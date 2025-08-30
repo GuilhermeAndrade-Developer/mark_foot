@@ -11174,3 +11174,443 @@ INFO 2025-08-30 13:29:30,469 basehttp 10 129008050099904 "GET /api/v1/dashboard/
 INFO 2025-08-30 13:29:30,470 basehttp 10 129008033314496 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
 INFO 2025-08-30 13:29:30,476 basehttp 10 129008284604096 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
 INFO 2025-08-30 13:29:30,478 basehttp 10 129008041707200 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 13:37:32,388 basehttp 10 129008284604096 "GET /api/content/articles/?page=1 HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:32,411 basehttp 10 129008284604096 "GET /api/content/categories/? HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:32,471 basehttp 10 129008284604096 "GET /api/content/articles/?page=1 HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:35,201 basehttp 10 129008284604096 "GET /api/content/stats/ HTTP/1.1" 200 1141
+INFO 2025-08-30 13:37:39,884 basehttp 10 129008066885312 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:37:39,884 basehttp 10 129008041707200 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:37:39,902 basehttp 10 129008284604096 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 13:37:39,902 basehttp 10 129008050099904 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:41,804 basehttp 10 129008050099904 "OPTIONS /api/v1/teams/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:37:41,804 basehttp 10 129008284604096 "OPTIONS /api/v1/areas/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:37:41,816 basehttp 10 129008284604096 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:41,824 basehttp 10 129008050099904 "GET /api/v1/areas/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:37:45,563 basehttp 10 129008050099904 "OPTIONS /api/v1/gamification/profiles/ HTTP/1.1" 200 0
+WARNING 2025-08-30 13:37:45,576 log 10 129008050099904 Not Found: /api/v1/gamification/profiles/
+WARNING 2025-08-30 13:37:45,578 basehttp 10 129008050099904 "GET /api/v1/gamification/profiles/ HTTP/1.1" 404 21217
+WARNING 2025-08-30 13:37:49,842 log 10 129008050099904 Not Found: /api/v1/gamification/profiles/
+WARNING 2025-08-30 13:37:49,843 basehttp 10 129008050099904 "GET /api/v1/gamification/profiles/ HTTP/1.1" 404 21217
+WARNING 2025-08-30 13:37:52,067 log 10 129008050099904 Not Found: /api/v1/gamification/profiles/
+WARNING 2025-08-30 13:37:52,068 basehttp 10 129008050099904 "GET /api/v1/gamification/profiles/ HTTP/1.1" 404 21217
+INFO 2025-08-30 13:38:02,624 basehttp 10 129008050099904 "OPTIONS /api/v1/social/dashboard/stats/ HTTP/1.1" 200 0
+WARNING 2025-08-30 13:38:02,674 log 10 129008050099904 Not Found: /api/v1/social/dashboard/stats/
+WARNING 2025-08-30 13:38:02,675 basehttp 10 129008050099904 "GET /api/v1/social/dashboard/stats/ HTTP/1.1" 404 21220
+INFO 2025-08-30 13:38:07,076 basehttp 10 129008050099904 "OPTIONS /api/forum/categories/?type=&search= HTTP/1.1" 200 0
+INFO 2025-08-30 13:38:07,076 basehttp 10 129008284604096 "OPTIONS /api/forum/stats/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:38:07,106 basehttp 10 129008284604096 "GET /api/forum/stats/ HTTP/1.1" 200 147
+INFO 2025-08-30 13:38:07,128 basehttp 10 129008050099904 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:03,544 basehttp 10 129008050099904 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:08,419 basehttp 10 129008050099904 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:08,435 basehttp 10 129008284604096 "GET /api/forum/stats/ HTTP/1.1" 200 147
+INFO 2025-08-30 13:39:11,115 basehttp 10 129008284604096 "OPTIONS /api/forum/topics/?author=&sort=last_activity HTTP/1.1" 200 0
+INFO 2025-08-30 13:39:11,121 basehttp 10 129008050099904 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:11,127 basehttp 10 129008284604096 "GET /api/forum/topics/?author=&sort=last_activity HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:11,138 basehttp 10 129008066885312 "GET /api/forum/stats/ HTTP/1.1" 200 147
+INFO 2025-08-30 13:39:14,643 basehttp 10 129008066885312 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:39:14,650 basehttp 10 129008050099904 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:39:14,659 basehttp 10 129008041707200 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 13:39:14,660 basehttp 10 129008284604096 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 13:52:39,637 basehttp 10 129008066885312 "OPTIONS /api/chat/rooms/?limit=1 HTTP/1.1" 200 0
+INFO 2025-08-30 13:52:39,638 basehttp 10 129008041707200 "OPTIONS /api/chat/rooms/?limit=1 HTTP/1.1" 200 0
+INFO 2025-08-30 13:52:39,662 basehttp 10 129008041707200 "GET /api/chat/rooms/?limit=1 HTTP/1.1" 200 52
+INFO 2025-08-30 13:52:39,724 basehttp 10 129008041707200 "GET /api/chat/rooms/?limit=1 HTTP/1.1" 200 52
+INFO 2025-08-30 13:53:12,707 basehttp 10 129008041707200 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:53:12,729 basehttp 10 129008066885312 "GET /api/forum/stats/ HTTP/1.1" 200 147
+INFO 2025-08-30 13:53:17,728 basehttp 10 129008066885312 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:53:20,435 basehttp 10 129008066885312 "GET /api/forum/categories/?type=&search= HTTP/1.1" 200 52
+INFO 2025-08-30 13:53:20,445 basehttp 10 129008050099904 "GET /api/forum/topics/?author=&sort=last_activity HTTP/1.1" 200 52
+INFO 2025-08-30 13:53:20,450 basehttp 10 129008041707200 "GET /api/forum/stats/ HTTP/1.1" 200 147
+INFO 2025-08-30 13:53:49,927 basehttp 10 129008041707200 "GET /api/content/stats/ HTTP/1.1" 200 1141
+INFO 2025-08-30 13:55:52,572 basehttp 10 129008050099904 "GET /api/v1/areas/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:55:52,572 basehttp 10 129008041707200 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:55:55,913 basehttp 10 129008041707200 "OPTIONS /api/v1/competitions/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:55:55,928 basehttp 10 129008041707200 "GET /api/v1/competitions/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:55:58,841 basehttp 10 129008041707200 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:55:58,842 basehttp 10 129008050099904 "OPTIONS /api/v1/stats/summary/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:55:58,842 basehttp 10 129008066885312 "OPTIONS /api/v1/sync/api-status/ HTTP/1.1" 200 0
+INFO 2025-08-30 13:55:58,914 basehttp 10 129008050099904 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 13:55:58,977 basehttp 10 129008050099904 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 13:56:00,239 football_data_client 10 129008066885312 API Request: competitions - Status: 200 - Time: 1332ms
+INFO 2025-08-30 13:56:00,244 basehttp 10 129008066885312 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 267
+INFO 2025-08-30 13:56:10,427 basehttp 10 129008066885312 "OPTIONS /api/v1/sync/competition/ HTTP/1.1" 200 0
+ERROR 2025-08-30 13:56:10,510 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,511 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+ERROR 2025-08-30 13:56:10,571 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,571 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 75
+ERROR 2025-08-30 13:56:10,632 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,633 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+ERROR 2025-08-30 13:56:10,701 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,704 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+ERROR 2025-08-30 13:56:10,761 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,775 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 75
+ERROR 2025-08-30 13:56:10,835 log 10 129008066885312 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 13:56:10,836 basehttp 10 129008066885312 "POST /api/v1/sync/competition/ HTTP/1.1" 500 75
+INFO 2025-08-30 13:56:10,922 basehttp 10 129008066885312 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 13:56:35,143 basehttp 10 129008050099904 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:56:35,154 basehttp 10 129008041707200 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:56:35,212 basehttp 10 129008284604096 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 13:56:35,212 basehttp 10 129008066885312 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+WARNING 2025-08-30 13:56:43,498 log 10 129008066885312 Unauthorized: /api/v1/auth/login/
+WARNING 2025-08-30 13:56:43,499 basehttp 10 129008066885312 "POST /api/v1/auth/login/ HTTP/1.1" 401 45
+WARNING 2025-08-30 13:56:43,678 log 10 129008284604096 Unauthorized: /api/v1/auth/login/
+WARNING 2025-08-30 13:56:43,679 basehttp 10 129008284604096 "POST /api/v1/auth/login/ HTTP/1.1" 401 45
+INFO 2025-08-30 13:56:48,634 basehttp 10 129008284604096 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-30 13:56:48,836 basehttp 10 129008066885312 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-30 13:56:49,044 basehttp 10 129008041707200 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:56:49,051 basehttp 10 129008284604096 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 13:56:49,063 basehttp 10 129008066885312 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 13:56:49,064 basehttp 10 129008050099904 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 13:56:54,230 basehttp 10 129008050099904 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 13:56:54,236 basehttp 10 129008066885312 "GET /api/v1/areas/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:24,717 basehttp 10 129008066885312 "OPTIONS /api/v1/matches/ HTTP/1.1" 200 0
+INFO 2025-08-30 14:00:24,732 basehttp 10 129008284604096 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:24,732 basehttp 10 129008050099904 "GET /api/v1/competitions/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:24,746 basehttp 10 129008066885312 "GET /api/v1/matches/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:26,580 basehttp 10 129008066885312 "OPTIONS /api/v1/players/ HTTP/1.1" 200 0
+INFO 2025-08-30 14:00:26,592 basehttp 10 129008284604096 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:26,742 basehttp 10 129008066885312 "GET /api/v1/players/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:28,196 basehttp 10 129008066885312 "GET /api/v1/teams/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:28,202 basehttp 10 129008284604096 "GET /api/v1/areas/ HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:30,658 basehttp 10 129008066885312 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:00:30,659 basehttp 10 129008050099904 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:00:30,660 basehttp 10 129008041707200 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 14:00:30,678 basehttp 10 129008284604096 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 14:00:33,185 basehttp 10 129008284604096 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:00:33,216 basehttp 10 129008284604096 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:00:34,100 football_data_client 10 129008041707200 API Request: competitions - Status: 200 - Time: 930ms
+INFO 2025-08-30 14:00:34,103 basehttp 10 129008041707200 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 266
+ERROR 2025-08-30 14:00:39,263 log 10 129008041707200 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 14:00:39,264 basehttp 10 129008041707200 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+ERROR 2025-08-30 14:00:39,280 log 10 129008041707200 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 14:00:39,282 basehttp 10 129008041707200 "POST /api/v1/sync/competition/ HTTP/1.1" 500 75
+ERROR 2025-08-30 14:00:39,347 log 10 129008041707200 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 14:00:39,357 basehttp 10 129008041707200 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+ERROR 2025-08-30 14:00:39,423 log 10 129008041707200 Internal Server Error: /api/v1/sync/competition/
+ERROR 2025-08-30 14:00:39,424 basehttp 10 129008041707200 "POST /api/v1/sync/competition/ HTTP/1.1" 500 74
+INFO 2025-08-30 14:00:39,491 basehttp 10 129008041707200 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:00:54,701 basehttp 10 129008041707200 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:01:22,024 basehttp 10 129008041707200 "GET /api/content/stats/ HTTP/1.1" 200 1141
+INFO 2025-08-30 14:15:04,072 basehttp 10 129008284604096 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:15:04,072 basehttp 10 129008050099904 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 14:15:04,078 basehttp 10 129008066885312 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:15:04,083 basehttp 10 129008041707200 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 14:17:30,524 autoreload 10 129008361806720 /app/social/models.py changed, reloading.
+INFO 2025-08-30 14:17:35,504 autoreload 132 137984076848000 Watching for file changes with StatReloader
+INFO 2025-08-30 14:17:45,597 autoreload 132 137984076848000 /app/social/models.py changed, reloading.
+INFO 2025-08-30 14:17:48,217 autoreload 134 125535556938624 Watching for file changes with StatReloader
+INFO 2025-08-30 14:18:37,785 autoreload 134 125535556938624 /app/social/serializers.py changed, reloading.
+INFO 2025-08-30 14:18:40,717 autoreload 154 126780899892096 Watching for file changes with StatReloader
+INFO 2025-08-30 14:19:51,732 autoreload 154 126780899892096 /app/social/serializers.py changed, reloading.
+INFO 2025-08-30 14:19:54,845 autoreload 156 137207146306432 Watching for file changes with StatReloader
+INFO 2025-08-30 14:20:04,764 autoreload 156 137207146306432 /app/social/views.py changed, reloading.
+INFO 2025-08-30 14:20:07,457 autoreload 158 139792485460864 Watching for file changes with StatReloader
+INFO 2025-08-30 14:20:11,655 autoreload 158 139792485460864 /app/social/views.py changed, reloading.
+INFO 2025-08-30 14:20:14,191 autoreload 160 123649390959488 Watching for file changes with StatReloader
+INFO 2025-08-30 14:21:03,643 autoreload 160 123649390959488 /app/social/views.py changed, reloading.
+INFO 2025-08-30 14:21:06,127 autoreload 162 125110492097408 Watching for file changes with StatReloader
+INFO 2025-08-30 14:21:09,175 autoreload 162 125110492097408 /app/social/views.py changed, reloading.
+INFO 2025-08-30 14:21:11,743 autoreload 164 132961245207424 Watching for file changes with StatReloader
+INFO 2025-08-30 14:21:19,480 autoreload 164 132961245207424 /app/social/urls.py changed, reloading.
+INFO 2025-08-30 14:21:21,700 autoreload 166 123598874282880 Watching for file changes with StatReloader
+INFO 2025-08-30 14:21:27,084 autoreload 166 123598874282880 /app/social/urls.py changed, reloading.
+INFO 2025-08-30 14:21:29,426 autoreload 168 136267099642752 Watching for file changes with StatReloader
+INFO 2025-08-30 14:21:39,237 autoreload 168 136267099642752 /app/social/serializers.py changed, reloading.
+INFO 2025-08-30 14:21:43,252 autoreload 170 127478296509312 Watching for file changes with StatReloader
+INFO 2025-08-30 14:32:22,828 basehttp 170 127478227723968 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-30 14:32:23,411 basehttp 170 127478209857216 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:32:23,435 basehttp 170 127478218266304 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:32:23,454 basehttp 170 127478201448128 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 14:32:23,455 basehttp 170 127478227723968 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 14:32:34,422 basehttp 170 127478218266304 "OPTIONS /api/v1/social/templates/ HTTP/1.1" 200 0
+INFO 2025-08-30 14:32:34,423 basehttp 170 127478201448128 "OPTIONS /api/v1/social/platforms/ HTTP/1.1" 200 0
+INFO 2025-08-30 14:32:34,423 basehttp 170 127478227723968 "OPTIONS /api/v1/social/shares/stats/ HTTP/1.1" 200 0
+INFO 2025-08-30 14:32:34,423 basehttp 170 127478209857216 "OPTIONS /api/v1/social/shares/?page=1 HTTP/1.1" 200 0
+WARNING 2025-08-30 14:32:34,490 log 170 127478201448128 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:32:34,498 basehttp 170 127478201448128 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:32:34,501 log 170 127478218266304 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:32:34,508 log 170 127478227723968 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:32:34,514 basehttp 170 127478218266304 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:32:34,516 log 170 127478209857216 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:32:34,519 basehttp 170 127478227723968 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:32:34,519 basehttp 170 127478209857216 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:32:39,281 log 170 127478218266304 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:32:39,285 basehttp 170 127478218266304 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:32:39,288 log 170 127478201448128 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:32:39,293 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:32:39,295 basehttp 170 127478201448128 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:32:39,300 log 170 127478209857216 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:32:39,300 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:32:39,301 basehttp 170 127478209857216 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+INFO 2025-08-30 14:32:48,803 basehttp 170 127478209857216 "OPTIONS /api/v1/social/users/?page=1 HTTP/1.1" 200 0
+INFO 2025-08-30 14:32:48,804 basehttp 170 127478227723968 "OPTIONS /api/v1/social/users/?page=1 HTTP/1.1" 200 0
+WARNING 2025-08-30 14:32:48,860 log 170 127478209857216 Not Found: /api/v1/social/users/
+WARNING 2025-08-30 14:32:48,861 basehttp 170 127478209857216 "GET /api/v1/social/users/?page=1 HTTP/1.1" 404 21197
+WARNING 2025-08-30 14:32:48,874 log 170 127478227723968 Not Found: /api/v1/social/users/
+WARNING 2025-08-30 14:32:48,875 basehttp 170 127478227723968 "GET /api/v1/social/users/?page=1 HTTP/1.1" 404 21197
+INFO 2025-08-30 14:32:51,961 basehttp 170 127478209857216 "OPTIONS /api/v1/social/groups/?page=1 HTTP/1.1" 200 0
+INFO 2025-08-30 14:32:51,961 basehttp 170 127478227723968 "OPTIONS /api/v1/social/groups/stats/ HTTP/1.1" 200 0
+WARNING 2025-08-30 14:32:52,035 log 170 127478227723968 Not Found: /api/v1/social/groups/
+WARNING 2025-08-30 14:32:52,039 log 170 127478209857216 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:32:52,039 basehttp 170 127478209857216 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:32:52,040 basehttp 170 127478227723968 "GET /api/v1/social/groups/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:32:59,767 log 170 127478209857216 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:32:59,770 log 170 127478227723968 Not Found: /api/v1/social/groups/
+WARNING 2025-08-30 14:32:59,771 basehttp 170 127478209857216 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:32:59,771 basehttp 170 127478227723968 "GET /api/v1/social/groups/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:02,868 log 170 127478209857216 Not Found: /api/v1/social/groups/
+WARNING 2025-08-30 14:33:02,872 log 170 127478227723968 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:33:02,872 basehttp 170 127478209857216 "GET /api/v1/social/groups/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:02,872 basehttp 170 127478227723968 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:33:06,928 log 170 127478209857216 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:33:06,932 basehttp 170 127478209857216 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:06,938 log 170 127478201448128 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:33:06,943 log 170 127478227723968 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:33:06,948 log 170 127478218266304 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:33:06,950 basehttp 170 127478201448128 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:06,951 basehttp 170 127478227723968 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:33:06,951 basehttp 170 127478218266304 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:17,734 log 170 127478218266304 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:33:17,763 log 170 127478209857216 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:33:17,768 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:33:17,789 log 170 127478201448128 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:33:17,790 basehttp 170 127478218266304 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:33:17,839 basehttp 170 127478209857216 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:17,859 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:17,861 basehttp 170 127478201448128 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:22,171 log 170 127478209857216 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:33:22,182 log 170 127478201448128 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:33:22,187 basehttp 170 127478209857216 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:22,199 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:33:22,200 basehttp 170 127478201448128 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:33:22,209 log 170 127478218266304 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:33:22,210 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:22,211 basehttp 170 127478218266304 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:25,351 log 170 127478209857216 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:33:25,356 log 170 127478201448128 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:33:25,363 log 170 127478218266304 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:33:25,364 basehttp 170 127478209857216 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:33:25,375 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:33:25,376 basehttp 170 127478201448128 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:33:25,376 basehttp 170 127478218266304 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:33:25,377 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+INFO 2025-08-30 14:34:05,140 basehttp 170 127478227723968 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:34:05,210 basehttp 170 127478227723968 "GET /api/v1/stats/summary/ HTTP/1.1" 200 169
+INFO 2025-08-30 14:34:06,128 football_data_client 170 127478218266304 API Request: competitions - Status: 200 - Time: 966ms
+INFO 2025-08-30 14:34:06,131 basehttp 170 127478218266304 "GET /api/v1/sync/api-status/ HTTP/1.1" 200 266
+WARNING 2025-08-30 14:34:14,661 log 170 127478218266304 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:34:14,671 log 170 127478209857216 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:34:14,672 basehttp 170 127478218266304 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:34:14,678 basehttp 170 127478209857216 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:34:14,679 log 170 127478201448128 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:34:14,682 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:34:14,684 basehttp 170 127478201448128 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:34:14,684 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:36:48,559 log 170 127478227723968 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:36:48,568 log 170 127478201448128 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:36:48,579 log 170 127478209857216 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:36:48,579 basehttp 170 127478227723968 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:36:48,585 log 170 127477842175680 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:36:48,586 basehttp 170 127478201448128 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:36:48,588 basehttp 170 127478209857216 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:36:48,598 log 170 127478218266304 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:36:48,605 log 170 127477850568384 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:36:48,611 basehttp 170 127477842175680 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:36:48,632 basehttp 170 127478218266304 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:36:48,634 log 170 127478227723968 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:36:48,641 basehttp 170 127477850568384 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:36:48,641 basehttp 170 127478227723968 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:36:48,668 log 170 127478201448128 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:36:48,681 log 170 127478209857216 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:36:48,683 basehttp 170 127478209857216 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:36:48,683 basehttp 170 127478201448128 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:36:48,690 log 170 127477842175680 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:36:48,694 log 170 127478218266304 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:36:48,698 basehttp 170 127477842175680 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:36:48,702 basehttp 170 127478218266304 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:36:48,709 log 170 127478227723968 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:36:48,713 log 170 127477850568384 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:36:48,714 basehttp 170 127478227723968 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:36:48,715 basehttp 170 127477850568384 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:37:04,747 log 170 127477842175680 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:37:04,750 log 170 127477850568384 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:37:04,765 log 170 127478209857216 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:37:04,767 log 170 127478227723968 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:37:04,767 basehttp 170 127477842175680 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:37:04,772 log 170 127478201448128 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:37:04,778 log 170 127478218266304 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:37:04,780 basehttp 170 127477850568384 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:37:04,781 basehttp 170 127478209857216 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:37:04,781 basehttp 170 127478227723968 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:37:04,784 basehttp 170 127478201448128 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:37:04,789 basehttp 170 127478218266304 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:37:04,828 log 170 127477842175680 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:37:04,846 basehttp 170 127477842175680 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:37:04,857 log 170 127477850568384 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:37:04,870 log 170 127478209857216 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:37:04,875 log 170 127478227723968 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:37:04,882 log 170 127478218266304 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:37:04,888 basehttp 170 127478218266304 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:37:04,889 basehttp 170 127477850568384 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:37:04,889 log 170 127478201448128 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:37:04,889 basehttp 170 127478209857216 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:37:04,890 basehttp 170 127478227723968 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:37:04,895 basehttp 170 127478201448128 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:37:04,901 log 170 127477842175680 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:37:04,902 basehttp 170 127477842175680 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:37:13,615 log 170 127478227723968 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:37:13,617 log 170 127478201448128 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:37:13,645 log 170 127477850568384 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:37:13,646 basehttp 170 127478227723968 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:37:13,649 log 170 127477842175680 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:37:13,666 log 170 127478218266304 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:37:13,673 log 170 127478209857216 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:37:13,673 basehttp 170 127478201448128 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:37:13,676 basehttp 170 127477850568384 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:37:13,690 basehttp 170 127477842175680 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:37:13,695 basehttp 170 127478218266304 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:37:13,708 basehttp 170 127478209857216 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:37:13,730 log 170 127478227723968 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:37:13,738 log 170 127477850568384 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:37:13,739 basehttp 170 127478227723968 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:37:13,740 basehttp 170 127477850568384 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:37:13,749 log 170 127478201448128 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:37:13,750 basehttp 170 127478201448128 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:37:13,953 log 170 127477850568384 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:37:13,962 log 170 127478201448128 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:37:13,962 log 170 127478227723968 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:37:13,965 basehttp 170 127477850568384 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:37:13,971 log 170 127478209857216 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:37:13,972 basehttp 170 127478201448128 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:37:13,973 basehttp 170 127478227723968 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:37:13,975 basehttp 170 127478209857216 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:39:54,428 log 170 127477850568384 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:39:54,432 log 170 127477842175680 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:39:54,439 log 170 127478201448128 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:39:54,444 log 170 127478227723968 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:39:54,450 log 170 127478209857216 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:39:54,450 basehttp 170 127477850568384 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:39:54,456 log 170 127478218266304 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:39:54,457 basehttp 170 127477842175680 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:39:54,458 basehttp 170 127478227723968 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:39:54,458 basehttp 170 127478201448128 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:39:54,460 basehttp 170 127478209857216 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:39:54,465 basehttp 170 127478218266304 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:39:54,488 log 170 127477850568384 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:39:54,492 log 170 127478201448128 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:39:54,494 basehttp 170 127477850568384 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:39:54,495 basehttp 170 127478201448128 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:39:54,502 log 170 127477842175680 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:39:54,503 basehttp 170 127477842175680 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:39:58,712 log 170 127477850568384 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:39:58,731 log 170 127477842175680 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:39:58,745 log 170 127478201448128 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:39:58,745 basehttp 170 127477850568384 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:39:58,747 basehttp 170 127477842175680 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:39:58,756 log 170 127478227723968 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:39:58,767 log 170 127478218266304 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:39:58,769 basehttp 170 127478201448128 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:39:58,790 basehttp 170 127478227723968 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:39:58,791 log 170 127478209857216 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:39:58,791 basehttp 170 127478218266304 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:39:58,814 log 170 127477850568384 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:39:58,815 basehttp 170 127478209857216 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:39:58,825 basehttp 170 127477850568384 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:39:58,826 log 170 127477842175680 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:39:58,828 basehttp 170 127477842175680 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:39:58,836 log 170 127478201448128 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:39:58,837 basehttp 170 127478201448128 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:41:30,176 log 170 127478218266304 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:41:30,195 log 170 127478209857216 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:41:30,197 basehttp 170 127478218266304 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:41:30,232 log 170 127477842175680 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:41:30,239 log 170 127477850568384 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:41:30,247 log 170 127478201448128 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:41:30,248 basehttp 170 127478209857216 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:41:30,270 basehttp 170 127477842175680 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:41:30,271 basehttp 170 127477850568384 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:41:30,272 basehttp 170 127478201448128 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:41:30,291 log 170 127478227723968 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:41:30,334 log 170 127478218266304 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:41:30,361 basehttp 170 127478218266304 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:41:30,368 basehttp 170 127478227723968 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:41:30,378 log 170 127478209857216 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:41:30,394 log 170 127477842175680 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:41:30,395 basehttp 170 127478209857216 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:41:30,397 basehttp 170 127477842175680 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:42:38,985 log 170 127478209857216 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-30 14:42:38,990 log 170 127477842175680 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-30 14:42:38,992 basehttp 170 127478209857216 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 21238
+WARNING 2025-08-30 14:42:39,000 log 170 127477850568384 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-30 14:42:39,005 log 170 127478218266304 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-30 14:42:39,013 log 170 127478227723968 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-30 14:42:39,023 basehttp 170 127477842175680 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 21226
+WARNING 2025-08-30 14:42:39,026 log 170 127478201448128 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-30 14:42:39,033 basehttp 170 127477850568384 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 21223
+WARNING 2025-08-30 14:42:39,038 basehttp 170 127478227723968 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 21256
+WARNING 2025-08-30 14:42:39,038 basehttp 170 127478218266304 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:42:39,042 basehttp 170 127478201448128 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 21280
+WARNING 2025-08-30 14:42:39,067 log 170 127477842175680 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-30 14:42:39,075 basehttp 170 127477842175680 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 21271
+WARNING 2025-08-30 14:42:39,076 log 170 127478209857216 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-30 14:42:39,084 log 170 127477850568384 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-30 14:42:39,084 basehttp 170 127478209857216 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 21241
+WARNING 2025-08-30 14:42:39,085 basehttp 170 127477850568384 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 21256
+INFO 2025-08-30 14:42:39,183 basehttp 170 127478201448128 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 14:42:39,184 basehttp 170 127477842175680 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:42:39,186 basehttp 170 127478209857216 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:42:39,189 basehttp 170 127477850568384 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+WARNING 2025-08-30 14:42:45,991 log 170 127477850568384 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:42:45,992 basehttp 170 127477850568384 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:43:21,810 log 170 127477850568384 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:43:21,814 log 170 127478209857216 Not Found: /api/v1/social/groups/
+WARNING 2025-08-30 14:43:21,815 basehttp 170 127477850568384 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:43:21,816 basehttp 170 127478209857216 "GET /api/v1/social/groups/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:43:35,581 log 170 127477842175680 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:43:35,587 log 170 127478201448128 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:43:35,588 basehttp 170 127477842175680 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:43:35,589 basehttp 170 127478201448128 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:43:35,594 log 170 127477850568384 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:43:35,601 log 170 127478209857216 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:43:35,602 basehttp 170 127477850568384 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:43:35,603 basehttp 170 127478209857216 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:43:40,422 log 170 127477850568384 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:43:40,428 log 170 127478209857216 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:43:40,432 log 170 127478201448128 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:43:40,434 basehttp 170 127477850568384 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:43:40,437 basehttp 170 127478209857216 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:43:40,438 basehttp 170 127478201448128 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:43:49,249 log 170 127478201448128 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:43:49,250 basehttp 170 127478201448128 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:00,563 log 170 127478209857216 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:47:00,573 log 170 127478201448128 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:47:00,574 basehttp 170 127478209857216 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:47:00,582 log 170 127477850568384 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:47:00,582 basehttp 170 127478201448128 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:47:00,583 basehttp 170 127477850568384 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:03,263 log 170 127477842175680 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:47:03,269 log 170 127477850568384 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:47:03,276 log 170 127478201448128 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:47:03,280 log 170 127478209857216 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:47:03,281 basehttp 170 127477842175680 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:47:03,281 basehttp 170 127477850568384 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:47:03,283 basehttp 170 127478201448128 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:03,300 basehttp 170 127478209857216 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:05,490 log 170 127478209857216 Not Found: /api/v1/social/groups/stats/
+WARNING 2025-08-30 14:47:05,490 log 170 127478201448128 Not Found: /api/v1/social/groups/
+WARNING 2025-08-30 14:47:05,491 basehttp 170 127478209857216 "GET /api/v1/social/groups/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:47:05,492 basehttp 170 127478201448128 "GET /api/v1/social/groups/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:47:07,838 log 170 127478201448128 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:47:07,839 basehttp 170 127478201448128 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:58,538 log 170 127478201448128 Not Found: /api/v1/social/shares/stats/
+WARNING 2025-08-30 14:47:58,550 log 170 127478209857216 Not Found: /api/v1/social/platforms/
+WARNING 2025-08-30 14:47:58,551 basehttp 170 127478201448128 "GET /api/v1/social/shares/stats/ HTTP/1.1" 404 21211
+WARNING 2025-08-30 14:47:58,558 log 170 127477842175680 Not Found: /api/v1/social/shares/
+WARNING 2025-08-30 14:47:58,569 log 170 127477850568384 Not Found: /api/v1/social/templates/
+WARNING 2025-08-30 14:47:58,570 basehttp 170 127478209857216 "GET /api/v1/social/platforms/ HTTP/1.1" 404 21202
+WARNING 2025-08-30 14:47:58,570 basehttp 170 127477842175680 "GET /api/v1/social/shares/?page=1 HTTP/1.1" 404 21200
+WARNING 2025-08-30 14:47:58,590 basehttp 170 127477850568384 "GET /api/v1/social/templates/ HTTP/1.1" 404 21202
+INFO 2025-08-30 14:48:14,554 basehttp 170 127478209857216 "GET /api/v1/dashboard/top_scorers/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:48:14,573 basehttp 170 127478201448128 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
+INFO 2025-08-30 14:48:14,578 basehttp 170 127477842175680 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
+INFO 2025-08-30 14:48:14,587 basehttp 170 127477850568384 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126

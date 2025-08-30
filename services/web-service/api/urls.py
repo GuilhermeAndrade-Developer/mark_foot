@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (
 from .views import (
     AreaViewSet, CompetitionViewSet, TeamViewSet, SeasonViewSet,
     MatchViewSet, StandingViewSet, PlayerViewSet, PlayerStatisticsViewSet,
-    PlayerTransferViewSet, ApiSyncLogViewSet, DashboardViewSet
+    PlayerTransferViewSet, ApiSyncLogViewSet, DashboardViewSet, BusinessViewSet
 )
 from .views_sync import (
     stats_summary, sync_competition, sync_players, sync_player_photos, api_status, sync_logs
@@ -30,6 +30,7 @@ router.register(r'player-statistics', PlayerStatisticsViewSet)
 router.register(r'player-transfers', PlayerTransferViewSet)
 router.register(r'api-sync-logs', ApiSyncLogViewSet)
 router.register(r'dashboard', DashboardViewSet, basename='dashboard')
+router.register(r'business', BusinessViewSet, basename='business')
 
 app_name = 'api'
 

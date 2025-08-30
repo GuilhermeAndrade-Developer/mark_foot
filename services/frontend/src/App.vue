@@ -412,14 +412,20 @@ const snackbar = reactive({
 
 // Menu items with sections
 const menuItems = [
-  // Core Management - apenas Dashboard
+  // Core Management - Dashboard Empresarial
   {
-    title: 'Dashboard',
+    title: 'Dashboard Empresarial',
     icon: 'mdi-view-dashboard',
     route: '/',
     section: 'core'
   },
-  // Football Management - todos os itens relacionados ao futebol
+  // Football Management - Dashboard de Futebol + outros itens
+  {
+    title: 'Dashboard de Futebol',
+    icon: 'mdi-soccer',
+    route: '/football-dashboard',
+    section: 'football'
+  },
   {
     title: 'Times',
     icon: 'mdi-shield-account',

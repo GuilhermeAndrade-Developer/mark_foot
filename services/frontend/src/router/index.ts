@@ -3,7 +3,8 @@ import type { RouteRecordRaw, RouteLocationNormalized, NavigationGuardNext } fro
 import { useAuthStore } from '@/stores/auth'
 
 // Import views
-import Dashboard from '@/views/Dashboard.vue'
+import BusinessDashboard from '@/views/BusinessDashboard.vue'
+import FootballDashboard from '@/views/FootballDashboard.vue'
 import Teams from '@/views/Teams.vue'
 import Players from '@/views/Players.vue'
 import Matches from '@/views/Matches.vue'
@@ -61,9 +62,18 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard,
+    component: BusinessDashboard,
     meta: {
-      title: 'Dashboard - Mark Foot',
+      title: 'Dashboard Empresarial - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/football-dashboard',
+    name: 'FootballDashboard',
+    component: FootballDashboard,
+    meta: {
+      title: 'Dashboard de Futebol - Mark Foot',
       requiresAuth: true
     }
   },

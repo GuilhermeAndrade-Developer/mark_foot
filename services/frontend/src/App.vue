@@ -48,6 +48,27 @@
             />
           </v-list-group>
 
+          <!-- Football Management Group -->
+          <v-list-group value="football">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-soccer</v-icon>
+                </template>
+                <v-list-item-title>Gestão de Futebol</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in footballItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
           <!-- Gamification Group -->
           <v-list-group value="gamification">
             <template #activator="{ props }">
@@ -391,48 +412,49 @@ const snackbar = reactive({
 
 // Menu items with sections
 const menuItems = [
-  // Core Management
+  // Core Management - apenas Dashboard
   {
     title: 'Dashboard',
     icon: 'mdi-view-dashboard',
     route: '/',
     section: 'core'
   },
+  // Football Management - todos os itens relacionados ao futebol
   {
     title: 'Times',
     icon: 'mdi-shield-account',
     route: '/teams',
-    section: 'core'
+    section: 'football'
   },
   {
     title: 'Jogadores',
     icon: 'mdi-account-group',
     route: '/players',
-    section: 'core'
+    section: 'football'
   },
   {
     title: 'Partidas',
     icon: 'mdi-soccer',
     route: '/matches',
-    section: 'core'
+    section: 'football'
   },
   {
     title: 'Competições',
     icon: 'mdi-trophy',
     route: '/competitions',
-    section: 'core'
+    section: 'football'
   },
   {
     title: 'Classificação',
     icon: 'mdi-podium',
     route: '/standings',
-    section: 'core'
+    section: 'football'
   },
   {
     title: 'Estatísticas',
     icon: 'mdi-chart-line',
     route: '/statistics',
-    section: 'core'
+    section: 'football'
   },
   // Gamification Management
   {
@@ -614,6 +636,7 @@ const menuItems = [
 
 // Computed properties for menu sections
 const coreItems = computed(() => menuItems.filter(item => item.section === 'core'))
+const footballItems = computed(() => menuItems.filter(item => item.section === 'football'))
 const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
 const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
 const socialNetworksItems = computed(() => menuItems.filter(item => item.section === 'social-networks'))

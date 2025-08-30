@@ -53,6 +53,7 @@ services:
       - ../services/web-service:/app
       - ../shared:/app/shared
       - ../storage:/app/storage
+      - ../database:/database
     depends_on:
       - mysql_db
       - redis_cache

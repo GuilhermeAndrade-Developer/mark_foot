@@ -61,7 +61,7 @@ services:
       - redis_cache
     networks:
       - mark_foot_prod_network
-    command: gunicorn mark_foot_backend.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    command: sh -c "python wait-for-db.py && python manage.py migrate && gunicorn mark_foot_backend.wsgi:application --bind 0.0.0.0:8000 --workers 3"
 
   # Celery Worker - Production
   celery-worker-prod:
@@ -85,9 +85,10 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-prod
     networks:
       - mark_foot_prod_network
-    command: celery -A mark_foot_backend worker --loglevel=warning
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend worker --loglevel=warning"
 
   # Celery Beat Scheduler - Production
   celery-beat-prod:
@@ -111,10 +112,11 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-prod
       - celery-worker-prod
     networks:
       - mark_foot_prod_network
-    command: celery -A mark_foot_backend beat --loglevel=warning
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend beat --loglevel=warning --scheduler django_celery_beat.schedulers:DatabaseScheduler"
 
   # Frontend (Vue.js) - Production
   frontend-prod:

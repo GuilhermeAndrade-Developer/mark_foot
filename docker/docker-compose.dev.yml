@@ -58,7 +58,7 @@ services:
       - redis_cache
     networks:
       - mark_foot_dev_network
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python wait-for-db.py && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
   # Celery Worker for Background Tasks
   celery-worker-dev:
@@ -83,9 +83,10 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-dev
     networks:
       - mark_foot_dev_network
-    command: celery -A mark_foot_backend worker --loglevel=info
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend worker --loglevel=info"
 
   # Celery Beat Scheduler
   celery-beat-dev:
@@ -110,10 +111,11 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-dev
       - celery-worker-dev
     networks:
       - mark_foot_dev_network
-    command: celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler"
 
   # Frontend Service (Vue.js) - Development
   frontend-dev:

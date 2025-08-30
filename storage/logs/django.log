@@ -11109,3 +11109,6 @@ INFO 2025-08-29 00:21:57,345 basehttp 452 140083017533120 "OPTIONS /api/v1/teams
 INFO 2025-08-29 00:21:57,345 basehttp 452 140083042711232 "OPTIONS /api/v1/players/ HTTP/1.1" 200 0
 INFO 2025-08-29 00:21:57,377 basehttp 452 140083042711232 "GET /api/v1/players/ HTTP/1.1" 200 57224
 INFO 2025-08-29 00:21:57,406 basehttp 452 140083017533120 "GET /api/v1/teams/ HTTP/1.1" 200 30909
+INFO 2025-08-30 12:34:54,205 autoreload 7 139578093415296 Watching for file changes with StatReloader
+INFO 2025-08-30 13:03:26,727 autoreload 7 129076870900608 Watching for file changes with StatReloader
+INFO 2025-08-30 13:10:56,575 autoreload 10 129008361806720 Watching for file changes with StatReloader

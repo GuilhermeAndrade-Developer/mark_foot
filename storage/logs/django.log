@@ -11614,3 +11614,35 @@ INFO 2025-08-30 14:48:14,554 basehttp 170 127478209857216 "GET /api/v1/dashboard
 INFO 2025-08-30 14:48:14,573 basehttp 170 127478201448128 "GET /api/v1/matches/?limit=50 HTTP/1.1" 200 52
 INFO 2025-08-30 14:48:14,578 basehttp 170 127477842175680 "GET /api/v1/dashboard/recent_matches/ HTTP/1.1" 200 2
 INFO 2025-08-30 14:48:14,587 basehttp 170 127477850568384 "GET /api/v1/dashboard/stats/ HTTP/1.1" 200 126
+INFO 2025-08-30 15:16:48,480 autoreload 294 124043246041984 Watching for file changes with StatReloader
+INFO 2025-08-30 15:17:18,560 autoreload 294 124043246041984 /app/api/views_sync.py changed, reloading.
+INFO 2025-08-30 15:17:21,259 autoreload 296 137973976136576 Watching for file changes with StatReloader
+INFO 2025-08-30 15:17:27,642 football_data_client 298 135840100096896 API Request: competitions - Status: 200 - Time: 974ms
+INFO 2025-08-30 15:20:04,961 football_data_client 296 137973907351232 API Request: competitions/PL/teams - Status: 200 - Time: 1915ms
+INFO 2025-08-30 15:20:06,416 football_data_client 296 137973907351232 API Request: competitions/PL/matches - Status: 200 - Time: 1087ms
+INFO 2025-08-30 15:20:06,735 football_data_client 296 137973907351232 API Request: competitions/PL/standings - Status: 200 - Time: 288ms
+INFO 2025-08-30 15:20:07,547 basehttp 296 137973907351232 "POST /api/v1/sync/competition/ HTTP/1.1" 200 149
+INFO 2025-08-30 15:22:05,869 autoreload 296 137973976136576 /app/gamification/signals.py changed, reloading.
+INFO 2025-08-30 15:22:08,636 autoreload 311 139415140473728 Watching for file changes with StatReloader
+INFO 2025-08-30 15:22:15,325 autoreload 311 139415140473728 /app/gamification/signals.py changed, reloading.
+INFO 2025-08-30 15:22:17,743 autoreload 313 138555319053184 Watching for file changes with StatReloader
+WARNING 2025-08-30 15:22:27,671 log 313 138555175204544 Not Found: /api/sync/competition/
+WARNING 2025-08-30 15:22:27,673 basehttp 313 138555175204544 "POST /api/sync/competition/ HTTP/1.1" 404 3413
+INFO 2025-08-30 15:22:46,145 football_data_client 313 138555175204544 API Request: competitions/PL/teams - Status: 200 - Time: 1684ms
+INFO 2025-08-30 15:22:47,354 football_data_client 313 138555175204544 API Request: competitions/PL/matches - Status: 200 - Time: 983ms
+INFO 2025-08-30 15:22:47,659 football_data_client 313 138555175204544 API Request: competitions/PL/standings - Status: 200 - Time: 274ms
+INFO 2025-08-30 15:22:48,409 basehttp 313 138555175204544 "POST /api/v1/sync/competition/ HTTP/1.1" 200 149
+INFO 2025-08-30 15:23:37,379 autoreload 313 138555319053184 /app/gamification/signals.py changed, reloading.
+INFO 2025-08-30 15:23:40,056 autoreload 316 137623653870464 Watching for file changes with StatReloader
+INFO 2025-08-30 15:23:46,523 autoreload 316 137623653870464 /app/gamification/signals.py changed, reloading.
+INFO 2025-08-30 15:23:49,002 autoreload 318 139506756098944 Watching for file changes with StatReloader
+INFO 2025-08-30 15:23:55,597 autoreload 318 139506756098944 /app/gamification/signals.py changed, reloading.
+INFO 2025-08-30 15:23:58,161 autoreload 320 135957026368384 Watching for file changes with StatReloader
+INFO 2025-08-30 15:24:20,661 football_data_client 320 135956957558464 API Request: competitions/PL/teams - Status: 200 - Time: 1589ms
+INFO 2025-08-30 15:24:22,103 football_data_client 320 135956957558464 API Request: competitions/PL/matches - Status: 200 - Time: 1197ms
+INFO 2025-08-30 15:24:28,101 football_data_client 320 135956957558464 API Request: competitions/PL/standings - Status: 200 - Time: 293ms
+INFO 2025-08-30 15:24:28,865 basehttp 320 135956957558464 "POST /api/v1/sync/competition/ HTTP/1.1" 200 157
+INFO 2025-08-30 15:24:58,051 football_data_client 320 135956957558464 API Request: competitions/BL1/teams - Status: 200 - Time: 1417ms
+INFO 2025-08-30 15:24:59,290 football_data_client 320 135956957558464 API Request: competitions/BL1/matches - Status: 200 - Time: 1009ms
+INFO 2025-08-30 15:25:04,592 football_data_client 320 135956957558464 API Request: competitions/BL1/standings - Status: 200 - Time: 291ms
+INFO 2025-08-30 15:25:05,278 basehttp 320 135956957558464 "POST /api/v1/sync/competition/ HTTP/1.1" 200 153

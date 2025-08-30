@@ -135,9 +135,44 @@ services:
       - mark_foot_dev_network
     command: npm run dev
 
+  # Test Service - Development
+  test-service-dev:
+    build:
+      context: ../services/test-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_test_service_dev
+    restart: "no"
+    ports:
+      - "8002:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=test_settings
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_dev
+      - DB_USER=mark_foot_user
+      - DB_PASSWORD=mark_foot_password
+      - REDIS_URL=redis://redis_cache:6379/0
+      - CELERY_BROKER_URL=redis://redis_cache:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis_cache:6379/0
+    volumes:
+      - ../services/test-service:/app
+      - ../shared:/app/shared
+      - ../storage:/app/storage
+      - test_reports:/app/htmlcov
+    depends_on:
+      - mysql_db
+      - redis_cache
+      - web-service-dev
+    networks:
+      - mark_foot_dev_network
+    profiles:
+      - testing
+    command: ["python", "-m", "pytest", "-v", "--cov=.", "--cov-report=html"]
+
 volumes:
   mysql_dev_data:
   redis_dev_data:
+  test_reports:
 
 networks:
   mark_foot_dev_network:

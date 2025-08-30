@@ -69,6 +69,15 @@ def sync_competition(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        # Check if competition exists first
+        try:
+            competition = Competition.objects.get(code=competition_code.upper())
+        except Competition.DoesNotExist:
+            return Response(
+                {'error': f'Competition {competition_code} not found. Please run initial setup first.'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
         # Execute sync command
         try:
             call_command(
@@ -78,7 +87,6 @@ def sync_competition(request):
             )
             
             # Get stats after sync
-            competition = Competition.objects.get(code=competition_code.upper())
             teams_count = Match.objects.filter(competition=competition).values('home_team', 'away_team').distinct().count()
             matches_count = Match.objects.filter(competition=competition).count()
             standings_count = Standing.objects.filter(competition=competition).count()
@@ -103,10 +111,17 @@ def sync_competition(request):
                 {'error': f'Erro no comando: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        except Exception as e:
+            import traceback
+            return Response(
+                {'error': f'Erro na sincronização: {str(e)}', 'traceback': traceback.format_exc()}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
             
     except Exception as e:
+        import traceback
         return Response(
-            {'error': str(e)}, 
+            {'error': f'Erro geral: {str(e)}', 'traceback': traceback.format_exc()}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 

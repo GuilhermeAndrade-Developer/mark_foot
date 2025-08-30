@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  test-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mark_foot_test_service
+    volumes:
+      - .:/app
+      - test_reports:/app/htmlcov
+    environment:
+      - DJANGO_SETTINGS_MODULE=test_settings
+      - DB_HOST=mark_foot_mysql_dev
+      - DB_NAME=test_mark_foot
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - CELERY_BROKER_URL=redis://mark_foot_redis_dev:6379/0
+      - CELERY_RESULT_BACKEND=redis://mark_foot_redis_dev:6379/0
+    depends_on:
+      - test-db
+      - test-redis
+    networks:
+      - mark_foot_network
+    command: ["python", "-m", "pytest", "-v", "--cov=.", "--cov-report=html"]
+
+  test-db:
+    image: mysql:8.0
+    container_name: mark_foot_test_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: test_mark_foot
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - test_mysql_data:/var/lib/mysql
+    networks:
+      - mark_foot_network
+
+  test-redis:
+    image: redis:7-alpine
+    container_name: mark_foot_test_redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - test_redis_data:/data
+    networks:
+      - mark_foot_network
+
+volumes:
+  test_mysql_data:
+  test_redis_data:
+  test_reports:
+
+networks:
+  mark_foot_network:
+    external: true

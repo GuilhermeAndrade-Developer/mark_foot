@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 from .models import (
-    UserProfile, Prediction, PointTransaction, Badge, UserBadge,
+    UserProfile, Prediction, PredictionGame, PointTransaction, Badge, UserBadge,
     Challenge, UserChallenge
 )
 from core.models import Match
@@ -25,53 +25,70 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Match)
 def process_match_predictions(sender, instance, **kwargs):
     """Process all predictions when a match is finished"""
-    if instance.status == 'FINISHED' and instance.home_score is not None:
-        predictions = Prediction.objects.filter(
+    if instance.status == 'FINISHED' and instance.home_team_score is not None:
+        # Find prediction games related to this match
+        prediction_games = PredictionGame.objects.filter(
             match=instance,
-            status='pending'
+            status='active'
         )
         
-        for prediction in predictions:
-            # Simple scoring: exact score = 10 points, correct result = 5 points
-            points_earned = 0
+        for game in prediction_games:
+            predictions = Prediction.objects.filter(
+                game=game,
+                is_correct__isnull=True  # Not yet resolved
+            )
             
-            actual_home = instance.home_score
-            actual_away = instance.away_score
-            pred_home = prediction.predicted_home_score
-            pred_away = prediction.predicted_away_score
-            
-            # Exact score match
-            if actual_home == pred_home and actual_away == pred_away:
-                points_earned = prediction.points_bet * 2  # Double the bet
-            # Correct result (win/draw/loss)
-            elif ((actual_home > actual_away and pred_home > pred_away) or
-                  (actual_home < actual_away and pred_home < pred_away) or
-                  (actual_home == actual_away and pred_home == pred_away)):
-                points_earned = prediction.points_bet  # Return the bet
-            
-            prediction.points_earned = points_earned
-            
-            if points_earned > 0:
-                prediction.status = 'won'
+            for prediction in predictions:
+                # Simple scoring: exact score = 10 points, correct result = 5 points
+                points_earned = 0
                 
-                # Update user profile
-                profile = prediction.user.user_profiles.first()
-                if profile:
-                    profile.total_points += points_earned
-                    profile.save()
+                actual_home = instance.home_team_score
+                actual_away = instance.away_team_score
                 
-                # Create points transaction
-                PointTransaction.objects.create(
-                    user=prediction.user,
-                    transaction_type='win',
-                    amount=points_earned,
-                    description=f'Predição: {instance}',
-                    balance_after=profile.total_points if profile else points_earned
-                )
-            else:
-                prediction.status = 'lost'
+                # Get prediction data from JSON field
+                pred_data = prediction.prediction_data or {}
+                pred_home = pred_data.get('home_score')
+                pred_away = pred_data.get('away_score')
+                points_bet = pred_data.get('points_bet', game.entry_fee_points)
+                
+                if pred_home is not None and pred_away is not None:
+                    # Exact score match
+                    if actual_home == pred_home and actual_away == pred_away:
+                        points_earned = int(points_bet * game.reward_multiplier)
+                        prediction.is_correct = True
+                    # Correct result (win/draw/loss)
+                    elif ((actual_home > actual_away and pred_home > pred_away) or
+                          (actual_home < actual_away and pred_home < pred_away) or
+                          (actual_home == actual_away and pred_home == pred_away)):
+                        points_earned = points_bet  # Return the bet
+                        prediction.is_correct = True
+                    else:
+                        prediction.is_correct = False
+                    
+                    prediction.points_earned = points_earned
+                    prediction.resolved_at = timezone.now()
+                    
+                    if points_earned > 0:
+                        # Update user profile
+                        profile = prediction.user.user_profiles.first()
+                        if profile:
+                            profile.total_points += points_earned
+                            profile.save()
+                        
+                        # Create points transaction
+                        PointTransaction.objects.create(
+                            user=prediction.user,
+                            transaction_type='win',
+                            amount=points_earned,
+                            description=f'Predição: {instance}',
+                            balance_after=profile.total_points if profile else points_earned
+                        )
+                    
+                    prediction.save()
             
-            prediction.save()
+            # Update game status
+            game.status = 'resolved'
+            game.save()
 
 
 @receiver(post_save, sender=Prediction)

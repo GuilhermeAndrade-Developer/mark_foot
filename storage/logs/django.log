@@ -16198,3 +16198,97 @@ INFO 2025-08-31 02:11:31,948 basehttp 76 132213723100864 "GET /api/v1/business/r
 INFO 2025-08-31 02:11:31,978 basehttp 76 132213723100864 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
 INFO 2025-08-31 02:11:32,056 basehttp 76 132213723100864 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
 INFO 2025-08-31 12:37:58,934 autoreload 11 134102944013184 Watching for file changes with StatReloader
+INFO 2025-08-31 12:40:17,483 basehttp 11 134102874154688 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,484 basehttp 11 134102865761984 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,487 basehttp 11 134102874154688 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,488 basehttp 11 134102857352896 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,489 basehttp 11 134102848943808 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,490 basehttp 11 134102865761984 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,492 basehttp 11 134102502078144 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,493 basehttp 11 134102493685440 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:40:17,494 basehttp 11 134102848943808 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-31 12:40:17,560 log 11 134102857352896 Unauthorized: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 12:40:17,561 log 11 134102502078144 Unauthorized: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 12:40:17,562 log 11 134102493685440 Unauthorized: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 12:40:17,564 log 11 134102874154688 Unauthorized: /api/v1/gamification/badges/
+WARNING 2025-08-31 12:40:17,565 log 11 134102848943808 Unauthorized: /api/v1/gamification/challenges/
+WARNING 2025-08-31 12:40:17,567 log 11 134102865761984 Unauthorized: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 12:40:17,567 basehttp 11 134102857352896 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,568 basehttp 11 134102502078144 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,568 basehttp 11 134102493685440 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,569 basehttp 11 134102874154688 "GET /api/v1/gamification/badges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,570 basehttp 11 134102848943808 "GET /api/v1/gamification/challenges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,570 basehttp 11 134102865761984 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,616 log 11 134102857352896 Unauthorized: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 12:40:17,619 log 11 134102874154688 Unauthorized: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 12:40:17,622 log 11 134102493685440 Unauthorized: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 12:40:17,622 basehttp 11 134102857352896 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,624 basehttp 11 134102874154688 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 401 209
+WARNING 2025-08-31 12:40:17,628 basehttp 11 134102493685440 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 401 209
+INFO 2025-08-31 12:53:27,512 basehttp 11 134102874154688 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:27,849 basehttp 11 134102874154688 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-31 12:53:28,358 basehttp 11 134102874154688 "OPTIONS /api/v1/business/metrics/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:28,373 basehttp 11 134102874154688 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-31 12:53:28,447 basehttp 11 134102874154688 "OPTIONS /api/v1/business/user-growth/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:28,501 basehttp 11 134102874154688 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-31 12:53:28,569 basehttp 11 134102874154688 "OPTIONS /api/v1/business/revenue/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:28,623 basehttp 11 134102874154688 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-31 12:53:28,679 basehttp 11 134102874154688 "OPTIONS /api/v1/business/social-engagement/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:28,732 basehttp 11 134102874154688 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-31 12:53:28,799 basehttp 11 134102874154688 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
+INFO 2025-08-31 12:53:28,849 basehttp 11 134102874154688 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-08-31 12:53:37,556 basehttp 11 134102874154688 "OPTIONS /api/billing/admin/dashboard/kpis/ HTTP/1.1" 200 0
+WARNING 2025-08-31 12:53:37,615 log 11 134102874154688 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 12:53:37,620 basehttp 11 134102874154688 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 9761
+INFO 2025-08-31 15:23:19,234 basehttp 11 134102874154688 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,234 basehttp 11 134102493685440 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,236 basehttp 11 134102502078144 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,237 basehttp 11 134102865761984 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,243 basehttp 11 134102857320128 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,244 basehttp 11 134102848911040 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,246 basehttp 11 134102874154688 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:23:19,249 basehttp 11 134102493685440 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:23:19,251 log 11 134102502078144 Unauthorized: /api/v1/gamification/user-badges/my_badges/
+INFO 2025-08-31 15:23:19,253 basehttp 11 134102865761984 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:23:19,256 log 11 134102857320128 Unauthorized: /api/v1/gamification/badges/
+WARNING 2025-08-31 15:23:19,261 log 11 134102848911040 Unauthorized: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 15:23:19,273 basehttp 11 134102502078144 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,274 basehttp 11 134102857320128 "GET /api/v1/gamification/badges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,277 basehttp 11 134102848911040 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,308 log 11 134102874154688 Unauthorized: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 15:23:19,311 log 11 134102865761984 Unauthorized: /api/v1/gamification/challenges/
+WARNING 2025-08-31 15:23:19,329 basehttp 11 134102865761984 "GET /api/v1/gamification/challenges/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,319 log 11 134102502078144 Unauthorized: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 15:23:19,323 basehttp 11 134102874154688 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,326 log 11 134102857320128 Unauthorized: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 15:23:19,328 log 11 134102848911040 Unauthorized: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 15:23:19,314 log 11 134102493685440 Unauthorized: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 15:23:19,351 basehttp 11 134102502078144 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,370 basehttp 11 134102857320128 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,374 basehttp 11 134102848911040 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 401 209
+WARNING 2025-08-31 15:23:19,377 basehttp 11 134102493685440 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:25:12,556 basehttp 11 134102493685440 "OPTIONS /api/billing/admin/dashboard/kpis/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:12,566 log 11 134102493685440 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 15:25:12,567 basehttp 11 134102493685440 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 9761
+WARNING 2025-08-31 15:25:16,436 log 11 134102493685440 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 15:25:16,438 basehttp 11 134102493685440 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 9761
+INFO 2025-08-31 15:25:17,353 basehttp 11 134102493685440 "OPTIONS /api/billing/admin/customers/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:17,364 log 11 134102493685440 Not Found: /api/billing/admin/customers/
+WARNING 2025-08-31 15:25:17,365 basehttp 11 134102493685440 "GET /api/billing/admin/customers/ HTTP/1.1" 404 9746
+WARNING 2025-08-31 15:25:29,487 log 11 134102493685440 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 15:25:29,488 basehttp 11 134102493685440 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 9761
+INFO 2025-08-31 15:25:36,762 basehttp 11 134102493685440 "OPTIONS /api/v1/business/metrics/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:36,767 log 11 134102493685440 Unauthorized: /api/v1/business/metrics/
+WARNING 2025-08-31 15:25:36,768 basehttp 11 134102493685440 "GET /api/v1/business/metrics/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:25:36,850 basehttp 11 134102493685440 "OPTIONS /api/v1/business/user-growth/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:36,904 log 11 134102493685440 Unauthorized: /api/v1/business/user-growth/
+WARNING 2025-08-31 15:25:36,905 basehttp 11 134102493685440 "GET /api/v1/business/user-growth/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:25:36,986 basehttp 11 134102493685440 "OPTIONS /api/v1/business/revenue/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:37,037 log 11 134102493685440 Unauthorized: /api/v1/business/revenue/
+WARNING 2025-08-31 15:25:37,038 basehttp 11 134102493685440 "GET /api/v1/business/revenue/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:25:37,101 basehttp 11 134102493685440 "OPTIONS /api/v1/business/social-engagement/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:37,147 log 11 134102493685440 Unauthorized: /api/v1/business/social-engagement/
+WARNING 2025-08-31 15:25:37,149 basehttp 11 134102493685440 "GET /api/v1/business/social-engagement/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:25:37,211 basehttp 11 134102493685440 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
+WARNING 2025-08-31 15:25:37,255 log 11 134102493685440 Unauthorized: /api/v1/business/activities/
+WARNING 2025-08-31 15:25:37,256 basehttp 11 134102493685440 "GET /api/v1/business/activities/ HTTP/1.1" 401 209

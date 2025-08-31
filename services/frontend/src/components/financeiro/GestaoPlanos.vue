@@ -722,6 +722,18 @@ const exportPlans = () => {
   console.log('Exporting plans...')
 }
 
+// Public method to open create dialog (called from parent)
+const openCreateDialog = () => {
+  resetForm()
+  editingPlan.value = null
+  showCreateDialog.value = true
+}
+
+// Expose method to parent component
+defineExpose({
+  openCreateDialog
+})
+
 // Utility functions
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('pt-BR', {

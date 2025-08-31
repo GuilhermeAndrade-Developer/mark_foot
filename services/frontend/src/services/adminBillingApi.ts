@@ -390,6 +390,95 @@ class AdminBillingApiService {
     })
     return response.data
   }
+
+  // Dashboard specific methods
+  async getDashboardKpis(): Promise<AdminKPIs> {
+    try {
+      const response = await adminBillingRequest('/dashboard/kpis/', { method: 'GET' })
+      return response.data
+    } catch (error) {
+      console.warn('Dashboard KPIs API not available, using mock data')
+      throw error
+    }
+  }
+
+  async getPlanDistribution(): Promise<{ free: number; premium: number; enterprise: number }> {
+    try {
+      const response = await adminBillingRequest('/dashboard/plan-distribution/', { method: 'GET' })
+      return response.data
+    } catch (error) {
+      console.warn('Plan distribution API not available, using mock data')
+      throw error
+    }
+  }
+
+  async getRecentTransactions(): Promise<Array<{
+    id: number
+    customer: { name: string; email: string }
+    amount: number
+    status: string
+    date: string
+    plan: string
+  }>> {
+    try {
+      const response = await adminBillingRequest('/dashboard/recent-transactions/', { method: 'GET' })
+      return response.data
+    } catch (error) {
+      console.warn('Recent transactions API not available, using mock data')
+      throw error
+    }
+  }
+
+  async getIntegrationStatus(): Promise<{
+    stripe: { status: string }
+    pagseguro: { status: string }
+  }> {
+    try {
+      const response = await adminBillingRequest('/dashboard/integration-status/', { method: 'GET' })
+      return response.data
+    } catch (error) {
+      console.warn('Integration status API not available, using mock data')
+      throw error
+    }
+  }
+
+  async getCustomers(): Promise<{ data: Array<{ id: number; first_name: string; last_name: string; email: string }> }> {
+    try {
+      const response = await adminBillingRequest('/customers/', { method: 'GET' })
+      return response
+    } catch (error) {
+      console.warn('Customers API not available, using mock data')
+      throw error
+    }
+  }
+
+  async getPlans(): Promise<{ data: Array<{ id: number; name: string; price_monthly: number }> }> {
+    try {
+      const response = await adminBillingRequest('/plans/', { method: 'GET' })
+      return response
+    } catch (error) {
+      console.warn('Plans API not available, using mock data')
+      throw error
+    }
+  }
+
+  async createInvoice(data: {
+    customer_id: number
+    plan_id: number
+    amount: number
+    description: string
+  }): Promise<{ success: boolean; invoice_id?: number; message: string }> {
+    try {
+      const response = await adminBillingRequest('/invoices/', {
+        method: 'POST',
+        data
+      })
+      return response.data
+    } catch (error) {
+      console.warn('Create invoice API not available')
+      throw error
+    }
+  }
 }
 
 export const adminBillingApi = new AdminBillingApiService()

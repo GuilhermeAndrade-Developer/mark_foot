@@ -19,17 +19,25 @@
 
     <!-- Planos Content -->
     <GestaoPlanos 
+      ref="gestaoPlanos"
       @create-plan="showCreatePlanDialog"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import GestaoPlanos from '@/components/financeiro/GestaoPlanos.vue'
+
+// Referência ao componente filho
+const gestaoPlanos = ref()
 
 // Methods para Planos
 const showCreatePlanDialog = () => {
-  console.log('Abrindo dialog de criação de plano...')
+  // Chamar método do componente filho para abrir o modal
+  if (gestaoPlanos.value) {
+    gestaoPlanos.value.openCreateDialog()
+  }
 }
 </script>
 

@@ -35,6 +35,7 @@ export interface SubscriptionPlan {
   multi_tenancy: boolean
   features: Record<string, any>
   is_active: boolean
+  sort_order?: number
 }
 
 export interface UserSubscription {

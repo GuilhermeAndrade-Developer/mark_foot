@@ -180,12 +180,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 // Reactive data
 const activeTab = ref('new-clients')
 const saving = ref(false)
 const searching = ref(false)
+
+// Verificar se há parâmetro de query para definir a aba inicial
+onMounted(() => {
+  const tabFromQuery = route.query.tab as string
+  if (tabFromQuery && ['new-clients', 'search-clients'].includes(tabFromQuery)) {
+    activeTab.value = tabFromQuery
+  }
+})
 
 // Dados do novo cliente
 const newClient = reactive({

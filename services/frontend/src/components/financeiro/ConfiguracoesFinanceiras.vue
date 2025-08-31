@@ -514,15 +514,20 @@ const stripeWebhookEvents = ref([
 const testStripeConnection = async () => {
   testingStripe.value = true
   try {
-    // Test Stripe connection
-    console.log('Testing Stripe connection...')
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    connectionStatus.value.stripe.connected = true
+    // Test Stripe connection using real API
+    const result = await adminBillingApi.testPaymentConnection('stripe')
+    connectionStatus.value.stripe.connected = result.stripe?.connected || false
     connectionStatus.value.stripe.last_test = new Date().toISOString()
+    
+    if (result.stripe?.connected) {
+      showNotification('Conexão com Stripe testada com sucesso!', 'success')
+    } else {
+      showNotification(`Erro na conexão Stripe: ${result.stripe?.error}`, 'error')
+    }
   } catch (error) {
     console.error('Stripe connection failed:', error)
     connectionStatus.value.stripe.connected = false
+    showNotification('Falha ao testar conexão Stripe', 'error')
   } finally {
     testingStripe.value = false
   }
@@ -531,15 +536,20 @@ const testStripeConnection = async () => {
 const testPagSeguroConnection = async () => {
   testingPagSeguro.value = true
   try {
-    // Test PagSeguro connection
-    console.log('Testing PagSeguro connection...')
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    connectionStatus.value.pagseguro.connected = true
+    // Test PagSeguro connection using real API
+    const result = await adminBillingApi.testPaymentConnection('pagseguro')
+    connectionStatus.value.pagseguro.connected = result.pagseguro?.connected || false
     connectionStatus.value.pagseguro.last_test = new Date().toISOString()
+    
+    if (result.pagseguro?.connected) {
+      showNotification('Conexão com PagSeguro testada com sucesso!', 'success')
+    } else {
+      showNotification(`Erro na conexão PagSeguro: ${result.pagseguro?.error}`, 'error')
+    }
   } catch (error) {
     console.error('PagSeguro connection failed:', error)
     connectionStatus.value.pagseguro.connected = false
+    showNotification('Falha ao testar conexão PagSeguro', 'error')
   } finally {
     testingPagSeguro.value = false
   }

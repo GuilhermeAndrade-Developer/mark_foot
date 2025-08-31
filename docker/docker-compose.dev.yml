@@ -40,15 +40,27 @@ services:
     restart: unless-stopped
     ports:
       - "8001:8000"
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
+      - DEBUG=${DEBUG:-1}
       - ENVIRONMENT=development
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - PAGSEGURO_EMAIL=${PAGSEGURO_EMAIL}
+      - PAGSEGURO_TOKEN=${PAGSEGURO_TOKEN}
+      - PAGSEGURO_SANDBOX=${PAGSEGURO_SANDBOX:-True}
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN}
+      - MERCADOPAGO_SANDBOX=${MERCADOPAGO_SANDBOX:-True}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+      - BACKEND_URL=${BACKEND_URL:-http://localhost:8001}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
@@ -68,15 +80,17 @@ services:
       dockerfile: Dockerfile
     container_name: mark_foot_celery_worker_dev
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
+      - DEBUG=${DEBUG:-1}
       - ENVIRONMENT=development
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
@@ -96,15 +110,17 @@ services:
       dockerfile: Dockerfile
     container_name: mark_foot_celery_beat_dev
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
+      - DEBUG=${DEBUG:-1}
       - ENVIRONMENT=development
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared

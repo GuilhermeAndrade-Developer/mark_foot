@@ -16292,3 +16292,36 @@ WARNING 2025-08-31 15:25:37,149 basehttp 11 134102493685440 "GET /api/v1/busines
 INFO 2025-08-31 15:25:37,211 basehttp 11 134102493685440 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
 WARNING 2025-08-31 15:25:37,255 log 11 134102493685440 Unauthorized: /api/v1/business/activities/
 WARNING 2025-08-31 15:25:37,256 basehttp 11 134102493685440 "GET /api/v1/business/activities/ HTTP/1.1" 401 209
+INFO 2025-08-31 15:32:32,596 autoreload 11 134102944013184 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-31 15:32:38,044 autoreload 38 128540923730816 Watching for file changes with StatReloader
+INFO 2025-08-31 15:34:58,072 autoreload 38 128540923730816 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:35:02,618 autoreload 40 140094831876992 Watching for file changes with StatReloader
+INFO 2025-08-31 15:35:21,306 autoreload 40 140094831876992 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:35:31,695 autoreload 42 133943069404032 Watching for file changes with StatReloader
+INFO 2025-08-31 15:38:14,875 autoreload 42 133943069404032 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-31 15:38:19,362 autoreload 44 135307381357440 Watching for file changes with StatReloader
+INFO 2025-08-31 15:42:20,975 autoreload 44 135307381357440 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:42:25,411 autoreload 78 139429738748800 Watching for file changes with StatReloader
+INFO 2025-08-31 15:44:06,623 autoreload 78 139429738748800 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:44:11,541 autoreload 80 139910237264768 Watching for file changes with StatReloader
+INFO 2025-08-31 15:48:47,490 autoreload 80 139910237264768 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:48:51,359 autoreload 82 131761793854336 Watching for file changes with StatReloader
+INFO 2025-08-31 15:53:44,707 autoreload 18 135958714461056 Watching for file changes with StatReloader
+WARNING 2025-08-31 15:55:11,684 log 18 135958644602560 Unauthorized: /api/billing/api/plans/
+WARNING 2025-08-31 15:55:11,685 basehttp 18 135958644602560 "GET /api/billing/api/plans/ HTTP/1.1" 401 68
+INFO 2025-08-31 15:55:43,499 autoreload 18 135958714461056 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:55:47,455 autoreload 61 137366577953664 Watching for file changes with StatReloader
+INFO 2025-08-31 15:55:54,051 autoreload 61 137366577953664 /app/billing/views.py changed, reloading.
+INFO 2025-08-31 15:55:57,632 autoreload 63 130294546447232 Watching for file changes with StatReloader
+INFO 2025-08-31 15:56:52,502 basehttp 63 130294408541888 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-31 15:56:53,084 basehttp 63 130294408541888 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-31 15:56:53,830 basehttp 63 130294408541888 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-31 15:56:53,873 basehttp 63 130294408541888 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-31 15:56:53,954 basehttp 63 130294408541888 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-31 15:56:54,023 basehttp 63 130294408541888 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-31 15:56:54,110 basehttp 63 130294408541888 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+WARNING 2025-08-31 15:57:16,159 log 63 130294408541888 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 15:57:16,160 basehttp 63 130294408541888 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 7541
+WARNING 2025-08-31 15:57:32,773 log 63 130294408541888 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-08-31 15:57:32,780 basehttp 63 130294408541888 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 7541
+INFO 2025-08-31 16:02:12,986 autoreload 63 130294546447232 /app/mark_foot_backend/settings.py changed, reloading.

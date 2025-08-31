@@ -7,7 +7,8 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (
     SubscriptionPlanViewSet, UserSubscriptionViewSet, PaymentMethodViewSet,
-    InvoiceViewSet, ApiUsageLogViewSet, SubscriptionChangeViewSet, BillingStatsViewSet
+    InvoiceViewSet, ApiUsageLogViewSet, SubscriptionChangeViewSet, BillingStatsViewSet,
+    PaymentViewSet, WebhookViewSet
 )
 
 # Create router and register viewsets
@@ -19,6 +20,8 @@ router.register(r'invoices', InvoiceViewSet, basename='invoice')
 router.register(r'usage-logs', ApiUsageLogViewSet, basename='apiusagelog')
 router.register(r'subscription-changes', SubscriptionChangeViewSet, basename='subscriptionchange')
 router.register(r'stats', BillingStatsViewSet, basename='billingstats')
+router.register(r'payments', PaymentViewSet, basename='payment')
+router.register(r'webhooks', WebhookViewSet, basename='webhook')
 
 # Admin router for administrative endpoints
 admin_router = DefaultRouter()

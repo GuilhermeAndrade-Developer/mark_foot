@@ -41,17 +41,31 @@ services:
     restart: always
     ports:
       - "8000:8000"
+    env_file:
+      - ../.env.prod
     environment:
       - DEBUG=0
       - ENVIRONMENT=production
-      - SECRET_KEY=your_very_long_and_secure_secret_key_here
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_prod
-      - DB_USER=mark_foot_user_prod
-      - DB_PASSWORD=your_strong_user_password
-      - REDIS_URL=redis://:your_redis_password@redis_cache:6379/0
-      - ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_URL=${REDIS_URL}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      # Payment Gateway Production Keys
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - PAGSEGURO_EMAIL=${PAGSEGURO_EMAIL}
+      - PAGSEGURO_TOKEN=${PAGSEGURO_TOKEN}
+      - PAGSEGURO_SANDBOX=False
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN}
+      - MERCADOPAGO_SANDBOX=False
+      # URLs
+      - FRONTEND_URL=${FRONTEND_URL}
+      - BACKEND_URL=${BACKEND_URL}
     volumes:
       - ../storage:/app/storage
       - static_files:/app/static

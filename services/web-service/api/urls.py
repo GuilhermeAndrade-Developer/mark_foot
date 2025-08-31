@@ -47,6 +47,9 @@ urlpatterns = [
     path('sync/api-status/', api_status, name='api_status'),
     path('sync/logs/', sync_logs, name='sync_logs'),
     
+    # Gamification endpoints
+    path('gamification/', include('gamification.urls')),
+    
     # API endpoints
     path('', include(router.urls)),
 ]

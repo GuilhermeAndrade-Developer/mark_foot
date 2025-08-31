@@ -189,18 +189,34 @@ class DashboardViewSet(viewsets.ViewSet):
     def stats(self, request):
         """Get user dashboard statistics"""
         user = request.user
-        profile = user.user_profiles.first()
         
-        if not profile:
+        try:
+            profile = user.userprofile
+        except UserProfile.DoesNotExist:
             profile = UserProfile.objects.create(user=user)
         
-        # Calculate stats
-        badges_count = UserBadge.objects.filter(user=user).count()
-        predictions_count = Prediction.objects.filter(user=user).count()
-        challenges_completed = UserChallenge.objects.filter(
-            user=user, is_completed=True
-        ).count()
-        fantasy_teams_count = FantasyTeam.objects.filter(user=user).count()
+        # Calculate stats safely
+        try:
+            badges_count = UserBadge.objects.filter(user=user).count()
+        except:
+            badges_count = 0
+            
+        try:
+            predictions_count = Prediction.objects.filter(user=user).count()
+        except:
+            predictions_count = 0
+            
+        try:
+            challenges_completed = UserChallenge.objects.filter(
+                user=user, status='completed'
+            ).count()
+        except:
+            challenges_completed = 0
+            
+        try:
+            fantasy_teams_count = FantasyTeam.objects.filter(user=user).count()
+        except:
+            fantasy_teams_count = 0
         
         # Simple rank calculation
         higher_points = UserProfile.objects.filter(

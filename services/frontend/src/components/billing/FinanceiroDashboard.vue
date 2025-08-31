@@ -50,7 +50,7 @@
               </div>
               <div class="text-right">
                 <h4 class="text-h5 font-weight-bold text-primary">
-                  R$ {{ currentSubscription.plan.price_monthly.toFixed(2) }}
+                  R$ {{ Number(currentSubscription.plan.price_monthly).toFixed(2) }}
                 </h4>
                 <p class="text-body-2 text-medium-emphasis">/mês</p>
               </div>
@@ -263,7 +263,7 @@
               </v-chip>
             </template>
             <template #item.total_amount="{ item }">
-              R$ {{ item.total_amount.toFixed(2) }}
+              R$ {{ Number(item.total_amount).toFixed(2) }}
             </template>
             <template #item.issue_date="{ item }">
               {{ formatDate(item.issue_date) }}

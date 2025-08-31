@@ -1,7 +1,8 @@
 import api from './api'
 
 // Override base URL for billing API calls  
-const BILLING_BASE_URL = 'http://localhost:8001/api/billing/api'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001/api/v1'
+const BILLING_BASE_URL = API_BASE_URL.replace('/api/v1', '/api/billing/api')
 
 // Helper function to make billing API calls
 const billingRequest = async (endpoint: string, options: any = {}) => {

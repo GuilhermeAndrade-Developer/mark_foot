@@ -15545,3 +15545,456 @@ INFO 2025-08-31 00:45:52,293 basehttp 11 124004874569408 "GET /api/billing/api/u
 INFO 2025-08-31 00:45:52,296 basehttp 11 124004882962112 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
 INFO 2025-08-31 00:46:49,149 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
 INFO 2025-08-31 00:50:04,686 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
+WARNING 2025-08-31 00:51:44,250 log 11 124005111719616 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:51:44,251 log 11 124004882962112 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:51:44,304 basehttp 11 124005111719616 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:51:44,305 log 11 124004874569408 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:51:44,306 basehttp 11 124004882962112 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:51:44,345 log 11 124004866176704 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:51:44,353 basehttp 11 124004874569408 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:51:44,361 log 11 124004899747520 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:51:44,365 log 11 124004891354816 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:51:44,400 basehttp 11 124004866176704 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:51:44,413 basehttp 11 124004899747520 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:51:44,420 basehttp 11 124004891354816 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:51:44,456 log 11 124005111719616 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:51:44,461 log 11 124004882962112 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:51:44,470 log 11 124004874569408 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:51:44,470 basehttp 11 124005111719616 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:51:44,471 basehttp 11 124004882962112 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 00:51:44,471 basehttp 11 124004874569408 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+INFO 2025-08-31 00:51:44,671 basehttp 11 124004882962112 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 00:51:44,672 basehttp 11 124004874569408 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 00:51:44,686 basehttp 11 124005111719616 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 00:55:31,499 basehttp 11 124004874569408 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,501 basehttp 11 124005111719616 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,501 basehttp 11 124004882962112 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,502 basehttp 11 124004891354816 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,505 basehttp 11 124004899747520 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,505 basehttp 11 124004866176704 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,505 basehttp 11 124004874569408 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,509 basehttp 11 124004882962112 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:55:31,515 basehttp 11 124004891354816 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+WARNING 2025-08-31 00:55:31,576 log 11 124005111719616 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:55:31,585 basehttp 11 124005111719616 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:55:31,610 log 11 124004866176704 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:55:31,615 log 11 124004899747520 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:55:31,618 basehttp 11 124004866176704 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:55:31,651 basehttp 11 124004899747520 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:55:31,665 log 11 124004891354816 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:55:31,678 basehttp 11 124004891354816 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:55:31,707 log 11 124004882962112 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:55:31,710 log 11 124005111719616 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:55:31,720 log 11 124004874569408 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:55:31,730 basehttp 11 124005111719616 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:55:31,731 basehttp 11 124004882962112 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:55:31,732 basehttp 11 124004874569408 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:55:31,759 log 11 124004866176704 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:55:31,763 log 11 124004899747520 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:55:31,764 basehttp 11 124004866176704 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:55:31,766 basehttp 11 124004899747520 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+INFO 2025-08-31 00:55:31,885 basehttp 11 124004866176704 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 00:55:31,885 basehttp 11 124004899747520 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 00:55:31,897 basehttp 11 124004874569408 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+WARNING 2025-08-31 00:55:41,499 log 11 124004874569408 Unauthorized: /api/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:55:41,500 log 11 124004899747520 Unauthorized: /api/billing/api/invoices/
+WARNING 2025-08-31 00:55:41,500 log 11 124004866176704 Unauthorized: /api/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:55:41,501 basehttp 11 124004874569408 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 401 68
+WARNING 2025-08-31 00:55:41,502 basehttp 11 124004899747520 "GET /api/billing/api/invoices/ HTTP/1.1" 401 68
+WARNING 2025-08-31 00:55:41,502 basehttp 11 124004866176704 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 401 68
+INFO 2025-08-31 00:55:42,879 basehttp 11 124004866176704 "OPTIONS /api/billing/api/auth/login/ HTTP/1.1" 200 0
+WARNING 2025-08-31 00:55:42,893 log 11 124004866176704 Not Found: /api/billing/api/auth/login/
+WARNING 2025-08-31 00:55:42,894 basehttp 11 124004866176704 "POST /api/billing/api/auth/login/ HTTP/1.1" 404 14096
+WARNING 2025-08-31 00:55:45,313 log 11 124004866176704 Not Found: /api/billing/api/auth/login/
+WARNING 2025-08-31 00:55:45,314 basehttp 11 124004866176704 "POST /api/billing/api/auth/login/ HTTP/1.1" 404 14096
+WARNING 2025-08-31 00:55:45,987 log 11 124004866176704 Not Found: /api/billing/api/auth/login/
+WARNING 2025-08-31 00:55:45,989 basehttp 11 124004866176704 "POST /api/billing/api/auth/login/ HTTP/1.1" 404 14096
+WARNING 2025-08-31 00:55:46,292 log 11 124004866176704 Not Found: /api/billing/api/auth/login/
+WARNING 2025-08-31 00:55:46,293 basehttp 11 124004866176704 "POST /api/billing/api/auth/login/ HTTP/1.1" 404 14096
+WARNING 2025-08-31 00:55:46,525 log 11 124004866176704 Not Found: /api/billing/api/auth/login/
+WARNING 2025-08-31 00:55:46,527 basehttp 11 124004866176704 "POST /api/billing/api/auth/login/ HTTP/1.1" 404 14096
+INFO 2025-08-31 00:57:56,548 autoreload 11 130314025208704 Watching for file changes with StatReloader
+INFO 2025-08-31 00:59:52,499 basehttp 11 130313955350208 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:52,947 basehttp 11 130313955350208 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-31 00:59:53,485 basehttp 11 130313955350208 "OPTIONS /api/v1/business/metrics/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:53,531 basehttp 11 130313955350208 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-31 00:59:53,594 basehttp 11 130313955350208 "OPTIONS /api/v1/business/user-growth/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:53,648 basehttp 11 130313955350208 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-31 00:59:53,724 basehttp 11 130313955350208 "OPTIONS /api/v1/business/revenue/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:53,776 basehttp 11 130313955350208 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-31 00:59:53,834 basehttp 11 130313955350208 "OPTIONS /api/v1/business/social-engagement/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:53,887 basehttp 11 130313955350208 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-31 00:59:53,948 basehttp 11 130313955350208 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:59:54,000 basehttp 11 130313955350208 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-08-31 01:00:00,068 basehttp 11 130313955350208 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:00:00,080 basehttp 11 130313871161024 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:00:00,085 basehttp 11 130313862768320 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:02:44,621 basehttp 11 130313854375616 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
+INFO 2025-08-31 01:04:50,383 basehttp 11 130313854375616 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-31 01:04:57,974 basehttp 11 130313854375616 "POST /api/v1/auth/login/ HTTP/1.1" 200 483
+INFO 2025-08-31 01:05:06,848 basehttp 11 130313854375616 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:05:16,455 basehttp 11 130313854375616 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:05:26,058 basehttp 11 130313854375616 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+WARNING 2025-08-31 01:06:40,273 log 11 130313955350208 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 01:06:40,299 log 11 130313845982912 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 01:06:40,301 basehttp 11 130313955350208 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 01:06:40,330 log 11 130313829197504 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 01:06:40,353 log 11 130313862768320 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 01:06:40,361 basehttp 11 130313845982912 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 01:06:40,363 log 11 130313837590208 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 01:06:40,376 basehttp 11 130313829197504 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 01:06:40,391 log 11 130313871161024 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 01:06:40,394 basehttp 11 130313862768320 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 01:06:40,435 log 11 130313955350208 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 01:06:40,441 basehttp 11 130313837590208 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 01:06:40,442 basehttp 11 130313871161024 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 01:06:40,451 basehttp 11 130313955350208 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 01:06:40,492 log 11 130313845982912 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 01:06:40,493 log 11 130313829197504 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 01:06:40,495 basehttp 11 130313845982912 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 01:06:40,500 basehttp 11 130313829197504 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+INFO 2025-08-31 01:06:40,797 basehttp 11 130313829197504 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:06:40,814 basehttp 11 130313955350208 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:06:40,834 basehttp 11 130313845982912 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+WARNING 2025-08-31 01:08:14,092 log 11 130313845982912 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 01:08:14,099 log 11 130313829197504 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 01:08:14,114 log 11 130313862768320 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 01:08:14,125 log 11 130313955350208 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 01:08:14,126 basehttp 11 130313845982912 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 01:08:14,126 basehttp 11 130313829197504 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 01:08:14,147 log 11 130313837590208 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 01:08:14,150 log 11 130313871161024 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 01:08:14,151 basehttp 11 130313862768320 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 01:08:14,152 basehttp 11 130313955350208 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 01:08:14,196 basehttp 11 130313837590208 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 01:08:14,198 basehttp 11 130313871161024 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 01:08:14,217 log 11 130313845982912 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 01:08:14,236 log 11 130313829197504 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 01:08:14,279 log 11 130313862768320 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 01:08:14,280 basehttp 11 130313845982912 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 01:08:14,281 basehttp 11 130313829197504 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 01:08:14,284 basehttp 11 130313862768320 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+INFO 2025-08-31 01:08:14,706 basehttp 11 130313829197504 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:08:14,711 basehttp 11 130313862768320 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:08:14,735 basehttp 11 130313845982912 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:08:39,452 basehttp 11 130313845982912 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:08:39,458 basehttp 11 130313862768320 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:08:39,463 basehttp 11 130313829197504 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:08:59,809 basehttp 11 130313862768320 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:08:59,809 basehttp 11 130313829197504 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:08:59,821 basehttp 11 130313845982912 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:09:21,030 basehttp 11 130313845982912 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:09:21,031 basehttp 11 130313862768320 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:09:21,047 basehttp 11 130313829197504 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+WARNING 2025-08-31 01:09:28,757 log 11 130313871161024 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 01:09:28,768 log 11 130313829197504 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 01:09:28,852 basehttp 11 130313829197504 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 01:09:28,813 log 11 130313837590208 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 01:09:28,845 log 11 130313845982912 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 01:09:28,900 basehttp 11 130313845982912 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 01:09:28,784 basehttp 11 130313871161024 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 01:09:28,864 log 11 130313955350208 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 01:09:28,884 basehttp 11 130313837590208 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 01:09:28,848 log 11 130313862768320 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 01:09:28,967 basehttp 11 130313955350208 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 01:09:28,933 log 11 130313829197504 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 01:09:29,022 basehttp 11 130313829197504 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 01:09:29,015 basehttp 11 130313862768320 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 01:09:29,071 log 11 130313871161024 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 01:09:29,073 log 11 130313837590208 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 01:09:29,075 basehttp 11 130313871161024 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 01:09:29,078 basehttp 11 130313837590208 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+INFO 2025-08-31 01:09:29,276 basehttp 11 130313871161024 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:09:29,280 basehttp 11 130313837590208 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:09:29,282 basehttp 11 130313829197504 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:10:30,000 autoreload 11 130314025208704 /app/api/urls.py changed, reloading.
+INFO 2025-08-31 01:10:33,995 autoreload 42 131710566861696 Watching for file changes with StatReloader
+INFO 2025-08-31 01:10:43,298 autoreload 42 131710566861696 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-08-31 01:10:46,330 autoreload 44 140586147425152 Watching for file changes with StatReloader
+INFO 2025-08-31 01:11:07,871 autoreload 44 140586147425152 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-08-31 01:11:12,043 autoreload 46 127639417314176 Watching for file changes with StatReloader
+INFO 2025-08-31 01:11:32,008 basehttp 46 127639347455680 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 200 278
+INFO 2025-08-31 01:11:39,145 basehttp 46 127639347455680 "GET /api/v1/gamification/badges/ HTTP/1.1" 200 52
+ERROR 2025-08-31 01:11:46,153 log 46 127639347455680 Internal Server Error: /api/v1/gamification/dashboard/stats/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/gamification/views.py", line 192, in stats
+    profile = user.user_profiles.first()
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'user_profiles'
+ERROR 2025-08-31 01:11:46,162 basehttp 46 127639347455680 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 500 92644
+INFO 2025-08-31 01:12:00,331 autoreload 46 127639417314176 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:12:04,161 autoreload 49 140710499646336 Watching for file changes with StatReloader
+INFO 2025-08-31 01:12:13,395 autoreload 49 140710499646336 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:12:17,330 autoreload 51 139351539948416 Watching for file changes with StatReloader
+ERROR 2025-08-31 01:12:19,662 log 51 139351471138496 Internal Server Error: /api/v1/gamification/dashboard/stats/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/gamification/views.py", line 201, in stats
+    challenges_completed = UserChallenge.objects.filter(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1379, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1189, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'is_completed' into field. Choices are: challenge, challenge_id, completed_at, completion_percentage, id, joined_at, points_earned, progress_data, status, user, user_id
+ERROR 2025-08-31 01:12:19,674 basehttp 51 139351471138496 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 500 138353
+ERROR 2025-08-31 01:12:24,623 log 51 139351471138496 Internal Server Error: /api/v1/gamification/dashboard/stats/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/gamification/views.py", line 201, in stats
+    challenges_completed = UserChallenge.objects.filter(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1379, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1189, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'is_completed' into field. Choices are: challenge, challenge_id, completed_at, completion_percentage, id, joined_at, points_earned, progress_data, status, user, user_id
+ERROR 2025-08-31 01:12:24,628 basehttp 51 139351471138496 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 500 138353
+INFO 2025-08-31 01:12:42,173 autoreload 51 139351539948416 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:12:45,628 autoreload 55 126460226870144 Watching for file changes with StatReloader
+INFO 2025-08-31 01:12:51,479 autoreload 55 126460226870144 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:12:54,509 autoreload 57 133783976323968 Watching for file changes with StatReloader
+ERROR 2025-08-31 01:12:56,750 log 57 133783907514048 Internal Server Error: /api/v1/gamification/dashboard/stats/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/gamification/views.py", line 204, in stats
+    fantasy_teams_count = FantasyTeam.objects.filter(user=user).count()
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1379, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1189, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: created_at, defenders, formation, forwards, goalkeepers, id, league, league_id, midfielders, name, owner, owner_id, remaining_budget, total_points, updated_at
+ERROR 2025-08-31 01:12:56,763 basehttp 57 133783907514048 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 500 138586
+ERROR 2025-08-31 01:13:01,256 log 57 133783907514048 Internal Server Error: /api/v1/gamification/dashboard/stats/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/gamification/views.py", line 204, in stats
+    fantasy_teams_count = FantasyTeam.objects.filter(user=user).count()
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1498, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1529, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1379, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1189, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/query.py", line 1677, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: created_at, defenders, formation, forwards, goalkeepers, id, league, league_id, midfielders, name, owner, owner_id, remaining_budget, total_points, updated_at
+ERROR 2025-08-31 01:13:01,263 basehttp 57 133783907514048 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 500 138586
+INFO 2025-08-31 01:13:12,060 autoreload 57 133783976323968 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:13:15,152 autoreload 61 140084488358784 Watching for file changes with StatReloader
+INFO 2025-08-31 01:13:22,551 autoreload 61 140084488358784 /app/gamification/views.py changed, reloading.
+INFO 2025-08-31 01:13:25,487 autoreload 63 134879284231040 Watching for file changes with StatReloader
+INFO 2025-08-31 01:13:27,379 basehttp 63 134879147718336 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 133
+INFO 2025-08-31 01:13:32,885 basehttp 63 134879147718336 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 133
+INFO 2025-08-31 01:13:48,957 basehttp 63 134879147718336 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 665
+INFO 2025-08-31 01:14:17,974 basehttp 63 134879138277056 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 200 278
+INFO 2025-08-31 01:14:18,030 basehttp 63 134879121491648 "GET /api/v1/gamification/badges/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:14:18,037 basehttp 63 134879138277056 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:14:18,038 basehttp 63 134879129884352 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 133
+INFO 2025-08-31 01:14:18,045 basehttp 63 134879113098944 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:14:18,045 basehttp 63 134879104706240 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:14:18,062 basehttp 63 134879096313536 "GET /api/v1/gamification/challenges/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:14:18,062 basehttp 63 134879121491648 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:14:18,079 basehttp 63 134879113098944 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 665
+INFO 2025-08-31 01:14:18,577 basehttp 63 134879113098944 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:14:18,577 basehttp 63 134879138277056 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:14:18,584 basehttp 63 134879121491648 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:14:31,144 basehttp 63 134879121491648 "OPTIONS /api/billing/api/plans/ HTTP/1.1" 200 0
+INFO 2025-08-31 01:14:31,155 basehttp 63 134879121491648 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
+INFO 2025-08-31 01:16:46,421 basehttp 63 134879113098944 "GET /api/v1/gamification/badges/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:16:46,442 basehttp 63 134879129884352 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:16:46,442 basehttp 63 134879121491648 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 200 278
+INFO 2025-08-31 01:16:46,447 basehttp 63 134879138277056 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 133
+INFO 2025-08-31 01:16:46,447 basehttp 63 134879104706240 "GET /api/v1/gamification/challenges/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:16:46,452 basehttp 63 134879096313536 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:16:46,466 basehttp 63 134879113098944 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 200 52
+INFO 2025-08-31 01:16:46,472 basehttp 63 134879129884352 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 2
+INFO 2025-08-31 01:16:46,495 basehttp 63 134879121491648 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 665
+INFO 2025-08-31 01:16:46,947 basehttp 63 134879129884352 "GET /api/billing/api/invoices/ HTTP/1.1" 200 467
+INFO 2025-08-31 01:16:46,947 basehttp 63 134879121491648 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 01:16:46,967 basehttp 63 134879113098944 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 01:16:49,460 basehttp 63 134879113098944 "GET /api/billing/api/plans/ HTTP/1.1" 200 969

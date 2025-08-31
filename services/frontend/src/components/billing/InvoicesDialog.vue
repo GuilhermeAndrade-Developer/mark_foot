@@ -51,7 +51,7 @@
           <template #item.total_amount="{ item }">
             <div class="text-right">
               <div class="font-weight-bold">
-                R$ {{ item.total_amount.toFixed(2) }}
+                R$ {{ Number(item.total_amount).toFixed(2) }}
               </div>
               <div class="text-caption text-medium-emphasis">
                 {{ item.currency }}
@@ -278,13 +278,13 @@ const getDueDateStatus = (dueDate: string, status: string) => {
 const getTotalPaid = () => {
   return props.invoices
     .filter(invoice => invoice.status === 'paid')
-    .reduce((total, invoice) => total + invoice.total_amount, 0)
+    .reduce((total, invoice) => total + Number(invoice.total_amount), 0)
 }
 
 const getTotalPending = () => {
   return props.invoices
     .filter(invoice => ['pending', 'overdue'].includes(invoice.status))
-    .reduce((total, invoice) => total + invoice.total_amount, 0)
+    .reduce((total, invoice) => total + Number(invoice.total_amount), 0)
 }
 
 const viewInvoice = (invoice: Invoice) => {

@@ -111,7 +111,7 @@
                       /{{ billingCycle === 'monthly' ? 'mês' : 'ano' }}
                     </div>
                     <div
-                      v-if="billingCycle === 'yearly' && plan.price_yearly > 0"
+                      v-if="billingCycle === 'yearly' && Number(plan.price_yearly) > 0"
                       class="text-body-2 text-success mt-1"
                     >
                       Economize R$ {{ getYearlySavings(plan).toFixed(2) }} por ano
@@ -297,15 +297,15 @@ const selectPlan = async (plan: SubscriptionPlan) => {
 }
 
 const getPrice = (plan: SubscriptionPlan) => {
-  if (billingCycle.value === 'yearly' && plan.price_yearly > 0) {
-    return plan.price_yearly
+  if (billingCycle.value === 'yearly' && Number(plan.price_yearly) > 0) {
+    return Number(plan.price_yearly)
   }
-  return plan.price_monthly
+  return Number(plan.price_monthly)
 }
 
 const getYearlySavings = (plan: SubscriptionPlan) => {
-  const monthlyTotal = plan.price_monthly * 12
-  return monthlyTotal - plan.price_yearly
+  const monthlyTotal = Number(plan.price_monthly) * 12
+  return monthlyTotal - Number(plan.price_yearly)
 }
 
 const getPlanIcon = (planType: string) => {

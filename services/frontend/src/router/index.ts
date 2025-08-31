@@ -49,7 +49,7 @@ import ContentReports from '@/views/ContentReports.vue'
 import PollsDashboard from '@/views/PollsDashboard.vue'
 import PollsManagement from '@/views/PollsManagement.vue'
 // Billing Views
-import { FinanceiroDashboard } from '@/components/billing'
+import GestaoFinanceira from '@/views/GestaoFinanceira.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -414,10 +414,10 @@ const routes: Array<RouteRecordRaw> = [
   // Billing/Financial Management Routes
   {
     path: '/financeiro',
-    name: 'FinanceiroDashboard',
-    component: FinanceiroDashboard,
+    name: 'GestaoFinanceira',
+    component: GestaoFinanceira,
     meta: {
-      title: 'Financeiro - Mark Foot',
+      title: 'Gestão Financeira - Mark Foot',
       requiresAuth: true
     }
   }

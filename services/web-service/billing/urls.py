@@ -20,9 +20,17 @@ router.register(r'usage-logs', ApiUsageLogViewSet, basename='apiusagelog')
 router.register(r'subscription-changes', SubscriptionChangeViewSet, basename='subscriptionchange')
 router.register(r'stats', BillingStatsViewSet, basename='billingstats')
 
+# Admin router for administrative endpoints
+admin_router = DefaultRouter()
+admin_router.register(r'subscriptions', UserSubscriptionViewSet, basename='admin-usersubscription')
+admin_router.register(r'stats', BillingStatsViewSet, basename='admin-billingstats')
+
 app_name = 'billing'
 
 urlpatterns = [
-    # API endpoints
+    # Public/User API endpoints
     path('api/', include(router.urls)),
+    
+    # Admin API endpoints  
+    path('admin/', include(admin_router.urls)),
 ]

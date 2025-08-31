@@ -195,24 +195,23 @@ def sync_popular_players(self, api_key=None):
     Args:
         api_key (str): Optional API key for premium features
     """
-    # List of popular players to sync
-    popular_players = [
-        "Lionel Messi",
-        "Cristiano Ronaldo", 
-        "Kylian Mbappe",
-        "Neymar",
-        "Erling Haaland",
-        "Kevin De Bruyne",
-        "Mohamed Salah",
-        "Robert Lewandowski",
-        "Luka Modric",
-        "Virgil van Dijk",
-        "Sadio Mane",
-        "Harry Kane",
-        "Sergio Ramos",
-        "Karim Benzema",
-        "N'Golo Kante"
-    ]
+    # Get popular players from seeded data instead of hardcoded list
+    from core.models import Player
+    popular_players_qs = Player.objects.filter(
+        is_active=True,
+        market_value__gte=10000000  # Players with market value >= 10M
+    ).order_by('-market_value')[:15]
+    
+    # Use seeded data or create warning if no data exists
+    if popular_players_qs.exists():
+        popular_players = [player.name for player in popular_players_qs]
+    else:
+        logger.warning("⚠️  No players found! Please run seeders: python manage.py seed_dev_data")
+        return {
+            'status': 'warning',
+            'message': 'No players found in database. Please run seeders first.',
+            'players_synced': 0
+        }
     
     logger.info(f"⭐ Starting popular players sync: {len(popular_players)} players")
     

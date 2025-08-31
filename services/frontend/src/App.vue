@@ -19,9 +19,229 @@
 
         <v-divider />
 
-        <v-list density="compact" nav>
+        <!-- User Progress Widget -->
+        <div class="pa-4">
+          <UserProgressWidget />
+        </div>
+
+        <v-divider />
+
+        <v-list v-model:opened="openGroups" density="compact" nav>
+          <!-- Core Management Group -->
+          <v-list-group value="core">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-view-dashboard-variant</v-icon>
+                </template>
+                <v-list-item-title>Gestão Principal</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in coreItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Football Management Group -->
+          <v-list-group value="football">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-soccer</v-icon>
+                </template>
+                <v-list-item-title>Gestão de Futebol</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in footballItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Gamification Group -->
+          <v-list-group value="gamification">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-gamepad-variant</v-icon>
+                </template>
+                <v-list-item-title>Gamificação</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in gamificationItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Chat Features Group -->
+          <v-list-group value="chat">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-forum</v-icon>
+                </template>
+                <v-list-item-title>Live Chat</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in chatItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+          
+          <!-- Social Features Group -->
+          <v-list-group value="social">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-account-group</v-icon>
+                </template>
+                <v-list-item-title>Recursos Sociais</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in socialItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Social Networks Group -->
+          <v-list-group value="social-networks">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-web</v-icon>
+                </template>
+                <v-list-item-title>Redes Sociais</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in socialNetworksItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Content Management Group -->
+          <v-list-group value="content">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-file-document-multiple</v-icon>
+                </template>
+                <v-list-item-title>Gestão de Conteúdo</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in contentItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Polls Management Group -->
+          <v-list-group value="polls">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-poll</v-icon>
+                </template>
+                <v-list-item-title>Sistema de Enquetes</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in pollsItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- AI Management Group -->
+          <v-list-group value="ai">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-brain</v-icon>
+                </template>
+                <v-list-item-title>Inteligência Artificial</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in aiItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <!-- Financial Management Group -->
+          <v-list-group value="financial">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-credit-card</v-icon>
+                </template>
+                <v-list-item-title>Gestão Financeira</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in financialItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
+          <v-divider class="my-2" />
+
+          <!-- System Items (without group) -->
           <v-list-item
-            v-for="item in menuItems"
+            v-for="item in systemItems"
             :key="item.title"
             :prepend-icon="item.icon"
             :title="item.title"
@@ -124,14 +344,14 @@
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title>Admin User</v-list-item-title>
-            <v-list-item-subtitle>admin@markfoot.com</v-list-item-subtitle>
+            <v-list-item-title>{{ authStore.fullName || 'Usuário' }}</v-list-item-title>
+            <v-list-item-subtitle>{{ authStore.user?.email || 'email@markfoot.com' }}</v-list-item-subtitle>
           </v-list-item>
           <v-divider />
           <v-list-item>
             <v-list-item-title>Configurações</v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <v-list-item @click="handleLogout">
             <v-list-item-title>Sair</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -184,20 +404,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onMounted, computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useAppStore } from '@/stores/app'
 import { useAuthStore } from '@/stores/auth'
+import { useGamificationStore } from '@/stores/gamification'
+import UserProgressWidget from '@/components/UserProgressWidget.vue'
 
 const router = useRouter()
+const route = useRoute()
 const theme = useTheme()
 const appStore = useAppStore()
 const authStore = useAuthStore()
+const gamificationStore = useGamificationStore()
 
 // Reactive data
 const drawer = ref(false)
 const loading = ref(false)
+const openGroups = ref(['core']) // Abrir "Gestão Principal" por padrão
 
 const snackbar = reactive({
   show: false,
@@ -206,44 +431,288 @@ const snackbar = reactive({
   timeout: 4000
 })
 
-// Menu items
+// Menu items with sections
 const menuItems = [
+  // Core Management - Dashboard Empresarial
   {
-    title: 'Dashboard',
+    title: 'Dashboard Empresarial',
     icon: 'mdi-view-dashboard',
-    route: '/'
+    route: '/',
+    section: 'core'
+  },
+  // Football Management - Dashboard de Futebol + outros itens
+  {
+    title: 'Dashboard de Futebol',
+    icon: 'mdi-soccer',
+    route: '/football-dashboard',
+    section: 'football'
   },
   {
     title: 'Times',
     icon: 'mdi-shield-account',
-    route: '/teams'
+    route: '/teams',
+    section: 'football'
   },
   {
     title: 'Jogadores',
     icon: 'mdi-account-group',
-    route: '/players'
+    route: '/players',
+    section: 'football'
   },
   {
     title: 'Partidas',
     icon: 'mdi-soccer',
-    route: '/matches'
+    route: '/matches',
+    section: 'football'
   },
   {
     title: 'Competições',
     icon: 'mdi-trophy',
-    route: '/competitions'
+    route: '/competitions',
+    section: 'football'
   },
   {
     title: 'Classificação',
     icon: 'mdi-podium',
-    route: '/standings'
+    route: '/standings',
+    section: 'football'
   },
   {
     title: 'Estatísticas',
     icon: 'mdi-chart-line',
-    route: '/statistics'
+    route: '/statistics',
+    section: 'football'
+  },
+  // Gamification Management
+  {
+    title: 'Gamificação',
+    icon: 'mdi-gamepad-variant',
+    route: '/gamification',
+    section: 'gamification'
+  },
+  {
+    title: 'Gestão de Usuários',
+    icon: 'mdi-account-cog',
+    route: '/gamification/users',
+    section: 'gamification'
+  },
+  {
+    title: 'Analytics',
+    icon: 'mdi-chart-line-variant',
+    route: '/gamification/analytics',
+    section: 'gamification'
+  },
+  // Social Management
+  {
+    title: 'Social Dashboard',
+    icon: 'mdi-account-multiple',
+    route: '/social',
+    section: 'social'
+  },
+  {
+    title: 'Fórum',
+    icon: 'mdi-forum-outline',
+    route: '/forum',
+    section: 'social'
+  },
+  {
+    title: 'Categorias',
+    icon: 'mdi-folder-outline',
+    route: '/forum/categories',
+    section: 'social'
+  },
+  {
+    title: 'Gerenciar Tópicos',
+    icon: 'mdi-forum',
+    route: '/forum/topics',
+    section: 'social'
+  },
+  {
+    title: 'Moderação',
+    icon: 'mdi-shield-check',
+    route: '/forum/moderation',
+    section: 'social'
+  },
+  {
+    title: 'Relatórios',
+    icon: 'mdi-chart-box',
+    route: '/forum/reports',
+    section: 'social'
+  },
+  {
+    title: 'Gestão de Comentários',
+    icon: 'mdi-comment-multiple',
+    route: '/social/comments',
+    section: 'social'
+  },
+  {
+    title: 'Usuários Sociais',
+    icon: 'mdi-account-heart',
+    route: '/social/users',
+    section: 'social'
+  },
+  // Social Networks Management
+  {
+    title: 'Dashboard de Redes',
+    icon: 'mdi-share-variant',
+    route: '/social-networks',
+    section: 'social-networks'
+  },
+  {
+    title: 'Compartilhamento Social',
+    icon: 'mdi-share',
+    route: '/social-networks/sharing',
+    section: 'social-networks'
+  },
+  {
+    title: 'Grupos Privados',
+    icon: 'mdi-account-group',
+    route: '/social-networks/groups',
+    section: 'social-networks'
+  },
+  {
+    title: 'Configurações de Redes',
+    icon: 'mdi-cog',
+    route: '/social-networks/settings',
+    section: 'social-networks'
+  },
+  // Chat Management
+  {
+    title: 'Chat Dashboard',
+    icon: 'mdi-forum',
+    route: '/chat',
+    section: 'chat'
+  },
+  {
+    title: 'Gerenciar Salas',
+    icon: 'mdi-door-open',
+    route: '/chat/rooms',
+    section: 'chat'
+  },
+  {
+    title: 'Moderação de Chat',
+    icon: 'mdi-shield-check',
+    route: '/chat/moderation',
+    section: 'chat'
+  },
+  // Content Management
+  {
+    title: 'Gestão de Conteúdo',
+    icon: 'mdi-file-document-multiple',
+    route: '/content',
+    section: 'content'
+  },
+  {
+    title: 'Artigos',
+    icon: 'mdi-file-document',
+    route: '/content/articles',
+    section: 'content'
+  },
+  {
+    title: 'Categorias',
+    icon: 'mdi-folder-outline',
+    route: '/content/categories',
+    section: 'content'
+  },
+  {
+    title: 'Relatórios',
+    icon: 'mdi-chart-box',
+    route: '/content/reports',
+    section: 'content'
+  },
+  // Polls Management
+  {
+    title: 'Dashboard Enquetes',
+    icon: 'mdi-poll',
+    route: '/polls',
+    section: 'polls'
+  },
+  {
+    title: 'Gerenciar Enquetes',
+    icon: 'mdi-format-list-checks',
+    route: '/polls/manage',
+    section: 'polls'
+  },
+  // AI Management
+  {
+    title: 'IA Dashboard',
+    icon: 'mdi-brain',
+    route: '/ai-dashboard',
+    section: 'ai'
+  },
+  {
+    title: 'Análise de Sentimento',
+    icon: 'mdi-heart-pulse',
+    route: '/ai-sentiment',
+    section: 'ai'
+  },
+  {
+    title: 'Testes IA',
+    icon: 'mdi-test-tube',
+    route: '/ai-testing',
+    section: 'ai'
+  },
+  // Financial Management
+  {
+    title: 'Dashboard Financeiro',
+    icon: 'mdi-chart-line',
+    route: '/financeiro',
+    section: 'financial'
+  },
+  {
+    title: 'Configurações',
+    icon: 'mdi-cog',
+    route: '/financeiro/configuracoes',
+    section: 'financial'
+  },
+  {
+    title: 'Gestão de Planos',
+    icon: 'mdi-package-variant',
+    route: '/financeiro/planos',
+    section: 'financial'
+  },
+  {
+    title: 'Gestão de Clientes',
+    icon: 'mdi-account-group',
+    route: '/financeiro/clientes',
+    section: 'financial'
+  },
+  // System
+  {
+    title: 'Configurações',
+    icon: 'mdi-cog',
+    route: '/settings',
+    section: 'system'
   }
 ]
+
+// Computed properties for menu sections
+const coreItems = computed(() => menuItems.filter(item => item.section === 'core'))
+const footballItems = computed(() => menuItems.filter(item => item.section === 'football'))
+const gamificationItems = computed(() => menuItems.filter(item => item.section === 'gamification'))
+const socialItems = computed(() => menuItems.filter(item => item.section === 'social'))
+const socialNetworksItems = computed(() => menuItems.filter(item => item.section === 'social-networks'))
+const chatItems = computed(() => menuItems.filter(item => item.section === 'chat'))
+const contentItems = computed(() => menuItems.filter(item => item.section === 'content'))
+const pollsItems = computed(() => menuItems.filter(item => item.section === 'polls'))
+const aiItems = computed(() => menuItems.filter(item => item.section === 'ai'))
+const financialItems = computed(() => menuItems.filter(item => item.section === 'financial'))
+const systemItems = computed(() => menuItems.filter(item => item.section === 'system'))
+
+// Function to get current section based on route
+const getCurrentSection = () => {
+  const currentPath = route.path
+  const currentItem = menuItems.find(item => item.route === currentPath)
+  return currentItem?.section || 'core'
+}
+
+// Watch route changes to expand the correct group
+watch(() => route.path, () => {
+  const currentSection = getCurrentSection()
+  if (!openGroups.value.includes(currentSection)) {
+    openGroups.value = [currentSection]
+  }
+}, { immediate: true })
 
 // Methods
 const toggleTheme = () => {
@@ -267,6 +736,13 @@ const handleLogout = async () => {
 onMounted(() => {
   // Initialize authentication
   authStore.initializeAuth()
+  
+  // Initialize gamification if authenticated
+  if (authStore.isAuthenticated) {
+    gamificationStore.initializeGamification().catch(() => {
+      console.log('Gamificação inicializada com dados do banco')
+    })
+  }
 })
 </script>
 
@@ -277,5 +753,30 @@ onMounted(() => {
 
 .v-toolbar-title {
   font-size: 1.25rem !important;
+}
+
+/* Menu group styling */
+.v-list-group__items .v-list-item {
+  border-left: 2px solid rgba(var(--v-theme-primary), 0.1);
+  margin-left: 4px;
+  margin-bottom: 2px;
+}
+
+.v-list-group__items .v-list-item:hover {
+  border-left-color: rgba(var(--v-theme-primary), 0.3);
+}
+
+.v-list-group__items .v-list-item--active {
+  border-left-color: rgb(var(--v-theme-primary));
+  background: rgba(var(--v-theme-primary), 0.08);
+}
+
+/* Group activator styling */
+.v-list-group > .v-list-item {
+  font-weight: 500;
+}
+
+.v-list-group > .v-list-item .v-list-item__prepend > .v-icon {
+  opacity: 0.8;
 }
 </style>

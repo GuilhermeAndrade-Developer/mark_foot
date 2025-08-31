@@ -40,24 +40,38 @@ services:
     restart: unless-stopped
     ports:
       - "8001:8000"
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DEBUG=${DEBUG:-1}
+      - ENVIRONMENT=development
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - PAGSEGURO_EMAIL=${PAGSEGURO_EMAIL}
+      - PAGSEGURO_TOKEN=${PAGSEGURO_TOKEN}
+      - PAGSEGURO_SANDBOX=${PAGSEGURO_SANDBOX:-True}
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN}
+      - MERCADOPAGO_SANDBOX=${MERCADOPAGO_SANDBOX:-True}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+      - BACKEND_URL=${BACKEND_URL:-http://localhost:8001}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
       - ../storage:/app/storage
+      - ../database:/database
     depends_on:
       - mysql_db
       - redis_cache
     networks:
       - mark_foot_dev_network
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python wait-for-db.py && python manage.py migrate && python manage.py seed_dev_data --quick && python manage.py runserver 0.0.0.0:8000"
 
   # Celery Worker for Background Tasks
   celery-worker-dev:
@@ -66,14 +80,17 @@ services:
       dockerfile: Dockerfile
     container_name: mark_foot_celery_worker_dev
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DEBUG=${DEBUG:-1}
+      - ENVIRONMENT=development
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
@@ -81,9 +98,10 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-dev
     networks:
       - mark_foot_dev_network
-    command: celery -A mark_foot_backend worker --loglevel=info
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend worker --loglevel=info"
 
   # Celery Beat Scheduler
   celery-beat-dev:
@@ -92,14 +110,17 @@ services:
       dockerfile: Dockerfile
     container_name: mark_foot_celery_beat_dev
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
-      - DEBUG=1
-      - DB_HOST=mysql_db
-      - DB_PORT=3306
-      - DB_NAME=mark_foot_db_dev
-      - DB_USER=mark_foot_user
-      - DB_PASSWORD=mark_foot_password
-      - REDIS_URL=redis://redis_cache:6379/0
+      - DEBUG=${DEBUG:-1}
+      - ENVIRONMENT=development
+      - DB_HOST=${DB_HOST:-mysql_db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-mark_foot_db_dev}
+      - DB_USER=${DB_USER:-mark_foot_user}
+      - DB_PASSWORD=${DB_PASSWORD:-mark_foot_password}
+      - REDIS_URL=${REDIS_URL:-redis://redis_cache:6379/0}
     volumes:
       - ../services/web-service:/app
       - ../shared:/app/shared
@@ -107,10 +128,11 @@ services:
     depends_on:
       - mysql_db
       - redis_cache
+      - web-service-dev
       - celery-worker-dev
     networks:
       - mark_foot_dev_network
-    command: celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: sh -c "python wait-for-db.py && celery -A mark_foot_backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler"
 
   # Frontend Service (Vue.js) - Development
   frontend-dev:
@@ -130,9 +152,44 @@ services:
       - mark_foot_dev_network
     command: npm run dev
 
+  # Test Service - Development
+  test-service-dev:
+    build:
+      context: ../services/test-service
+      dockerfile: Dockerfile
+    container_name: mark_foot_test_service_dev
+    restart: "no"
+    ports:
+      - "8002:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=test_settings
+      - DB_HOST=mysql_db
+      - DB_PORT=3306
+      - DB_NAME=mark_foot_db_dev
+      - DB_USER=mark_foot_user
+      - DB_PASSWORD=mark_foot_password
+      - REDIS_URL=redis://redis_cache:6379/0
+      - CELERY_BROKER_URL=redis://redis_cache:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis_cache:6379/0
+    volumes:
+      - ../services/test-service:/app
+      - ../shared:/app/shared
+      - ../storage:/app/storage
+      - test_reports:/app/htmlcov
+    depends_on:
+      - mysql_db
+      - redis_cache
+      - web-service-dev
+    networks:
+      - mark_foot_dev_network
+    profiles:
+      - testing
+    command: ["python", "-m", "pytest", "-v", "--cov=.", "--cov-report=html"]
+
 volumes:
   mysql_dev_data:
   redis_dev_data:
+  test_reports:
 
 networks:
   mark_foot_dev_network:

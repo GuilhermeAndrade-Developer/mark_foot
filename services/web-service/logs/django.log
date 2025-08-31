@@ -1,0 +1,3 @@
+INFO 2025-08-31 16:02:16,570 autoreload 73 131375496555392 Watching for file changes with StatReloader
+INFO 2025-08-31 16:06:44,233 autoreload 73 131375496555392 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-08-31 16:06:48,914 autoreload 75 139722299571072 Watching for file changes with StatReloader

@@ -28,6 +28,13 @@ urlpatterns = [
     
     # API endpoints
     path('api/v1/', include('api.urls')),
+    path('api/ai/', include('ai_analytics.urls')),
+    path('api/social/', include('social.urls')),
+    path('api/chat/', include('chat.urls')),
+    path('api/forum/', include('forum.urls')),
+    path('api/content/', include('content.urls')),
+    path('api/polls/', include('polls.urls')),
+    path('api/billing/', include('billing.urls')),  # New billing endpoints
     
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

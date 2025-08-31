@@ -141,10 +141,10 @@
                       {{ match.competition?.name || 'Liga' }}
                     </v-chip>
                     <div class="text-body-2 text-medium-emphasis">
-                      {{ formatMatchDate(match.match_date) }}
+                      {{ formatMatchDate(match.utc_date) }}
                     </div>
                     <div class="text-caption text-medium-emphasis">
-                      {{ formatMatchTime(match.match_date) }}
+                      {{ formatMatchTime(match.utc_date) }}
                     </div>
                     <v-chip
                       v-if="match.matchday"
@@ -163,7 +163,7 @@
                     <!-- Home Team -->
                     <div class="text-center flex-grow-1">
                       <v-avatar
-                        :image="match.home_team?.logo_url"
+                        :image="match.home_team?.crest_url"
                         size="48"
                         class="mb-2"
                       >
@@ -181,11 +181,11 @@
                     <div class="text-center mx-4">
                       <div v-if="match.status === 'FINISHED'" class="score-display">
                         <span class="text-h4 font-weight-bold">
-                          {{ match.home_score ?? 0 }}
+                          {{ match.home_team_score ?? 0 }}
                         </span>
                         <span class="mx-2 text-h6">-</span>
                         <span class="text-h4 font-weight-bold">
-                          {{ match.away_score ?? 0 }}
+                          {{ match.away_team_score ?? 0 }}
                         </span>
                       </div>
                       <div v-else-if="match.status === 'LIVE'" class="score-display">
@@ -195,11 +195,11 @@
                         </v-chip>
                         <div>
                           <span class="text-h4 font-weight-bold">
-                            {{ match.home_score ?? 0 }}
+                            {{ match.home_team_score ?? 0 }}
                           </span>
                           <span class="mx-2 text-h6">-</span>
                           <span class="text-h4 font-weight-bold">
-                            {{ match.away_score ?? 0 }}
+                            {{ match.away_team_score ?? 0 }}
                           </span>
                         </div>
                         <div v-if="match.minute" class="text-caption">
@@ -214,7 +214,7 @@
                     <!-- Away Team -->
                     <div class="text-center flex-grow-1">
                       <v-avatar
-                        :image="match.away_team?.logo_url"
+                        :image="match.away_team?.crest_url"
                         size="48"
                         class="mb-2"
                       >
@@ -305,8 +305,8 @@
           <div class="text-white">
             <div class="text-h6">{{ selectedMatch.competition?.name }}</div>
             <div class="text-subtitle-2">
-              {{ formatMatchDate(selectedMatch.match_date) }} - 
-              {{ formatMatchTime(selectedMatch.match_date) }}
+              {{ formatMatchDate(selectedMatch.utc_date) }} - 
+              {{ formatMatchTime(selectedMatch.utc_date) }}
             </div>
           </div>
         </v-card-title>
@@ -317,7 +317,7 @@
             <div class="text-center flex-grow-1">
               <v-avatar size="80" class="mb-3">
                 <v-img
-                  :src="selectedMatch.home_team?.logo_url"
+                  :src="selectedMatch.home_team?.crest_url"
                   :alt="selectedMatch.home_team?.name"
                 />
               </v-avatar>
@@ -329,7 +329,7 @@
             <div class="text-center mx-6">
               <div v-if="selectedMatch.status === 'FINISHED'" class="score-display">
                 <div class="text-h2 font-weight-bold mb-2">
-                  {{ selectedMatch.home_score ?? 0 }} - {{ selectedMatch.away_score ?? 0 }}
+                  {{ selectedMatch.home_team_score ?? 0 }} - {{ selectedMatch.away_team_score ?? 0 }}
                 </div>
                 <v-chip color="success" size="small">
                   FINALIZADA
@@ -341,7 +341,7 @@
                   AO VIVO
                 </v-chip>
                 <div class="text-h2 font-weight-bold">
-                  {{ selectedMatch.home_score ?? 0 }} - {{ selectedMatch.away_score ?? 0 }}
+                  {{ selectedMatch.home_team_score ?? 0 }} - {{ selectedMatch.away_team_score ?? 0 }}
                 </div>
               </div>
               <div v-else>
@@ -355,7 +355,7 @@
             <div class="text-center flex-grow-1">
               <v-avatar size="80" class="mb-3">
                 <v-img
-                  :src="selectedMatch.away_team?.logo_url"
+                  :src="selectedMatch.away_team?.crest_url"
                   :alt="selectedMatch.away_team?.name"
                 />
               </v-avatar>
@@ -453,10 +453,10 @@ const filteredMatches = computed(() => {
 
   switch (activeTab.value) {
     case 'upcoming':
-      filtered = filtered.filter(m => ['SCHEDULED', 'POSTPONED'].includes(m.status))
+      filtered = filtered.filter(m => ['SCHEDULED', 'TIMED', 'POSTPONED'].includes(m.status))
       break
     case 'live':
-      filtered = filtered.filter(m => ['LIVE', 'PAUSED'].includes(m.status))
+      filtered = filtered.filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status))
       break
     case 'finished':
       filtered = filtered.filter(m => m.status === 'FINISHED')
@@ -464,8 +464,8 @@ const filteredMatches = computed(() => {
   }
 
   return filtered.sort((a, b) => {
-    const dateA = new Date(a.match_date)
-    const dateB = new Date(b.match_date)
+    const dateA = new Date(a.utc_date)
+    const dateB = new Date(b.utc_date)
     
     if (activeTab.value === 'finished') {
       return dateB.getTime() - dateA.getTime() // Mais recentes primeiro
@@ -476,11 +476,11 @@ const filteredMatches = computed(() => {
 })
 
 const upcomingCount = computed(() => 
-  matches.value.filter(m => ['SCHEDULED', 'POSTPONED'].includes(m.status)).length
+  matches.value.filter(m => ['SCHEDULED', 'TIMED', 'POSTPONED'].includes(m.status)).length
 )
 
 const liveCount = computed(() => 
-  matches.value.filter(m => ['LIVE', 'PAUSED'].includes(m.status)).length
+  matches.value.filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status)).length
 )
 
 const finishedCount = computed(() => 
@@ -571,8 +571,10 @@ const getCompetitionColor = (competition: any) => {
 const getStatusColor = (status: string) => {
   switch (status) {
     case 'SCHEDULED':
+    case 'TIMED':
       return 'info'
     case 'LIVE':
+    case 'IN_PLAY':
       return 'error'
     case 'PAUSED':
       return 'warning'
@@ -581,6 +583,7 @@ const getStatusColor = (status: string) => {
     case 'POSTPONED':
       return 'orange'
     case 'CANCELLED':
+    case 'SUSPENDED':
       return 'grey'
     default:
       return 'grey'
@@ -590,8 +593,10 @@ const getStatusColor = (status: string) => {
 const getStatusText = (status: string) => {
   switch (status) {
     case 'SCHEDULED':
+    case 'TIMED':
       return 'Agendada'
     case 'LIVE':
+    case 'IN_PLAY':
       return 'Ao Vivo'
     case 'PAUSED':
       return 'Pausada'
@@ -601,6 +606,8 @@ const getStatusText = (status: string) => {
       return 'Adiada'
     case 'CANCELLED':
       return 'Cancelada'
+    case 'SUSPENDED':
+      return 'Suspensa'
     default:
       return status
   }

@@ -48,8 +48,11 @@ import ContentReports from '@/views/ContentReports.vue'
 // Polls Views
 import PollsDashboard from '@/views/PollsDashboard.vue'
 import PollsManagement from '@/views/PollsManagement.vue'
-// Billing Views
-import GestaoFinanceira from '@/views/GestaoFinanceira.vue'
+// Financial Views
+import FinanceiroDashboard from '@/views/FinanceiroDashboard.vue'
+import ConfiguracoesFinanceiras from '@/views/ConfiguracoesFinanceiras.vue'
+import GestaoPlanos from '@/views/GestaoPlanos.vue'
+import GestaoClientes from '@/views/GestaoClientes.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -411,13 +414,40 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true
     }
   },
-  // Billing/Financial Management Routes
+  // Financial Management Routes
   {
     path: '/financeiro',
-    name: 'GestaoFinanceira',
-    component: GestaoFinanceira,
+    name: 'FinanceiroDashboard',
+    component: FinanceiroDashboard,
     meta: {
-      title: 'Gestão Financeira - Mark Foot',
+      title: 'Dashboard Financeiro - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/financeiro/configuracoes',
+    name: 'ConfiguracoesFinanceiras',
+    component: ConfiguracoesFinanceiras,
+    meta: {
+      title: 'Configurações Financeiras - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/financeiro/planos',
+    name: 'GestaoPlanos',
+    component: GestaoPlanos,
+    meta: {
+      title: 'Gestão de Planos - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/financeiro/clientes',
+    name: 'GestaoClientes',
+    component: GestaoClientes,
+    meta: {
+      title: 'Gestão de Clientes - Mark Foot',
       requiresAuth: true
     }
   }

@@ -654,9 +654,27 @@ const menuItems = [
   },
   // Financial Management
   {
-    title: 'Financeiro',
-    icon: 'mdi-credit-card',
+    title: 'Dashboard Financeiro',
+    icon: 'mdi-chart-line',
     route: '/financeiro',
+    section: 'financial'
+  },
+  {
+    title: 'Configurações',
+    icon: 'mdi-cog',
+    route: '/financeiro/configuracoes',
+    section: 'financial'
+  },
+  {
+    title: 'Gestão de Planos',
+    icon: 'mdi-package-variant',
+    route: '/financeiro/planos',
+    section: 'financial'
+  },
+  {
+    title: 'Gestão de Clientes',
+    icon: 'mdi-account-group',
+    route: '/financeiro/clientes',
     section: 'financial'
   },
   // System

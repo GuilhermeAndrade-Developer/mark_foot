@@ -216,6 +216,27 @@
             />
           </v-list-group>
 
+          <!-- Financial Management Group -->
+          <v-list-group value="financial">
+            <template #activator="{ props }">
+              <v-list-item v-bind="props">
+                <template #prepend>
+                  <v-icon>mdi-credit-card</v-icon>
+                </template>
+                <v-list-item-title>Gestão Financeira</v-list-item-title>
+              </v-list-item>
+            </template>
+            <v-list-item
+              v-for="item in financialItems"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :to="item.route"
+              color="primary"
+              class="ml-2"
+            />
+          </v-list-group>
+
           <v-divider class="my-2" />
 
           <!-- System Items (without group) -->
@@ -631,6 +652,13 @@ const menuItems = [
     route: '/ai-testing',
     section: 'ai'
   },
+  // Financial Management
+  {
+    title: 'Financeiro',
+    icon: 'mdi-credit-card',
+    route: '/financeiro',
+    section: 'financial'
+  },
   // System
   {
     title: 'Configurações',
@@ -650,6 +678,7 @@ const chatItems = computed(() => menuItems.filter(item => item.section === 'chat
 const contentItems = computed(() => menuItems.filter(item => item.section === 'content'))
 const pollsItems = computed(() => menuItems.filter(item => item.section === 'polls'))
 const aiItems = computed(() => menuItems.filter(item => item.section === 'ai'))
+const financialItems = computed(() => menuItems.filter(item => item.section === 'financial'))
 const systemItems = computed(() => menuItems.filter(item => item.section === 'system'))
 
 // Function to get current section based on route

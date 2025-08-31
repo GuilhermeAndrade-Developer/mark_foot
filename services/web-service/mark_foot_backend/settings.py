@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'forum',
     'content',
     'polls',
+    'billing',  # New billing app
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'billing.middleware.ApiUsageMiddleware',  # Add API usage tracking
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

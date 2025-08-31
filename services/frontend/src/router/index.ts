@@ -48,6 +48,8 @@ import ContentReports from '@/views/ContentReports.vue'
 // Polls Views
 import PollsDashboard from '@/views/PollsDashboard.vue'
 import PollsManagement from '@/views/PollsManagement.vue'
+// Billing Views
+import { FinanceiroDashboard } from '@/components/billing'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -406,6 +408,16 @@ const routes: Array<RouteRecordRaw> = [
     component: PollsManagement,
     meta: {
       title: 'Gerenciar Enquetes - Mark Foot',
+      requiresAuth: true
+    }
+  },
+  // Billing/Financial Management Routes
+  {
+    path: '/financeiro',
+    name: 'FinanceiroDashboard',
+    component: FinanceiroDashboard,
+    meta: {
+      title: 'Financeiro - Mark Foot',
       requiresAuth: true
     }
   }

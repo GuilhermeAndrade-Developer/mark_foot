@@ -1,5 +1,24 @@
 import api from './api'
 
+// Override base URL for billing API calls  
+const BILLING_BASE_URL = 'http://localhost:8001/api/billing/api'
+
+// Helper function to make billing API calls
+const billingRequest = async (endpoint: string, options: any = {}) => {
+  const originalBaseURL = api.defaults.baseURL
+  api.defaults.baseURL = BILLING_BASE_URL
+  
+  try {
+    const response = await api.request({
+      url: endpoint,
+      ...options
+    })
+    return response
+  } finally {
+    api.defaults.baseURL = originalBaseURL
+  }
+}
+
 export interface SubscriptionPlan {
   id: number
   name: string
@@ -79,49 +98,56 @@ export interface BillingStats {
 
 class BillingApiService {
   async getPlans(): Promise<SubscriptionPlan[]> {
-    const response = await api.get('/billing/api/plans/')
+    const response = await billingRequest('/plans/', { method: 'GET' })
     return response.data.results
   }
 
   async getCurrentSubscription(): Promise<UserSubscription> {
-    const response = await api.get('/billing/api/subscriptions/me/')
+    const response = await billingRequest('/subscriptions/me/', { method: 'GET' })
     return response.data
   }
 
   async changePlan(subscriptionId: number, planId: number, reason?: string): Promise<UserSubscription> {
-    const response = await api.post(`/billing/api/subscriptions/${subscriptionId}/change_plan/`, {
-      plan_id: planId,
-      reason
+    const response = await billingRequest(`/subscriptions/${subscriptionId}/change_plan/`, {
+      method: 'POST',
+      data: {
+        plan_id: planId,
+        reason
+      }
     })
     return response.data
   }
 
   async cancelSubscription(subscriptionId: number, reason?: string): Promise<UserSubscription> {
-    const response = await api.post(`/billing/api/subscriptions/${subscriptionId}/cancel/`, {
-      reason
+    const response = await billingRequest(`/subscriptions/${subscriptionId}/cancel/`, {
+      method: 'POST',
+      data: { reason }
     })
     return response.data
   }
 
   async getInvoices(): Promise<Invoice[]> {
-    const response = await api.get('/billing/api/invoices/')
+    const response = await billingRequest('/invoices/', { method: 'GET' })
     return response.data.results
   }
 
   async getUsageSummary(): Promise<ApiUsageSummary> {
-    const response = await api.get('/billing/api/usage-logs/summary/')
+    const response = await billingRequest('/usage-logs/summary/', { method: 'GET' })
     return response.data
   }
 
   async getBillingStats(): Promise<BillingStats> {
-    const response = await api.get('/billing/api/stats/dashboard/')
+    const response = await billingRequest('/stats/dashboard/', { method: 'GET' })
     return response.data
   }
 
   async createSubscription(planId: number, billingCycle: 'monthly' | 'yearly'): Promise<UserSubscription> {
-    const response = await api.post('/billing/api/subscriptions/', {
-      plan_id: planId,
-      billing_cycle: billingCycle
+    const response = await billingRequest('/subscriptions/', {
+      method: 'POST',
+      data: {
+        plan_id: planId,
+        billing_cycle: billingCycle
+      }
     })
     return response.data
   }

@@ -15387,3 +15387,161 @@ INFO 2025-08-31 00:14:09,848 basehttp 86 139016607360704 "GET /api/v1/business/a
 WARNING 2025-08-31 00:16:09,689 log 86 139016565397184 Not Found: /api/billing/plans/
 WARNING 2025-08-31 00:16:09,690 basehttp 86 139016565397184 "GET /api/billing/plans/ HTTP/1.1" 404 3566
 INFO 2025-08-31 00:16:17,102 basehttp 86 139016565397184 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+WARNING 2025-08-31 00:17:03,125 log 86 139016598968000 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:17:03,137 basehttp 86 139016598968000 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:17:03,137 log 86 139016573789888 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:17:03,146 log 86 139016607360704 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:17:03,151 log 86 139016615753408 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:17:03,160 basehttp 86 139016607360704 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:17:03,161 log 86 139016582182592 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:17:03,161 basehttp 86 139016573789888 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:17:03,167 basehttp 86 139016615753408 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:17:03,169 log 86 139016590575296 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:17:03,184 basehttp 86 139016582182592 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:17:03,195 basehttp 86 139016590575296 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:17:03,241 log 86 139016607360704 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:17:03,243 log 86 139016573789888 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:17:03,251 log 86 139016598968000 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:17:03,254 basehttp 86 139016607360704 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:17:03,256 basehttp 86 139016598968000 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:17:03,257 basehttp 86 139016573789888 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+INFO 2025-08-31 00:17:03,375 basehttp 86 139016573789888 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-31 00:17:03,471 basehttp 86 139016573789888 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-31 00:17:03,490 basehttp 86 139016573789888 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-31 00:17:03,545 basehttp 86 139016573789888 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-31 00:17:03,639 basehttp 86 139016573789888 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+WARNING 2025-08-31 00:17:18,322 log 86 139016582182592 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:17:18,337 basehttp 86 139016582182592 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:17:18,342 log 86 139016598968000 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:17:18,356 log 86 139016573789888 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:17:18,360 log 86 139016590575296 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:17:18,380 log 86 139016607360704 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:17:18,382 basehttp 86 139016598968000 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:17:18,389 basehttp 86 139016573789888 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:17:18,394 basehttp 86 139016607360704 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:17:18,398 log 86 139016615753408 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:17:18,398 basehttp 86 139016590575296 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:17:18,419 basehttp 86 139016615753408 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:17:18,423 log 86 139016582182592 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:17:18,440 log 86 139016573789888 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:17:18,448 basehttp 86 139016582182592 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:17:18,466 basehttp 86 139016573789888 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:17:18,478 log 86 139016598968000 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:17:18,480 basehttp 86 139016598968000 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+INFO 2025-08-31 00:17:18,567 basehttp 86 139016598968000 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-08-31 00:17:18,651 basehttp 86 139016598968000 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-08-31 00:17:18,677 basehttp 86 139016598968000 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-08-31 00:17:18,741 basehttp 86 139016598968000 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-08-31 00:17:18,829 basehttp 86 139016598968000 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-08-31 00:17:26,264 basehttp 86 139016598968000 "OPTIONS /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:17:26,266 basehttp 86 139016582182592 "OPTIONS /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:17:26,269 basehttp 86 139016573789888 "OPTIONS /api/v1/billing/api/invoices/ HTTP/1.1" 200 0
+WARNING 2025-08-31 00:17:26,314 log 86 139016598968000 Not Found: /api/v1/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:17:26,320 log 86 139016582182592 Not Found: /api/v1/billing/api/invoices/
+WARNING 2025-08-31 00:17:26,321 basehttp 86 139016598968000 "GET /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:17:26,324 basehttp 86 139016582182592 "GET /api/v1/billing/api/invoices/ HTTP/1.1" 404 23994
+WARNING 2025-08-31 00:17:26,330 log 86 139016573789888 Not Found: /api/v1/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:17:26,330 basehttp 86 139016573789888 "GET /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 404 24024
+INFO 2025-08-31 00:24:02,433 basehttp 86 139016607360704 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+INFO 2025-08-31 00:26:21,150 autoreload 11 129471260031872 Watching for file changes with StatReloader
+INFO 2025-08-31 00:26:40,683 basehttp 11 129471118046912 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+INFO 2025-08-31 00:26:50,251 basehttp 11 129471118046912 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+INFO 2025-08-31 00:29:26,704 autoreload 11 133544575130496 Watching for file changes with StatReloader
+INFO 2025-08-31 00:31:18,919 autoreload 11 124005190019968 Watching for file changes with StatReloader
+INFO 2025-08-31 00:31:49,378 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+INFO 2025-08-31 00:31:52,768 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 1924
+WARNING 2025-08-31 00:32:14,484 log 11 124005111768768 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:32:14,496 basehttp 11 124005111768768 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:32:14,656 log 11 124004899747520 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:32:14,719 log 11 124004874569408 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:32:14,724 log 11 124004891354816 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:32:14,727 log 11 124004882962112 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:32:14,728 basehttp 11 124004899747520 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:32:14,739 log 11 124004866176704 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:32:14,766 basehttp 11 124004891354816 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:32:14,791 basehttp 11 124004874569408 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:32:14,826 log 11 124005111768768 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:32:14,827 basehttp 11 124004882962112 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:32:14,836 basehttp 11 124004866176704 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:32:14,844 basehttp 11 124005111768768 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:32:14,860 log 11 124004899747520 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:32:14,862 basehttp 11 124004899747520 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 00:32:14,902 log 11 124004874569408 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:32:14,903 basehttp 11 124004874569408 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:32:15,088 log 11 124005111768768 Not Found: /api/v1/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:32:15,090 basehttp 11 124005111768768 "GET /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 404 24024
+WARNING 2025-08-31 00:32:15,131 log 11 124004874569408 Not Found: /api/v1/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:32:15,133 log 11 124004899747520 Not Found: /api/v1/billing/api/invoices/
+WARNING 2025-08-31 00:32:15,135 basehttp 11 124004899747520 "GET /api/v1/billing/api/invoices/ HTTP/1.1" 404 23994
+WARNING 2025-08-31 00:32:15,135 basehttp 11 124004874569408 "GET /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:32:24,021 log 11 124004874569408 Not Found: /api/v1/gamification/dashboard/stats/
+WARNING 2025-08-31 00:32:24,060 log 11 124004882962112 Not Found: /api/v1/gamification/challenges/
+WARNING 2025-08-31 00:32:24,082 log 11 124004866176704 Not Found: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-08-31 00:32:24,083 basehttp 11 124004874569408 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:32:24,090 basehttp 11 124004882962112 "GET /api/v1/gamification/challenges/ HTTP/1.1" 404 24003
+WARNING 2025-08-31 00:32:24,130 log 11 124004899747520 Not Found: /api/v1/gamification/profiles/me/
+WARNING 2025-08-31 00:32:24,132 log 11 124005111768768 Not Found: /api/v1/gamification/badges/
+WARNING 2025-08-31 00:32:24,142 log 11 124004891354816 Not Found: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-08-31 00:32:24,142 basehttp 11 124004866176704 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:32:24,182 basehttp 11 124005111768768 "GET /api/v1/gamification/badges/ HTTP/1.1" 404 23991
+WARNING 2025-08-31 00:32:24,176 basehttp 11 124004899747520 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:32:24,217 basehttp 11 124004891354816 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 404 24060
+WARNING 2025-08-31 00:32:24,250 log 11 124004866176704 Not Found: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-08-31 00:32:24,258 basehttp 11 124004866176704 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:32:24,284 log 11 124004874569408 Not Found: /api/v1/gamification/prediction-games/
+WARNING 2025-08-31 00:32:24,295 log 11 124004882962112 Not Found: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-08-31 00:32:24,297 basehttp 11 124004882962112 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 404 24051
+WARNING 2025-08-31 00:32:24,296 basehttp 11 124004874569408 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 404 24021
+WARNING 2025-08-31 00:32:24,475 log 11 124004882962112 Not Found: /api/v1/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:32:24,501 log 11 124004874569408 Not Found: /api/v1/billing/api/invoices/
+WARNING 2025-08-31 00:32:24,519 basehttp 11 124004882962112 "GET /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:32:24,524 log 11 124004866176704 Not Found: /api/v1/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:32:24,525 basehttp 11 124004874569408 "GET /api/v1/billing/api/invoices/ HTTP/1.1" 404 23994
+WARNING 2025-08-31 00:32:24,526 basehttp 11 124004866176704 "GET /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 404 24024
+INFO 2025-08-31 00:32:31,153 basehttp 11 124004866176704 "OPTIONS /api/v1/billing/api/plans/ HTTP/1.1" 200 0
+WARNING 2025-08-31 00:32:31,174 log 11 124004866176704 Not Found: /api/v1/billing/api/plans/
+WARNING 2025-08-31 00:32:31,174 basehttp 11 124004866176704 "GET /api/v1/billing/api/plans/ HTTP/1.1" 404 23985
+INFO 2025-08-31 00:36:26,113 basehttp 11 124004866176704 "OPTIONS /api/v1/api/billing/api/subscriptions/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:36:26,116 basehttp 11 124004874569408 "OPTIONS /api/v1/api/billing/api/invoices/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:36:26,116 basehttp 11 124004882962112 "OPTIONS /api/v1/api/billing/api/usage-logs/summary/ HTTP/1.1" 200 0
+WARNING 2025-08-31 00:36:26,151 log 11 124004882962112 Not Found: /api/v1/api/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:36:26,155 basehttp 11 124004882962112 "GET /api/v1/api/billing/api/usage-logs/summary/ HTTP/1.1" 404 24036
+WARNING 2025-08-31 00:36:26,221 log 11 124004866176704 Not Found: /api/v1/api/billing/api/invoices/
+WARNING 2025-08-31 00:36:26,222 log 11 124004874569408 Not Found: /api/v1/api/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:36:26,224 basehttp 11 124004866176704 "GET /api/v1/api/billing/api/invoices/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:36:26,225 basehttp 11 124004874569408 "GET /api/v1/api/billing/api/subscriptions/me/ HTTP/1.1" 404 24030
+WARNING 2025-08-31 00:39:02,917 log 11 124004866176704 Not Found: /api/v1/api/billing/api/invoices/
+WARNING 2025-08-31 00:39:02,944 basehttp 11 124004866176704 "GET /api/v1/api/billing/api/invoices/ HTTP/1.1" 404 24006
+WARNING 2025-08-31 00:39:02,948 log 11 124004874569408 Not Found: /api/v1/api/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:39:02,961 log 11 124004882962112 Not Found: /api/v1/api/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:39:02,962 basehttp 11 124004874569408 "GET /api/v1/api/billing/api/subscriptions/me/ HTTP/1.1" 404 24030
+WARNING 2025-08-31 00:39:02,963 basehttp 11 124004882962112 "GET /api/v1/api/billing/api/usage-logs/summary/ HTTP/1.1" 404 24036
+INFO 2025-08-31 00:39:30,786 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 52
+WARNING 2025-08-31 00:44:36,221 log 11 124005120161472 Not Found: /api/billing/api/subscription-plans/
+WARNING 2025-08-31 00:44:36,224 basehttp 11 124005120161472 "GET /api/billing/api/subscription-plans/ HTTP/1.1" 404 14119
+INFO 2025-08-31 00:44:44,105 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
+WARNING 2025-08-31 00:45:09,610 log 11 124004882962112 Not Found: /api/v1/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:45:09,613 log 11 124004866176704 Not Found: /api/v1/billing/api/invoices/
+WARNING 2025-08-31 00:45:09,621 log 11 124004874569408 Not Found: /api/v1/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:45:09,624 basehttp 11 124004866176704 "GET /api/v1/billing/api/invoices/ HTTP/1.1" 404 23994
+WARNING 2025-08-31 00:45:09,624 basehttp 11 124004882962112 "GET /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:45:09,625 basehttp 11 124004874569408 "GET /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 404 24024
+WARNING 2025-08-31 00:45:17,054 log 11 124004874569408 Not Found: /api/v1/billing/api/subscriptions/me/
+WARNING 2025-08-31 00:45:17,065 log 11 124004866176704 Not Found: /api/v1/billing/api/invoices/
+WARNING 2025-08-31 00:45:17,065 log 11 124004882962112 Not Found: /api/v1/billing/api/usage-logs/summary/
+WARNING 2025-08-31 00:45:17,067 basehttp 11 124004882962112 "GET /api/v1/billing/api/usage-logs/summary/ HTTP/1.1" 404 24024
+WARNING 2025-08-31 00:45:17,067 basehttp 11 124004866176704 "GET /api/v1/billing/api/invoices/ HTTP/1.1" 404 23994
+WARNING 2025-08-31 00:45:17,067 basehttp 11 124004874569408 "GET /api/v1/billing/api/subscriptions/me/ HTTP/1.1" 404 24018
+WARNING 2025-08-31 00:45:21,793 log 11 124005120161472 Not Found: /api/v1/billing/api/plans/
+WARNING 2025-08-31 00:45:21,804 basehttp 11 124005120161472 "GET /api/v1/billing/api/plans/ HTTP/1.1" 404 23985
+INFO 2025-08-31 00:45:45,703 basehttp 11 124004882962112 "OPTIONS /api/billing/api/subscriptions/me/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:45:45,704 basehttp 11 124004866176704 "OPTIONS /api/billing/api/invoices/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:45:45,704 basehttp 11 124004874569408 "OPTIONS /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 0
+INFO 2025-08-31 00:45:45,875 basehttp 11 124004882962112 "GET /api/billing/api/invoices/ HTTP/1.1" 200 52
+INFO 2025-08-31 00:45:45,881 basehttp 11 124004866176704 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 201 646
+INFO 2025-08-31 00:45:45,881 basehttp 11 124004874569408 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 00:45:52,285 basehttp 11 124004866176704 "GET /api/billing/api/invoices/ HTTP/1.1" 200 52
+INFO 2025-08-31 00:45:52,293 basehttp 11 124004874569408 "GET /api/billing/api/usage-logs/summary/ HTTP/1.1" 200 87
+INFO 2025-08-31 00:45:52,296 basehttp 11 124004882962112 "GET /api/billing/api/subscriptions/me/ HTTP/1.1" 200 646
+INFO 2025-08-31 00:46:49,149 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 969
+INFO 2025-08-31 00:50:04,686 basehttp 11 124005120161472 "GET /api/billing/api/plans/ HTTP/1.1" 200 969

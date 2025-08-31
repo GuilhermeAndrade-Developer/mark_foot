@@ -26,7 +26,7 @@ class Command(BaseCommand):
             '--modules',
             nargs='*',
             choices=[
-                'users', 'core', 'content', 'polls', 'social', 
+                'users', 'core', 'billing', 'content', 'polls', 'social', 
                 'gamification', 'forum', 'chat', 'ai_analytics',
                 'business', 'social_sharing'
             ],
@@ -78,7 +78,7 @@ class Command(BaseCommand):
 
                 # Determine which modules to seed
                 modules_to_seed = options['modules'] or [
-                    'users', 'core', 'content', 'polls', 'social', 
+                    'users', 'core', 'billing', 'content', 'polls', 'social', 
                     'gamification', 'forum', 'chat', 'business', 'social_sharing'
                 ]
                 
@@ -179,6 +179,9 @@ class Command(BaseCommand):
             elif module_name == 'core':
                 if not options['no_external']:
                     call_command('seed_core_data', quick=options['quick'], verbosity=0)
+                    
+            elif module_name == 'billing':
+                call_command('seed_billing_data', with_user_data=True, verbosity=0)
                 
             elif module_name == 'content':
                 call_command('seed_content_data', verbosity=0)
@@ -230,6 +233,7 @@ class Command(BaseCommand):
             from polls.models import Poll, PollOption
             from social.models import PrivateGroup, SocialPlatform
             from gamification.models import UserProfile, Badge
+            from billing.models import SubscriptionPlan
             
             self.stdout.write(f'  👥 Users: {User.objects.count()}')
             self.stdout.write(f'  ⚽ Teams: {Team.objects.count()}')
@@ -243,6 +247,7 @@ class Command(BaseCommand):
             self.stdout.write(f'  📱 Social Platforms: {SocialPlatform.objects.count()}')
             self.stdout.write(f'  🎮 User Profiles: {UserProfile.objects.count()}')
             self.stdout.write(f'  🏅 Badges: {Badge.objects.count()}')
+            self.stdout.write(f'  💳 Subscription Plans: {SubscriptionPlan.objects.count()}')
             
         except ImportError as e:
             self.stdout.write(f'  ⚠️  Could not generate summary: {str(e)}')

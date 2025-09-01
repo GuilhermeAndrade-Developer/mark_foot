@@ -326,3 +326,31 @@ INFO 2025-09-01 22:10:25,727 autoreload 116 139867171285888 /app/billing/service
 INFO 2025-09-01 22:10:27,543 autoreload 129 140054168714112 Watching for file changes with StatReloader
 INFO 2025-09-01 22:10:38,624 autoreload 129 140054168714112 /app/billing/services/stripe_service.py changed, reloading.
 INFO 2025-09-01 22:10:40,499 autoreload 142 140470823951232 Watching for file changes with StatReloader
+INFO 2025-09-01 22:22:58,810 autoreload 142 140470823951232 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 22:23:01,172 autoreload 224 140039377099648 Watching for file changes with StatReloader
+INFO 2025-09-01 22:23:49,025 autoreload 224 140039377099648 /app/analytics/admin.py changed, reloading.
+INFO 2025-09-01 22:23:51,440 autoreload 237 140176264006528 Watching for file changes with StatReloader
+INFO 2025-09-01 22:28:23,399 autoreload 237 140176264006528 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-09-01 22:28:25,699 autoreload 294 139843018341248 Watching for file changes with StatReloader
+INFO 2025-09-01 22:28:57,886 autoreload 294 139843018341248 /app/analytics/urls.py changed, reloading.
+INFO 2025-09-01 22:29:00,158 autoreload 320 140247247752064 Watching for file changes with StatReloader
+INFO 2025-09-01 22:29:13,516 autoreload 320 140247247752064 /app/whatsapp_integration/services/message_processor.py changed, reloading.
+INFO 2025-09-01 22:29:15,577 autoreload 344 140030280350592 Watching for file changes with StatReloader
+INFO 2025-09-01 22:30:02,235 autoreload 344 140030280350592 /app/whatsapp_integration/services/message_processor.py changed, reloading.
+INFO 2025-09-01 22:30:04,353 autoreload 368 139843242707840 Watching for file changes with StatReloader
+INFO 2025-09-01 22:30:26,110 autoreload 368 139843242707840 /app/whatsapp_integration/services/message_processor.py changed, reloading.
+INFO 2025-09-01 22:30:28,164 autoreload 392 139774440262528 Watching for file changes with StatReloader
+INFO 2025-09-01 22:30:38,071 autoreload 392 139774440262528 /app/whatsapp_integration/services/message_processor.py changed, reloading.
+INFO 2025-09-01 22:30:40,115 autoreload 416 140025296149376 Watching for file changes with StatReloader
+INFO 2025-09-01 22:32:38,280 autoreload 416 140025296149376 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:32:40,375 autoreload 468 140505911409536 Watching for file changes with StatReloader
+INFO 2025-09-01 22:32:46,705 autoreload 468 140505911409536 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:32:48,849 autoreload 492 140233013132160 Watching for file changes with StatReloader
+INFO 2025-09-01 22:32:53,893 autoreload 492 140233013132160 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:32:55,940 autoreload 516 139833460677504 Watching for file changes with StatReloader
+INFO 2025-09-01 22:33:01,136 autoreload 516 139833460677504 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:33:03,128 autoreload 540 140629152484224 Watching for file changes with StatReloader
+INFO 2025-09-01 22:33:08,339 autoreload 540 140629152484224 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:33:10,440 autoreload 564 140039030123392 Watching for file changes with StatReloader
+INFO 2025-09-01 22:33:17,773 autoreload 564 140039030123392 /app/analytics/services/report_service.py changed, reloading.
+INFO 2025-09-01 22:33:19,873 autoreload 588 139620817595264 Watching for file changes with StatReloader

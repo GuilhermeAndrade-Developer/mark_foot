@@ -29,6 +29,7 @@ urlpatterns = [
     # API endpoints
     path('api/v1/', include('api.urls')),
     path('api/ai/', include('ai_analytics.urls')),
+    path('api/analytics/', include('analytics.urls')),  # New analytics endpoints
     path('api/social/', include('social.urls')),
     path('api/chat/', include('chat.urls')),
     path('api/forum/', include('forum.urls')),

@@ -127,6 +127,15 @@ class MessageProcessor:
         if message_lower in ['/proximos', 'proximos', 'próximos']:
             self._handle_upcoming_matches_command(whatsapp_user)
             return
+            
+        # Handle analytics and reports commands
+        if message_lower.startswith('/relatorio') or message_lower.startswith('/relatório'):
+            self._handle_report_command(whatsapp_user, message_content)
+            return
+            
+        if message_lower in ['/dashboard', 'dashboard']:
+            self._handle_dashboard_command(whatsapp_user)
+            return
         
         # Use NLP to process the query
         whatsapp_user.increment_query_count()
@@ -481,8 +490,14 @@ Como posso ajudar:
 • /odds - Ver odds atuais
 • /alertas - Configurar alertas
 
+📊 Relatórios (Premium):
+• /relatorio time [nome] - Análise de time
+• /relatorio jogador [nome] - Análise de jogador
+• /dashboard - Dashboard personalizado
+
 🏆 Premium:
 • Digite "PREMIUM" para planos
+• Digite "TRIAL" para teste grátis
 
 Digite sua pergunta sobre futebol!
         """.strip()
@@ -725,8 +740,252 @@ Posso ajudar com informações sobre:
 ⚽ Times e jogadores
 🏟️ Jogos e resultados
 📊 Estatísticas
+📊 Relatórios personalizados
 
 Digite "AJUDA" para mais opções ou faça sua pergunta sobre futebol!
         """.strip()
+        
+        self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+    
+    def _handle_report_command(self, whatsapp_user, message_text):
+        """Handle report generation commands"""
+        # Check if user has premium access
+        if whatsapp_user.subscription_status not in ['premium', 'pro', 'trial']:
+            message = """📊 Relatórios Premium Mark Foot
+
+🔒 Recurso exclusivo para assinantes!
+
+Disponível para assinantes:
+📊 Relatórios de performance
+📈 Análise de jogadores
+📋 Dashboard personalizado
+📄 Exportação PDF/Excel
+
+🆓 Teste 7 dias: /trial
+💎 Assinar: /premium"""
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+            return
+        
+        message_lower = message_text.lower().strip()
+        
+        # Parse command
+        if 'time' in message_lower or 'team' in message_lower:
+            team_parts = message_lower.split()
+            if len(team_parts) >= 3:  # /relatorio time [nome]
+                team_name = ' '.join(team_parts[2:])
+                self._handle_team_report_request(whatsapp_user, team_parts)
+            else:
+                self._send_report_help(whatsapp_user)
+        elif 'jogador' in message_lower or 'player' in message_lower:
+            player_parts = message_lower.split()
+            if len(player_parts) >= 3:  # /relatorio jogador [nome]
+                player_name = ' '.join(player_parts[2:])
+                self._handle_player_report_request(whatsapp_user, player_parts)
+            else:
+                self._send_report_help(whatsapp_user)
+        elif 'odds' in message_lower:
+            self._handle_odds_report_request(whatsapp_user)
+        elif 'mercado' in message_lower:
+            self._handle_market_report_request(whatsapp_user)
+        else:
+            self._send_report_help(whatsapp_user)
+    
+    def _send_report_help(self, whatsapp_user):
+        """Send report command help"""
+        message = """📊 Relatórios Mark Foot
+
+📋 Comandos:
+/relatorio time [nome] - Relatório de time
+/relatorio jogador [nome] - Análise de jogador
+/relatorio odds - Análise de odds
+/relatorio mercado - Tendências de mercado
+
+📈 Dashboard: /dashboard
+
+💡 Exemplo: /relatorio time Santos"""
+        self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+    
+    def _handle_team_report_request(self, whatsapp_user, team_parts):
+        """Handle team report request"""
+        try:
+            from core.models import Team
+            from analytics.tasks import generate_team_report_async
+            from datetime import datetime, timedelta
+            
+            team_name = ' '.join(team_parts[2:])
+            
+            # Find team by name (case insensitive)
+            team = Team.objects.filter(name__icontains=team_name).first()
+            if not team:
+                message = f"❌ Time '{team_name}' não encontrado.\n\n💡 Tente usar o nome completo ou uma parte mais específica."
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+                return
+            
+            # Generate report for last 30 days
+            date_to = datetime.now().date()
+            date_from = date_to - timedelta(days=30)
+            
+            # Start async task if user has Django user account
+            if whatsapp_user.user:
+                generate_team_report_async.delay(
+                    whatsapp_user.user.id, 
+                    team.id, 
+                    date_from.strftime('%Y-%m-%d'), 
+                    date_to.strftime('%Y-%m-%d'), 
+                    'pdf'
+                )
+                
+                message = f"""📊 Gerando relatório para {team.name}
+
+⏳ Processando dados...
+📈 Analisando performance
+📄 Criando PDF
+
+📱 Você receberá o relatório em alguns minutos!
+
+🔗 Também disponível no dashboard: /dashboard"""
+            else:
+                message = f"""📊 Relatório para {team.name}
+
+Para gerar relatórios PDF, você precisa:
+1. Criar conta no app Mark Foot
+2. Conectar sua conta WhatsApp
+
+🔗 Acesse: markfoot.com/register
+
+📱 Versão básica disponível: /dashboard"""
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+            
+        except Exception as e:
+            logger.error(f"Error generating team report: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number,
+                "❌ Erro ao gerar relatório. Tente novamente."
+            )
+    
+    def _handle_player_report_request(self, whatsapp_user, player_parts):
+        """Handle player report request"""
+        try:
+            from core.models import Player
+            from analytics.tasks import generate_player_report_async
+            from datetime import datetime, timedelta
+            
+            player_name = ' '.join(player_parts[2:])
+            
+            # Find player by name (case insensitive)
+            player = Player.objects.filter(name__icontains=player_name).first()
+            if not player:
+                message = f"❌ Jogador '{player_name}' não encontrado.\n\n💡 Tente usar o nome completo."
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+                return
+            
+            # Generate report for last 30 days
+            date_to = datetime.now().date()
+            date_from = date_to - timedelta(days=30)
+            
+            # Start async task if user has Django user account
+            if whatsapp_user.user:
+                generate_player_report_async.delay(
+                    whatsapp_user.user.id, 
+                    player.id, 
+                    date_from.strftime('%Y-%m-%d'), 
+                    date_to.strftime('%Y-%m-%d'), 
+                    'pdf'
+                )
+                
+                message = f"""📊 Gerando análise para {player.name}
+
+⏳ Coletando estatísticas...
+📈 Analisando performance
+📄 Criando relatório
+
+📱 Você receberá a análise em alguns minutos!"""
+            else:
+                message = f"""📊 Análise para {player.name}
+
+Para gerar relatórios PDF, você precisa:
+1. Criar conta no app Mark Foot
+2. Conectar sua conta WhatsApp
+
+🔗 Acesse: markfoot.com/register"""
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+            
+        except Exception as e:
+            logger.error(f"Error generating player report: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number,
+                "❌ Erro ao gerar análise. Tente novamente."
+            )
+    
+    def _handle_odds_report_request(self, whatsapp_user):
+        """Handle odds analysis request"""
+        message = """📊 Análise de Odds Mark Foot
+
+🎯 Relatório em desenvolvimento!
+
+Em breve você poderá:
+📈 Análise de movimentação de odds
+💰 Oportunidades de valor
+📊 Comparação entre casas
+
+🔔 Será notificado quando estiver pronto!
+📱 Dashboard: /dashboard"""
+        
+        self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+    
+    def _handle_market_report_request(self, whatsapp_user):
+        """Handle market trends request"""
+        message = """📊 Tendências de Mercado Mark Foot
+
+📈 Relatório em desenvolvimento!
+
+Em breve você poderá:
+💰 Análise de valor de mercado
+📊 Tendências de transferências
+🎯 Oportunidades de investimento
+
+🔔 Será notificado quando estiver pronto!
+📱 Dashboard: /dashboard"""
+        
+        self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+    
+    def _handle_dashboard_command(self, whatsapp_user):
+        """Handle dashboard command"""
+        # Check if user has premium access
+        if whatsapp_user.subscription_status not in ['premium', 'pro', 'trial']:
+            message = """📊 Dashboard Mark Foot
+
+🔒 Recurso exclusivo para assinantes!
+
+Funcionalidades:
+📊 Widgets personalizáveis
+📈 Gráficos em tempo real
+🎯 Métricas dos seus times
+⚽ Estatísticas de jogadores
+💎 Análise de apostas
+
+🆓 Teste 7 dias: /trial
+💎 Assinar: /premium"""
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+            return
+        
+        from django.conf import settings
+        dashboard_url = f"{settings.FRONTEND_URL}/dashboard"
+        
+        message = f"""📊 Dashboard Mark Foot
+
+🔗 Acesse: {dashboard_url}
+
+📈 Funcionalidades:
+✅ Widgets personalizáveis
+✅ Gráficos interativos
+✅ Times favoritos
+✅ Análise de odds
+✅ Relatórios PDF
+
+📱 Também disponível no app!"""
         
         self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)

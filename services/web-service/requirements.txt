@@ -40,3 +40,8 @@ mercadopago>=2.0.0
 # Additional dependencies
 voluptuous>=0.15.0
 xmltodict>=0.14.0
+
+# Report Generation
+reportlab>=4.0.0
+openpyxl>=3.1.0
+Pillow>=10.0.0

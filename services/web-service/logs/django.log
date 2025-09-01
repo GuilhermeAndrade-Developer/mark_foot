@@ -250,3 +250,48 @@ INFO 2025-09-01 20:50:12,691 autoreload 308 139913590336384 /app/nlp_engine/serv
 INFO 2025-09-01 20:50:14,496 autoreload 321 140114137652096 Watching for file changes with StatReloader
 INFO 2025-09-01 20:50:29,307 autoreload 321 140114137652096 /app/nlp_engine/services.py changed, reloading.
 INFO 2025-09-01 20:50:31,108 autoreload 334 139797855984512 Watching for file changes with StatReloader
+INFO 2025-09-01 20:56:14,244 autoreload 334 139797855984512 /app/whatsapp_integration/models.py changed, reloading.
+INFO 2025-09-01 20:56:16,059 autoreload 353 140057906195328 Watching for file changes with StatReloader
+INFO 2025-09-01 20:56:34,584 autoreload 353 140057906195328 /app/whatsapp_integration/models.py changed, reloading.
+INFO 2025-09-01 20:56:36,398 autoreload 366 139914773810048 Watching for file changes with StatReloader
+INFO 2025-09-01 20:57:28,413 autoreload 366 139914773810048 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 20:57:30,178 autoreload 379 140314075192192 Watching for file changes with StatReloader
+INFO 2025-09-01 20:57:34,796 autoreload 379 140314075192192 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 20:57:36,489 autoreload 381 139815403912064 Watching for file changes with StatReloader
+INFO 2025-09-01 20:57:55,604 autoreload 381 139815403912064 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 20:57:57,282 autoreload 383 140546657921920 Watching for file changes with StatReloader
+INFO 2025-09-01 20:58:34,849 autoreload 383 140546657921920 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 20:58:36,524 autoreload 385 140408521661312 Watching for file changes with StatReloader
+INFO 2025-09-01 21:00:33,497 autoreload 385 140408521661312 /app/whatsapp_integration/admin.py changed, reloading.
+INFO 2025-09-01 21:00:35,506 autoreload 387 140188564396928 Watching for file changes with StatReloader
+INFO 2025-09-01 21:00:53,371 autoreload 387 140188564396928 /app/whatsapp_integration/admin.py changed, reloading.
+INFO 2025-09-01 21:00:54,992 autoreload 389 139867524483968 Watching for file changes with StatReloader
+INFO 2025-09-01 21:01:17,360 autoreload 389 139867524483968 /app/whatsapp_integration/models.py changed, reloading.
+INFO 2025-09-01 21:01:19,264 autoreload 391 140358078872448 Watching for file changes with StatReloader
+INFO 2025-09-01 21:05:16,092 autoreload 391 140358078872448 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 21:05:18,159 autoreload 405 140501569686400 Watching for file changes with StatReloader
+INFO 2025-09-01 21:06:16,664 autoreload 405 140501569686400 /app/whatsapp_integration/services/whatsapp_service.py changed, reloading.
+INFO 2025-09-01 21:06:18,312 autoreload 407 140599523642240 Watching for file changes with StatReloader
+INFO 2025-09-01 21:06:53,275 autoreload 407 140599523642240 /app/whatsapp_integration/services/subscription_service.py changed, reloading.
+INFO 2025-09-01 21:06:55,456 autoreload 415 140083192261504 Watching for file changes with StatReloader
+INFO 2025-09-01 21:09:23,824 autoreload 415 140083192261504 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-09-01 21:09:25,485 autoreload 476 140239791442816 Watching for file changes with StatReloader
+INFO 2025-09-01 21:09:52,821 autoreload 476 140239791442816 /app/mark_foot_backend/celery.py changed, reloading.
+INFO 2025-09-01 21:09:54,843 autoreload 489 140532659481472 Watching for file changes with StatReloader
+INFO 2025-09-01 21:12:56,053 autoreload 489 140532659481472 /app/billing/services/stripe_service.py changed, reloading.
+INFO 2025-09-01 21:12:58,062 autoreload 582 140457838627712 Watching for file changes with StatReloader
+INFO 2025-09-01 21:13:06,785 autoreload 582 140457838627712 /app/billing/services/stripe_service.py changed, reloading.
+INFO 2025-09-01 21:13:08,727 autoreload 595 139866132974464 Watching for file changes with StatReloader
+INFO 2025-09-01 21:13:17,552 autoreload 595 139866132974464 /app/billing/services/stripe_service.py changed, reloading.
+INFO 2025-09-01 21:13:19,568 autoreload 608 140655863511936 Watching for file changes with StatReloader
+ERROR 2025-09-01 21:13:25,090 stripe_service 621 139999062539136 Failed to create PaymentIntent: You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.
+INFO 2025-09-01 21:16:11,290 autoreload 55 139911813999488 Watching for file changes with StatReloader
+INFO 2025-09-01 21:16:37,832 autoreload 55 139911813999488 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 21:16:39,873 autoreload 68 140664770378624 Watching for file changes with StatReloader
+INFO 2025-09-01 21:16:52,348 autoreload 68 140664770378624 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 21:16:54,468 autoreload 81 140033126763392 Watching for file changes with StatReloader
+INFO 2025-09-01 21:17:27,475 autoreload 38 140301233556352 Watching for file changes with StatReloader
+INFO 2025-09-01 21:19:40,406 autoreload 38 139668593077120 Watching for file changes with StatReloader
+INFO 2025-09-01 21:20:33,170 autoreload 38 140546758134656 Watching for file changes with StatReloader
+INFO 2025-09-01 21:28:38,810 autoreload 38 139770010459008 Watching for file changes with StatReloader
+ERROR 2025-09-01 21:30:04,883 stripe_service 103 140411525077888 Failed to create PaymentIntent: Invalid API Key provided: sk_test_***********************************************************************************************EFGr

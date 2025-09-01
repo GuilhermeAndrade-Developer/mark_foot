@@ -540,3 +540,26 @@ if SENTRY_DSN and ENVIRONMENT.lower() == 'production':
         send_default_pii=True,
         environment=ENVIRONMENT,
     )
+
+# ============================================================================
+# PAYMENT GATEWAY CONFIGURATION
+# ============================================================================
+
+# Stripe Configuration
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
+STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET', default='')
+
+# PagSeguro Configuration
+PAGSEGURO_EMAIL = config('PAGSEGURO_EMAIL', default='')
+PAGSEGURO_TOKEN = config('PAGSEGURO_TOKEN', default='')
+PAGSEGURO_SANDBOX = config('PAGSEGURO_SANDBOX', default=True, cast=bool)
+
+# Mercado Pago Configuration
+MERCADOPAGO_ACCESS_TOKEN = config('MERCADOPAGO_ACCESS_TOKEN', default='')
+MERCADOPAGO_SANDBOX = config('MERCADOPAGO_SANDBOX', default=True, cast=bool)
+
+# Payment settings
+PAYMENT_DEFAULT_CURRENCY = config('PAYMENT_DEFAULT_CURRENCY', default='BRL')
+PAYMENT_WEBHOOK_TIMEOUT = config('PAYMENT_WEBHOOK_TIMEOUT', default=30, cast=int)
+PAYMENT_WEBHOOK_RETRIES = config('PAYMENT_WEBHOOK_RETRIES', default=3, cast=int)

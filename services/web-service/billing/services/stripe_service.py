@@ -6,6 +6,7 @@ import stripe
 import logging
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils import timezone
 from decimal import Decimal
 from typing import Dict, Any, Optional
 from ..models import UserSubscription, SubscriptionPlan, PaymentMethod, Invoice
@@ -22,6 +23,31 @@ class StripeService:
     def __init__(self):
         self.stripe = stripe
         
+    def create_payment_intent(self, amount: int, currency: str = 'brl', metadata: dict = None) -> Dict[str, Any]:
+        """Create a Stripe PaymentIntent for one-time payments"""
+        try:
+            payment_intent = self.stripe.PaymentIntent.create(
+                amount=amount,  # Amount in cents
+                currency=currency,
+                metadata=metadata or {},
+                payment_method_types=['card'],
+            )
+            
+            logger.info(f"Created Stripe PaymentIntent {payment_intent.id}")
+            return {
+                'success': True,
+                'id': payment_intent.id,
+                'client_secret': payment_intent.client_secret,
+                'payment_intent': payment_intent
+            }
+            
+        except stripe.error.StripeError as e:
+            logger.error(f"Failed to create PaymentIntent: {e}")
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
     def create_customer(self, user: User) -> Dict[str, Any]:
         """Create a Stripe customer for the user"""
         try:

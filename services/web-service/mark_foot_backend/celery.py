@@ -62,6 +62,32 @@ app.conf.beat_schedule = {
         'schedule': crontab(minute=0, hour=3, day_of_month=15),
         'kwargs': {'days_old': 60}  # Remove players not synced in 60 days
     },
+    # ============ WHATSAPP SUBSCRIPTION TASKS ============
+    # Check expiring subscriptions daily at 9 AM
+    'check-expiring-subscriptions': {
+        'task': 'whatsapp_integration.tasks.check_expiring_subscriptions',
+        'schedule': crontab(minute=0, hour=9),
+    },
+    # Check expired subscriptions daily at 10 AM
+    'check-expired-subscriptions': {
+        'task': 'whatsapp_integration.tasks.check_expired_subscriptions',
+        'schedule': crontab(minute=0, hour=10),
+    },
+    # Check trial endings daily at 8 AM
+    'check-trial-endings': {
+        'task': 'whatsapp_integration.tasks.check_trial_endings',
+        'schedule': crontab(minute=0, hour=8),
+    },
+    # Reset daily query counts at midnight
+    'reset-daily-query-counts': {
+        'task': 'whatsapp_integration.tasks.reset_daily_query_counts',
+        'schedule': crontab(minute=0, hour=0),
+    },
+    # Cleanup expired payment intents every 6 hours
+    'cleanup-expired-payment-intents': {
+        'task': 'whatsapp_integration.tasks.cleanup_expired_payment_intents',
+        'schedule': crontab(minute=0, hour='*/6'),
+    },
 }
 
 # Timezone configuration

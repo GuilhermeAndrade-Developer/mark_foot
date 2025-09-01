@@ -2,7 +2,10 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
-from billing.services.stripe_service import StripeService
+try:
+    from billing.services.stripe_service import StripeService
+except ImportError:
+    StripeService = None
 from billing.services.pagseguro_service import PagSeguroService
 from billing.models import SubscriptionPlan, UserSubscription
 from ..models import WhatsAppUser, WhatsAppPaymentIntent, WhatsAppSubscriptionEvent
@@ -11,7 +14,7 @@ import uuid
 
 class WhatsAppSubscriptionService:
     def __init__(self):
-        self.stripe_service = StripeService()
+        self.stripe_service = StripeService() if StripeService else None
         self.pagseguro_service = PagSeguroService()
         # MercadoPago service can be added later
         self.mercadopago_service = None

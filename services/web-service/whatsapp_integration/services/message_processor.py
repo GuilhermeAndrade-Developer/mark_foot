@@ -111,6 +111,23 @@ class MessageProcessor:
             self._send_help_message(whatsapp_user)
             return
         
+        # Handle live matches commands
+        if message_lower in ['/ao vivo', 'ao vivo', 'live', '/live']:
+            self._handle_live_matches_command(whatsapp_user)
+            return
+            
+        if message_lower.startswith('/odds') or 'odds' in message_lower:
+            self._handle_odds_command(whatsapp_user, message_content)
+            return
+            
+        if message_lower.startswith('/alertas') or 'alertas' in message_lower:
+            self._handle_alerts_command(whatsapp_user, message_content)
+            return
+            
+        if message_lower in ['/proximos', 'proximos', 'próximos']:
+            self._handle_upcoming_matches_command(whatsapp_user)
+            return
+        
         # Use NLP to process the query
         whatsapp_user.increment_query_count()
         
@@ -456,8 +473,13 @@ Como posso ajudar:
 • "Estatísticas do Flamengo"
 
 🏟️ Jogos e resultados:
-• "Próximos jogos"
+• "Próximos jogos" ou /proximos
+• "Ao vivo" ou /live
 • "Resultados de ontem"
+
+💰 Odds e apostas (Premium):
+• /odds - Ver odds atuais
+• /alertas - Configurar alertas
 
 🏆 Premium:
 • Digite "PREMIUM" para planos
@@ -466,6 +488,233 @@ Digite sua pergunta sobre futebol!
         """.strip()
         
         self.whatsapp_service.send_text_message(whatsapp_user.phone_number, message)
+    
+    def _handle_live_matches_command(self, whatsapp_user):
+        """Handle live matches command"""
+        try:
+            from core.models import LiveMatch
+            
+            live_matches = LiveMatch.objects.filter(
+                is_active=True,
+                status__in=['FIRST_HALF', 'SECOND_HALF', 'HALF_TIME', 'EXTRA_TIME_FIRST', 'EXTRA_TIME_SECOND']
+            ).order_by('minute')
+            
+            if not live_matches.exists():
+                response = """⚽ Nenhum jogo ao vivo no momento.
+
+📅 Próximos jogos: /proximos
+💎 Premium: Alertas automáticos quando jogos começarem!"""
+                
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+                return
+            
+            response = "🔴 *JOGOS AO VIVO*\n\n"
+            
+            for live_match in live_matches[:5]:  # Limit to 5 matches
+                match = live_match.match
+                
+                # Basic match info
+                response += f"🏠 {match.home_team.name} {live_match.home_score} x {live_match.away_score} {match.away_team.name}\n"
+                response += f"⏱️ {live_match.minute}' {'+' + str(live_match.added_time) if live_match.added_time > 0 else ''}\n"
+                response += f"🏆 {match.competition.name}\n\n"
+                
+                # Add AI prediction if available (premium feature)
+                if whatsapp_user.subscription_status in ['premium', 'pro', 'trial']:
+                    from ai_analytics.models import MatchPrediction
+                    prediction = MatchPrediction.objects.filter(
+                        match=match,
+                        prediction_type='RESULT'
+                    ).order_by('-created_at').first()
+                    
+                    if prediction:
+                        pred_data = prediction.features_used
+                        home_prob = pred_data.get('home_win_probability', 0.33) * 100
+                        draw_prob = pred_data.get('draw_probability', 0.33) * 100
+                        away_prob = pred_data.get('away_win_probability', 0.33) * 100
+                        
+                        response += f"🤖 IA: 🏠 {home_prob:.1f}% | 🤝 {draw_prob:.1f}% | ✈️ {away_prob:.1f}%\n\n"
+                
+                response += "---\n\n"
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+            
+        except Exception as e:
+            logger.error(f"Error in live matches command: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number, 
+                "❌ Erro ao buscar jogos ao vivo. Tente novamente."
+            )
+    
+    def _handle_odds_command(self, whatsapp_user, message_text):
+        """Handle odds command"""
+        try:
+            # Check if user has premium access
+            if whatsapp_user.subscription_status not in ['premium', 'pro', 'trial']:
+                response = """💰 *Odds ao Vivo* - Recurso Premium
+
+Para ver odds ao vivo:
+💎 Premium: R$ 19,90/mês
+🏆 Pro: R$ 49,90/mês
+
+🆓 Teste 7 dias: /trial
+📝 Assinar: /premium"""
+                
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+                return
+            
+            from core.models import LiveMatch, LiveOddsSnapshot
+            
+            # Get live matches with recent odds
+            live_matches = LiveMatch.objects.filter(
+                is_active=True,
+                status__in=['FIRST_HALF', 'SECOND_HALF', 'HALF_TIME']
+            ).prefetch_related('odds_snapshots')
+            
+            if not live_matches.exists():
+                response = "💰 Nenhuma odd ao vivo disponível no momento."
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+                return
+            
+            response = "💰 *ODDS AO VIVO*\n\n"
+            
+            for live_match in live_matches[:3]:  # Limit to 3 matches
+                match = live_match.match
+                
+                # Get latest odds
+                latest_odds = live_match.odds_snapshots.order_by('-minute').first()
+                
+                if latest_odds:
+                    response += f"🏠 {match.home_team.name} vs {match.away_team.name}\n"
+                    response += f"💰 Casa: {latest_odds.home_odds:.2f}\n"
+                    response += f"🤝 Empate: {latest_odds.draw_odds:.2f}\n"
+                    response += f"✈️ Fora: {latest_odds.away_odds:.2f}\n\n"
+                    
+                    if latest_odds.is_value_bet:
+                        response += f"🎯 VALUE BET DETECTADO! (+{latest_odds.value_percentage:.1f}%)\n\n"
+                else:
+                    response += f"⏱️ {live_match.minute}'\n"
+                    response += f"💰 Casa: {latest_odds.home_odds:.2f} 🤝 Empate: {latest_odds.draw_odds:.2f} ✈️ Fora: {latest_odds.away_odds:.2f}\n\n"
+                
+                response += "---\n\n"
+            
+            response += "⚠️ *Aposte com responsabilidade*"
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+            
+        except Exception as e:
+            logger.error(f"Error in odds command: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number, 
+                "❌ Erro ao buscar odds. Tente novamente."
+            )
+    
+    def _handle_alerts_command(self, whatsapp_user, message_text):
+        """Handle alerts configuration"""
+        try:
+            # Check if user has premium access
+            if whatsapp_user.subscription_status not in ['premium', 'pro', 'trial']:
+                response = """🔔 *Alertas Automáticos* - Recurso Premium
+
+Com alertas você recebe:
+⚽ Gols em tempo real
+🟥 Cartões vermelhos
+💰 Movimentos de odds (Pro)
+🎯 Value bets (Pro)
+
+💎 Premium: R$ 19,90/mês
+🏆 Pro: R$ 49,90/mês
+
+🆓 Teste 7 dias: /trial"""
+                
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+                return
+            
+            # For now, show current alert settings
+            response = """🔔 *Seus Alertas Ativos*
+
+✅ Início de jogos
+✅ Gols marcados
+✅ Cartões vermelhos
+✅ Pênaltis"""
+            
+            if whatsapp_user.subscription_status == 'pro':
+                response += """\n✅ Movimentos de odds
+✅ Value bets
+✅ Previsões da IA"""
+            
+            response += """\n\n💡 Os alertas são enviados automaticamente durante os jogos!
+
+Para times específicos, digite:
+"Alertas do Flamengo"
+"Alertas do Palmeiras\""""
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+            
+        except Exception as e:
+            logger.error(f"Error in alerts command: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number, 
+                "❌ Erro ao configurar alertas. Tente novamente."
+            )
+    
+    def _handle_upcoming_matches_command(self, whatsapp_user):
+        """Handle upcoming matches command"""
+        try:
+            from core.models import Match
+            from datetime import datetime, timedelta
+            
+            # Get matches for today and tomorrow
+            now = timezone.now()
+            tomorrow = now + timedelta(days=1)
+            
+            upcoming_matches = Match.objects.filter(
+                utc_date__gte=now,
+                utc_date__lte=tomorrow,
+                status='SCHEDULED'
+            ).order_by('utc_date')[:8]
+            
+            if not upcoming_matches.exists():
+                response = "📅 Nenhum jogo agendado para hoje/amanhã."
+                self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+                return
+            
+            response = "📅 *PRÓXIMOS JOGOS*\n\n"
+            
+            for match in upcoming_matches:
+                response += f"🏠 {match.home_team.name} vs {match.away_team.name}\n"
+                response += f"⏰ {match.utc_date.strftime('%d/%m %H:%M')}\n"
+                response += f"🏆 {match.competition.name}\n"
+                
+                # Add AI prediction for premium users
+                if whatsapp_user.subscription_status in ['premium', 'pro', 'trial']:
+                    from ai_analytics.models import MatchPrediction
+                    prediction = MatchPrediction.objects.filter(
+                        match=match,
+                        prediction_type='RESULT'
+                    ).order_by('-created_at').first()
+                    
+                    if prediction:
+                        pred_data = prediction.features_used
+                        home_prob = pred_data.get('home_win_probability', 0.33) * 100
+                        draw_prob = pred_data.get('draw_probability', 0.33) * 100
+                        away_prob = pred_data.get('away_win_probability', 0.33) * 100
+                        
+                        response += f"🤖 IA: 🏠 {home_prob:.1f}% | 🤝 {draw_prob:.1f}% | ✈️ {away_prob:.1f}%\n"
+                
+                response += "\n---\n\n"
+            
+            if whatsapp_user.subscription_status in ['premium', 'pro', 'trial']:
+                response += "💎 Alertas automáticos quando os jogos começarem!"
+            else:
+                response += "💎 Premium: Receba alertas quando os jogos começarem!"
+            
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
+            
+        except Exception as e:
+            logger.error(f"Error in upcoming matches command: {str(e)}")
+            self.whatsapp_service.send_text_message(
+                whatsapp_user.phone_number, 
+                "❌ Erro ao buscar próximos jogos. Tente novamente."
+            )
     
     def _send_default_message(self, whatsapp_user):
         """Send default welcome message"""

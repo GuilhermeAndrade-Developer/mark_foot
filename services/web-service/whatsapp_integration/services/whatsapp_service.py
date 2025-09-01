@@ -79,3 +79,27 @@ Para assinar: Digite *PREMIUM* ou acesse nosso site
         """.strip()
         
         return self.send_text_message(phone_number, message)
+    
+    def send_alert_message(self, phone_number, alert):
+        """Send match alert message"""
+        try:
+            # Create formatted alert message
+            message = f"🚨 *{alert.title}*\n\n{alert.message}"
+            
+            # Add priority emoji based on alert priority
+            if alert.priority == 'URGENT':
+                message = f"🔥 {message}"
+            elif alert.priority == 'HIGH':
+                message = f"⚡ {message}"
+            elif alert.priority == 'MEDIUM':
+                message = f"📢 {message}"
+            
+            return self.send_text_message(phone_number, message)
+            
+        except Exception as e:
+            logger.error(f"Error sending alert message to {phone_number}: {str(e)}")
+            return False
+    
+    def send_message(self, phone_number, message):
+        """Generic method to send message (for backward compatibility)"""
+        return self.send_text_message(phone_number, message)

@@ -2,7 +2,10 @@
 Stripe payment service integration
 """
 
-import stripe
+try:
+    import stripe
+except ImportError:
+    stripe = None
 import logging
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -14,7 +17,8 @@ from ..models import UserSubscription, SubscriptionPlan, PaymentMethod, Invoice
 logger = logging.getLogger(__name__)
 
 # Configure Stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
+if stripe:
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class StripeService:

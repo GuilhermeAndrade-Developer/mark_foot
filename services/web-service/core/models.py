@@ -518,3 +518,251 @@ class PlayerTransfer(models.Model):
         from_name = self.from_team.name if self.from_team else "Unknown"
         to_name = self.to_team.name if self.to_team else "Unknown"
         return f"{self.player.name}: {from_name} → {to_name} ({self.transfer_date})"
+
+
+class LiveMatch(models.Model):
+    """Model for live match tracking with real-time data"""
+    
+    LIVE_STATUS = [
+        ('PRE_MATCH', 'Pre-Match'),
+        ('KICK_OFF', 'Kick Off'),
+        ('FIRST_HALF', 'First Half'),
+        ('HALF_TIME', 'Half Time'),
+        ('SECOND_HALF', 'Second Half'),
+        ('EXTRA_TIME_FIRST', 'Extra Time - First Half'),
+        ('EXTRA_TIME_BREAK', 'Extra Time - Break'),
+        ('EXTRA_TIME_SECOND', 'Extra Time - Second Half'),
+        ('PENALTY_SHOOTOUT', 'Penalty Shootout'),
+        ('FULL_TIME', 'Full Time'),
+        ('SUSPENDED', 'Suspended'),
+        ('ABANDONED', 'Abandoned'),
+    ]
+    
+    match = models.OneToOneField(Match, on_delete=models.CASCADE, related_name='live_data')
+    status = models.CharField(max_length=20, choices=LIVE_STATUS, default='PRE_MATCH')
+    minute = models.IntegerField(default=0)
+    added_time = models.IntegerField(default=0)
+    
+    # Live scores
+    home_score = models.IntegerField(default=0)
+    away_score = models.IntegerField(default=0)
+    
+    # Live statistics
+    home_possession = models.FloatField(default=0.0)
+    away_possession = models.FloatField(default=0.0)
+    home_shots = models.IntegerField(default=0)
+    away_shots = models.IntegerField(default=0)
+    home_shots_on_target = models.IntegerField(default=0)
+    away_shots_on_target = models.IntegerField(default=0)
+    home_corners = models.IntegerField(default=0)
+    away_corners = models.IntegerField(default=0)
+    home_fouls = models.IntegerField(default=0)
+    away_fouls = models.IntegerField(default=0)
+    home_yellow_cards = models.IntegerField(default=0)
+    away_yellow_cards = models.IntegerField(default=0)
+    home_red_cards = models.IntegerField(default=0)
+    away_red_cards = models.IntegerField(default=0)
+    home_offsides = models.IntegerField(default=0)
+    away_offsides = models.IntegerField(default=0)
+    
+    # Attendance and venue info
+    attendance = models.IntegerField(null=True, blank=True)
+    weather = models.CharField(max_length=100, blank=True)
+    temperature = models.CharField(max_length=20, blank=True)
+    
+    # Technical data
+    last_update = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'live_matches'
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['is_active']),
+            models.Index(fields=['last_update']),
+        ]
+
+    def __str__(self):
+        return f"Live: {self.match.home_team.name} {self.home_score}-{self.away_score} {self.match.away_team.name} ({self.minute}')"
+
+
+class LiveMatchEvent(models.Model):
+    """Model for live match events (goals, cards, substitutions, etc.)"""
+    
+    EVENT_TYPES = [
+        ('GOAL', 'Goal'),
+        ('OWN_GOAL', 'Own Goal'),
+        ('PENALTY_GOAL', 'Penalty Goal'),
+        ('YELLOW_CARD', 'Yellow Card'),
+        ('RED_CARD', 'Red Card'),
+        ('SUBSTITUTION', 'Substitution'),
+        ('VAR_REVIEW', 'VAR Review'),
+        ('VAR_DECISION', 'VAR Decision'),
+        ('INJURY', 'Injury'),
+        ('CORNER', 'Corner'),
+        ('FREE_KICK', 'Free Kick'),
+        ('PENALTY_AWARDED', 'Penalty Awarded'),
+        ('PENALTY_MISSED', 'Penalty Missed'),
+        ('OFFSIDE', 'Offside'),
+        ('KICK_OFF', 'Kick Off'),
+        ('HALF_TIME', 'Half Time'),
+        ('FULL_TIME', 'Full Time'),
+    ]
+    
+    live_match = models.ForeignKey(LiveMatch, on_delete=models.CASCADE, related_name='events')
+    event_type = models.CharField(max_length=20, choices=EVENT_TYPES)
+    minute = models.IntegerField()
+    added_time = models.IntegerField(default=0)
+    
+    # Player and team involved
+    player = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True)
+    player_name = models.CharField(max_length=100, blank=True)  # Fallback if player not in DB
+    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    # Additional player for substitutions
+    assist_player = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='assists')
+    substitute_player = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='substitutions')
+    
+    # Event description and details
+    description = models.TextField(blank=True)
+    details = models.JSONField(default=dict)  # Additional event details
+    
+    # Coordinates (if available)
+    x_coordinate = models.FloatField(null=True, blank=True)
+    y_coordinate = models.FloatField(null=True, blank=True)
+    
+    # Technical
+    external_event_id = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'live_match_events'
+        indexes = [
+            models.Index(fields=['live_match', 'minute']),
+            models.Index(fields=['event_type']),
+            models.Index(fields=['player']),
+            models.Index(fields=['team']),
+            models.Index(fields=['created_at']),
+        ]
+        ordering = ['minute', 'added_time', 'created_at']
+
+    def __str__(self):
+        time_str = f"{self.minute}'"
+        if self.added_time > 0:
+            time_str += f"+{self.added_time}"
+        
+        player_str = self.player.name if self.player else self.player_name
+        return f"{time_str} - {self.get_event_type_display()}: {player_str}"
+
+
+class LiveOddsSnapshot(models.Model):
+    """Model for real-time odds snapshots during live matches"""
+    
+    live_match = models.ForeignKey(LiveMatch, on_delete=models.CASCADE, related_name='odds_snapshots')
+    minute = models.IntegerField()
+    
+    # Main market odds
+    home_odds = models.FloatField()
+    draw_odds = models.FloatField()
+    away_odds = models.FloatField()
+    
+    # Goals markets
+    over_0_5_odds = models.FloatField(null=True, blank=True)
+    under_0_5_odds = models.FloatField(null=True, blank=True)
+    over_1_5_odds = models.FloatField(null=True, blank=True)
+    under_1_5_odds = models.FloatField(null=True, blank=True)
+    over_2_5_odds = models.FloatField(null=True, blank=True)
+    under_2_5_odds = models.FloatField(null=True, blank=True)
+    over_3_5_odds = models.FloatField(null=True, blank=True)
+    under_3_5_odds = models.FloatField(null=True, blank=True)
+    
+    # Both teams to score
+    both_teams_score_yes = models.FloatField(null=True, blank=True)
+    both_teams_score_no = models.FloatField(null=True, blank=True)
+    
+    # Next goal scorer
+    home_next_goal_odds = models.FloatField(null=True, blank=True)
+    away_next_goal_odds = models.FloatField(null=True, blank=True)
+    no_more_goals_odds = models.FloatField(null=True, blank=True)
+    
+    # Value bet analysis
+    value_percentage = models.FloatField(default=0.0)
+    is_value_bet = models.BooleanField(default=False)
+    
+    # Technical
+    bookmaker_source = models.CharField(max_length=50, default='Multiple')
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'live_odds_snapshots'
+        indexes = [
+            models.Index(fields=['live_match', 'minute']),
+            models.Index(fields=['is_value_bet']),
+            models.Index(fields=['timestamp']),
+        ]
+        ordering = ['minute', 'timestamp']
+
+    def __str__(self):
+        return f"{self.live_match.match} - {self.minute}' odds"
+
+
+class MatchAlert(models.Model):
+    """Model for match alerts sent to users"""
+    
+    ALERT_TYPES = [
+        ('MATCH_START', 'Match Started'),
+        ('GOAL', 'Goal Scored'),
+        ('RED_CARD', 'Red Card'),
+        ('PENALTY', 'Penalty'),
+        ('HALF_TIME', 'Half Time'),
+        ('FULL_TIME', 'Full Time'),
+        ('ODDS_MOVEMENT', 'Significant Odds Movement'),
+        ('VALUE_BET', 'Value Bet Opportunity'),
+        ('SCORE_PREDICTION', 'Score Prediction Update'),
+        ('COMEBACK_ALERT', 'Comeback Possibility'),
+        ('UPSET_ALERT', 'Upset in Progress'),
+    ]
+    
+    PRIORITY_LEVELS = [
+        ('LOW', 'Low'),
+        ('MEDIUM', 'Medium'),
+        ('HIGH', 'High'),
+        ('URGENT', 'Urgent'),
+    ]
+    
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='alerts')
+    alert_type = models.CharField(max_length=20, choices=ALERT_TYPES)
+    priority = models.CharField(max_length=10, choices=PRIORITY_LEVELS, default='MEDIUM')
+    
+    title = models.CharField(max_length=200)
+    message = models.TextField()
+    data = models.JSONField(default=dict)  # Additional alert data
+    
+    # Targeting
+    target_subscription_levels = models.JSONField(default=list)  # ['premium', 'pro']
+    target_teams = models.ManyToManyField(Team, blank=True)  # For team-specific alerts
+    
+    # Delivery tracking
+    sent_count = models.IntegerField(default=0)
+    is_sent = models.BooleanField(default=False)
+    send_after = models.DateTimeField(null=True, blank=True)  # Schedule for later
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'match_alerts'
+        indexes = [
+            models.Index(fields=['match', 'alert_type']),
+            models.Index(fields=['priority']),
+            models.Index(fields=['is_sent']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['send_after']),
+        ]
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.match} - {self.get_alert_type_display()}"

@@ -489,3 +489,257 @@ class MatchPredictionService(BaseAIService, DataPreparationMixin, ModelEvaluatio
                 }
         
         return evaluation
+    
+    def predict_live_match_outcome(self, live_match):
+        """Generate updated predictions for live match based on current state"""
+        try:
+            from core.models import LiveMatch
+            
+            match = live_match.match
+            
+            # Collect live match features
+            live_features = self._extract_live_features(live_match)
+            
+            # Get base features (pre-match analysis)
+            base_features = self._prepare_match_features(match)
+            
+            # Combine features
+            combined_features = {**base_features, **live_features}
+            
+            # Adjust predictions based on live data
+            predictions = self._calculate_live_probabilities(combined_features, live_match)
+            
+            logger.info(f"Generated live predictions for match {match.id} at {live_match.minute}'")
+            
+            return predictions
+            
+        except Exception as e:
+            logger.error(f"Error predicting live match outcome: {str(e)}")
+            return None
+    
+    def _extract_live_features(self, live_match):
+        """Extract features from live match data"""
+        try:
+            # Time-based features
+            time_features = {
+                'minutes_played': live_match.minute + live_match.added_time,
+                'time_remaining': max(0, 90 - live_match.minute - live_match.added_time),
+                'is_second_half': live_match.status in ['SECOND_HALF', 'EXTRA_TIME_FIRST', 'EXTRA_TIME_SECOND'],
+                'is_extra_time': live_match.status.startswith('EXTRA_TIME'),
+            }
+            
+            # Score-based features
+            score_features = {
+                'current_home_score': live_match.home_score,
+                'current_away_score': live_match.away_score,
+                'score_difference': live_match.home_score - live_match.away_score,
+                'total_goals': live_match.home_score + live_match.away_score,
+                'home_leading': live_match.home_score > live_match.away_score,
+                'away_leading': live_match.away_score > live_match.home_score,
+                'is_draw': live_match.home_score == live_match.away_score,
+            }
+            
+            # Performance-based features
+            performance_features = {
+                'home_possession_advantage': live_match.home_possession - live_match.away_possession,
+                'home_shots_advantage': live_match.home_shots - live_match.away_shots,
+                'home_shots_on_target_advantage': live_match.home_shots_on_target - live_match.away_shots_on_target,
+                'home_corners_advantage': live_match.home_corners - live_match.away_corners,
+                'total_cards': live_match.home_yellow_cards + live_match.away_yellow_cards + live_match.home_red_cards + live_match.away_red_cards,
+                'home_red_cards': live_match.home_red_cards,
+                'away_red_cards': live_match.away_red_cards,
+                'red_card_advantage': live_match.away_red_cards - live_match.home_red_cards,
+            }
+            
+            # Efficiency features
+            efficiency_features = {}
+            if live_match.home_shots > 0:
+                efficiency_features['home_shot_efficiency'] = live_match.home_shots_on_target / live_match.home_shots
+                efficiency_features['home_conversion_rate'] = live_match.home_score / live_match.home_shots
+            else:
+                efficiency_features['home_shot_efficiency'] = 0
+                efficiency_features['home_conversion_rate'] = 0
+                
+            if live_match.away_shots > 0:
+                efficiency_features['away_shot_efficiency'] = live_match.away_shots_on_target / live_match.away_shots
+                efficiency_features['away_conversion_rate'] = live_match.away_score / live_match.away_shots
+            else:
+                efficiency_features['away_shot_efficiency'] = 0
+                efficiency_features['away_conversion_rate'] = 0
+            
+            return {
+                **time_features,
+                **score_features,
+                **performance_features,
+                **efficiency_features
+            }
+            
+        except Exception as e:
+            logger.error(f"Error extracting live features: {str(e)}")
+            return {}
+    
+    def _calculate_live_probabilities(self, features, live_match):
+        """Calculate updated probabilities based on live match state"""
+        try:
+            # Base probabilities (could be from pre-match prediction or default)
+            base_home_prob = 0.4
+            base_draw_prob = 0.3
+            base_away_prob = 0.3
+            
+            # Get latest prediction if available
+            latest_prediction = MatchPrediction.objects.filter(
+                match=live_match.match,
+                prediction_type='RESULT'
+            ).order_by('-created_at').first()
+            
+            if latest_prediction and latest_prediction.features_used:
+                base_home_prob = latest_prediction.features_used.get('home_win_probability', 0.4)
+                base_draw_prob = latest_prediction.features_used.get('draw_probability', 0.3)
+                base_away_prob = latest_prediction.features_used.get('away_win_probability', 0.3)
+            
+            # Adjustments based on live state
+            adjustments = self._calculate_live_adjustments(features, live_match)
+            
+            # Apply adjustments
+            new_home_prob = max(0.01, min(0.99, base_home_prob + adjustments['home_adjustment']))
+            new_away_prob = max(0.01, min(0.99, base_away_prob + adjustments['away_adjustment']))
+            new_draw_prob = max(0.01, min(0.99, base_draw_prob + adjustments['draw_adjustment']))
+            
+            # Normalize probabilities
+            total = new_home_prob + new_draw_prob + new_away_prob
+            new_home_prob /= total
+            new_draw_prob /= total
+            new_away_prob /= total
+            
+            return {
+                'home_win_probability': new_home_prob,
+                'draw_probability': new_draw_prob,
+                'away_win_probability': new_away_prob,
+                'confidence': adjustments.get('confidence', 0.7),
+                'live_features': features,
+                'adjustments_applied': adjustments
+            }
+            
+        except Exception as e:
+            logger.error(f"Error calculating live probabilities: {str(e)}")
+            return None
+    
+    def _calculate_live_adjustments(self, features, live_match):
+        """Calculate probability adjustments based on live match state"""
+        try:
+            home_adj = 0.0
+            away_adj = 0.0
+            draw_adj = 0.0
+            confidence = 0.7
+            
+            # Score-based adjustments
+            score_diff = features.get('score_difference', 0)
+            if score_diff > 0:  # Home leading
+                home_adj += min(0.3, score_diff * 0.15)
+                away_adj -= min(0.2, score_diff * 0.1)
+                draw_adj -= min(0.1, score_diff * 0.05)
+            elif score_diff < 0:  # Away leading
+                away_adj += min(0.3, abs(score_diff) * 0.15)
+                home_adj -= min(0.2, abs(score_diff) * 0.1)
+                draw_adj -= min(0.1, abs(score_diff) * 0.05)
+            
+            # Time-based adjustments
+            time_remaining = features.get('time_remaining', 90)
+            if time_remaining < 15:  # Last 15 minutes
+                # Leading team gets higher probability, trailing team lower
+                urgency_factor = (15 - time_remaining) / 15
+                if score_diff > 0:
+                    home_adj += urgency_factor * 0.1
+                    away_adj -= urgency_factor * 0.1
+                elif score_diff < 0:
+                    away_adj += urgency_factor * 0.1
+                    home_adj -= urgency_factor * 0.1
+                else:  # Draw
+                    draw_adj += urgency_factor * 0.05
+            
+            # Red card adjustments
+            red_card_advantage = features.get('red_card_advantage', 0)
+            if red_card_advantage > 0:  # Home has player advantage
+                home_adj += red_card_advantage * 0.2
+                away_adj -= red_card_advantage * 0.15
+            elif red_card_advantage < 0:  # Away has player advantage
+                away_adj += abs(red_card_advantage) * 0.2
+                home_adj -= abs(red_card_advantage) * 0.15
+            
+            # Performance-based adjustments
+            possession_adv = features.get('home_possession_advantage', 0)
+            shots_adv = features.get('home_shots_advantage', 0)
+            
+            # Possession advantage (small effect)
+            if abs(possession_adv) > 20:  # Significant possession advantage
+                if possession_adv > 0:
+                    home_adj += 0.05
+                    away_adj -= 0.03
+                else:
+                    away_adj += 0.05
+                    home_adj -= 0.03
+            
+            # Shots advantage (medium effect)
+            if abs(shots_adv) > 3:  # Significant shots advantage
+                if shots_adv > 0:
+                    home_adj += min(0.1, shots_adv * 0.02)
+                    away_adj -= min(0.05, shots_adv * 0.01)
+                else:
+                    away_adj += min(0.1, abs(shots_adv) * 0.02)
+                    home_adj -= min(0.05, abs(shots_adv) * 0.01)
+            
+            # Increase confidence based on amount of data
+            minutes_played = features.get('minutes_played', 0)
+            confidence = min(0.9, 0.5 + (minutes_played / 90) * 0.4)
+            
+            return {
+                'home_adjustment': home_adj,
+                'away_adjustment': away_adj,
+                'draw_adjustment': draw_adj,
+                'confidence': confidence,
+                'factors': {
+                    'score_difference': score_diff,
+                    'time_remaining': time_remaining,
+                    'red_card_advantage': red_card_advantage,
+                    'possession_advantage': possession_adv,
+                    'shots_advantage': shots_adv
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Error calculating live adjustments: {str(e)}")
+            return {'home_adjustment': 0, 'away_adjustment': 0, 'draw_adjustment': 0, 'confidence': 0.5}
+    
+    def update_live_predictions(self, live_match):
+        """Update predictions during live match and save to database"""
+        try:
+            new_predictions = self.predict_live_match_outcome(live_match)
+            
+            if new_predictions:
+                # Save updated prediction
+                prediction = MatchPrediction.objects.create(
+                    match=live_match.match,
+                    prediction_type='LIVE_UPDATE',
+                    predicted_value=f"H:{new_predictions['home_win_probability']:.3f},D:{new_predictions['draw_probability']:.3f},A:{new_predictions['away_win_probability']:.3f}",
+                    confidence_score=new_predictions['confidence'],
+                    model_version=f"{self.version}_live",
+                    features_used=new_predictions
+                )
+                
+                logger.info(f"Updated live predictions for match {live_match.match.id} at {live_match.minute}'")
+                return prediction
+                
+        except Exception as e:
+            logger.error(f"Error updating live predictions: {str(e)}")
+            return None
+    
+    def get_latest_prediction(self, match):
+        """Get the latest prediction for a match"""
+        try:
+            return MatchPrediction.objects.filter(
+                match=match,
+                prediction_type__in=['RESULT', 'LIVE_UPDATE']
+            ).order_by('-created_at').first()
+        except Exception as e:
+            logger.error(f"Error getting latest prediction: {str(e)}")
+            return None

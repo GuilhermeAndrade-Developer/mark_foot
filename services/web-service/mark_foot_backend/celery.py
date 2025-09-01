@@ -20,6 +20,44 @@ app.autodiscover_tasks(['data_management'])
 
 # Celery Beat configuration
 app.conf.beat_schedule = {
+    # ============ LIVE MATCH MONITORING ============
+    # Monitor live matches every 2 minutes during match times
+    'monitor-live-matches': {
+        'task': 'core.tasks.monitor_live_matches',
+        'schedule': 2.0 * 60,  # 2 minutes
+    },
+    # Monitor live odds every 3 minutes
+    'monitor-live-odds': {
+        'task': 'core.tasks.monitor_live_odds',
+        'schedule': 3.0 * 60,  # 3 minutes
+    },
+    # Process match alerts every minute
+    'process-match-alerts': {
+        'task': 'core.tasks.process_match_alerts',
+        'schedule': 60.0,  # 1 minute
+    },
+    # Start monitoring for matches beginning soon every 5 minutes
+    'start-match-monitoring': {
+        'task': 'core.tasks.start_match_monitoring',
+        'schedule': 5.0 * 60,  # 5 minutes
+    },
+    # Send daily match previews at 8 AM
+    'send-daily-match-preview': {
+        'task': 'core.tasks.send_daily_match_preview',
+        'schedule': crontab(minute=0, hour=8),
+    },
+    # Update live predictions every 5 minutes
+    'update-live-predictions': {
+        'task': 'core.tasks.update_live_predictions',
+        'schedule': 5.0 * 60,  # 5 minutes
+    },
+    # Cleanup old alerts and data daily at 4 AM
+    'cleanup-old-alerts': {
+        'task': 'core.tasks.cleanup_old_alerts',
+        'schedule': crontab(minute=0, hour=4),
+    },
+    
+    # ============ EXISTING DATA SYNC TASKS ============
     # Sync matches every 30 minutes during match days
     'sync-live-matches': {
         'task': 'data_management.tasks.sync_live_matches',

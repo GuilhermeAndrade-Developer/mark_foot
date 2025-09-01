@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'polls',
     'billing',  # New billing app
     'whatsapp_integration',  # New WhatsApp integration app
+    'nlp_engine',  # New NLP engine app
 ]
 
 MIDDLEWARE = [
@@ -482,6 +483,20 @@ WHATSAPP_PREMIUM_DAILY_LIMIT = config('WHATSAPP_PREMIUM_DAILY_LIMIT', default=10
 # WhatsApp webhook settings
 WHATSAPP_WEBHOOK_TIMEOUT = config('WHATSAPP_WEBHOOK_TIMEOUT', default=30, cast=int)
 WHATSAPP_WEBHOOK_RETRIES = config('WHATSAPP_WEBHOOK_RETRIES', default=3, cast=int)
+
+# ============================================================================
+# NLP ENGINE CONFIGURATION
+# ============================================================================
+
+# NLP Configuration
+NLP_CONFIDENCE_THRESHOLD = config('NLP_CONFIDENCE_THRESHOLD', default=0.7, cast=float)
+NLP_DEFAULT_LANGUAGE = config('NLP_DEFAULT_LANGUAGE', default='pt')
+NLP_MAX_QUERY_LENGTH = config('NLP_MAX_QUERY_LENGTH', default=1000, cast=int)
+NLP_CACHE_TIMEOUT = config('NLP_CACHE_TIMEOUT', default=3600, cast=int)  # 1 hour
+
+# Entity extraction settings
+NLP_ENTITY_CONFIDENCE_THRESHOLD = config('NLP_ENTITY_CONFIDENCE_THRESHOLD', default=0.6, cast=float)
+NLP_MAX_ENTITIES_PER_TYPE = config('NLP_MAX_ENTITIES_PER_TYPE', default=5, cast=int)
 
 # ============================================================================
 # MONITORING CONFIGURATION

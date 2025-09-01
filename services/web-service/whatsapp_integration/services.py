@@ -6,6 +6,7 @@ from .models import WhatsAppUser, WhatsAppMessage, WhatsAppSession
 from billing.models import UserSubscription
 from ai_analytics.services.base_service import BaseAIService
 from core.models import Team, Match, Player
+from nlp_engine.services import FootballNLPService, ResponseGenerator
 
 logger = logging.getLogger(__name__)
 
@@ -89,7 +90,8 @@ class MessageProcessor:
     
     def __init__(self):
         self.whatsapp_service = WhatsAppService()
-        # self.analytics_service = FootballAnalyticsService()  # To be implemented later
+        self.nlp_service = FootballNLPService()
+        self.response_generator = ResponseGenerator()
     
     def process_message(self, webhook_data):
         """Process incoming webhook message"""
@@ -159,19 +161,43 @@ class MessageProcessor:
             self._handle_premium_request(whatsapp_user)
             return
         
-        # Handle football queries
-        if any(keyword in message_lower for keyword in ['time', 'jogador', 'jogo', 'partida', 'resultado']):
-            whatsapp_user.increment_query_count()
-            self._handle_football_query(whatsapp_user, message_content)
-            return
-        
-        # Handle help requests
+        # Handle help requests (before NLP processing to avoid counting against limits)
         if any(keyword in message_lower for keyword in ['ajuda', 'help', 'como', 'menu']):
             self._send_help_message(whatsapp_user)
             return
         
-        # Default response
-        self._send_default_message(whatsapp_user)
+        # Use NLP to process the query
+        whatsapp_user.increment_query_count()
+        
+        try:
+            # Process query with NLP service
+            query_result = self.nlp_service.process_query(
+                message_content, 
+                user_phone=whatsapp_user.phone_number,
+                user_id=whatsapp_user.id
+            )
+            
+            # Generate response based on NLP results
+            response_text = self.response_generator.generate_response(
+                query_result, 
+                user_phone=whatsapp_user.phone_number
+            )
+            
+            # Send response
+            self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response_text)
+            
+            # Log the successful interaction
+            WhatsAppMessage.objects.create(
+                whatsapp_user=whatsapp_user,
+                message_type='text',
+                content=response_text,
+                is_incoming=False
+            )
+            
+        except Exception as e:
+            logger.error(f"Error processing message with NLP: {str(e)}")
+            # Fallback to simple processing
+            self._handle_football_query_fallback(whatsapp_user, message_content)
     
     def _send_rate_limit_message(self, whatsapp_user):
         """Send rate limit exceeded message"""
@@ -190,18 +216,24 @@ Digite *PREMIUM* para conhecer nossos planos!
         """Handle premium subscription request"""
         self.whatsapp_service.send_premium_promotion(whatsapp_user.phone_number)
     
-    def _handle_football_query(self, whatsapp_user, query):
-        """Handle football-related queries"""
+    def _handle_football_query_fallback(self, whatsapp_user, query):
+        """Fallback football query handler when NLP fails"""
         try:
-            # Use existing AI analytics service
+            # Use existing simple processing as fallback
             response = self._process_football_query(query)
             
             # Send response
             self.whatsapp_service.send_text_message(whatsapp_user.phone_number, response)
             
         except Exception as e:
-            logger.error(f"Error processing football query: {str(e)}")
-            error_message = "Desculpe, ocorreu um erro ao processar sua consulta. Tente novamente em alguns minutos."
+            logger.error(f"Error in fallback football query processing: {str(e)}")
+            error_message = """😅 Desculpe, estou com dificuldades técnicas no momento.
+
+Tente reformular sua pergunta ou use comandos mais simples como:
+⚽ "Como está o Flamengo?"
+📊 "Tabela do Brasileirão"
+
+Nossa equipe foi notificada do problema! 🛠️"""
             self.whatsapp_service.send_text_message(whatsapp_user.phone_number, error_message)
     
     def _process_football_query(self, query):

@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/content/', include('content.urls')),
     path('api/polls/', include('polls.urls')),
     path('api/billing/', include('billing.urls')),  # New billing endpoints
+    path('api/nlp/', include('nlp_engine.urls')),  # NLP engine endpoints
     path('whatsapp/', include('whatsapp_integration.urls')),  # WhatsApp integration
     
     # API Documentation

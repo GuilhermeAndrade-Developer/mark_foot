@@ -26,7 +26,8 @@ show_help() {
     echo "  4. Aguarda banco de dados ficar pronto"
     echo "  5. Aplica migrations (se necessario)"
     echo "  6. Popula dados de teste (se necessario)"
-    echo "  7. Mostra URLs de acesso"
+    echo "  7. Verifica dependencias do frontend"
+    echo "  8. Mostra URLs de acesso"
     echo ""
 }
 
@@ -54,7 +55,7 @@ echo "===== MARK FOOT - INICIANDO AMBIENTE DE DESENVOLVIMENTO ====="
 echo ""
 
 # Verificar Docker
-echo "[1/7] Verificando Docker..."
+echo "[1/8] Verificando Docker..."
 if ! command -v docker &> /dev/null; then
     echo "ERRO: Docker nao esta instalado!"
     exit 1
@@ -74,12 +75,12 @@ if [ ! -f "docker/docker-compose.dev.yml" ]; then
 fi
 
 # Parar containers existentes
-echo "[2/7] Parando containers existentes..."
+echo "[2/8] Parando containers existentes..."
 docker-compose -f docker/docker-compose.dev.yml down &> /dev/null || true
 
 # Reset se solicitado
 if [ "$RESET" = true ]; then
-    echo "[2.5/7] RESETANDO AMBIENTE COMPLETO..."
+    echo "[2.5/8] RESETANDO AMBIENTE COMPLETO..."
     echo "ATENCAO: Isso apagara todos os dados do banco!"
     read -p "Continuar? (s/N): " confirm
     if [[ ! "$confirm" =~ ^[sS]$ ]]; then
@@ -91,7 +92,7 @@ if [ "$RESET" = true ]; then
 fi
 
 # Iniciar containers
-echo "[3/7] Iniciando containers..."
+echo "[3/8] Iniciando containers..."
 echo "Aguarde, pode demorar alguns minutos na primeira vez..."
 
 if ! docker-compose -f docker/docker-compose.dev.yml up -d; then
@@ -102,7 +103,7 @@ fi
 echo "OK: Containers iniciados"
 
 # Aguardar banco de dados
-echo "[4/7] Aguardando banco de dados..."
+echo "[4/8] Aguardando banco de dados..."
 attempt=0
 while [ $attempt -lt 30 ]; do
     attempt=$((attempt + 1))
@@ -123,7 +124,7 @@ echo ""
 echo "OK: Banco de dados pronto"
 
 # Aguardar web service
-echo "[5/7] Aguardando web service..."
+echo "[5/8] Aguardando web service..."
 attempt=0
 while [ $attempt -lt 20 ]; do
     attempt=$((attempt + 1))
@@ -144,7 +145,7 @@ echo ""
 echo "OK: Web service funcionando"
 
 # Verificar migrations
-echo "[6/7] Verificando migrations..."
+echo "[6/8] Verificando migrations..."
 if migrations_output=$(docker exec mark_foot_web_dev python manage.py showmigrations --plan 2>/dev/null); then
     unapplied=$(echo "$migrations_output" | grep "\[ \]" || true)
     if [ ! -z "$unapplied" ]; then
@@ -162,7 +163,7 @@ else
 fi
 
 # Verificar dados
-echo "[7/7] Verificando dados no banco..."
+echo "[7/8] Verificando dados no banco..."
 if user_count=$(docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.count())" 2>/dev/null); then
     if [ "$user_count" -gt 0 ] 2>/dev/null; then
         echo "OK: Banco possui dados ($user_count usuarios)"
@@ -183,6 +184,30 @@ if admin_exists=$(docker exec mark_foot_web_dev python manage.py shell -c "from 
         echo "Criando superuser 'admin'..."
         docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@markfoot.com', 'admin123')" &> /dev/null || true
     fi
+fi
+
+# Verificar dependencias criticas do frontend
+echo "[8/8] Verificando dependencias do frontend..."
+critical_deps=("lodash-es" "vue" "vue-router" "pinia" "vuetify" "axios" "chart.js" "date-fns")
+missing_deps=()
+
+for dep in "${critical_deps[@]}"; do
+    if ! docker exec mark_foot_frontend_dev test -d "/app/node_modules/$dep" &> /dev/null; then
+        missing_deps+=("$dep")
+    fi
+done
+
+if [ ${#missing_deps[@]} -gt 0 ]; then
+    echo "Instalando dependencias faltantes do frontend..."
+    for dep in "${missing_deps[@]}"; do
+        docker exec mark_foot_frontend_dev npm install "$dep" --silent &> /dev/null || true
+    done
+    echo "Reiniciando container do frontend..."
+    docker restart mark_foot_frontend_dev &> /dev/null || true
+    sleep 3
+    echo "OK: Dependencias do frontend corrigidas"
+else
+    echo "OK: Dependencias do frontend verificadas"
 fi
 
 # Resumo final

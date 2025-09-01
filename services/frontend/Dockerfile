@@ -6,7 +6,11 @@ WORKDIR /app
 
 # Install dependencies first for better caching
 COPY package*.json ./
-RUN npm install
+
+# Clear npm cache and install dependencies with verbose logging
+RUN npm cache clean --force && \
+    npm install --verbose && \
+    npm ls --depth=0
 
 # Copy source code
 COPY . .

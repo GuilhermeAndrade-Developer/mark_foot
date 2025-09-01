@@ -25,7 +25,8 @@ function Show-Help {
     Write-Host "  4. Aguarda banco de dados ficar pronto"
     Write-Host "  5. Aplica migrations (se necessario)"
     Write-Host "  6. Popula dados de teste (se necessario)"
-    Write-Host "  7. Mostra URLs de acesso"
+    Write-Host "  7. Verifica dependencias do frontend"
+    Write-Host "  8. Mostra URLs de acesso"
     Write-Host ""
 }
 
@@ -39,7 +40,7 @@ Write-Host "===== MARK FOOT - INICIANDO AMBIENTE DE DESENVOLVIMENTO ====="
 Write-Host ""
 
 # Verificar Docker
-Write-Host "[1/7] Verificando Docker..."
+Write-Host "[1/8] Verificando Docker..."
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     Write-Host "ERRO: Docker nao esta instalado!" -ForegroundColor Red
     exit 1
@@ -65,12 +66,12 @@ if (-not (Test-Path "docker/docker-compose.dev.yml")) {
 }
 
 # Parar containers existentes
-Write-Host "[2/7] Parando containers existentes..."
+Write-Host "[2/8] Parando containers existentes..."
 docker-compose -f docker/docker-compose.dev.yml down 2>$null | Out-Null
 
 # Reset se solicitado
 if ($Reset) {
-    Write-Host "[2.5/7] RESETANDO AMBIENTE COMPLETO..."
+    Write-Host "[2.5/8] RESETANDO AMBIENTE COMPLETO..."
     Write-Host "ATENCAO: Isso apagara todos os dados do banco!"
     $confirm = Read-Host "Continuar? (s/N)"
     if ($confirm -ne "s" -and $confirm -ne "S") {
@@ -82,7 +83,7 @@ if ($Reset) {
 }
 
 # Iniciar containers
-Write-Host "[3/7] Iniciando containers..."
+Write-Host "[3/8] Iniciando containers..."
 Write-Host "Aguarde, pode demorar alguns minutos na primeira vez..."
 
 $result = docker-compose -f docker/docker-compose.dev.yml up -d 2>&1
@@ -95,7 +96,7 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "OK: Containers iniciados"
 
 # Aguardar banco de dados
-Write-Host "[4/7] Aguardando banco de dados..."
+Write-Host "[4/8] Aguardando banco de dados..."
 $attempt = 0
 do {
     $attempt++
@@ -117,7 +118,7 @@ Write-Host ""
 Write-Host "OK: Banco de dados pronto"
 
 # Aguardar web service
-Write-Host "[5/7] Aguardando web service..."
+Write-Host "[5/8] Aguardando web service..."
 $attempt = 0
 do {
     $attempt++
@@ -143,7 +144,7 @@ Write-Host ""
 Write-Host "OK: Web service funcionando"
 
 # Verificar migrations
-Write-Host "[6/7] Verificando migrations..."
+Write-Host "[6/8] Verificando migrations..."
 $migrations = docker exec mark_foot_web_dev python manage.py showmigrations --plan 2>$null
 if ($LASTEXITCODE -eq 0) {
     $unapplied = $migrations | Select-String "\[ \]"
@@ -163,7 +164,7 @@ if ($LASTEXITCODE -eq 0) {
 }
 
 # Verificar dados
-Write-Host "[7/7] Verificando dados no banco..."
+Write-Host "[7/8] Verificando dados no banco..."
 $userCount = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.count())" 2>$null
 
 if ($LASTEXITCODE -eq 0 -and [int]$userCount -gt 0) {
@@ -180,6 +181,31 @@ $adminExists = docker exec mark_foot_web_dev python manage.py shell -c "from dja
 if ($adminExists -ne "True") {
     Write-Host "Criando superuser 'admin'..."
     docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@markfoot.com', 'admin123')" 2>$null | Out-Null
+}
+
+# Verificar dependencias criticas do frontend
+Write-Host "[8/8] Verificando dependencias do frontend..."
+$criticalDeps = @("lodash-es", "vue", "vue-router", "pinia", "vuetify", "axios", "chart.js", "date-fns")
+$missingDeps = @()
+
+foreach ($dep in $criticalDeps) {
+    $exists = docker exec mark_foot_frontend_dev test -d "/app/node_modules/$dep" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        $missingDeps += $dep
+    }
+}
+
+if ($missingDeps.Count -gt 0) {
+    Write-Host "Instalando dependencias faltantes do frontend..."
+    foreach ($dep in $missingDeps) {
+        docker exec mark_foot_frontend_dev npm install $dep --silent 2>$null | Out-Null
+    }
+    Write-Host "Reiniciando container do frontend..."
+    docker restart mark_foot_frontend_dev 2>$null | Out-Null
+    Start-Sleep 3
+    Write-Host "OK: Dependencias do frontend corrigidas"
+} else {
+    Write-Host "OK: Dependencias do frontend verificadas"
 }
 
 # Resumo final

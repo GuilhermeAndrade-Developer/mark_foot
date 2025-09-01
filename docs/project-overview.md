@@ -1,7 +1,15 @@
 # Project Overview - Mark Foot
 
-## 🎯 Visão Geral do Projeto
-Sistema de coleta, armazenamento e análise de dados de futebol utilizando APIs gratuitas, com foco em escalabilidade e funcionalidades futuras.
+## 🎯 Nova Visão do Projeto (Setembro 2025)
+**Plataforma de inteligência esportiva via WhatsApp com chatbot AI, focada em análise de estatísticas + odds de apostas.**
+
+Sistema revolucionário que combina coleta automatizada de dados de futebol com análises de IA conversacional, oferecendo insights únicos sobre estatísticas de jogos, jogadores e principalmente **análise inteligente de odds**, explicando o "porquê" das cotações das principais casas de apostas.
+
+## 🚀 Diferencial Competitivo
+- **WhatsApp First**: Interface conversacional natural via WhatsApp Business API
+- **Odds Intelligence**: Único bot que explica WHY das odds usando IA
+- **Real-time Analytics**: Dados atualizados + análises instantâneas
+- **Betting Education**: Educação responsável sobre apostas e probabilidades
 
 ## 🔑 API Key Football-Data.org
 - **Chave**: e87bfe5dea1746a2b4442d23ce45427c
@@ -32,12 +40,13 @@ Sistema de coleta, armazenamento e análise de dados de futebol utilizando APIs 
 - **AI/ML**: Scikit-learn + Pandas + TextBlob
 - **Charts**: Chart.js + vue-chartjs
 
-## 🏗️ Arquitetura do Sistema
+## 🏗️ Arquitetura do Sistema - WhatsApp Integration
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   Backend       │    │   External      │
-│   Vue.js 3      │◄──►│   Django 4.2    │◄──►│   APIs          │
-│   Port 8080     │    │   Port 8001     │    │   Football-Data │
+│   WhatsApp      │    │   Backend       │    │   External      │
+│   Business API  │◄──►│   Django 4.2    │◄──►│   APIs          │
+│   ChatBot AI    │    │   + AI Services │    │   Football-Data │
+│   Port 443      │    │   Port 8001     │    │   + Betting APIs│
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                 │
                        ┌─────────────────┐
@@ -51,22 +60,29 @@ Sistema de coleta, armazenamento e análise de dados de futebol utilizando APIs 
                        │   Redis + Celery│
                        │   Port 6379     │
                        └─────────────────┘
+                                │
+                       ┌─────────────────┐
+                       │   Admin Panel   │
+                       │   Vue.js 3      │
+                       │   Port 8080     │
+                       └─────────────────┘
 ```
 
-## 🎯 Objetivos do Projeto
-1. **Coleta Automatizada** de dados de futebol
-2. **Análise Inteligente** com Machine Learning
-3. **Interface Moderna** e responsiva
-4. **Escalabilidade** para milhões de usuários
-5. **Monetização** sustentável
-6. **Ecosystem** de parcerias
+## 🎯 Objetivos Reformulados do Projeto
+1. **WhatsApp Integration** - Chatbot AI conversacional para estatísticas de futebol
+2. **Betting Intelligence** - Análise de odds + explicação do "porquê" das cotações
+3. **Monetização B2C** - Freemium model via WhatsApp Business API
+4. **Escalabilidade Global** - Multi-idioma e expansão internacional
+5. **Ecosystem Partnerships** - White-label e parcerias estratégicas
+6. **Responsible Gambling** - Educação sobre apostas e gestão de riscos
 
-## 📊 Métricas de Sucesso
-- **Uptime**: 99.9%
-- **API Response**: < 200ms
-- **Data Accuracy**: > 95%
-- **User Engagement**: 80%+ retention
-- **Revenue Growth**: 20% MoM
+## 📊 Métricas de Sucesso Reformuladas
+- **WhatsApp Users**: 100K usuários até final de 2025
+- **Conversion Rate**: 25% free-to-premium conversion
+- **API Response**: < 200ms para queries via bot
+- **User Engagement**: 80%+ retention mensal
+- **Revenue Growth**: R$ 375K ARR até dezembro 2025
+- **International**: 3 idiomas operacionais até 2026
 
 ---
 *Documento criado em: 30 de agosto de 2025*

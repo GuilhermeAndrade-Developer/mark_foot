@@ -22,3 +22,11 @@ INFO 2025-09-01 13:41:40,909 basehttp 11 140316111795904 "OPTIONS /api/v1/busine
 INFO 2025-09-01 13:41:40,959 basehttp 11 140316111795904 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
 INFO 2025-09-01 13:41:41,010 basehttp 11 140316111795904 "OPTIONS /api/v1/business/activities/ HTTP/1.1" 200 0
 INFO 2025-09-01 13:41:41,068 basehttp 11 140316111795904 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-09-01 13:51:47,327 basehttp 11 140316111795904 "GET /api/v1/business/metrics/ HTTP/1.1" 200 533
+INFO 2025-09-01 13:51:47,340 basehttp 11 140316111795904 "GET /api/v1/business/user-growth/ HTTP/1.1" 200 152
+INFO 2025-09-01 13:51:47,410 basehttp 11 140316111795904 "GET /api/v1/business/revenue/ HTTP/1.1" 200 104
+INFO 2025-09-01 13:51:47,468 basehttp 11 140316111795904 "GET /api/v1/business/social-engagement/ HTTP/1.1" 200 97
+INFO 2025-09-01 13:51:47,519 basehttp 11 140316111795904 "GET /api/v1/business/activities/ HTTP/1.1" 200 736
+INFO 2025-09-01 13:52:13,980 basehttp 11 140316111795904 "OPTIONS /api/billing/admin/dashboard/kpis/ HTTP/1.1" 200 0
+WARNING 2025-09-01 13:52:13,993 log 11 140316111795904 Not Found: /api/billing/admin/dashboard/kpis/
+WARNING 2025-09-01 13:52:13,993 basehttp 11 140316111795904 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 7541

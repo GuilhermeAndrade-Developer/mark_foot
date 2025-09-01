@@ -9,9 +9,25 @@
 | **Fase 3** | ✅ **COMPLETADA** | 100% | - |
 | **Fase 4** | ✅ **COMPLETADA** | 100% | - |
 | **Fase 5** | ✅ **COMPLETADA** | 100% | - |
-| **Fase 6** | 🚧 **PRÓXIMA** | 0% | Iniciar monetização |
-| **Fase 7** | 📋 **PLANEJADA** | 0% | Após Fase 6 |
-| **Fase 8** | 📋 **PLANEJADA** | 0% | Após Fase 7 |
+| **Fase 6.1** | ✅ **COMPLETADA** | 100% | Billing system ready |
+| **Fase 6.2** | 🚧 **EM ANDAMENTO** | 0% | **WhatsApp Integration** |
+| **Fase 6.3** | 📋 **PLANEJADA** | 0% | Premium Features |
+| **Fase 7** | 📋 **REFORMULADA** | 0% | International Expansion |
+| **Fase 8** | 📋 **REFORMULADA** | 0% | AI Advanced Features |
+
+## 🔄 **STRATEGIC PIVOT - SETEMBRO 2025**
+
+### 🎯 **Nova Direção: WhatsApp First**
+**DECISÃO:** Pivot de plataforma web para chatbot WhatsApp AI  
+**FOCO:** Estatísticas de futebol + análise inteligente de odds  
+**DIFERENCIAL:** Único bot que explica o "porquê" das cotações  
+
+### ✅ **Vantagens do Pivot**
+- **Infraestrutura 100% reaproveitável** - Todo backend/AI serve
+- **Monetização já implementada** - Billing system funcionando
+- **Time-to-market reduzido** - 4-6 semanas vs 6+ meses
+- **Menor barreira de entrada** - WhatsApp vs instalar app
+- **Potencial viral maior** - Compartilhamento natural
 
 ## ✅ Fases Completadas (1-5)
 
@@ -91,11 +107,20 @@
 - **Autenticação**: JWT + guards de rota
 - **Responsividade**: Mobile-first design
 
-## 🚧 Próximos Passos (Fase 6)
-1. **Modelo Premium** - Freemium implementation
-2. **Dashboard Executivo** - BI para clubes
-3. **Marketplace Dados** - Monetização insights
-4. **Parcerias** - Clubes e emissoras
+## 🚧 Próximos Passos (Fase 6.2 - WhatsApp Integration)
+
+### **Setembro 2025 - WhatsApp Foundation**
+1. **WhatsApp Business API Setup** - Meta Business verification
+2. **Core Chatbot Development** - NLP + Integration com AI existente  
+3. **Betting Odds Integration** - APIs + análise inteligente
+4. **MVP Testing** - Beta com 50 usuários
+
+### **Outubro 2025 - Launch & Growth**
+1. **Premium Paywall** - Integração com billing existente
+2. **Advanced Features** - Predictions + personalization
+3. **Marketing Campaign** - Influencers + grupos WhatsApp
+4. **Partnership Development** - Mídia esportiva
 
 ---
-*Última atualização: 30 de agosto de 2025*
+*Última atualização: 1 de setembro de 2025*
+*🔄 STRATEGIC PIVOT PARA WHATSAPP CONCLUÍDO*

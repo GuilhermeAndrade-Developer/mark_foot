@@ -28,7 +28,8 @@ class Command(BaseCommand):
             choices=[
                 'users', 'core', 'billing', 'content', 'polls', 'social', 
                 'gamification', 'forum', 'chat', 'ai_analytics',
-                'business', 'social_sharing', 'whatsapp'
+                'business', 'social_sharing', 'whatsapp', 'user_data', 
+                'seasons_standings', 'player_data', 'api_data'
             ],
             help='Specific modules to seed (default: all)',
         )
@@ -79,7 +80,8 @@ class Command(BaseCommand):
                 # Determine which modules to seed
                 modules_to_seed = options['modules'] or [
                     'users', 'core', 'billing', 'content', 'polls', 'social', 
-                    'gamification', 'forum', 'chat', 'business', 'social_sharing', 'whatsapp'
+                    'gamification', 'forum', 'chat', 'business', 'social_sharing', 'whatsapp',
+                    'user_data', 'seasons_standings', 'player_data', 'api_data'
                 ]
                 
                 if not options['no_external']:
@@ -232,6 +234,62 @@ class Command(BaseCommand):
                         self.stdout.write(f'  ❌ WhatsApp seeder failed: {result.stderr}')
                 except Exception as e:
                     self.stdout.write(f'  ⚠️  WhatsApp seeder error: {str(e)}')
+            
+            elif module_name == 'user_data':
+                # Novo seeder para user profiles, follows, activities, notifications
+                import subprocess
+                import os
+                try:
+                    script_path = os.path.join(settings.BASE_DIR, '..', '..', 'database', 'seeders', 'seed_user_data.py')
+                    result = subprocess.run(['python', script_path], capture_output=True, text=True, cwd=settings.BASE_DIR)
+                    if result.returncode == 0:
+                        self.stdout.write('  ✓ User data seeded via external script')
+                    else:
+                        self.stdout.write(f'  ❌ User data seeder failed: {result.stderr}')
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  User data seeder error: {str(e)}')
+            
+            elif module_name == 'seasons_standings':
+                # Novo seeder para seasons e standings
+                import subprocess
+                import os
+                try:
+                    script_path = os.path.join(settings.BASE_DIR, '..', '..', 'database', 'seeders', 'seed_seasons_standings.py')
+                    result = subprocess.run(['python', script_path], capture_output=True, text=True, cwd=settings.BASE_DIR)
+                    if result.returncode == 0:
+                        self.stdout.write('  ✓ Seasons and standings data seeded via external script')
+                    else:
+                        self.stdout.write(f'  ❌ Seasons/standings seeder failed: {result.stderr}')
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  Seasons/standings seeder error: {str(e)}')
+            
+            elif module_name == 'player_data':
+                # Novo seeder para player statistics e transfers
+                import subprocess
+                import os
+                try:
+                    script_path = os.path.join(settings.BASE_DIR, '..', '..', 'database', 'seeders', 'seed_player_data.py')
+                    result = subprocess.run(['python', script_path], capture_output=True, text=True, cwd=settings.BASE_DIR)
+                    if result.returncode == 0:
+                        self.stdout.write('  ✓ Player statistics and transfers seeded via external script')
+                    else:
+                        self.stdout.write(f'  ❌ Player data seeder failed: {result.stderr}')
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  Player data seeder error: {str(e)}')
+            
+            elif module_name == 'api_data':
+                # Novo seeder para API logs
+                import subprocess
+                import os
+                try:
+                    script_path = os.path.join(settings.BASE_DIR, '..', '..', 'database', 'seeders', 'seed_api_data.py')
+                    result = subprocess.run(['python', script_path], capture_output=True, text=True, cwd=settings.BASE_DIR)
+                    if result.returncode == 0:
+                        self.stdout.write('  ✓ API logs data seeded via external script')
+                    else:
+                        self.stdout.write(f'  ❌ API data seeder failed: {result.stderr}')
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  API data seeder error: {str(e)}')
             
             self.stdout.write(f'  ✓ {module_name} seeded successfully')
             

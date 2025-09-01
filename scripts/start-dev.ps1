@@ -1,8 +1,5 @@
-# ==============================================================================
-# Mark Foot - Script de Setup Simples para Desenvolvimento (Windows)
-# ==============================================================================
-# Uso: .\start-dev.ps1
-# ==============================================================================
+# Mark Foot - Script de Desenvolvimento Automatizado
+# Executa containers, aplica migrations e popula dados automaticamente
 
 param(
     [switch]$Reset,
@@ -10,23 +7,117 @@ param(
 )
 
 function Show-Help {
-    Write-Host ""
     Write-Host "===== MARK FOOT - SETUP DE DESENVOLVIMENTO ====="
     Write-Host ""
     Write-Host "USO:"
-    Write-Host "  .\start-dev.ps1         # Inicia ambiente de desenvolvimento"
-    Write-Host "  .\start-dev.ps1 -Reset  # Reset completo (apaga dados e recria)"
-    Write-Host "  .\start-dev.ps1 -Help   # Mostra esta ajuda"
+    Write-Host "  .\start-dev.ps1         # Inicia ambiente"
+    Write-Host "  .\start-dev.ps1 -Reset  # Reset completo"
+    Write-Host "  .\start-dev.ps1 -Help   # Mostra ajuda"
     Write-Host ""
-    Write-Host "O QUE ESTE SCRIPT FAZ:"
-    Write-Host "  1. Verifica se Docker esta rodando"
-    Write-Host "  2. Para containers antigos (se existirem)"
-    Write-Host "  3. Inicia todos os containers de desenvolvimento"
-    Write-Host "  4. Aguarda banco de dados ficar pronto"
-    Write-Host "  5. Aplica migrations (se necessario)"
-    Write-Host "  6. Popula dados de teste (se necessario)"
-    Write-Host "  7. Verifica dependencias do frontend"
-    Write-Host "  8. Mostra URLs de acesso"
+}
+
+function Execute-Seeders {
+    Write-Host ""
+    Write-Host "Populando banco de dados com seeders..." -ForegroundColor Cyan
+    Write-Host "=========================================" -ForegroundColor Cyan
+    
+    # Detecta automaticamente todos os seeders
+    Write-Host "Detectando seeders automaticamente..."
+    $seederFiles = Get-ChildItem -Path "database/seeders" -Filter "seed_*.py" | Sort-Object Name
+    
+    if ($seederFiles.Count -eq 0) {
+        Write-Host "ERRO: Nenhum seeder encontrado em database/seeders!" -ForegroundColor Red
+        return
+    }
+    
+    $seeders = $seederFiles | ForEach-Object { $_.Name }
+    Write-Host "Encontrados $($seeders.Count) seeders: $($seeders -join ', ')" -ForegroundColor Gray
+    
+    $totalSeeders = $seeders.Count
+    $currentSeeder = 0
+    $successCount = 0
+    $failureCount = 0
+    
+    $startTime = Get-Date
+    
+    foreach ($seeder in $seeders) {
+        $currentSeeder++
+        $percentage = [Math]::Round(($currentSeeder / $totalSeeders) * 100, 1)
+        
+        Write-Host ""
+        Write-Host "[$currentSeeder/$totalSeeders] ($percentage%) Executando $seeder..." -ForegroundColor Yellow
+        Write-Host "  -> " -NoNewline
+        
+        $seederStartTime = Get-Date
+        
+        # Comando para executar o seeder
+        $command = "import sys; sys.path.append('/app'); import os; os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mark_foot_backend.settings'); import django; django.setup(); exec(open('/database/seeders/$seeder').read())"
+        
+        # Executar com job para controle de tempo
+        $job = Start-Job -ScriptBlock {
+            param($cmd, $seederFile)
+            $result = docker exec mark_foot_web_dev python -c $cmd 2>&1
+            return $result
+        } -ArgumentList $command, $seeder
+        
+        # Aguardar com timer visual
+        $timeout = 60
+        $elapsed = 0
+        while ($job.State -eq "Running" -and $elapsed -lt $timeout) {
+            Start-Sleep 1
+            $elapsed++
+            Write-Host "." -NoNewline -ForegroundColor Gray
+        }
+        
+        # Verificar resultado
+        $completed = $false
+        if ($job.State -eq "Completed") {
+            $output = Receive-Job $job
+            $completed = $true
+        } else {
+            Stop-Job $job
+            $output = "Timeout"
+        }
+        
+        Remove-Job $job -Force
+        
+        $seederEndTime = Get-Date
+        $seederDuration = ($seederEndTime - $seederStartTime).TotalSeconds
+        
+        if ($completed) {
+            Write-Host " OK" -ForegroundColor Green
+            Write-Host "     Tempo: $([Math]::Round($seederDuration, 1))s" -ForegroundColor Gray
+            $successCount++
+        } else {
+            Write-Host " FALHOU" -ForegroundColor Red
+            Write-Host "     Tempo: $([Math]::Round($seederDuration, 1))s (timeout)" -ForegroundColor Gray
+            $failureCount++
+        }
+    }
+    
+    $endTime = Get-Date
+    $totalDuration = ($endTime - $startTime).TotalSeconds
+    
+    Write-Host ""
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host "SEEDERS CONCLUIDOS!" -ForegroundColor Green
+    Write-Host "   Sucessos: $successCount" -ForegroundColor Green
+    Write-Host "   Falhas: $failureCount" -ForegroundColor Yellow
+    Write-Host "   Tempo total: $([Math]::Round($totalDuration, 1))s" -ForegroundColor Cyan
+    Write-Host ""
+    
+    # Verificar dados finais
+    Write-Host "Verificando dados populados..."
+    
+    $userResult = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.count())" 2>$null
+    $teamResult = docker exec mark_foot_web_dev python manage.py shell -c "from core.models import Team; print(Team.objects.count())" 2>$null
+    $playerResult = docker exec mark_foot_web_dev python manage.py shell -c "from core.models import Player; print(Player.objects.count())" 2>$null
+    $planResult = docker exec mark_foot_web_dev python manage.py shell -c "from billing.models import SubscriptionPlan; print(SubscriptionPlan.objects.count())" 2>$null
+    
+    Write-Host "   Usuarios: $userResult" -ForegroundColor White
+    Write-Host "   Times: $teamResult" -ForegroundColor White
+    Write-Host "   Jogadores: $playerResult" -ForegroundColor White
+    Write-Host "   Planos: $planResult" -ForegroundColor White
     Write-Host ""
 }
 
@@ -47,7 +138,7 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 }
 
 try {
-    $null = docker version 2>$null
+    docker version | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-Host "ERRO: Docker nao esta rodando!" -ForegroundColor Red
         exit 1
@@ -101,7 +192,7 @@ $attempt = 0
 do {
     $attempt++
     Start-Sleep 2
-    $dbStatus = docker exec mark_foot_mysql_dev mysqladmin ping -h localhost -u root -proot_password 2>$null
+    docker exec mark_foot_mysql_dev mysqladmin ping -h localhost -u root -proot_password 2>$null | Out-Null
     if ($LASTEXITCODE -eq 0) {
         break
     }
@@ -132,9 +223,9 @@ do {
         # Continuar tentando
     }
     Write-Host "." -NoNewline
-} while ($attempt -lt 20)
+} while ($attempt -lt 30)
 
-if ($attempt -ge 20) {
+if ($attempt -ge 30) {
     Write-Host ""
     Write-Host "ERRO: Web service nao esta respondendo" -ForegroundColor Red
     exit 1
@@ -165,31 +256,59 @@ if ($LASTEXITCODE -eq 0) {
 
 # Verificar dados
 Write-Host "[7/8] Verificando dados no banco..."
-$userCount = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.count())" 2>$null
 
-if ($LASTEXITCODE -eq 0 -and [int]$userCount -gt 0) {
+# Verificar se temos usuários
+$userCountResult = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.count())" 2>$null
+$userCount = 0
+if ($userCountResult -and $userCountResult -match '^\d+$') {
+    $userCount = [int]$userCountResult
+}
+
+if ($userCount -gt 5) {
     Write-Host "OK: Banco possui dados ($userCount usuarios)"
+    
+    # Verificar se temos dados completos nas principais tabelas
+    $teamCountResult = docker exec mark_foot_web_dev python manage.py shell -c "from core.models import Team; print(Team.objects.count())" 2>$null
+    $playerCountResult = docker exec mark_foot_web_dev python manage.py shell -c "from core.models import Player; print(Player.objects.count())" 2>$null
+    $subscriptionCountResult = docker exec mark_foot_web_dev python manage.py shell -c "from billing.models import SubscriptionPlan; print(SubscriptionPlan.objects.count())" 2>$null
+    
+    $teamCount = if ($teamCountResult -and $teamCountResult -match '^\d+$') { [int]$teamCountResult } else { 0 }
+    $playerCount = if ($playerCountResult -and $playerCountResult -match '^\d+$') { [int]$playerCountResult } else { 0 }
+    $subscriptionCount = if ($subscriptionCountResult -and $subscriptionCountResult -match '^\d+$') { [int]$subscriptionCountResult } else { 0 }
+    
+    if ($teamCount -eq 0 -or $playerCount -eq 0 -or $subscriptionCount -eq 0) {
+        Write-Host "Dados basicos incompletos, executando todos os seeders..."
+        Execute-Seeders
+    } else {
+        Write-Host "Dados basicos OK: $teamCount teams, $playerCount players, $subscriptionCount plans"
+    }
 } else {
-    Write-Host "Populando dados de desenvolvimento..."
-    docker exec mark_foot_web_dev python manage.py seed_dev_data --quick 2>&1 | Out-Null
-    Write-Host "OK: Dados criados"
+    Write-Host "Banco vazio ou com poucos dados, executando todos os seeders..."
+    
+    # Criar superuser admin se não existir
+    Write-Host "  -> Criando usuario admin..."
+    $createAdminCmd = 'from django.contrib.auth.models import User; User.objects.create_superuser("admin", "admin@markfoot.com", "admin123") if not User.objects.filter(username="admin").exists() else None'
+    docker exec mark_foot_web_dev python manage.py shell -c $createAdminCmd 2>&1 | Out-Null
+    
+    Execute-Seeders
 }
 
 # Verificar/criar superuser
-$adminExists = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.filter(username='admin').exists())" 2>$null
+$adminExistsResult = docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.filter(username='admin').exists())" 2>$null
 
-if ($adminExists -ne "True") {
+if ($adminExistsResult -ne "True") {
     Write-Host "Criando superuser 'admin'..."
-    docker exec mark_foot_web_dev python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@markfoot.com', 'admin123')" 2>$null | Out-Null
+    $createAdminCmd2 = 'from django.contrib.auth.models import User; User.objects.create_superuser("admin", "admin@markfoot.com", "admin123")'
+    docker exec mark_foot_web_dev python manage.py shell -c $createAdminCmd2 2>$null | Out-Null
 }
 
-# Verificar dependencias criticas do frontend
+# Verificar dependências críticas do frontend
 Write-Host "[8/8] Verificando dependencias do frontend..."
 $criticalDeps = @("lodash-es", "vue", "vue-router", "pinia", "vuetify", "axios", "chart.js", "date-fns")
 $missingDeps = @()
 
 foreach ($dep in $criticalDeps) {
-    $exists = docker exec mark_foot_frontend_dev test -d "/app/node_modules/$dep" 2>$null
+    docker exec mark_foot_frontend_dev test -d "/app/node_modules/$dep" 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) {
         $missingDeps += $dep
     }

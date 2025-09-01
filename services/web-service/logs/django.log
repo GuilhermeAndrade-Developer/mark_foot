@@ -30,3 +30,126 @@ INFO 2025-09-01 13:51:47,519 basehttp 11 140316111795904 "GET /api/v1/business/a
 INFO 2025-09-01 13:52:13,980 basehttp 11 140316111795904 "OPTIONS /api/billing/admin/dashboard/kpis/ HTTP/1.1" 200 0
 WARNING 2025-09-01 13:52:13,993 log 11 140316111795904 Not Found: /api/billing/admin/dashboard/kpis/
 WARNING 2025-09-01 13:52:13,993 basehttp 11 140316111795904 "GET /api/billing/admin/dashboard/kpis/ HTTP/1.1" 404 7541
+INFO 2025-09-01 15:25:08,214 autoreload 11 140316248787840 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 15:25:10,117 autoreload 40 140609086647168 Watching for file changes with StatReloader
+INFO 2025-09-01 15:25:18,374 autoreload 40 140609086647168 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 15:25:20,062 autoreload 42 140438903667584 Watching for file changes with StatReloader
+INFO 2025-09-01 15:25:29,452 autoreload 42 140438903667584 /app/mark_foot_backend/urls.py changed, reloading.
+INFO 2025-09-01 15:25:31,093 autoreload 44 140629886454656 Watching for file changes with StatReloader
+INFO 2025-09-01 15:34:03,253 autoreload 44 140629886454656 /app/whatsapp_integration/models.py changed, reloading.
+INFO 2025-09-01 15:34:05,280 autoreload 46 140389210561408 Watching for file changes with StatReloader
+INFO 2025-09-01 15:34:29,545 autoreload 46 140389210561408 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 15:34:31,329 autoreload 54 139797042420608 Watching for file changes with StatReloader
+INFO 2025-09-01 15:34:37,083 autoreload 54 139797042420608 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 15:34:38,785 autoreload 67 139684141198208 Watching for file changes with StatReloader
+INFO 2025-09-01 15:34:50,923 autoreload 67 139684141198208 /app/whatsapp_integration/services.py changed, reloading.
+INFO 2025-09-01 15:34:52,840 autoreload 80 140180825213824 Watching for file changes with StatReloader
+ERROR 2025-09-01 15:42:46,617 exception 139 140081031338880 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-09-01 15:42:47,356 log 139 140081031338880 Bad Request: /whatsapp/webhook/
+ERROR 2025-09-01 15:42:47,359 exception 139 140081031338880 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-09-01 15:42:47,385 log 139 140081031338880 Bad Request: /whatsapp/test-webhook/
+INFO 2025-09-01 15:42:56,804 autoreload 80 140180825213824 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 15:42:58,624 autoreload 156 140591748672384 Watching for file changes with StatReloader
+INFO 2025-09-01 15:43:27,986 autoreload 156 140591748672384 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 15:43:29,781 autoreload 169 140564216212352 Watching for file changes with StatReloader
+ERROR 2025-09-01 15:43:32,187 exception 182 140187738950528 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-09-01 15:43:32,975 log 182 140187738950528 Bad Request: /whatsapp/webhook/
+ERROR 2025-09-01 15:43:32,978 exception 182 140187738950528 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-09-01 15:43:32,998 log 182 140187738950528 Bad Request: /whatsapp/webhook/
+ERROR 2025-09-01 15:43:33,000 exception 182 140187738950528 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/http/request.py", line 167, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-09-01 15:43:33,020 log 182 140187738950528 Bad Request: /whatsapp/test-webhook/
+INFO 2025-09-01 15:44:02,562 basehttp 169 140563526301376 "GET /whatsapp/webhook/?hub.verify_token=mark_foot_verify_token_2024&hub.challenge=test_challenge_123 HTTP/1.1" 200 18
+WARNING 2025-09-01 15:44:41,378 log 169 140563526301376 Forbidden: /whatsapp/webhook/
+WARNING 2025-09-01 15:44:41,378 basehttp 169 140563526301376 "GET /whatsapp/webhook/?hub.verify_token=wrong_token&hub.challenge=test_challenge_123 HTTP/1.1" 403 26
+INFO 2025-09-01 15:45:54,868 basehttp 169 140563516860096 "OPTIONS /api/v1/gamification/profiles/me/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,869 basehttp 169 140563508467392 "OPTIONS /api/v1/gamification/dashboard/stats/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,871 basehttp 169 140563500074688 "OPTIONS /api/v1/gamification/badges/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,872 basehttp 169 140563516860096 "OPTIONS /api/v1/gamification/prediction-games/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,872 basehttp 169 140563491665600 "OPTIONS /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,874 basehttp 169 140563508467392 "OPTIONS /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,875 basehttp 169 140563500074688 "OPTIONS /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,875 basehttp 169 140563139524288 "OPTIONS /api/v1/gamification/challenges/ HTTP/1.1" 200 0
+INFO 2025-09-01 15:45:54,876 basehttp 169 140563131131584 "OPTIONS /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 200 0
+WARNING 2025-09-01 15:45:54,885 log 169 140563491665600 Unauthorized: /api/v1/gamification/profiles/me/
+WARNING 2025-09-01 15:45:54,885 log 169 140563139524288 Unauthorized: /api/v1/gamification/dashboard/stats/
+WARNING 2025-09-01 15:45:54,886 log 169 140563131131584 Unauthorized: /api/v1/gamification/badges/
+WARNING 2025-09-01 15:45:54,886 basehttp 169 140563491665600 "GET /api/v1/gamification/profiles/me/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,887 basehttp 169 140563139524288 "GET /api/v1/gamification/dashboard/stats/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,887 basehttp 169 140563131131584 "GET /api/v1/gamification/badges/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,925 log 169 140563516860096 Unauthorized: /api/v1/gamification/user-badges/my_badges/
+WARNING 2025-09-01 15:45:54,926 basehttp 169 140563516860096 "GET /api/v1/gamification/user-badges/my_badges/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,936 log 169 140563500074688 Unauthorized: /api/v1/gamification/challenges/
+WARNING 2025-09-01 15:45:54,938 log 169 140563508467392 Unauthorized: /api/v1/gamification/user-challenges/my_challenges/
+WARNING 2025-09-01 15:45:54,939 basehttp 169 140563500074688 "GET /api/v1/gamification/challenges/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,939 basehttp 169 140563508467392 "GET /api/v1/gamification/user-challenges/my_challenges/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,945 log 169 140563491665600 Unauthorized: /api/v1/gamification/prediction-games/
+WARNING 2025-09-01 15:45:54,947 log 169 140563131131584 Unauthorized: /api/v1/gamification/dashboard/leaderboard/
+WARNING 2025-09-01 15:45:54,948 log 169 140563139524288 Unauthorized: /api/v1/gamification/predictions/my_predictions/
+WARNING 2025-09-01 15:45:54,948 basehttp 169 140563491665600 "GET /api/v1/gamification/prediction-games/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,949 basehttp 169 140563131131584 "GET /api/v1/gamification/dashboard/leaderboard/ HTTP/1.1" 401 209
+WARNING 2025-09-01 15:45:54,949 basehttp 169 140563139524288 "GET /api/v1/gamification/predictions/my_predictions/ HTTP/1.1" 401 209

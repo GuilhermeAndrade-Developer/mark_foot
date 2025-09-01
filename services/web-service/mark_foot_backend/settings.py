@@ -31,7 +31,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ENVIRONMENT = config('ENVIRONMENT', default='development')
 IS_DEVELOPMENT = ENVIRONMENT.lower() in ['development', 'dev', 'local']
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0,testserver').split(',')
 
 
 # Application definition
@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'content',
     'polls',
     'billing',  # New billing app
+    'whatsapp_integration',  # New WhatsApp integration app
 ]
 
 MIDDLEWARE = [
@@ -463,6 +464,24 @@ LOGGING = {
 
 # Create logs directory if it doesn't exist
 os.makedirs(os.path.join(BASE_DIR, 'logs'), exist_ok=True)
+
+# ============================================================================
+# WHATSAPP BUSINESS API CONFIGURATION
+# ============================================================================
+
+# WhatsApp Configuration
+WHATSAPP_ACCESS_TOKEN = config('WHATSAPP_ACCESS_TOKEN', default='your_access_token')
+WHATSAPP_PHONE_ID = config('WHATSAPP_PHONE_ID', default='your_phone_id')
+WHATSAPP_APP_SECRET = config('WHATSAPP_APP_SECRET', default='your_app_secret')
+WHATSAPP_VERIFY_TOKEN = config('WHATSAPP_VERIFY_TOKEN', default='mark_foot_verify_token_2024')
+
+# Rate limiting for WhatsApp users
+WHATSAPP_FREE_DAILY_LIMIT = config('WHATSAPP_FREE_DAILY_LIMIT', default=5, cast=int)
+WHATSAPP_PREMIUM_DAILY_LIMIT = config('WHATSAPP_PREMIUM_DAILY_LIMIT', default=1000, cast=int)
+
+# WhatsApp webhook settings
+WHATSAPP_WEBHOOK_TIMEOUT = config('WHATSAPP_WEBHOOK_TIMEOUT', default=30, cast=int)
+WHATSAPP_WEBHOOK_RETRIES = config('WHATSAPP_WEBHOOK_RETRIES', default=3, cast=int)
 
 # ============================================================================
 # MONITORING CONFIGURATION

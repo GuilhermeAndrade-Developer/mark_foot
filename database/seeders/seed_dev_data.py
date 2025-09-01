@@ -28,7 +28,7 @@ class Command(BaseCommand):
             choices=[
                 'users', 'core', 'billing', 'content', 'polls', 'social', 
                 'gamification', 'forum', 'chat', 'ai_analytics',
-                'business', 'social_sharing'
+                'business', 'social_sharing', 'whatsapp'
             ],
             help='Specific modules to seed (default: all)',
         )
@@ -79,7 +79,7 @@ class Command(BaseCommand):
                 # Determine which modules to seed
                 modules_to_seed = options['modules'] or [
                     'users', 'core', 'billing', 'content', 'polls', 'social', 
-                    'gamification', 'forum', 'chat', 'business', 'social_sharing'
+                    'gamification', 'forum', 'chat', 'business', 'social_sharing', 'whatsapp'
                 ]
                 
                 if not options['no_external']:
@@ -219,6 +219,20 @@ class Command(BaseCommand):
                 except Exception as e:
                     self.stdout.write(f'  ⚠️  Social sharing seeder not implemented yet: {str(e)}')
             
+            elif module_name == 'whatsapp':
+                # Seeder para dados do WhatsApp Integration
+                import subprocess
+                import os
+                try:
+                    script_path = os.path.join(settings.BASE_DIR, '..', '..', 'database', 'seeders', 'seed_whatsapp_data.py')
+                    result = subprocess.run(['python', script_path], capture_output=True, text=True, cwd=settings.BASE_DIR)
+                    if result.returncode == 0:
+                        self.stdout.write('  ✓ WhatsApp data seeded via external script')
+                    else:
+                        self.stdout.write(f'  ❌ WhatsApp seeder failed: {result.stderr}')
+                except Exception as e:
+                    self.stdout.write(f'  ⚠️  WhatsApp seeder error: {str(e)}')
+            
             self.stdout.write(f'  ✓ {module_name} seeded successfully')
             
         except Exception as e:
@@ -248,6 +262,15 @@ class Command(BaseCommand):
             self.stdout.write(f'  🎮 User Profiles: {UserProfile.objects.count()}')
             self.stdout.write(f'  🏅 Badges: {Badge.objects.count()}')
             self.stdout.write(f'  💳 Subscription Plans: {SubscriptionPlan.objects.count()}')
+            
+            # WhatsApp stats
+            try:
+                from whatsapp_integration.models import WhatsAppUser, WhatsAppMessage, WhatsAppSession
+                self.stdout.write(f'  📱 WhatsApp Users: {WhatsAppUser.objects.count()}')
+                self.stdout.write(f'  💬 WhatsApp Messages: {WhatsAppMessage.objects.count()}')
+                self.stdout.write(f'  🔗 WhatsApp Sessions: {WhatsAppSession.objects.count()}')
+            except ImportError:
+                pass
             
         except ImportError as e:
             self.stdout.write(f'  ⚠️  Could not generate summary: {str(e)}')

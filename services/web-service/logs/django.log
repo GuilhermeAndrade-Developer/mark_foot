@@ -228,3 +228,25 @@ INFO 2025-09-01 20:27:10,346 basehttp 38 139742394336960 "POST /api/nlp/process/
 INFO 2025-09-01 20:27:58,091 basehttp 38 139742394336960 "POST /api/nlp/process/ HTTP/1.1" 200 371
 INFO 2025-09-01 20:27:58,187 basehttp 38 139742384895680 "POST /api/nlp/process/ HTTP/1.1" 200 650
 INFO 2025-09-01 20:27:58,255 basehttp 38 139742394336960 "POST /api/nlp/process/ HTTP/1.1" 200 530
+INFO 2025-09-01 20:42:38,671 autoreload 38 139743085349760 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:42:40,831 autoreload 104 140673044147072 Watching for file changes with StatReloader
+INFO 2025-09-01 20:42:51,150 autoreload 104 140673044147072 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:42:53,073 autoreload 117 140384981543808 Watching for file changes with StatReloader
+INFO 2025-09-01 20:43:08,221 autoreload 117 140384981543808 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 20:43:10,103 autoreload 130 140121394580352 Watching for file changes with StatReloader
+INFO 2025-09-01 20:43:36,594 autoreload 130 140121394580352 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 20:43:38,416 autoreload 143 140047837924224 Watching for file changes with StatReloader
+INFO 2025-09-01 20:44:03,701 autoreload 143 140047837924224 /app/mark_foot_backend/settings.py changed, reloading.
+INFO 2025-09-01 20:44:05,537 autoreload 156 140483122101120 Watching for file changes with StatReloader
+INFO 2025-09-01 20:46:19,220 autoreload 156 140483122101120 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:46:21,006 autoreload 221 140231155673984 Watching for file changes with StatReloader
+INFO 2025-09-01 20:46:28,937 autoreload 221 140231155673984 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:46:30,768 autoreload 234 140574643977088 Watching for file changes with StatReloader
+INFO 2025-09-01 20:46:39,823 autoreload 234 140574643977088 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:46:41,673 autoreload 247 139959007411072 Watching for file changes with StatReloader
+INFO 2025-09-01 20:49:58,253 autoreload 247 139959007411072 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:50:00,066 autoreload 308 139913590336384 Watching for file changes with StatReloader
+INFO 2025-09-01 20:50:12,691 autoreload 308 139913590336384 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:50:14,496 autoreload 321 140114137652096 Watching for file changes with StatReloader
+INFO 2025-09-01 20:50:29,307 autoreload 321 140114137652096 /app/nlp_engine/services.py changed, reloading.
+INFO 2025-09-01 20:50:31,108 autoreload 334 139797855984512 Watching for file changes with StatReloader

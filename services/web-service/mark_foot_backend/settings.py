@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'billing',  # New billing app
     'whatsapp_integration',  # New WhatsApp integration app
     'nlp_engine',  # New NLP engine app
+    'betting_odds',  # New betting odds integration app
 ]
 
 MIDDLEWARE = [
@@ -335,6 +336,26 @@ MERCADOPAGO_SANDBOX = config('MERCADOPAGO_SANDBOX', default=True, cast=bool)
 # Payment Webhooks Configuration
 PAYMENT_WEBHOOK_TIMEOUT = 30  # seconds
 PAYMENT_WEBHOOK_RETRIES = 3
+
+# ============================================================================
+# BETTING ODDS APIS CONFIGURATION
+# ============================================================================
+
+# The Odds API Configuration
+ODDS_API_KEY = config('ODDS_API_KEY', default='your_odds_api_key')
+
+# Betfair API Configuration  
+BETFAIR_API_KEY = config('BETFAIR_API_KEY', default='your_betfair_api_key')
+BETFAIR_USERNAME = config('BETFAIR_USERNAME', default='your_betfair_username')
+BETFAIR_PASSWORD = config('BETFAIR_PASSWORD', default='your_betfair_password')
+
+# Bet365 API Configuration
+BET365_API_KEY = config('BET365_API_KEY', default='your_bet365_api_key')
+
+# Odds Collection Settings
+ODDS_COLLECTION_ENABLED = config('ODDS_COLLECTION_ENABLED', default=True, cast=bool)
+ODDS_COLLECTION_INTERVAL_MINUTES = config('ODDS_COLLECTION_INTERVAL_MINUTES', default=60, cast=int)
+ODDS_ANALYSIS_ENABLED = config('ODDS_ANALYSIS_ENABLED', default=True, cast=bool)
 
 # ============================================================================
 # SECURITY CONFIGURATION FOR PRODUCTION

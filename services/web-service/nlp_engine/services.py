@@ -754,14 +754,93 @@ Para acessar análises completas de odds e explicações sobre cotações:
 
 Digite /premium para assinar!"""
         
-        # Premium odds analysis would go here
-        return """🎲 **Análise de Odds**
+        # Premium odds analysis - now integrated with betting_odds app
+        try:
+            # Check if user specified teams
+            teams = entities.get('teams', [])
+            
+            if len(teams) >= 2:
+                # User asked for specific match odds
+                return self._get_specific_match_odds(teams[0]['name'], teams[1]['name'])
+            else:
+                # General odds analysis or value bets summary
+                return self._get_value_bets_summary()
+                
+        except Exception as e:
+            logger.error(f"Error in betting odds response: {str(e)}")
+            return """🎲 **Análise de Odds**
 
-🔄 Sistema em desenvolvimento
-📊 Breve: Análises completas de cotações
-🎯 Aguarde: Value bets e insights
+⚠️ Serviço temporariamente indisponível
+🔄 Tente novamente em alguns minutos
 
-Obrigado pela sua assinatura Premium! 💎"""
+Obrigado pela sua paciência! 💎"""
+    
+    def _get_specific_match_odds(self, home_team: str, away_team: str) -> str:
+        """Get odds analysis for a specific match"""
+        try:
+            from betting_odds.models import OddsAnalysis
+            from core.models import Match
+            from django.utils import timezone
+            from datetime import timedelta
+            
+            # Find upcoming match between these teams
+            matches = Match.objects.filter(
+                Q(home_team__name__icontains=home_team, away_team__name__icontains=away_team) |
+                Q(home_team__name__icontains=away_team, away_team__name__icontains=home_team),
+                utc_date__gte=timezone.now(),
+                utc_date__lte=timezone.now() + timedelta(days=14)
+            ).first()
+            
+            if not matches:
+                return f"""🎲 **Odds Analysis**
+
+⚽ Partida: {home_team} vs {away_team}
+❌ Nenhuma partida encontrada nos próximos 14 dias
+
+� Verifique os nomes dos times ou consulte a agenda de jogos."""
+            
+            # Check if we have odds analysis
+            try:
+                analysis = matches.odds_analysis
+                return analysis.analysis_summary or "Análise em processamento..."
+            except:
+                # No analysis yet, trigger collection
+                from betting_odds.tasks import collect_odds_for_specific_match
+                collect_odds_for_specific_match.delay(matches.id)
+                
+                return f"""🎲 **Odds Analysis**
+
+⚽ Partida: {matches.home_team.name} vs {matches.away_team.name}
+📅 Data: {matches.utc_date.strftime('%d/%m/%Y às %H:%M')}
+
+🔄 Coletando odds dos principais bookmakers...
+📊 Análise estará disponível em alguns minutos
+
+Digite novamente para ver a análise completa! 💎"""
+                
+        except Exception as e:
+            logger.error(f"Error getting specific match odds: {str(e)}")
+            return """🎲 **Erro na Análise**
+
+⚠️ Não foi possível processar sua solicitação
+💡 Tente: "Odds Flamengo x Palmeiras" """
+    
+    def _get_value_bets_summary(self) -> str:
+        """Get current value betting opportunities"""
+        try:
+            from betting_odds.services.odds_analyzer import OddsAnalysisService
+            
+            analyzer = OddsAnalysisService()
+            return analyzer.get_value_bets_summary(user_is_premium=True)
+            
+        except Exception as e:
+            logger.error(f"Error getting value bets summary: {str(e)}")
+            return """💎 **Value Bets**
+
+🔄 Sistema de análise em inicialização
+📊 Aguarde alguns minutos para análises completas
+
+Obrigado pela sua paciência! 💎"""
     
     def generate_subscription_response(self, entities: Dict, user: Any) -> str:
         """Generate response for subscription queries"""
@@ -873,16 +952,19 @@ Se o problema persistir, nossa equipe será notificada! 🛠️"""
             return False
         
         try:
+            # Check WhatsAppUser premium status first
+            if hasattr(user, 'is_premium'):
+                return user.is_premium
+                
+            # Fallback to billing subscription
             from billing.models import UserSubscription
-            if hasattr(user, 'user'):
+            if hasattr(user, 'user') and user.user:
                 django_user = user.user
-            else:
-                # For WhatsAppUser, try to find linked Django user
-                return False  # For now, assume no premium until proper user linking
+                return UserSubscription.objects.filter(
+                    user=django_user,
+                    status='active'
+                ).exists()
             
-            return UserSubscription.objects.filter(
-                user=django_user,
-                status='active'
-            ).exists()
+            return False
         except:
             return False

@@ -1,3 +1,12 @@
 INFO 2025-08-31 16:02:16,570 autoreload 73 131375496555392 Watching for file changes with StatReloader
 INFO 2025-08-31 16:06:44,233 autoreload 73 131375496555392 /app/mark_foot_backend/settings.py changed, reloading.
 INFO 2025-08-31 16:06:48,914 autoreload 75 139722299571072 Watching for file changes with StatReloader
+INFO 2025-09-01 13:02:55,769 autoreload 7 139840150449024 Watching for file changes with StatReloader
+INFO 2025-09-01 13:12:14,840 autoreload 17 139944626498432 Watching for file changes with StatReloader
+WARNING 2025-09-01 13:13:00,981 log 17 139944556639936 Not Found: /api/v1/health/
+WARNING 2025-09-01 13:13:00,981 basehttp 17 139944556639936 "GET /api/v1/health/ HTTP/1.1" 404 24002
+INFO 2025-09-01 13:13:08,624 basehttp 17 139944556639936 "GET /api/v1/ HTTP/1.1" 200 557
+INFO 2025-09-01 13:22:54,009 autoreload 11 140155328052096 Watching for file changes with StatReloader
+INFO 2025-09-01 13:22:55,561 basehttp 11 140155184740032 "GET /api/v1/ HTTP/1.1" 200 557
+INFO 2025-09-01 13:32:13,660 autoreload 11 140316248787840 Watching for file changes with StatReloader
+INFO 2025-09-01 13:32:15,896 basehttp 11 140316111795904 "GET /api/v1/ HTTP/1.1" 200 557
